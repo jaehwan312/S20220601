@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>inkim.jsp</h1>
-<h1>김인헌</h1>
-<h1>rladlsgjs</h1>
+	<h1>힘내라 동기야</h1>
+	<h2>힘내라 동기화</h2>
 </body>
 </html>
