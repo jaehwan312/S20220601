@@ -8,5 +8,6 @@
 </head>
 <body>
 <h1>inkim.jsp</h1>
+<h1>김인헌</h1>
 </body>
 </html>
