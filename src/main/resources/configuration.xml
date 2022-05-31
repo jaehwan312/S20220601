@@ -4,5 +4,6 @@
 
 <configuration>
 	<typeAliases>
+		<typeAlias alias="Store" type="com.oracle.S20220601.model.Store"/>
 	</typeAliases>
 </configuration>
