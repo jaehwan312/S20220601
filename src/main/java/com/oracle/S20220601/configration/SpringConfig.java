@@ -1,4 +1,4 @@
-package com.oracle.S20220601.config;
+package com.oracle.S20220601.configration;
 
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;

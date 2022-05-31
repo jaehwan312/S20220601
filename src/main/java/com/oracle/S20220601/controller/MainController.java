@@ -11,6 +11,7 @@ public class MainController {
 	
 	@RequestMapping("main")
 	public String main() {
-		return "index";
+		System.out.println("main Start...");
+		return "main";
 	}
 }
