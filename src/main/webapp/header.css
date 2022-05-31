@@ -1,0 +1,153 @@
+@charset "UTF-8";
+html, body {
+    margin: 0; 
+    padding: 0;
+    font-family: 'Gugi', cursive;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navbar_logo a {
+    font-size: 17px;
+}
+
+.search_form {
+    border-bottom: 1px solid black;
+}
+
+.search_bar {
+    width: 300px;
+    outline: none;
+    border: none;
+}
+
+.search_btn {
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+#recommend {
+    position: absolute;
+}
+
+.word_box {
+    display: none;
+}
+
+#recommend div:nth-child(1) {
+    margin-top: 9px;
+}
+
+.navbar_menu {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.navbar_menu li {
+    padding: 0px 12px;
+}
+
+.navbar_user {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.navbar_user li {
+    padding: 0px 12px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown_content {
+    display: none;
+    position: absolute;
+    min-width: 150px;
+}
+
+.dropdown_content a {
+    display: block;
+}
+
+.dropdown_content a:nth-child(1) {
+    margin-top: 9px;
+}
+
+.dropdown:hover .dropdown_content {
+    display: block;
+}
+
+.hamburger {
+    display: none;
+    position: absolute;
+    top: 8px;
+    right: 36px;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+    }
+
+    .navbar_search {
+        margin: auto;
+    }
+    
+    .search_form {
+        width: 333px;
+    }
+
+    .navbar_menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar_menu li {
+        width: 100%;
+        text-align: center;
+        padding: 8px 12px;
+    }
+
+    #csc {
+        width: 100%;
+        position: relative;
+    }
+
+    .navbar_user {
+        display: none;
+        justify-content: right;
+        width: 100%;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .navbar_menu.active,
+    .navbar_user.active {
+        display: flex;
+    }
+}
