@@ -151,3 +151,42 @@ a {
         display: flex;
     }
 }
+
+/* image */
+.bg_img {
+    height: 500px;
+    background-image: url(../images/main_bg_jeju.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* main */
+.container {
+    flex: 1 ;
+}
+
+
+/* footer */
+
+footer {
+    padding: 20px 0px;
+    background-color: #3e3e3e;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: monospace;
+    font-size: 15px;
+}
+
+footer h1, h2 {
+    font-size: 15px;
+}
+
+footer li {
+    list-style: none;
+}
