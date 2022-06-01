@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,14 +12,6 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-    <!-- test -->
-    <c:forEach var="list" items="${storeList }">
-    	<div>
-    		<label>${list.host_num }</label>
-    		<label>${list.open_time }</label>
-    		<label>${list.break_time }</label>
-    	</div>
-    </c:forEach>
     
     
     <!-- 여기 위로오 ============================================================ -->   

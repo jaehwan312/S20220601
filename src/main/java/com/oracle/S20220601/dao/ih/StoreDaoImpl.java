@@ -22,6 +22,7 @@ public class StoreDaoImpl {
 		
 		try {
 			storeList = session.selectList("storeList", store);
+			System.out.println("StoreDaoImpl storeLis storeList.size() --> " + storeList.size());
 		} catch (Exception e) {
 			System.out.println("StoreDaoImpl storeList ErrorMessage --> " + e.getMessage());
 		}
