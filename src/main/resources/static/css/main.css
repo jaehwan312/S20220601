@@ -23,24 +23,17 @@ a {
     font-size: 17px;
 }
 
-.search_form {
-    border-bottom: 1px solid black;
-}
-
 .search_bar {
     width: 300px;
     outline: none;
     border: none;
+    border-bottom: 1px solid black;
 }
 
 .search_btn {
     border: none;
     outline: none;
     background-color: white;
-}
-
-#recommend {
-    position: absolute;
 }
 
 .word_box {
@@ -103,6 +96,23 @@ a {
     right: 36px;
 }
 
+.item{
+  margin: 3% 0px;
+  display: flex;
+  align-items: center;
+  width: 332.812px;
+}
+
+.search_result {
+	margin: 5px auto;
+	position: fixed;
+	width: 332.812px;
+	max-height: 198px;
+	background-color: yellow;
+	overflow-x: hidden;
+	display: none;
+}
+
 @media screen and (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -117,6 +127,11 @@ a {
     .search_form {
         width: 333px;
     }
+    
+   .search_result {
+		margin: 10px auto;
+		position: static;
+	}
 
     .navbar_menu {
         display: none;
