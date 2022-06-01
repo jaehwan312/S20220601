@@ -6,27 +6,47 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Store;
+import com.oracle.S20220601.model.ih.HostStore;
 
 @Repository
-public class StoreDaoImpl {
+public class StoreDaoImpl implements StoreDao {
 
 	@Autowired
 	private SqlSession session;
-	
-	public List<Store> storeList(Store store) {
 
-		System.out.println("StoreDaoImpl storeList Start....");
+	@Override
+	public HostStore storeRead(int host_num) {
+		System.out.println("StoreDaoImpl storeRead Start....");
 		
-		List<Store> storeList = null;
+		HostStore storeRead = null;
 		
 		try {
-			storeList = session.selectList("storeList", store);
-			System.out.println("StoreDaoImpl storeLis storeList.size() --> " + storeList.size());
+			storeRead = session.selectOne("storeRead", host_num);
 		} catch (Exception e) {
-			System.out.println("StoreDaoImpl storeList ErrorMessage --> " + e.getMessage());
+			System.out.println("StoreDaoImpl storeRead ErrorMessage --> " + e.getMessage());
 		}
-		return storeList;
+		
+		return storeRead;
 	}
+
+	@Override
+	public List<HostPhoto> storePhoto(int host_num) {
+		
+		System.out.println("StoreDaoImpl storePhoto Start....");
+		
+		List<HostPhoto> storePhoto = null;
+		
+		try {
+			storePhoto = session.selectList("storePhoto", host_num);
+			System.out.println("StoreDaoImpl storePhoto storePhoto.size() --> " + storePhoto.size());
+		} catch (Exception e) {
+			System.out.println("StoreDaoImpl storePhoto ErrorMessage --> " + e.getMessage());
+		}
+		return storePhoto;
+	}
+	
+	
 	
 }
