@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" errorPage="error.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +29,9 @@
                 </button>
                 <div class="search_result">
                 	<div class="keyword">
-                    	<div class="keyword_child" id>연관검색어</div>
-                    	<div class="keyword_child">추천검색어</div>
-                    	<div class="keyword_child">인기검색어</div>
+                    	<div class="keyword_child" id="keyword_rel" onclick="keyword_rel(0)">연관검색어</div>
+                    	<div class="keyword_child" id="keyword_rec" onclick="keyword_rel(1)">추천검색어</div>
+                    	<div class="keyword_child" id="keyword_pop" onclick="keyword_rel(2)">인기검색어</div>
                     </div>
 
 			        <div class="item">
