@@ -24,9 +24,4 @@ public class HostStore {
 	private String break_time;	// 브레이크 타임
 	private String parking;		// 주차가능
 	private String food_type;	// 음식코드
-	
-	//Menu
-	private int menu_num;		// 메뉴 등록번호
-	private String menu_name;	// 메뉴 이름
-	private int menu_price;		// 가격
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.oracle.S20220601.dao.ih.StoreDao;
 import com.oracle.S20220601.model.HostPhoto;
+import com.oracle.S20220601.model.Menu;
 import com.oracle.S20220601.model.ih.HostStore;
 
 @Service
@@ -32,6 +33,15 @@ public class StoreServiceImp implements StoreService{
 		List<HostPhoto> storePhoto = storeDaol.storePhoto(host_num);
 		
 		return storePhoto;
+	}
+
+	@Override
+	public List<Menu> menuList(int host_num) {
+		System.out.println("StoreServiceImp menuList Start....");
+		
+		List<Menu> menuList = storeDaol.menuList(host_num);
+		
+		return menuList;
 	}
 	
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +16,10 @@
     	
     	<c:forEach items="${storePhoto }" var="photo">
     		<div style="text-align: center;">
-			<img alt="업체사진" src="images/ih/${photo.photo}" width="300px;" height="300px;">
-    	</div>
+				<img alt="업체사진" src="images/ih/${photo.photo}" width="300px;" height="300px;">
+    		</div>
     	</c:forEach>
+    	
     	<div>
     		식당이름: ${store.host_name}<p/>
     		식당주소: ${store.host_addr}<p/>
@@ -35,9 +37,16 @@
     	<div>
     		<h2>memu</h2>
 	    	음식종류: ${store.food_type}<p/>
-	    	메뉴이름: ${store.menu_name}<p/>
-	    	메뉴번호: ${store.menu_num}<p/>
-	    	메뉴가격: ${store.menu_price}<p/>
+	    	<label style="float: left;  margin-right: 25px; width: 80px;">메뉴번호</label>
+	    	<label style="float: left;  margin-right: 50px; width: 100px;">메뉴이름</label>
+	    	<label style="float: left;  margin-right: 50px; margin-left: 50px; width: 100px;">메뉴가격</label>
+	    	<br/>
+	    	<c:forEach items="${menuList }" var="menu">
+	    		<div style="float: left;  margin-right: 50px; margin-left: 25px; width: 30px;">${menu.menu_num}</div>
+	    		<div style="float: left;  margin-right: 50px; width: 100px;">${menu.menu_name}</div>
+	    		<div style="float: left;  margin-right: 50px; margin-left: 50px; width: 100px;">${menu.menu_price}</div>
+	    		<br/>
+	    	</c:forEach>
     	</div>
     	
     	<div>

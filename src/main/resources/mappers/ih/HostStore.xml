@@ -7,14 +7,13 @@
    		
    	<!--식당정보 확인  -->
 	  	<select id="storeRead" parameterType="int" resultType="HostStore">
-	  		SELECT s.*, h.*, m.* FROM store s, host h, menu m WHERE h.host_num = ${host_num} 
-	  														  AND   s.host_num = ${host_num}
-	  														  AND   m.host_num = ${host_num}
+	  		SELECT s.*, h.* FROM store s, host h WHERE h.host_num = #{host_num} 
+	  											 AND   s.host_num = #{host_num}
 	  	</select>
 	  	
 	  <!-- 식당 사진 -->
 	  	<select id="storePhoto" parameterType="int" resultType="HostPhoto">
-	  		SELECT photo FROM hostphoto WHERE host_num = ${host_num}
+	  		SELECT photo FROM hostphoto WHERE host_num = #{host_num}
 	  	</select>
   	
    </mapper>

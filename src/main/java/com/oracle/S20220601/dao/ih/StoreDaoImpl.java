@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.oracle.S20220601.model.HostPhoto;
+import com.oracle.S20220601.model.Menu;
 import com.oracle.S20220601.model.Store;
 import com.oracle.S20220601.model.ih.HostStore;
 
@@ -45,6 +46,21 @@ public class StoreDaoImpl implements StoreDao {
 			System.out.println("StoreDaoImpl storePhoto ErrorMessage --> " + e.getMessage());
 		}
 		return storePhoto;
+	}
+
+	@Override
+	public List<Menu> menuList(int host_num) {
+System.out.println("StoreDaoImpl menuList Start....");
+		
+		List<Menu> menuList = null;
+		
+		try {
+			menuList = session.selectList("menuList", host_num);
+			System.out.println("StoreDaoImpl menuList storePhoto.size() --> " + menuList.size());
+		} catch (Exception e) {
+			System.out.println("StoreDaoImpl menuList ErrorMessage --> " + e.getMessage());
+		}
+		return menuList;
 	}
 	
 	

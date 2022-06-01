@@ -29,11 +29,14 @@ public class StoreController {
 	public String storeRead(int host_num, Model model) {
 		logger.info("StoreController storeRead Start..");
 		
-		HostStore storeRead  = storeService.storeRead(host_num);
+		HostStore       storeRead  = storeService.storeRead(host_num);
 		List<HostPhoto> storePhoto = storeService.storePhoto(host_num);
+		List<Menu>      menuList   = storeService.menuList(host_num);
+		
 		
 		model.addAttribute("store",storeRead);
 		model.addAttribute("storePhoto",storePhoto);
+		model.addAttribute("menuList",menuList);
 		
 		return "ih/storeRead";
 	}
