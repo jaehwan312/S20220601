@@ -28,40 +28,48 @@
                 </button>
                 <div class="search_result">
                 	<div class="keyword">
-                    	<span class="keyword">연관검색어</span>
-                    	<span class="keyword">추천검색어</span>
-                    	<span class="keyword">인기검색어</span>
+                    	<div class="keyword_child" id>연관검색어</div>
+                    	<div class="keyword_child">추천검색어</div>
+                    	<div class="keyword_child">인기검색어</div>
                     </div>
 
 			        <div class="item">
-			          <span class="name">Apple</span>
+			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
+			          <span class="name">제주도</span>
 			        </div>
 			
 			        <div class="item">
-			          <span class="name">Orange</span>
+			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
+			          <span class="name">제주도맛집</span>
 			        </div>
 			
 			        <div class="item">
-			          <span class="name">Mandarin</span>
+			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
+			          <span class="name">돌하르방</span> 
 			        </div>
 			
 			        <div class="item">
-			          <span class="name">Strawberry</span>
+			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
+			          <span class="name">가나다라</span>
 			        </div>
 			
 			        <div class="item">
-			          <span class="name">Watermelon</span>
+			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
+			          <span class="name">김인헌</span>
 			        </div>
 			
 			        <div class="item">
-			          <span class="name">Grape</span>
+			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
+			          <span class="name">안녕하세요</span>
 			        </div>
 			
 			        <div class="item">
-			          <span class="name">Pear</span>
+			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
+			          <span class="name">반갑습니다 여러분</span>
 			        </div>
 			
 			        <div class="item">
+			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
 			          <span class="name">Cherry</span>
 			        </div>
     		    </div>
