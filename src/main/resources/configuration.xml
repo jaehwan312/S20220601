@@ -4,6 +4,8 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias alias="Store" type="com.oracle.S20220601.model.Store"/>
+		<typeAlias alias="Store"     type="com.oracle.S20220601.model.Store"/>
+		<typeAlias alias="HostStore" type="com.oracle.S20220601.model.ih.HostStore"/>
+		<typeAlias alias="HostPhoto" type="com.oracle.S20220601.model.HostPhoto"/>
 	</typeAliases>
 </configuration>

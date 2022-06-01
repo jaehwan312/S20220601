@@ -2,6 +2,7 @@
 html, body {
     margin: 0; 
     padding: 0;
+    font-family: 'Gugi', cursive;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -13,7 +14,6 @@ a {
 }
 
 .navbar {
-	font-family: 'Gugi', cursive;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -23,21 +23,24 @@ a {
     font-size: 17px;
 }
 
-.navbar_search {
-	font-family: 'SCoreDream';
+.search_form {
+    border-bottom: 1px solid black;
 }
 
 .search_bar {
     width: 300px;
     outline: none;
     border: none;
-    border-bottom: 1px solid black;
 }
 
 .search_btn {
     border: none;
     outline: none;
     background-color: white;
+}
+
+#recommend {
+    position: absolute;
 }
 
 .word_box {
@@ -100,53 +103,6 @@ a {
     right: 36px;
 }
 
-.item{
-  margin: 3% 0px;
-  display: flex;
-  align-items: center;
-  width: 332.812px;
-}
-
-.search_result {
-	margin: 5px auto;
-	position: fixed;
-	width: 332.812px;
-	max-height: 198px;
-	background-color: yellow;
-	overflow-x: hidden;
-	display: none;
-}
-
-.search_result::-webkit-scrollbar {
-   width: 10px;
- }
- .search_result::-webkit-scrollbar-thumb {
-   background-color: #808080;
-   border-radius: 10px;
- }
- .search_result::-webkit-scrollbar-track {
-   background-color: #f1f3f4;
-   border-radius: 10px;
-   box-shadow: inset 0px 0px 5px white;
- }
-
-.keyword {
-	display: flex;
-	justify-content: space-around;
-	margin-top: 3px;
-}
-
-.keyword_child {
-	cursor: pointer;
-	margin-bottom: 1px;
-	border-bottom: 2px solid;
-}
-
-.item > i {
-	margin-left: 5px;
-	margin-right: 3px;
-}
-
 @media screen and (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -161,11 +117,6 @@ a {
     .search_form {
         width: 333px;
     }
-    
-   .search_result {
-		margin: 10px auto;
-		position: static;
-	}
 
     .navbar_menu {
         display: none;
@@ -211,13 +162,11 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'SCoreDream';
 }
 
 /* main */
 .container {
     flex: 1 ;
-    font-family: 'SCoreDream';
 }
 
 

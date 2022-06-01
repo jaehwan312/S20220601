@@ -9,8 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.oracle.S20220601.model.Host;
+import com.oracle.S20220601.model.HostPhoto;
+import com.oracle.S20220601.model.Menu;
 import com.oracle.S20220601.model.Store;
-import com.oracle.S20220601.service.ih.StoreServiceImpl;
+import com.oracle.S20220601.model.ih.HostStore;
+import com.oracle.S20220601.service.ih.StoreService;
 
 @Controller
 public class StoreController {
@@ -18,20 +22,19 @@ public class StoreController {
 	private static final Logger logger = LoggerFactory.getLogger(StoreController.class);
 	
 	@Autowired
-	private StoreServiceImpl storeService;
+	private StoreService storeService;
 	
-	
-	@GetMapping(value = "storeList")
-	public String storeList(Store store, Model model) {
-		logger.info("StoreController storeList Start..");
+	 
+	@GetMapping(value = "storeRead")
+	public String storeRead(int host_num, Model model) {
+		logger.info("StoreController storeRead Start..");
 		
-		List<Store> storeList = null;
+		HostStore storeRead  = storeService.storeRead(host_num);
+		List<HostPhoto> storePhoto = storeService.storePhoto(host_num);
 		
-		storeList =	storeService.storeList(store);
+		model.addAttribute("store",storeRead);
+		model.addAttribute("storePhoto",storePhoto);
 		
-		model.addAttribute("storeList", storeList);
-		
-		System.out.println("StoreController storeList storeList.size --> " + storeList.size());
-		return "ih/storeList";
+		return "ih/storeRead";
 	}
 }
