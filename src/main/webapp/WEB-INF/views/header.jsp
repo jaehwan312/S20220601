@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" errorPage="error.jsp"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<title>제주 감수광</title>
 	<script src="https://kit.fontawesome.com/a42e829aa0.js" crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="js/main.js" defer></script>
 </head>
 <body class="main_container">
@@ -21,15 +23,49 @@
         </div>
         <div class="navbar_search">
             <form action="" class="search_form">
-                <input type="text"  class="search_bar" placeholder="Typing...">                
+                <input type="text" id="s_value" class="search_bar" placeholder="Typing..." onkeyup="filter()">                
                 <button class="search_btn">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-                <div id="recommend" class="word_box">
-                    <div><span class="text"></span>랍니다.</div>
-                    <div>나는 <span class="text"></span>랍니다.</div>
-                    <div>나는 <span class="text"></span></div>
-                </div>
+                <div class="search_result">
+                	<div class="keyword">
+                    	<span class="keyword">연관검색어</span>
+                    	<span class="keyword">추천검색어</span>
+                    	<span class="keyword">인기검색어</span>
+                    </div>
+
+			        <div class="item">
+			          <span class="name">Apple</span>
+			        </div>
+			
+			        <div class="item">
+			          <span class="name">Orange</span>
+			        </div>
+			
+			        <div class="item">
+			          <span class="name">Mandarin</span>
+			        </div>
+			
+			        <div class="item">
+			          <span class="name">Strawberry</span>
+			        </div>
+			
+			        <div class="item">
+			          <span class="name">Watermelon</span>
+			        </div>
+			
+			        <div class="item">
+			          <span class="name">Grape</span>
+			        </div>
+			
+			        <div class="item">
+			          <span class="name">Pear</span>
+			        </div>
+			
+			        <div class="item">
+			          <span class="name">Cherry</span>
+			        </div>
+    		    </div>
             </form>
         </div>
         <ul class="navbar_menu">
