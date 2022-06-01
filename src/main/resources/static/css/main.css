@@ -139,7 +139,6 @@ a {
 .keyword_child {
 	cursor: pointer;
 	margin-bottom: 1px;
-	border-bottom: 2px solid;
 }
 
 .item > i {

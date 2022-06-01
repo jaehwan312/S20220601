@@ -38,3 +38,18 @@ $(document).click(function(e){
 });
 
 
+function keyword_rel(e){
+	var keywords = document.getElementsByClassName('keyword_child');
+	for(var i=0; i<keywords.length; i++){
+		keywords.item(i).style.color="black";
+		keywords.item(i).style.borderBottom="none";
+	}
+	keywords.item(e).style.color = "#B2CCFF";
+	keywords.item(e).style.borderBottom = "2px solid #B2CCFF";
+	switch(e) {
+	 case 0 : alert("0"); break;
+	 case 1 : alert("1"); break;
+	 case 2 : alert("2"); break;
+	 }
+}
+
