@@ -29,8 +29,9 @@ public class StoreController {
 		
 		storeList =	storeService.storeList(store);
 		
-		model.addAttribute(storeList);
+		model.addAttribute("storeList", storeList);
 		
+		System.out.println("StoreController storeList storeList.size --> " + storeList.size());
 		return "ih/storeList";
 	}
 }
