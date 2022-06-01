@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+   <mapper namespace="com.oracle.S20220601.HostStoreMepper">
+   		
+   	<!--식당정보 확인  -->
+	  	<select id="storeRead" parameterType="int" resultType="HostStore">
+	  		SELECT s.*, h.*, m.* FROM store s, host h, menu m WHERE h.host_num = ${host_num} 
+	  														  AND   s.host_num = ${host_num}
+	  														  AND   m.host_num = ${host_num}
+	  	</select>
+	  	
+	  <!-- 식당 사진 -->
+	  	<select id="storePhoto" parameterType="int" resultType="HostPhoto">
+	  		SELECT photo FROM hostphoto WHERE host_num = ${host_num}
+	  	</select>
+  	
+   </mapper>
