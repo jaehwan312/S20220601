@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.S20220601.dao.ih.StoreDao;
+import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Menu;
 import com.oracle.S20220601.model.ih.HostStore;
@@ -42,6 +43,25 @@ public class StoreServiceImp implements StoreService{
 		List<Menu> menuList = storeDaol.menuList(host_num);
 		
 		return menuList;
+	}
+
+	@Override
+	public Code foodcode(HostStore storeRead) {
+		System.out.println("StoreServiceImp foodcode Start....");
+		
+		Code foodcode = storeDaol.foodcode(storeRead);
+		
+		return foodcode;
+	}
+
+	@Override
+	public int storeInsert(HostStore hostStore) {
+		
+		System.out.println("StoreServiceImp storeInsert Start....");
+		
+		int storeInsert = storeDaol.storeInsert(hostStore);
+		
+		return storeInsert;
 	}
 	
 
