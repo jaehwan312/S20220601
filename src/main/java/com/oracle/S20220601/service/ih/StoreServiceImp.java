@@ -53,6 +53,16 @@ public class StoreServiceImp implements StoreService{
 		
 		return foodcode;
 	}
+
+	@Override
+	public int storeInsert(HostStore hostStore) {
+		
+		System.out.println("StoreServiceImp storeInsert Start....");
+		
+		int storeInsert = storeDaol.storeInsert(hostStore);
+		
+		return storeInsert;
+	}
 	
 
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
@@ -43,5 +44,25 @@ public class StoreController {
 		model.addAttribute("foodcode",foodcode);
 		
 		return "ih/storeRead";
+	}
+	
+	@GetMapping(value = "storeInsertForm")
+	public String storeInsertForm(Model model) {
+		logger.info("StoreController storeInsertForm Start..");
+		return "ih/storeInsertForm";
+	}
+	
+	@PostMapping(value = "storeInsert")
+	public String storeInsert(HostStore hostStore, Model model) {
+		
+		int storeInsert = storeService.storeInsert(hostStore);
+		
+		if (storeInsert > 0) {
+			model.addAttribute("msg", "등록 요청 성공");
+		}else {
+			model.addAttribute("msg", "등록 요청 실패");
+		}
+		
+		return "storeInsertForm"; //현재 리스트가 존재 하지 않으 므로 main으로 이동
 	}
 }

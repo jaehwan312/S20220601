@@ -17,5 +17,7 @@ public interface StoreDao {
 
 	Code 			foodcode(HostStore storeRead);
 
+	int             storeInsert(HostStore hostStore);
+
 
 }

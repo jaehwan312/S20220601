@@ -17,40 +17,67 @@
     	<input type="hidden" value="${store.host_code}">
     	<input type="hidden" value="${store.mem_num}">
     	
+    	<div>
+			<input type="checkbox" style="float: right;">    	
+    	</div>
     	<c:forEach items="${storePhoto }" var="photo">
-    		<div style="text-align: center;">
+    		<div style="text-align: center; margin-top: 100px;">
 				<img alt="업체사진" src="images/ih/${photo.photo}" width="300px;" height="300px;">
     		</div>
     	</c:forEach>
     	
     	<div>
-    		
-    		<b><label style="font-size: 40px;">${store.host_name}</label></b>
-    		<b><label style="font-size: 25px; color: orange;">${store.host_avg}</label></b><p/>
+    		<label style="font-size: 40px;">
+    			<b>${store.host_name}</b>
+    		</label>
+    		<label style="font-size: 25px; color: orange;">
+    			<b>${store.host_avg}</b>
+    		</label><p/>
 			<hr/>
 				<!-- <div style="float: right; width: 100px; height: 100px;"> 지도 </div> -->
 				<div>
-					<img alt="업체사진" src="images/ih/스시호시카이.jpg" style="float: right;" width="200px;" height="200px;">
+					<img alt="업체사진" src="images/ih/스시호시카이.jpg" 
+						 style="float: right;" width="200px;" height="200px;">
 				</div>
 				<div>
-		    		<label style="float: left;  margin-right: 25px; width: 100px;"><b>주소</b></label>
-		    		<label><b>${store.host_addr}</b></label><p/>
-		    		<label style="float: left;  margin-right: 25px; width: 100px;"><b>주차가능여부</b></label>
-			    	<label><b>${store.parking}</b></label><p/>
+		    		<label style="float: left;  margin-right: 25px; width: 100px;">
+		    			<b>주소</b>
+		    		</label>
+		    		<label>
+		    			<b>${store.host_addr}</b>
+		    		</label><p/>
+		    		<label style="float: left;  margin-right: 25px; width: 100px;">
+		    			<b>주차가능여부</b>
+		    		</label>
+			    	<label>
+			    		<b>${store.parking}</b>
+			    	</label><p/>
 			    </div>
     	</div>
     	<hr/>
     	<div>
-    		<label style="float: left;  margin-right: 25px; width: 100px;"><b>영업시간</b></label>
-    		<label><b>${store.open_time}</b></label><p>
-    		<label style="float: left;  margin-right: 25px; width: 100px;"><b>브레이크타임</b></label>
-	    	<label><b>${store.break_time}</b></label><p/>
+    		<label style="float: left;  margin-right: 25px; width: 100px;">
+    			<b>영업시간</b>
+    		</label>
+    		<label>
+    			<b>${store.open_time}</b>
+    		</label><p/>
+    		<label style="float: left;  margin-right: 25px; width: 100px;">
+    			<b>브레이크타임</b>
+    		</label>
+	    	<label>
+	    		<b>${store.break_time}</b>
+	    	</label><p/>
     	</div>
  		<hr/>
     	<div>
-    		<label style="float: left;  margin-right: 25px; width: 100px;"><b>음식종류</b></label>
+    		<label style="float: left;  margin-right: 25px; width: 100px;">
+    			<b>음식종류</b>
+    		</label>
     		<b>${foodcode.name}</b><p/>
-    		<label style="float: left;  margin-right: 25px; width: 100px;"><b>메뉴</b></label>
+    		<label style="float: left;  margin-right: 25px; width: 100px;">
+    			<b>메뉴</b>
+    		</label>
 	    	<label>
 		    	<c:forEach items="${menuList }" var="menu">
 		    		<b style="float: left;  margin-right: 50px; width: 100px;">${menu.menu_name}</b>
@@ -61,11 +88,25 @@
     	</div>
     	<hr/>
     	<div>
-    		<label style="float: left;  margin-right: 25px; width: 100px;"><b>업체소개</b></label>
-    		<label><b>${store.host_info}</b></label>
+    		<label style="float: left;  margin-right: 25px; width: 100px;">
+    			<b>업체소개</b>
+    		</label>
+    		<label>
+    			<b>${store.host_info}</b>
+    		</label>
     	</div>
     	<hr/>
-    	review
+    	
+    	<div>
+    		<label>
+					<img alt="업체사진" src="images/ih/스시호시카이.jpg"
+						 style="float: right;" width="100px;" height="100px;"><br/>
+					<b>홍길동</b>
+    		</label>
+    		<textarea rows="4px;" cols="155px;" style="float: right;"></textarea>
+			<button onclick="" style="float: right;">리뷰등록</button>
+    	</div>
+    	
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>

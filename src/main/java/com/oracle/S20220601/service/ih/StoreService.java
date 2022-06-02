@@ -13,6 +13,7 @@ public interface StoreService {
 	List<HostPhoto> storePhoto(int host_num);
 	List<Menu>      menuList(int host_num);
 	Code 		    foodcode(HostStore storeRead);
+	int    		    storeInsert(HostStore hostStore);
 
 
 }

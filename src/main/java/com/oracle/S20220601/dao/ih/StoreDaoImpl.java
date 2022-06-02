@@ -79,6 +79,29 @@ public class StoreDaoImpl implements StoreDao {
 		}
 		return foodcode;
 	}
+
+	@Override
+	public int storeInsert(HostStore hostStore) {
+		
+		System.out.println("StoreDaoImpl storeInsert Start....");
+		
+		int storeInsert = 0;
+		
+		try {
+			
+			hostStore.setOpen_time(hostStore.getStart_time() 
+								   + " ~ " + 
+								   hostStore.getEnd_time());
+			hostStore.setBreak_end_time(hostStore.getBreak_start_time() 
+									    + " ~ " + 
+									    hostStore.getBreak_end_time());
+			
+			storeInsert = session.insert("storeInsert", hostStore);
+		} catch (Exception e) {
+			System.out.println("StoreDaoImpl storeInsert ErrorMessage --> " + e.getMessage());
+		}
+		return storeInsert;
+	}
 	
 	
 	
