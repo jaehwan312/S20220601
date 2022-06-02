@@ -28,4 +28,11 @@ public class JpaSearchDaoImpl implements JpaSearchDao {
 		List<Menu1> menuList = em.createQuery("select m from Menu1 m", Menu1.class).getResultList();
 		return menuList;
 	}
+
+
+	@Override
+	public List<Stay1> getStayList() {
+		// TODO 자동 생성된 메소드 스텁
+		return null;
+	}
 }
