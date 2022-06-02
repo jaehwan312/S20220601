@@ -19,6 +19,9 @@ public class HostStore {
 	private float host_avg;		// 평점
 	private int like_count;		// 찜한사람 수
 	
+	//코드 구분
+	private int	   bcd_code = 200;	// bcd코드
+	
 	//Store
 	private String open_time;	// 영업시간
 	private String break_time;	// 브레이크 타임
