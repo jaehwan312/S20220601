@@ -5,6 +5,7 @@ import java.util.List;
 import com.oracle.S20220601.domain.jj.Host1;
 import com.oracle.S20220601.domain.jj.Menu1;
 import com.oracle.S20220601.domain.jj.Stay1;
+import com.oracle.S20220601.domain.jj.Store1;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.Stay;
 
@@ -15,5 +16,7 @@ public interface SearchService {
 	List<Stay1> getStayList();
 
 	List<Menu1> getMenuList();
+
+	List<Store1> getStoreList();
 	
 }

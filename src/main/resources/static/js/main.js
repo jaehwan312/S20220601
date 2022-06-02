@@ -48,21 +48,37 @@ function keyword_rel(e){
 	keywords.item(e).style.borderBottom = "2px solid #B2CCFF";
 	switch(e) {
 	 case 0 : 
-	 	alert("0"); 
+	 	var str="";
+	 	var str2="";
 	 	$.ajax({
 	 		url:"/getSearchList",
 	 		dataType:'json',
 	 		success:function(data){
-	 			
+	 			$('.item').remove();
+	 			$(data).each(function(){
+	 				str2 = "<div class='item' onclick='searchTarget("+this.table_name+","+this.column_name+","+this.content+")'>"
+			          +"<i class='fa-solid fa-magnifying-glass fa-sm'></i>"
+			          +"<span class='name'>"+this.content+"</span>"
+			          +"</div>";
+			        str += str2;
+	 			});
+	 			$('.search_result').append(str);
 	 		}
 	 	});
 	 	break;
 	 case 1 : 
-	 	alert("1"); 
+	 	$.ajax({
+	 		
+	 	});
 	 	break;
 	 case 2 : 
-	 	alert("2"); 
 	 	break;
 	 }
+}
+
+function searchTarget(a, b, c){
+	alert(a);
+	alert(b);
+	alert(c);
 }
 

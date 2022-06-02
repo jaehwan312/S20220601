@@ -27,6 +27,7 @@
                 <button class="search_btn">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
+            </form>
                 <div class="search_result">
                 	<div class="keyword">
                     	<div class="keyword_child" id="keyword_rel" onclick="keyword_rel(0)">연관검색어</div>
@@ -34,47 +35,7 @@
                     	<div class="keyword_child" id="keyword_pop" onclick="keyword_rel(2)">인기검색어</div>
                     </div>
 
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">제주도</span>
-			        </div>
-			
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">제주도맛집</span>
-			        </div>
-			
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">돌하르방</span> 
-			        </div>
-			
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">가나다라</span>
-			        </div>
-			
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">김인헌</span>
-			        </div>
-			
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">안녕하세요</span>
-			        </div>
-			
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">반갑습니다 여러분</span>
-			        </div>
-			
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">Cherry</span>
-			        </div>
     		    </div>
-            </form>
         </div>
         <ul class="navbar_menu">
             <li><a href="">숙박</a></li>

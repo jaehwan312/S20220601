@@ -13,6 +13,7 @@ import com.oracle.S20220601.domain.jj.Host1;
 import com.oracle.S20220601.domain.jj.Menu1;
 import com.oracle.S20220601.domain.jj.SearchListBuffer;
 import com.oracle.S20220601.domain.jj.Stay1;
+import com.oracle.S20220601.domain.jj.Store1;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.service.jj.SearchService;
@@ -58,7 +59,7 @@ public class SearchController {
 		for(Stay1 st2 : stay) {
 			buffer = new SearchListBuffer();
 			buffer.setTable_name("stay");
-			buffer.setColumn_name("convenient");
+			buffer.setColumn_name("stay_type");
 			buffer.setContent(st2.getName());
 			bufferList.add(buffer);
 		}
@@ -71,15 +72,15 @@ public class SearchController {
 			buffer.setContent(mn.getMenu_name());
 			bufferList.add(buffer);
 		}
-		// 검색목록에 메뉴이름 저장
-//		List<Menu1> menu = ss.getMenuList(); 
-//		for(Menu1 mn : menu) {
-//			buffer = new SearchListBuffer();
-//			buffer.setTable_name("menu");
-//			buffer.setColumn_name("menu_name");
-//			buffer.setContent(mn.getMenu_name());
-//			bufferList.add(buffer);
-//		}
+		// 검색목록에 음식코드 저장
+		List<Store1> store = ss.getStoreList(); 
+		for(Store1 sr : store) {
+			buffer = new SearchListBuffer();
+			buffer.setTable_name("store");
+			buffer.setColumn_name("food_type");
+			buffer.setContent(sr.getName());
+			bufferList.add(buffer);
+		}
 		
 		return bufferList;
 	}

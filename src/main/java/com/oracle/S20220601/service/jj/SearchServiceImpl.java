@@ -9,6 +9,7 @@ import com.oracle.S20220601.dao.jj.JpaSearchDao;
 import com.oracle.S20220601.domain.jj.Host1;
 import com.oracle.S20220601.domain.jj.Menu1;
 import com.oracle.S20220601.domain.jj.Stay1;
+import com.oracle.S20220601.domain.jj.Store1;
 
 @Service
 public class SearchServiceImpl implements SearchService {
@@ -34,5 +35,12 @@ public class SearchServiceImpl implements SearchService {
 		List<Menu1> menu = null;
 		menu = sd.getMenuList();
 		return menu;
+	}
+
+	@Override
+	public List<Store1> getStoreList() {
+		List<Store1> store = null;
+		store = sd.getStoreList();
+		return store;
 	}
 }
