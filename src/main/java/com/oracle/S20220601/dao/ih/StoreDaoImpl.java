@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Menu;
-import com.oracle.S20220601.model.Store;
 import com.oracle.S20220601.model.ih.HostStore;
 
 @Repository
