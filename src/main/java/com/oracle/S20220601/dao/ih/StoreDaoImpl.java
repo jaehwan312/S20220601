@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Menu;
 import com.oracle.S20220601.model.Store;
@@ -50,7 +51,7 @@ public class StoreDaoImpl implements StoreDao {
 
 	@Override
 	public List<Menu> menuList(int host_num) {
-System.out.println("StoreDaoImpl menuList Start....");
+		System.out.println("StoreDaoImpl menuList Start....");
 		
 		List<Menu> menuList = null;
 		
@@ -61,6 +62,22 @@ System.out.println("StoreDaoImpl menuList Start....");
 			System.out.println("StoreDaoImpl menuList ErrorMessage --> " + e.getMessage());
 		}
 		return menuList;
+	}
+
+	@Override
+	public Code foodcode(HostStore storeRead) {
+		
+		System.out.println("StoreDaoImpl foodcode Start....");
+		
+		Code foodcode = null;
+		
+		try {
+			foodcode = session.selectOne("foodcode", storeRead);
+			System.out.println("StoreDaoImpl foodcode name --> " + foodcode.getName());
+		} catch (Exception e) {
+			System.out.println("StoreDaoImpl foodcode ErrorMessage --> " + e.getMessage());
+		}
+		return foodcode;
 	}
 	
 	

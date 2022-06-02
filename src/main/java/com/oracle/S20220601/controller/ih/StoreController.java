@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Menu;
@@ -32,11 +33,14 @@ public class StoreController {
 		HostStore       storeRead  = storeService.storeRead(host_num);
 		List<HostPhoto> storePhoto = storeService.storePhoto(host_num);
 		List<Menu>      menuList   = storeService.menuList(host_num);
-		
+		Code      		foodcode   = storeService.foodcode(storeRead);
 		
 		model.addAttribute("store",storeRead);
 		model.addAttribute("storePhoto",storePhoto);
 		model.addAttribute("menuList",menuList);
+		
+		
+		model.addAttribute("foodcode",foodcode);
 		
 		return "ih/storeRead";
 	}
