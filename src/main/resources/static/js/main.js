@@ -47,9 +47,22 @@ function keyword_rel(e){
 	keywords.item(e).style.color = "#B2CCFF";
 	keywords.item(e).style.borderBottom = "2px solid #B2CCFF";
 	switch(e) {
-	 case 0 : alert("0"); break;
-	 case 1 : alert("1"); break;
-	 case 2 : alert("2"); break;
+	 case 0 : 
+	 	alert("0"); 
+	 	$.ajax({
+	 		url:"/getSearchList",
+	 		dataType:'json',
+	 		success:function(data){
+	 			
+	 		}
+	 	});
+	 	break;
+	 case 1 : 
+	 	alert("1"); 
+	 	break;
+	 case 2 : 
+	 	alert("2"); 
+	 	break;
 	 }
 }
 
