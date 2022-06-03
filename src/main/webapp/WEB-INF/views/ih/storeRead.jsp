@@ -22,7 +22,7 @@
     	</div>
     	<c:forEach items="${storePhoto }" var="photo">
     		<div style="text-align: center; margin-top: 100px;">
-				<img alt="업체사진" src="images/ih/${photo.photo}" width="300px;" height="300px;">
+				<img alt="업체사진" src="images/ih/${photo.host_photo}" width="300px;" height="300px;">
     		</div>
     	</c:forEach>
     	

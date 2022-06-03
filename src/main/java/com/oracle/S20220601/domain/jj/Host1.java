@@ -1,8 +1,17 @@
 package com.oracle.S20220601.domain.jj;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,5 +31,22 @@ public class Host1 {
 	private int rev_count;		// 리뷰 갯수
 	private float host_avg;		// 평점
 	private int like_count;		// 찜한사람 수
+	
+	@OneToOne
+	@JoinColumn(name = "host_num")
+	private Stay1 stay1;
+	
+	@OneToOne
+	@JoinColumn(name = "host_num")
+	private Store1 store1;
+	
+	@OneToMany
+	@JoinColumn(name = "host_num")
+	private List<Menu1> menu1;
+	
+	@Transient
+	private String stay_type_name;
+	@Transient
+	private String food_type_name;
 	
 }

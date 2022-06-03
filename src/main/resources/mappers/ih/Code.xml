@@ -4,8 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
    <mapper namespace="com.oracle.S20220601.CodeMepper">
- 	  <!-- 음식코드 -->
-  		<select id="foodcode" parameterType="Object" resultType="Code">
-	  		SELECT name FROM code WHERE bcd = #{bcd_code} AND mcd = #{food_type}
-	  	</select>
+ 		<!-- 음식코드 -->
+ 		<select id="foodcode" parameterType="Object" resultType="Code">
+  		SELECT name FROM code WHERE bcd = #{bcd_code} AND mcd = #{food_type}
+  		</select>
+  		
+  		<select id="foodcodeList" parameterType="int" resultType="Code">
+  			SELECT * FROM code WHERE bcd = #{bcd_code} AND mcd != 999
+  		</select>
    </mapper>

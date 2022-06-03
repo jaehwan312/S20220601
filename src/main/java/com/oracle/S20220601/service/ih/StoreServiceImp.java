@@ -17,7 +17,7 @@ public class StoreServiceImp implements StoreService{
 	@Autowired
 	private StoreDao storeDaol;
 
-	@Override
+	@Override//식당정보확인
 	public HostStore storeRead(int host_num) {
 		
 		System.out.println("StoreServiceImp storeRead Start....");
@@ -27,7 +27,7 @@ public class StoreServiceImp implements StoreService{
 		return storeHost;
 	}
 
-	@Override
+	@Override//식당사진
 	public List<HostPhoto> storePhoto(int host_num) {
 		System.out.println("StoreServiceImp photo Start....");
 		
@@ -36,7 +36,7 @@ public class StoreServiceImp implements StoreService{
 		return storePhoto;
 	}
 
-	@Override
+	@Override//메뉴리스트 
 	public List<Menu> menuList(int host_num) {
 		System.out.println("StoreServiceImp menuList Start....");
 		
@@ -45,16 +45,7 @@ public class StoreServiceImp implements StoreService{
 		return menuList;
 	}
 
-	@Override
-	public Code foodcode(HostStore storeRead) {
-		System.out.println("StoreServiceImp foodcode Start....");
-		
-		Code foodcode = storeDaol.foodcode(storeRead);
-		
-		return foodcode;
-	}
-
-	@Override
+	@Override//식장정보등록
 	public int storeInsert(HostStore hostStore) {
 		
 		System.out.println("StoreServiceImp storeInsert Start....");
@@ -63,6 +54,5 @@ public class StoreServiceImp implements StoreService{
 		
 		return storeInsert;
 	}
-	
 
 }

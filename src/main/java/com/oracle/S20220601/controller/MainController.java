@@ -12,7 +12,7 @@ public class MainController {
 	@RequestMapping("main")
 	public String main() {
 		System.out.println("main Start...");
-		return "main";
+		return "main";	
 	}
 	
 	

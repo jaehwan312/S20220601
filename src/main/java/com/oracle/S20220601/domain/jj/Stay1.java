@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -23,6 +24,4 @@ public class Stay1 {
 	private String checkout;	// 체크아웃 시간
 	private String stay_type;	// 숙소 유형
 	
-	@Transient
-	private String name; 		// 코드번호로 이름 불러오는 버퍼
 }
