@@ -21,19 +21,20 @@
         <div class="navbar_logo">
             <a href="">제주 감수광</a>
         </div>
+        <div class="header_background"></div>
         <div class="navbar_search">
             <form action="" class="search_form">
-                <input type="text" id="s_value" class="search_bar" placeholder="Typing..." onkeyup="filter()">                
+                <input type="text" id="search_area" class="search_bar" placeholder="Typing..." autocomplete="off">                
                 <button class="search_btn">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
                 <div class="search_result">
                 	<div class="keyword">
-                    	<div class="keyword_child" id="keyword_rel" onclick="keyword_rel(0)">연관검색어</div>
-                    	<div class="keyword_child" id="keyword_rec" onclick="keyword_rel(1)">추천검색어</div>
-                    	<div class="keyword_child" id="keyword_pop" onclick="keyword_rel(2)">인기검색어</div>
+                    	<div class="keyword_child" id="keyword_rec" onclick="keyword_rel(0)">추천검색어</div>
+                    	<div class="keyword_child" id="keyword_pop" onclick="keyword_rel(1)">인기검색어</div>
                     </div>
+                    	<div id='autoMaker'></div>
 
     		    </div>
         </div>
