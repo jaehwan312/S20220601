@@ -62,7 +62,7 @@
                     <a href="">관리자 페이지</a>
                 </div>
             </li>
-            <li><a href="">로그아웃</a></li>
+            <li><a href="logout">로그아웃</a></li>
         </ul>
 
         <a href="#" class="hamburger">
