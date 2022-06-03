@@ -20,6 +20,7 @@
 		<typeAlias alias="Stay"      		type="com.oracle.S20220601.model.Stay"/>
 		<typeAlias alias="Review"      		type="com.oracle.S20220601.model.Review"/>
 		<typeAlias alias="RevPhoto"      	type="com.oracle.S20220601.model.RevPhoto"/>
+		<typeAlias alias="Res"     			type="com.oracle.S20220601.model.Res"/>
 
 	</typeAliases>
 </configuration>

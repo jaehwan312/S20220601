@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220601.ResMepper">
+	<select id="jiResTotal" resultType="int">
+		SELECT count(*)  FROM Res 
+	</select>
+	<select id="jiResList" parameterType="Res" resultType="Res">
+		SELECT p.name,h.host_name,
+		min_photo_num2(hp.host_num) host_photo, r.room_name, res.*
+		FROM profile p
+		join res res on p.mem_num = res.mem_num
+		join host h on res.host_num = h.host_num
+		join room r on res.room_num = r.room_num
+		join hostphoto hp on h.host_num = hp.host_num
+		AND hp.host_photo_num = ( SELECT MIN(host_photo_num)
+								FROM hostphoto
+								WHERE host_num = hp.host_num
+								)
+						
+		AND res.res_status = 1
+		AND p.mem_num = #{mem_num}
+		order by res_start
+
+	</select>
+	<select id="jiBeforeResList" parameterType="Res" resultType="Res">
+		SELECT p.name,h.host_name,
+		min_photo_num2(hp.host_num) host_photo, r.room_name, res.*
+		FROM profile p
+		join res res on p.mem_num = res.mem_num
+		join host h on res.host_num = h.host_num
+		join room r on res.room_num = r.room_num
+		join hostphoto hp on h.host_num = hp.host_num
+		AND hp.host_photo_num = ( SELECT MIN(host_photo_num)
+								FROM hostphoto
+								WHERE host_num = hp.host_num
+								)
+						
+		AND res.res_status = 2
+		AND p.mem_num = #{mem_num}
+		order by res_start
+	</select>
+	<select id="jiCancleResList" parameterType="Res" resultType="Res">
+		SELECT p.name,h.host_name,
+		min_photo_num2(hp.host_num) host_photo, r.room_name, res.*
+		FROM profile p
+		join res res on p.mem_num = res.mem_num
+		join host h on res.host_num = h.host_num
+		join room r on res.room_num = r.room_num
+		join hostphoto hp on h.host_num = hp.host_num
+		AND hp.host_photo_num = ( SELECT MIN(host_photo_num)
+								FROM hostphoto
+								WHERE host_num = hp.host_num
+								)
+						
+		AND res.res_status = 3
+		AND p.mem_num = #{mem_num}
+		order by res_start
+	</select>
+	
+</mapper>
