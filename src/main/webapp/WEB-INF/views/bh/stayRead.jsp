@@ -13,21 +13,23 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
+    		
    		<c:forEach items="${stayPhoto }" var="photo">
-    		<div style="text-align: left; display: inline-block;">
-				<img alt="숙소사진" src="images/bh/${photo.photo}" width="300px;" height="300px;">
-					<div>
+   				<div style="float: left; width: 30%; height: 300px;">
+					<img alt="숙소사진" src="images/bh/${photo.host_photo}" width="300px;" height="300px;">
+				</div>
+    	</c:forEach>
+					<div style="text-align: left; width: 35%; float: left; height: 300px; margin-top: 50px;">
 						${stay.host_name}<p/>
 			    		${stay.host_avg}
 			    		${stay.rev_count}<p/>
 				    	${stay.host_addr}<p/>
 			    		${stay.host_info}<p/>
 		    		</div>
-    		</div>
-    	</c:forEach>
+    		
     
-   		
-   		<div class="tab">
+   		<div style="float: left; width: 100%;">
+   		<div class="tab" style="margin-bottom: 50px;">
    			<button class="">
    				<span>객실안내/예약</span>
    			</button>
@@ -38,16 +40,23 @@
    				<span>리뷰</span>
    			</button>
    		</div>
-   		
-   		<div>
-   			<c:forEach items="${roomPhoto }" var="photo">
-    		<div style="text-align: left;;">
-				<img alt="객실사진" src="images/bh/${photo.photo}" width="300px;" height="300px;">
-    		</div>
-    		</c:forEach>
-   				
-   		
    		</div>
+   		
+   			<c:forEach items="${roomPhoto }" var="photo">
+    			<div style="float: left; width: 30%; height: 200px;">
+					<img alt="객실사진" src="images/bh/${photo.room_photo}" width="200px;" height="200px;">
+    			</div>
+    		</c:forEach>
+    			<div style="text-align: left; width: 35%; float: left; height: 200px; margin-top: 50px;">
+						<c:forEach items="${room }" var="room">
+							${room.room_name }<p/>
+							${room.dayfee }원<p/>
+							${room.room_info }<p/>
+						</c:forEach>
+		    	<button>예약</button>
+						
+		    	</div>
+   		
    		
     <!-- 여기 위로오 ============================================================ -->   
     </div>

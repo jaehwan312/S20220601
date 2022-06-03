@@ -13,10 +13,6 @@ public interface SearchService {
 
 	List<Host1> getHostList();
 
-	List<Stay1> getStayList();
 
-	List<Menu1> getMenuList();
-
-	List<Store1> getStoreList();
 	
 }

@@ -12,11 +12,7 @@ import com.oracle.S20220601.model.Stay;
 public interface JpaSearchDao {
 
 	List<Host1> getHostList();
+
 	
-	List<Stay1> getStayList();
-
-	List<Menu1> getMenuList();
-
-	List<Store1> getStoreList();
 
 }

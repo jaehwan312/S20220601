@@ -20,6 +20,4 @@ public class Store1 {
 	private String parking;		// 주차가능
 	private String food_type;	// 음식코드
 	
-	@Transient
-	private String name; 		// 코드번호로 이름 불러오는 버퍼
 }
