@@ -8,16 +8,8 @@ import com.oracle.S20220601.model.Menu;
 import com.oracle.S20220601.model.ih.HostStore;
 
 public interface StoreDao {
-
-	HostStore       storeRead(int host_num);
-
-	List<HostPhoto> storePhoto(int host_num);
-
-	List<Menu>      menuList(int host_num);
-
-	Code 			foodcode(HostStore storeRead);
-
-	int             storeInsert(HostStore hostStore);
-
-
+	HostStore       storeRead(int host_num);          //식당정보확인
+	List<HostPhoto> storePhoto(int host_num);		  //식당사진
+	List<Menu>      menuList(int host_num);			  //메뉴리스트
+	int             storeInsert(HostStore hostStore); //식장정보등록
 }

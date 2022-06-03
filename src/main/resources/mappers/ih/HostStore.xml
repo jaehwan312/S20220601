@@ -5,15 +5,36 @@
   
    <mapper namespace="com.oracle.S20220601.HostStoreMepper">
    		
-   	<!--식당정보 확인  -->
+   		<!--식당정보 확인  -->
 	  	<select id="storeRead" parameterType="int" resultType="HostStore">
 	  		SELECT s.*, h.* FROM store s, host h WHERE h.host_num = #{host_num} 
 	  											 AND   s.host_num = #{host_num}
 	  	</select>
 	  	
-	  <!-- 식당 사진 -->
+	 	 <!-- 식당 사진 -->
 	  	<select id="storePhoto" parameterType="int" resultType="HostPhoto">
 	  		SELECT photo FROM hostphoto WHERE host_num = #{host_num}
 	  	</select>
-  	
+  		
+  		<!-- 식당정보 등록 -->
+  		<insert id="storeInsert" parameterType="HostStore" statementType="CALLABLE">
+  			{
+  				call HOST_STORE(
+	  			    #{host_num   , mode=IN   , jdbcType=INTEGER}
+	   			   ,#{mem_num    , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{host_name  , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{host_addr  , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{host_info  , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{host_code  , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{rev_count  , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{host_avg   , mode=IN   , jdbcType=FLOAT}
+	  			   ,#{like_count , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{parking    , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{food_type  , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{open_time  , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{break_time , mode=IN   , jdbcType=VARCHAR}
+	  			)
+  			}
+  		</insert>
+  		
    </mapper>
