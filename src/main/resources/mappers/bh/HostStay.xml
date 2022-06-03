@@ -13,7 +13,7 @@
   	</select>
   		<!-- 숙소 사진 -->
   	<select id="stayPhoto" parameterType="int" resultType="HoststayPhoto">
-	  		SELECT photo FROM hostphoto WHERE host_num = #{host_num}
+	  		SELECT host_photo FROM hostphoto WHERE host_num = #{host_num}
 	 </select>
   		<!-- 객실 정보 -->
   	<select id="roomList" parameterType="int" resultType="HostRoom">
