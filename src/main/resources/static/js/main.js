@@ -23,7 +23,7 @@ function filter(){
 		name = item[i].getElementsByClassName("name");
 		if(name[0].innerHTML.toUpperCase().indexOf(value) > -1){
 			item[i].style.display = "flex";
-		}else{
+		}else {
 			item[i].style.display = "none";
 		}
 	}
