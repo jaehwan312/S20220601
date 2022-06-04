@@ -13,7 +13,12 @@
 <body>
 	<%@ include file="header.jsp" %>
     <div class="bg_img">
-        
+    	<div class="col-lg-5">
+        	<div class="input-group input-group-lg">
+			  <input type="text" class="form-control" placeholder="숙소 또는 맛집을 입력하세요" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+			  <span class="input-group-text" id="inputGroup-sizing-lg"><img alt="" src="images/jj/search.png" style="height: 30px"></span>
+			</div>
+         </div>
     </div>
     <div class="container">
         제주감수광
