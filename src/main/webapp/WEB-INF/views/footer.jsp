@@ -7,8 +7,35 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/main.css">
 	<title>제주 감수광</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript">
+		function chatOpen() {
+			$(".chat_window").css("display","block");
+		}
+		function chatHide() {
+			$(".chat_window").css("display","none");
+		}
+		function chatOut() {
+			$(".chat_window").css("display","none");
+		}
+	</script>
 </head>
 <body class="main_container">
+	<div class="icon_frame">
+    	<img id="msg_icon" alt="msg_icon" src="images/jh/msg_icon.png" onclick="chatOpen()">
+    </div>
+    <div class="chat_window">
+    	<div class="chat_header">
+    		<i class="fa-solid fa-chevron-down" id="chat_hide" onclick="chatHide()"></i>
+    		<span>황재환</span>
+			<i class="fa-solid fa-xmark" id="chat_out" onclick="chatOut()"></i>
+    	</div>
+    	<div class="chating">
+    	</div>
+    	<div class="chat_input">
+    		<input class="chat_msg">
+    	</div>
+    </div>
 	<footer>
         <div>
 		    <h1>(주)제주감수광</h1>
@@ -21,7 +48,6 @@
 		        <li>공지사항</li>
 		        <li>이용약관</li>
                 <li>자주 묻는 질문(FAQ)</li>
-                <li>실시간 채팅 문의</li>
 		    </ul>
 		</div>
     </footer>
