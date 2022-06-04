@@ -135,6 +135,7 @@ a {
 	display: flex;
 	justify-content: space-around;
 	margin-top: 3px;
+	margin-bottom: 10px;
 }
 
 .keyword_child {
@@ -145,6 +146,11 @@ a {
 .item {
 	height: 30px;
 	line-height: 30px;
+	cursor: pointer;
+}
+
+.item:hover {
+	box-shadow: 1px 1px 20px #ddd;
 }
 
 .item > i {
