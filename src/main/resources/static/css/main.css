@@ -297,6 +297,15 @@ footer li {
     display: none;
 }
 
+.chatAd_window {
+	width: 259px;
+	height: 476px;
+	border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 1px 1px 40px 10px gray;
+    margin: auto;
+}
+
 .chat_header {
 	height: 45px;
 	background-color: #4234f5;
@@ -328,7 +337,10 @@ footer li {
 	align-items: center;
 }
 
-.chat_msg {
-	justify-content: center;
+#sendBtn {
+	border: none;
+    outline: none;
+    background-color: #ebebeb;
 }
+
 /* ----- jh ----- */
