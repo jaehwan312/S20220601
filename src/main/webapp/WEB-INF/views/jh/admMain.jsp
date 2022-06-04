@@ -14,6 +14,31 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
+    
+	<div class="accordion" id="accordionExample">
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="headingOne">
+				<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">1:1 채팅 문의 0건</button>
+			</h2>
+			<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				<div class="accordion-body">
+					<table>
+						<thead>
+							<tr>
+								<td>User</td><td>내용</td><td>등록시간</td><td>여부</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr onclick="location.href='chat'" style="cursor: pointer">
+								<td>황재환</td><td>시작</td><td>20:00</td><td>미해결</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+  	</div>
+  	
 	<!-- <a href="chatList">채팅</a> -->
     <!-- 여기 위로오 ============================================================ -->   
     </div>

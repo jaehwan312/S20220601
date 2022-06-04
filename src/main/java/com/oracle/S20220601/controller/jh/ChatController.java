@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ChatController {
 	private static final Logger logger = LoggerFactory.getLogger(ChatController.class);
 	
-	@GetMapping(value = "chatList")
-	public String chatList() {
-		logger.info("ChatController chatList Start...");
-		
-		return "jh/chatList";
-	}
+//	@GetMapping(value = "chatList")
+//	public String chatList() {
+//		logger.info("ChatController chatList Start...");
+//		
+//		return "jh/chatList";
+//	}
 	
 	@RequestMapping(value = "chat")
 	public String chat() {
