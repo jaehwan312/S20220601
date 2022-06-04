@@ -4,9 +4,23 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias alias="Store"     type="com.oracle.S20220601.model.Store"/>
-		<typeAlias alias="HostStore" type="com.oracle.S20220601.model.ih.HostStore"/>
-		<typeAlias alias="HostPhoto" type="com.oracle.S20220601.model.HostPhoto"/>
-		<typeAlias alias="Menu"      type="com.oracle.S20220601.model.Menu"/>
+
+		<typeAlias alias="Store"     		type="com.oracle.S20220601.model.Store"/>
+		<typeAlias alias="HostStore" 		type="com.oracle.S20220601.model.ih.HostStore"/>
+		<typeAlias alias="HostPhoto" 		type="com.oracle.S20220601.model.HostPhoto"/>
+		<typeAlias alias="Menu"      		type="com.oracle.S20220601.model.Menu"/>
+		<typeAlias alias="HostStay"      	type="com.oracle.S20220601.model.bh.HostStay"/>
+		<typeAlias alias="HoststayPhoto"    type="com.oracle.S20220601.model.HostPhoto"/>
+		<typeAlias alias="HostRoom"    		type="com.oracle.S20220601.model.Room"/>
+		<typeAlias alias="RoomPhoto"    	type="com.oracle.S20220601.model.RoomPhoto"/>
+		<typeAlias alias="Store"    		type="com.oracle.S20220601.model.Store"/>
+		<typeAlias alias="HostStore" 		type="com.oracle.S20220601.model.ih.HostStore"/>
+		<typeAlias alias="HostPhoto" 		type="com.oracle.S20220601.model.HostPhoto"/>
+		<typeAlias alias="Code"      		type="com.oracle.S20220601.model.Code"/>
+		<typeAlias alias="Stay"      		type="com.oracle.S20220601.model.Stay"/>
+		<typeAlias alias="Review"      		type="com.oracle.S20220601.model.Review"/>
+		<typeAlias alias="RevPhoto"      	type="com.oracle.S20220601.model.RevPhoto"/>
+		<typeAlias alias="Res"     			type="com.oracle.S20220601.model.Res"/>
+
 	</typeAliases>
 </configuration>

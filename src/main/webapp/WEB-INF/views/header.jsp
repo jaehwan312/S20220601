@@ -21,60 +21,22 @@
         <div class="navbar_logo">
             <a href="">제주 감수광</a>
         </div>
+        <div class="header_background"></div>
         <div class="navbar_search">
             <form action="" class="search_form">
-                <input type="text" id="s_value" class="search_bar" placeholder="Typing..." onkeyup="filter()">                
+                <input type="text" id="search_area" class="search_bar" placeholder="Typing..." autocomplete="off">                
                 <button class="search_btn">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
+            </form>
                 <div class="search_result">
                 	<div class="keyword">
-                    	<div class="keyword_child" id="keyword_rel" onclick="keyword_rel(0)">연관검색어</div>
-                    	<div class="keyword_child" id="keyword_rec" onclick="keyword_rel(1)">추천검색어</div>
-                    	<div class="keyword_child" id="keyword_pop" onclick="keyword_rel(2)">인기검색어</div>
+                    	<div class="keyword_child" id="keyword_rec" onclick="keyword_rel(0)">추천검색어</div>
+                    	<div class="keyword_child" id="keyword_pop" onclick="keyword_rel(1)">인기검색어</div>
                     </div>
+                    	<div id='autoMaker'></div>
 
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">제주도</span>
-			        </div>
-			
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">제주도맛집</span>
-			        </div>
-			
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">돌하르방</span> 
-			        </div>
-			
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">가나다라</span>
-			        </div>
-			
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">김인헌</span>
-			        </div>
-			
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">안녕하세요</span>
-			        </div>
-			
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">반갑습니다 여러분</span>
-			        </div>
-			
-			        <div class="item">
-			          <i class="fa-solid fa-magnifying-glass fa-sm"></i>
-			          <span class="name">Cherry</span>
-			        </div>
     		    </div>
-            </form>
         </div>
         <ul class="navbar_menu">
             <li><a href="">숙박</a></li>
@@ -100,7 +62,7 @@
                     <a href="admMain">관리자 페이지</a>
                 </div>
             </li>
-            <li><a href="">로그아웃</a></li>
+            <li><a href="logout">로그아웃</a></li>
         </ul>
 
         <a href="#" class="hamburger">

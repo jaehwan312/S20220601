@@ -1,0 +1,34 @@
+package com.oracle.S20220601.dao.jj;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.oracle.S20220601.domain.jj.Code1;
+import com.oracle.S20220601.domain.jj.Host1;
+import com.oracle.S20220601.domain.jj.Menu1;
+import com.oracle.S20220601.domain.jj.Stay1;
+import com.oracle.S20220601.domain.jj.Store1;
+import com.oracle.S20220601.model.Host;
+
+@Repository
+public class JpaSearchDaoImpl implements JpaSearchDao {
+	@Autowired
+	private EntityManager em;
+
+	@Override
+	public List<Host1> getHostList() {
+		List<Host1> host1 =null;
+		try {
+			host1 = em.createQuery("select h from Host1 h", Host1.class).getResultList();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return host1;
+	}
+
+
+}

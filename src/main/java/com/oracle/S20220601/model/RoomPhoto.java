@@ -6,8 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RoomPhoto {
-	private int host_num;		// 업체번호
-	private int room_num;		// 객실번호
-	private int photo_number;	// 사진번호
-	private String photo;		// 사진
+	private int 	host_num;		// 업체번호
+	private int 	room_num;		// 객실번호
+	private int 	room_photo_num;	// 사진번호
+	private String  room_photo;		// 사진
 }

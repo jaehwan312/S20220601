@@ -14,10 +14,20 @@ public class HostStore {
 	private String host_name;	// 업체명
 	private String host_addr;	// 업체 주소
 	private String host_info;	// 업체 소개
-	private int host_code;		// 업체 코드
-	private int rev_count;		// 리뷰 갯수
-	private float host_avg;		// 평점
-	private int like_count;		// 찜한사람 수
+	private int    host_code;		// 업체 코드
+	private int    rev_count;		// 리뷰 갯수
+	private float  host_avg;		// 평점
+	private int    like_count;		// 찜한사람 수
+	
+	//코드 구분
+	private int	   bcd_code = 200;	// bcd코드
+	
+	//시간구분
+	private String start_time;
+	private String end_time;
+	
+	private String break_start_time;
+	private String break_end_time;
 	
 	//Store
 	private String open_time;	// 영업시간
