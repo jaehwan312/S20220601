@@ -19,13 +19,14 @@
 <body class="main_container">
     <nav class="navbar">
         <div class="navbar_logo">
-            <a href="">제주 감수광</a>
+            <a href="main">제주 감수광</a>
         </div>
         <div class="header_background"></div>
+        <div class="navbar_search_alter"></div>
         <div class="navbar_search">
             <form action="" class="search_form">
                 <input type="text" id="search_area" class="search_bar" placeholder="Typing..." autocomplete="off">                
-                <button class="search_btn">
+                <button class="search_btn" type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
@@ -47,7 +48,6 @@
                     <a href="">공지사항</a>
                     <a href="">이용약관</a>
                     <a href="">FAQ</a>
-                    <a href="">실시간 채팅 문의</a>
                 </div>
             </li>
         </ul>
@@ -60,7 +60,7 @@
                     <a href="">나의 픽(찜목록)</a>
                     <a href="">나의 식당정보</a>
                     <a href="">나의 숙소정보</a>
-                    <a href="">관리자 페이지</a>
+                    <a href="admMain">관리자 페이지</a>
                 </div>
             </li>
             <li><a href="logout">로그아웃</a></li>

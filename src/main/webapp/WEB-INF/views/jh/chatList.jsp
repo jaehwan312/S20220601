@@ -11,19 +11,14 @@
 <title>제주 감수광</title>
 </head>
 <body>
-	<%@ include file="header.jsp" %>
-    <div class="bg_img">
-    	<div class="col-lg-5">
-        	<div class="input-group input-group-lg">
-			  <input type="text" class="form-control" placeholder="숙소 또는 맛집을 입력하세요" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-			  <span class="input-group-text" id="inputGroup-sizing-lg"><img alt="" src="images/jj/search.png" style="height: 30px"></span>
-			</div>
-         </div>
-    </div>
+	<%@ include file="../header.jsp" %>
     <div class="container">
-        제주감수광
+    <!-- 여기 밑으로 ============================================================ -->
+    <p>관리자에게 온 유저들의 채팅리스트</p>
+    <a href="chat">채팅</a>
+    <!-- 여기 위로오 ============================================================ -->   
     </div>
-	<%@ include file="footer.jsp" %>
+	<%@ include file="../footer.jsp" %>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

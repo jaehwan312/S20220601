@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.oracle.S20220601.domain.jj.Code1;
 import com.oracle.S20220601.domain.jj.Host1;
 import com.oracle.S20220601.domain.jj.Menu1;
+import com.oracle.S20220601.domain.jj.Search1;
 import com.oracle.S20220601.domain.jj.Stay1;
 import com.oracle.S20220601.domain.jj.Store1;
 import com.oracle.S20220601.model.Host;
@@ -28,6 +29,28 @@ public class JpaSearchDaoImpl implements JpaSearchDao {
 			System.out.println(e.getMessage());
 		}
 		return host1;
+	}
+
+	@Override
+	public List<Search1> getRecList() {
+		List<Search1> search1 = null;
+		try {
+			search1 = em.createQuery("select s from Search1 s where s.search_code=:code").setParameter("code", "1").getResultList();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return search1;
+	}
+
+	@Override
+	public List<Search1> getPopList() {
+		List<Search1> search1 = null;
+		try {
+			search1 = em.createQuery("select s from Search1 s where s.search_code=:code").setParameter("code", "2").getResultList();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return search1;
 	}
 
 
