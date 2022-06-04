@@ -15,34 +15,16 @@ import com.oracle.S20220601.model.ih.HostStore;
 public class StoreServiceImp implements StoreService{
 
 	@Autowired
-	private StoreDao storeDaol;
+	private StoreDao storeDao;
 
 	@Override//식당정보확인
 	public HostStore storeRead(int host_num) {
 		
 		System.out.println("StoreServiceImp storeRead Start....");
 		
-		HostStore storeHost = storeDaol.storeRead(host_num);
+		HostStore storeHost = storeDao.storeRead(host_num);
 		
 		return storeHost;
-	}
-
-	@Override//식당사진
-	public List<HostPhoto> storePhoto(int host_num) {
-		System.out.println("StoreServiceImp photo Start....");
-		
-		List<HostPhoto> storePhoto = storeDaol.storePhoto(host_num);
-		
-		return storePhoto;
-	}
-
-	@Override//메뉴리스트 
-	public List<Menu> menuList(int host_num) {
-		System.out.println("StoreServiceImp menuList Start....");
-		
-		List<Menu> menuList = storeDaol.menuList(host_num);
-		
-		return menuList;
 	}
 
 	@Override//식장정보등록
@@ -50,7 +32,7 @@ public class StoreServiceImp implements StoreService{
 		
 		System.out.println("StoreServiceImp storeInsert Start....");
 		
-		int storeInsert = storeDaol.storeInsert(hostStore);
+		int storeInsert = storeDao.storeInsert(hostStore);
 		
 		return storeInsert;
 	}
