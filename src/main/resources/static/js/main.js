@@ -12,6 +12,16 @@ toggleBtn.addEventListener('click', () => {
     user.classList.toggle('active');
 });
 
+// 메인페이지에서 검색바 헤더에서 숨기기
+$(function(){
+	if(location.pathname == '/main'){
+		$('.navbar_search').hide();
+		$('.navbar_search_alter').show();
+	}else{
+		$('.navbar_search').show();
+		$('.navbar_search_alter').hide();
+	}
+});
 
 
 // 추천, 인기검색어 관련 함수
@@ -137,3 +147,4 @@ $('#search_area').keydown(function(event){
 		 
     }
 });
+

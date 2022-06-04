@@ -19,13 +19,14 @@
 <body class="main_container">
     <nav class="navbar">
         <div class="navbar_logo">
-            <a href="">제주 감수광</a>
+            <a href="main">제주 감수광</a>
         </div>
         <div class="header_background"></div>
+        <div class="navbar_search_alter"></div>
         <div class="navbar_search">
             <form action="" class="search_form">
                 <input type="text" id="search_area" class="search_bar" placeholder="Typing..." autocomplete="off">                
-                <button class="search_btn">
+                <button class="search_btn" type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>

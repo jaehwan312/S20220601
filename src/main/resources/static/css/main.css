@@ -28,6 +28,11 @@ a {
 	z-index: 101;
 }
 
+.navbar_search_alter {
+	width: 332.66px;
+	display: none;
+}
+
 .search_bar {
     width: 300px;
     outline: none;
