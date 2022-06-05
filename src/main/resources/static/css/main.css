@@ -7,6 +7,9 @@ html, body {
     flex-direction: column;
 }
 
+.typing-txt{display: none;}
+.typeing-txt ul{list-style:none;}
+
 a {
     text-decoration: none;
     color: #333333;
@@ -20,10 +23,11 @@ a {
 }
 
 .title {
-	font-family: 'SBAggroM';
+	font-family: 'Gugi', cursive;
 	color: white;
 	font-size: 35px; 
 	text-align: center;
+	text-shadow: 2px 2px 5px #3e3e3e;
 }
 
 .title_text > p {
@@ -37,6 +41,7 @@ a {
 #main_search {
 	margin-bottom: 100px;
 	min-width: 416.66px;
+	z-index: 105;
 }
 
 .navbar {
@@ -52,7 +57,7 @@ a {
 
 .navbar_search {
 	font-family: 'SCoreDream';
-	z-index: 101;
+	z-index: 105;
 }
 
 .navbar_search_alter {
@@ -141,6 +146,12 @@ a {
   width: 332.812px;
 }
 
+#autoMaker_main {
+  display: block;
+  align-items: center;
+  width: 100%;
+}
+
 .search_result {
 	margin: 5px auto;
 	position: fixed;
@@ -149,6 +160,18 @@ a {
 	background-color: white;
 	overflow-x: hidden;
 	display: none;
+}
+
+#search_result_main {
+	font-family: 'SCoreDream';
+	margin: 5px auto;
+	max-height: 198px;
+	background-color: white;
+	overflow-x: hidden;
+	display: none;
+	border-radius: 7px;
+	font-size: 18px;
+	
 }
 
 .search_result::-webkit-scrollbar {
@@ -163,6 +186,19 @@ a {
    border-radius: 10px;
    box-shadow: inset 0px 0px 5px white;
  }
+ 
+#search_result_main::-webkit-scrollbar {
+   width: 10px;
+ }
+#search_result_main::-webkit-scrollbar-thumb {
+   background-color: #808080;
+   border-radius: 10px;
+ }
+#search_result_main::-webkit-scrollbar-track {
+   background-color: #f1f3f4;
+   border-radius: 10px;
+   box-shadow: inset 0px 0px 5px white;
+ }
 
 .keyword {
 	display: flex;
@@ -171,7 +207,19 @@ a {
 	margin-bottom: 10px;
 }
 
+.keyword_main {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 3px;
+	margin-bottom: 10px;
+}
+
 .keyword_child {
+	cursor: pointer;
+	margin-bottom: 1px;
+}
+
+.keyword_child_main {
 	cursor: pointer;
 	margin-bottom: 1px;
 }
@@ -191,6 +239,22 @@ a {
 	margin-right: 3px;
 }
 
+.item_main {
+	height: 40px;
+	line-height: 40px;
+	cursor: pointer;
+	width: 100%;
+}
+
+.item_main:hover {
+	box-shadow: 1px 1px 20px #ddd;
+}
+
+.item_main > i {
+	margin-left: 15px;
+	margin-right: 10px;
+}
+
 .header_background {
 	display: none;
 	position: fixed;
@@ -201,6 +265,10 @@ a {
 	height: 100%;
 	background-color: rgba(0,0,0,0.8);
 	
+}
+
+#inputGroup-sizing-lg {
+	cursor: pointer;
 }
 
 
@@ -260,8 +328,8 @@ a {
 
 /* image */
 .bg_img {
-    height: 500px;
-    background: rgba(0, 0, 0, 0.2) url(../images/main_bg_jeju.jpg);
+    height: 100vh;
+    background: rgba(0, 0, 0, 0) url(../images/jeju7.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
