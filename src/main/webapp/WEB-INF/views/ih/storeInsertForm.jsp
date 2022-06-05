@@ -21,7 +21,7 @@
 			<div>
 				<div>
 					<div class="" id="preview"></div>
-					</div>
+				</div>
 				
 				<div>
 					<div class="insertPhoto">
@@ -40,30 +40,30 @@
 	    			<b>식당명</b>
 	    		</label>
 	    		<label>
-	    			<b><input type="text" name="host_name"></b>
+	    			<b><input type="text" name="host_name" required="required"></b>
 	    		</label><p>
 	    		<label style="float: left;  margin-right: 25px; width: 100px;">
 	    			<b>주소</b>
 	    		</label>
 	    		<label>
-	    			<b><input type="text" name="host_addr"></b>
+	    			<b><input type="text" name="host_addr" required="required"></b>
 	    		</label>
 	    		<p/>
 	    		<label style="float: left;  margin-right: 25px; width: 100px;">
 	    			<b>주차가능여부</b>
 	    		</label>
 		    	<label>
-		    		<select name="parking">
+		    		<select name="parking" >
 		    			<option value="Y">주차가능</option>
 		    			<option value="N">주차불가</option>
 		    		</select>
 		    	</label>
 		    	<p/>
-	    		<label style="float: left;  margin-right: 25px; width: 100px;">
+	    		<label style="float: left;  margin-right: 25px; width: 100px;" >
 	    			<b>영업시간</b>
 	    		</label>
 	    		<label>
-	    			<input type="time" name="start_time"> ~ <input type="time" name="end_time">
+	    			<input type="time" name="start_time"> ~ <input type="time" name="end_time" required="required">
 	    		</label>
 	    		<p/>
 	    		<label style="float: left;  margin-right: 25px; width: 100px;">
@@ -86,21 +86,17 @@
 	    		<label style="float: left;  margin-right: 25px; width: 100px;">
 	    			<b>메뉴</b>
 	    		</label>
-	    		
-			    	<label>
-				    	메뉴: <input type="text" name="menu_name">
-			    	</label>
-			    	<label>
-				    	가격: <input type="text" name="menu_price">
-			    	</label>
-			    	<%-- <input type="button" onclick="menuPlus(${i})" id="menuInfo${i.index }"> --%>
-		    	
+   					<label class="labelmenuInfo" id="labelmenuInfo0" for="menuinputInfo0">
+	    				메뉴명 : <input type="text" name="menu_list[0].menu_name" id="menuinputInfo0" required="required">
+				    	가격    : <input type="number" name="menu_list[0].menu_price" id="menuinputInfo0" required="required">
+			    			  <input type="button" onclick="menuPlus(0)" id="menuInfoInsert0" value="+" >
+		    		</label><p/>
 		    	<p/>
 	    		<label style="float: left;  margin-right: 25px; width: 100px;">
 	    			<b>업체소개</b>
 	    		</label>
 	    		<label>
-	    			<input type="text" name="host_info">
+	    			<textarea rows="5px;" cols="70px;" name="host_info" required="required"></textarea>
 	    		</label>
 	    	</div>
 			<input type="submit" value="등록요청">
