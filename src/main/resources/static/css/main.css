@@ -374,9 +374,9 @@ footer li {
   height: 50px;
   border-radius: 50%;
   overflow: hidden;
-  position: absolute;
-  bottom: 200px;
-  right: 50px;
+  position: fixed;
+  bottom: 75px;
+  right: 75px;
 }
 
 #msg_icon {
@@ -390,9 +390,9 @@ footer li {
 	width: 259px;
 	height: 476px;
 	border-radius: 10px;
-	position: absolute;
-	bottom: 200px;
-    right: 50px;
+	position: fixed;
+	bottom: 75px;
+    right: 75px;
     overflow: hidden;
     box-shadow: 1px 1px 40px 10px gray;
     display: none;

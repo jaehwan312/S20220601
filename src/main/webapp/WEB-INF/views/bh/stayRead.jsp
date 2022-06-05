@@ -19,7 +19,7 @@
 					<img alt="숙소사진" src="images/bh/${photo.host_photo}" width="300px;" height="300px;">
 				</div>
     	</c:forEach>
-					<div style="text-align: left; width: 35%; float: left; height: 300px; margin-top: 50px;">
+					<div style="text-align: left; width: 35%; float: left; height: 300px; margin-top: 50px; margin-right: 350px">
 						${stay.host_name}<p/>
 			    		${stay.host_avg}
 			    		${stay.rev_count}<p/>
@@ -41,12 +41,27 @@
    			</button>
    		</div>
    		</div>
+   		<div>
+   				<c:forEach items="${roomPhoto }" var="room">
+	    			<!-- <div style="width: 100%; height: 200px; text-align: left; padding-left: 60px; "> -->
+	    			<div style="float: left; width: 30%; height: 200px;">
+						<img alt="객실사진" src="images/bh/${room.room_photo}" width="200px;" height="200px;">
+	    			</div>
+    					<div style="text-align: left; width: 70%; float: left; height: 200px; margin-top: 50px;">
+							${room.room_name }<p/>
+							${room.dayfee }원<p/>
+							${room.room_info }<p/>
+		    				<button>예약</button>
+						</div>
+	    			</c:forEach>
    		
-   			<c:forEach items="${roomPhoto }" var="photo">
+   		
+   		</div>
+   			<%-- <c:forEach items="${roomPhoto }" var="photo">
     			<div style="float: left; width: 30%; height: 200px;">
 					<img alt="객실사진" src="images/bh/${photo.room_photo}" width="200px;" height="200px;">
     			</div>
-    		</c:forEach>
+    			</c:forEach>
     			<div style="text-align: left; width: 35%; float: left; height: 200px; margin-top: 50px;">
 						<c:forEach items="${room }" var="room">
 							${room.room_name }<p/>
@@ -55,7 +70,7 @@
 						</c:forEach>
 		    	<button>예약</button>
 						
-		    	</div>
+		    	</div> --%>
    		
    		
     <!-- 여기 위로오 ============================================================ -->   

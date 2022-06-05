@@ -52,18 +52,39 @@
             </li>
         </ul>
         <ul class="navbar_user">
-            <li class="dropdown">
-                <a href="" class="dropdown_button">마이페이지</a>
-                <div class="dropdown_content" id="mypage">
-                    <a href="">나의 프로필</a>
-                    <a href="">예약내역</a>
-                    <a href="">나의 픽(찜목록)</a>
-                    <a href="">나의 식당정보</a>
-                    <a href="">나의 숙소정보</a>
-                    <a href="admMain">관리자 페이지</a>
-                </div>
-            </li>
-            <li><a href="logout">로그아웃</a></li>
+        	<c:choose>
+        		<c:when test="${grade==2 }">
+        			<li class="dropdown">
+		                <a href="" class="dropdown_button">마이페이지</a>
+		                <div class="dropdown_content" id="mypage">
+		                    <a href="">나의 프로필</a>
+		                    <a href="">예약내역</a>
+		                    <a href="">나의 픽(찜목록)</a>
+		                    <a href="">나의 식당정보</a>
+		                    <a href="">나의 숙소정보</a>
+		                </div>
+		            </li>
+		            <li><a href="logout">로그아웃</a></li>
+        		</c:when>
+        		<c:when test="${grade==1 }">
+        			<li class="dropdown">
+		                <a href="" class="dropdown_button">마이페이지</a>
+		                <div class="dropdown_content" id="mypage">
+		                    <a href="">나의 프로필</a>
+		                    <a href="">예약내역</a>
+		                    <a href="">나의 픽(찜목록)</a>
+		                    <a href="">나의 식당정보</a>
+		                    <a href="">나의 숙소정보</a>
+		                    <a href="admMain">관리자 페이지</a>
+		                </div>
+		            </li>
+		            <li><a href="logout">로그아웃</a></li>
+        		</c:when>
+        		<c:otherwise>
+					<li><a href="logout">로그인</a></li>
+					<li><a href="">회원가입</a></li>
+				</c:otherwise>
+        	</c:choose>
         </ul>
 
         <a href="#" class="hamburger">
