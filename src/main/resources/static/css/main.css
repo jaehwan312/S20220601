@@ -12,6 +12,33 @@ a {
     color: #333333;
 }
 
+@font-face {
+    font-family: 'SBAggroM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.title {
+	font-family: 'SBAggroM';
+	color: white;
+	font-size: 35px; 
+	text-align: center;
+}
+
+.title_text > p {
+	margin-bottom: 0px;
+}
+
+.title_text > h1 {
+	margin-bottom: 60px;
+}
+
+#main_search {
+	margin-bottom: 100px;
+	min-width: 416.66px;
+}
+
 .navbar {
 	font-family: 'Gugi', cursive;
     display: flex;
@@ -234,10 +261,11 @@ a {
 /* image */
 .bg_img {
     height: 500px;
-    background-image: url(../images/main_bg_jeju.jpg);
+    background: rgba(0, 0, 0, 0.2) url(../images/main_bg_jeju.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    background-blend-mode: darken;
     display: flex;
     justify-content: center;
     align-items: center;

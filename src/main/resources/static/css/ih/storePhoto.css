@@ -1,0 +1,41 @@
+@charset "UTF-8";
+div img{
+	width: 100px;
+	height: 100px;
+}
+
+.host_photo{
+	visibility: hidden;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    
+}
+
+label {
+    cursor: pointer;
+    font-size: 1em;
+}
+
+
+#labelInfo0{
+	display: block;	
+	text-align: center;
+}
+
+#labelInfo1{
+	display: none;	
+}
+#labelInfo2{
+	display: none;	
+}
+#labelInfo3{
+	display: none;	
+}
+#labelInfo4{
+	display: none;	
+}
+
+

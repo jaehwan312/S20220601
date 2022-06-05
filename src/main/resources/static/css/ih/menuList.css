@@ -1,0 +1,30 @@
+@charset "UTF-8";
+div img{
+	width: 100px;
+	height: 100px;
+}
+
+.host_photo{
+	visibility: hidden;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    
+}
+
+label {
+    cursor: pointer;
+    font-size: 1em;
+}
+
+
+#menuInfo0{
+	display: block;	
+	text-align: center;
+}
+
+
+
+

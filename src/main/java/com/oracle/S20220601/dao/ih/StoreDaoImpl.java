@@ -33,37 +33,6 @@ public class StoreDaoImpl implements StoreDao {
 		return storeRead;
 	}
 
-	@Override//식당사진
-	public List<HostPhoto> storePhoto(int host_num) {
-		
-		System.out.println("StoreDaoImpl storePhoto Start....");
-		
-		List<HostPhoto> storePhoto = null;
-		
-		try {
-			storePhoto = session.selectList("storePhoto", host_num);
-			System.out.println("StoreDaoImpl storePhoto storePhoto.size() --> " + storePhoto.size());
-		} catch (Exception e) {
-			System.out.println("StoreDaoImpl storePhoto ErrorMessage --> " + e.getMessage());
-		}
-		return storePhoto;
-	}
-
-	@Override//메뉴리스트
-	public List<Menu> menuList(int host_num) {
-		System.out.println("StoreDaoImpl menuList Start....");
-		
-		List<Menu> menuList = null;
-		
-		try {
-			menuList = session.selectList("menuList", host_num);
-			System.out.println("StoreDaoImpl menuList storePhoto.size() --> " + menuList.size());
-		} catch (Exception e) {
-			System.out.println("StoreDaoImpl menuList ErrorMessage --> " + e.getMessage());
-		}
-		return menuList;
-	}
-
 	@Override//식장정보등록
 	public int storeInsert(HostStore hostStore) {
 		
@@ -93,20 +62,20 @@ public class StoreDaoImpl implements StoreDao {
 	}
 	
 	public void prn(HostStore hostStore) {
-		System.out.println(hostStore.getHost_num());
-		System.out.println(hostStore.getBcd_code());
-		System.out.println(hostStore.getFood_type());
-		System.out.println(hostStore.getHost_addr());
-		System.out.println(hostStore.getHost_avg());
-		System.out.println(hostStore.getHost_code());
-		System.out.println(hostStore.getHost_info());
-		System.out.println(hostStore.getHost_name());
-		System.out.println(hostStore.getLike_count());
-		System.out.println(hostStore.getMem_num());
-		System.out.println(hostStore.getOpen_time());
-		System.out.println(hostStore.getParking());
-		System.out.println(hostStore.getRev_count());
-		System.out.println(hostStore.getBreak_time());
+		System.out.println("hostStore.getHost_num() --> " + hostStore.getHost_num());
+		System.out.println("hostStore.getBcd_code() --> " + hostStore.getBcd_code());
+		System.out.println("hostStore.getFood_type() --> " + hostStore.getFood_type());
+		System.out.println("hostStore.getHost_addr() --> " + hostStore.getHost_addr());
+		System.out.println("hostStore.getHost_avg() --> " + hostStore.getHost_avg());
+		System.out.println("hostStore.getHost_code() --> " + hostStore.getHost_code());
+		System.out.println("hostStore.getHost_info() --> " + hostStore.getHost_info());
+		System.out.println("hostStore.getHost_name() --> " + hostStore.getHost_name());
+		System.out.println("hostStore.getLike_count() --> " + hostStore.getLike_count());
+		System.out.println("hostStore.getMem_num() --> " + hostStore.getMem_num());
+		System.out.println("hostStore.getOpen_time() --> " + hostStore.getOpen_time());
+		System.out.println("hostStore.getParking() --> " + hostStore.getParking());
+		System.out.println("hostStore.getRev_count() --> " + hostStore.getRev_count());
+		System.out.println("hostStore.getBreak_time() --> " + hostStore.getBreak_time());
 	}
 	
 }
