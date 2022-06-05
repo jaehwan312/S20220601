@@ -10,11 +10,6 @@
 	  		SELECT s.*, h.* FROM store s, host h WHERE h.host_num = #{host_num} 
 	  											 AND   s.host_num = #{host_num}
 	  	</select>
-	  	
-	 	 <!-- 식당 사진 -->
-	  	<select id="storePhoto" parameterType="int" resultType="HostPhoto">
-	  		SELECT photo FROM hostphoto WHERE host_num = #{host_num}
-	  	</select>
   		
   		<!-- 식당정보 등록 -->
   		<insert id="storeInsert" parameterType="HostStore" statementType="CALLABLE">

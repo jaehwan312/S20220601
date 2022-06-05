@@ -13,7 +13,16 @@
 <body>
 	<%@ include file="header.jsp" %>
     <div class="bg_img">
-        
+    	<div class="col-lg-4">
+    		<div class="title_text">
+				<p class="title">맛집? 숙소?</p>
+				<h1 class="title">검색하러 감수광!</h1>
+			</div>
+        	<div class="input-group input-group-lg" id="main_search">
+			  <input type="text" class="form-control" placeholder="숙소 또는 맛집을 입력하세요" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+			  <span class="input-group-text" id="inputGroup-sizing-lg"><img alt="" src="images/jj/search.png" style="height: 30px"></span>
+			</div>
+         </div>
     </div>
     <div class="container">
         제주감수광

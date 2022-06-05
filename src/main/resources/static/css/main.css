@@ -12,6 +12,33 @@ a {
     color: #333333;
 }
 
+@font-face {
+    font-family: 'SBAggroM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.title {
+	font-family: 'SBAggroM';
+	color: white;
+	font-size: 35px; 
+	text-align: center;
+}
+
+.title_text > p {
+	margin-bottom: 0px;
+}
+
+.title_text > h1 {
+	margin-bottom: 60px;
+}
+
+#main_search {
+	margin-bottom: 100px;
+	min-width: 416.66px;
+}
+
 .navbar {
 	font-family: 'Gugi', cursive;
     display: flex;
@@ -26,6 +53,11 @@ a {
 .navbar_search {
 	font-family: 'SCoreDream';
 	z-index: 101;
+}
+
+.navbar_search_alter {
+	width: 332.66px;
+	display: none;
 }
 
 .search_bar {
@@ -80,6 +112,7 @@ a {
     display: none;
     position: absolute;
     min-width: 150px;
+    z-index: 1;
 }
 
 .dropdown_content a {
@@ -135,6 +168,7 @@ a {
 	display: flex;
 	justify-content: space-around;
 	margin-top: 3px;
+	margin-bottom: 10px;
 }
 
 .keyword_child {
@@ -145,6 +179,11 @@ a {
 .item {
 	height: 30px;
 	line-height: 30px;
+	cursor: pointer;
+}
+
+.item:hover {
+	box-shadow: 1px 1px 20px #ddd;
 }
 
 .item > i {
@@ -222,10 +261,11 @@ a {
 /* image */
 .bg_img {
     height: 500px;
-    background-image: url(../images/main_bg_jeju.jpg);
+    background: rgba(0, 0, 0, 0.2) url(../images/main_bg_jeju.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    background-blend-mode: darken;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -237,7 +277,6 @@ a {
     flex: 1 ;
     font-family: 'SCoreDream';
 }
-
 
 /* footer */
 
@@ -259,3 +298,82 @@ footer h1, h2 {
 footer li {
     list-style: none;
 }
+
+/* ----- jh ----- */
+
+.icon_frame {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 75px;
+  right: 75px;
+}
+
+#msg_icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.chat_window {
+	width: 259px;
+	height: 476px;
+	border-radius: 10px;
+	position: fixed;
+	bottom: 75px;
+    right: 75px;
+    overflow: hidden;
+    box-shadow: 1px 1px 40px 10px gray;
+    display: none;
+}
+
+.chatAd_window {
+	width: 259px;
+	height: 476px;
+	border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 1px 1px 40px 10px gray;
+    margin: auto;
+}
+
+.chat_header {
+	height: 45px;
+	background-color: #4234f5;
+	object-fit: cover;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#chat_hide {
+	cursor: pointer;
+}
+
+#chat_out {
+	cursor: pointer;
+}
+
+.chating {
+	height: 386px;
+	background-color: white;
+}
+
+.chat_input {
+	height: 45px;
+	background-color: #ebebeb;
+	object-fit: cover;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#sendBtn {
+	border: none;
+    outline: none;
+    background-color: #ebebeb;
+}
+
+/* ----- jh ----- */

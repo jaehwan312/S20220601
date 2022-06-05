@@ -7,20 +7,15 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link rel="stylesheet" href="css/main.css">
-<script type="text/javascript">
-	var msg = "${msg}";
-	alert(msg);
-	location.href="storeInsertForm";
-</script>
+<link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
 <title>제주 감수광</title>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-    	
-    	
-    	
+    <p>관리자에게 온 유저들의 채팅리스트</p>
+    <a href="chat">채팅</a>
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>
