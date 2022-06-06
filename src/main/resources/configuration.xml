@@ -10,7 +10,7 @@
 		<typeAlias alias="Menu"      		type="com.oracle.S20220601.model.Menu"/>
 		<typeAlias alias="Store"    		type="com.oracle.S20220601.model.Store"/>
 		<typeAlias alias="HostPhoto" 		type="com.oracle.S20220601.model.HostPhoto"/>
-		<typeAlias alias="HostRoom"    		type="com.oracle.S20220601.model.Room"/>
+		<typeAlias alias="Room"    			type="com.oracle.S20220601.model.Room"/>
 		<typeAlias alias="RoomPhoto"    	type="com.oracle.S20220601.model.RoomPhoto"/>
 		<typeAlias alias="Code"      		type="com.oracle.S20220601.model.Code"/>
 		<typeAlias alias="Res"     			type="com.oracle.S20220601.model.Res"/>

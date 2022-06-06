@@ -32,6 +32,7 @@ public class StayController {	//숙소 Controller
 		HostStay       		stayRead  			= ss.stayRead(roomPhotoList.getHost_num());
 		List<HostPhoto> 	stayPhoto 			= ss.stayPhoto(roomPhotoList.getHost_num());
 		List<RoomPhotoList>	roomPhoto			= ss.roomPhoto(roomPhotoList);
+		
 		model.addAttribute("stay", stayRead);
 		model.addAttribute("stayPhoto", stayPhoto);
 		model.addAttribute("roomPhoto", roomPhoto);
@@ -52,8 +53,6 @@ public class StayController {	//숙소 Controller
 		logger.info("StayController reviwList Start");
 		List<Review1> reviewList = ss.reviewList(review.getHost_num());
 		Host hostreview	=ss.hostreview(review.getHost_num());
-		System.out.println(hostreview.getHost_avg());
-		System.out.println(hostreview.getRev_count());
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("hostreview", hostreview);
 		return "bh/reviewList";

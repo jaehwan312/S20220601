@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.RevPhoto;
+import com.oracle.S20220601.model.RoomPhoto;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
 import com.oracle.S20220601.model.bh.Review1;
@@ -48,14 +49,21 @@ public class StayDaoImpl implements StayDao {
 	@Override
 	public List<RoomPhotoList> roomPhoto(RoomPhotoList roomPhotoList) {
 		System.out.println("StayDaoImpl roomPhoto start...");
-		List<RoomPhotoList> roomPhoto = null;
+		List<RoomPhotoList> roomPhotoLists = null;
+		List<RoomPhoto> roomPhoto = null;
 		try {
-			roomPhoto = session.selectList("roomPhoto", roomPhotoList);
+			roomPhotoLists = session.selectList("room", roomPhotoList);
+			for(RoomPhotoList roomList : roomPhotoLists) {
+				roomPhoto = session.selectList("roomPhoto", roomList);
+				roomList.setRoomPhotos(roomPhoto);
+				
+			}
+			
 			System.out.println("StoreDaoImpl roomPhoto roomPhoto.size() --> " + roomPhoto.size());
 		} catch (Exception e) {
 			System.out.println("StayDaoImpl roomPhoto Exception->"+e.getMessage());
 		}
-		return roomPhoto;
+		return roomPhotoLists;
 	}
 
 	@Override
