@@ -1,10 +1,14 @@
 @charset "UTF-8";
+
+.section {
+	width: 100%; height: 100%;
+}
+
 html, body {
     margin: 0; 
     padding: 0;
     height: 100%;
-    display: flex;
-    flex-direction: column;
+    
 }
 
 .typing-txt{display: none;}
@@ -49,6 +53,11 @@ a {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: fixed;
+    z-index: 80;
+    background-color: white;
+    width: 100vw;
+    top: 0px;
 }
 
 .navbar_logo a {
@@ -160,6 +169,7 @@ a {
 	background-color: white;
 	overflow-x: hidden;
 	display: none;
+	border-radius: 7px;
 }
 
 #search_result_main {
@@ -328,7 +338,8 @@ a {
 
 /* image */
 .bg_img {
-	height: 100vh;
+	width: 100%;
+	height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -337,58 +348,8 @@ a {
     justify-content: center;
     align-items: center;
     font-family: 'SCoreDream';
-    animation: change 80s infinite cubic-bezier(.75,0,.75,.1);
-    
-    
-    
 }
 
-@keyframes change{
-	0%
-	{
-		background-image: url(../images/jj0.jpg);
-	}
-	10%
-	{
-		background-image: url(../images/jj1.jpg);
-	}
-	20%
-	{
-		background-image: url(../images/jj2.jpg);
-	}
-	30%
-	{
-		background-image: url(../images/jj3.jpg);
-	}
-	40%
-	{
-		background-image: url(../images/jj4.jpg);
-	}
-	50%
-	{
-		background-image: url(../images/jj5.jpg);
-	}
-	60%
-	{
-		background-image: url(../images/jj6.jpg);
-	}
-	70%
-	{
-		background-image: url(../images/jj7.jpg);
-	}
-	80%
-	{
-		background-image: url(../images/jj8.jpg);
-	}
-	90%
-	{
-		background-image: url(../images/jj9.jpg);
-	}
-	100%
-	{
-		background-image: url(../images/jj0.jpg);
-	}
-}
 
 /* main */
 .container {

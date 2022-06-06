@@ -9,6 +9,8 @@ const keywords = document.getElementsByClassName('keyword_child');
 const keywords_main = document.getElementsByClassName('keyword_child_main');
 
 
+
+
 toggleBtn.addEventListener('click', () => {
     menu.classList.toggle('active');
     user.classList.toggle('active');
@@ -314,4 +316,6 @@ function typing(){
 }  
 
 
-
+// 배경이미지 랜덤 출력
+ var images = ['jj0.jpg', 'jj1.jpg', 'jj2.jpg', 'jj3.jpg', 'jj4.jpg', 'jj5.jpg', 'jj6.jpg', 'jj7.jpg', 'jj8.jpg', 'jj9.jpg'];
+ $('.bg_img').css({'background-image': 'url(../images/' + images[Math.floor(Math.random() * images.length)] + ')'});
