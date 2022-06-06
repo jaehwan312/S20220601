@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
+<% pageContext.setAttribute("replaceChar", "\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +18,6 @@
     	<input type="hidden" value="${store.host_num}">
     	<input type="hidden" value="${store.host_code}">
     	<input type="hidden" value="${store.mem_num}">
-    	
     	<div>
 			<input type="checkbox" style="float: right;">    	
     	</div>
@@ -92,7 +93,9 @@
     			<b>업체소개</b>
     		</label>
     		<label>
-    			<b>${store.host_info}</b>
+    			<b>
+    				${fn:replace(fn:replace(${store.host_info}, '&lt;', ''), '&gt;', '')}
+    			</b>
     		</label>
     	</div>
     	<hr/>

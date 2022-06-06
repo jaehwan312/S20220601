@@ -36,10 +36,14 @@ public class StorePhotoDaoImpl implements StorePhotoDao {
 		
 		System.out.println("StorePhotoDaoImpl storePhotoInsert Start....");
 		int storePhotoInsert = 0;
-		
 		try {
 			for (MultipartFile multipartFile : filename) {
-				storePhotoInsert += session.insert("storePhotoInsert", multipartFile.getOriginalFilename());
+				if (multipartFile.getOriginalFilename() != null) {
+					storePhotoInsert += session.insert("storePhotoInsert", multipartFile.getOriginalFilename());
+					System.out.println(multipartFile.getOriginalFilename());
+				}else {
+					return storePhotoInsert;
+				}
 			}
 		} catch (Exception e) {
 			System.out.println("StorePhotoDaoImpl storePhotoInsert ErrorMessage --> " + e.getMessage());
