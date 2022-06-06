@@ -27,11 +27,12 @@ public class StayController {	//숙소 Controller
 	private StayService ss;
 	
 	@RequestMapping(value = "stayRead")
-	public String stayRead(RoomPhotoList roomPhotoList,Model model) {
+	public String stayRead(RoomPhotoList roomPhotoList,Model model) {//업체 정보 사진 룸정보 사진
 		logger.info("StayController stayList Start");
 		HostStay       		stayRead  			= ss.stayRead(roomPhotoList.getHost_num());
 		List<HostPhoto> 	stayPhoto 			= ss.stayPhoto(roomPhotoList.getHost_num());
 		List<RoomPhotoList>	roomPhoto			= ss.roomPhoto(roomPhotoList);
+		
 		model.addAttribute("stay", stayRead);
 		model.addAttribute("stayPhoto", stayPhoto);
 		model.addAttribute("roomPhoto", roomPhoto);
@@ -39,7 +40,7 @@ public class StayController {	//숙소 Controller
 	}
 	
 	@RequestMapping(value = "stayinfo")
-	public String stayinfo(int host_num, Model model) {
+	public String stayinfo(int host_num, Model model) {//업소 기본정보
 		logger.info("StayController stayinfo Start");
 		Stay       	stayinfo  		= ss.stayinfo(host_num);
 		model.addAttribute("stay", stayinfo);
@@ -48,11 +49,12 @@ public class StayController {	//숙소 Controller
 	}
 	
 	@RequestMapping(value = "reviewList")
-	public String reviewList(Review1 review, Model model) {
+	public String reviewList(Review1 review, Model model) {// 숙소 리뷰
 		logger.info("StayController reviwList Start");
 		List<Review1> reviewList = ss.reviewList(review.getHost_num());
-//		Host hostreview	=ss.hostreview(review.getHost_num());
+		Host hostreview	=ss.hostreview(review.getHost_num());
 		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("hostreview", hostreview);
 		return "bh/reviewList";
 	}
 		

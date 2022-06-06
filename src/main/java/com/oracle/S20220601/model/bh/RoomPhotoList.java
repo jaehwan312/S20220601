@@ -1,5 +1,9 @@
 package com.oracle.S20220601.model.bh;
 
+import java.util.List;
+
+import com.oracle.S20220601.model.RoomPhoto;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +19,8 @@ public class RoomPhotoList {
 	private String 		room_info;		// 객실소개글
 	private int 		dayfee;			// 평일요금
 	private int 		weekfee;		// 주말요금
-	//roomphoto
-	private int 		room_photo_num;	// 사진번호
-	private String  	room_photo;		// 사진
+	
+	private List<RoomPhoto>	roomPhotos;
+	
+
 }

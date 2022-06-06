@@ -14,6 +14,10 @@
 		select * from revphoto where host_num=#{host_num} and rev_num=#{rev_num}
 	</select>
 	
+	<select id="hostreview" parameterType="int" resultType="Host">
+		select rev_count,host_avg from host where host_num=#{rev_num}
+	</select>
+	
 	
 
 

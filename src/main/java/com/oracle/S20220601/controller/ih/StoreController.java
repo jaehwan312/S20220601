@@ -22,9 +22,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Menu;
+import com.oracle.S20220601.model.RevPhoto;
+import com.oracle.S20220601.model.Review;
 import com.oracle.S20220601.model.ih.HostStore;
 import com.oracle.S20220601.service.ih.CodeService;
 import com.oracle.S20220601.service.ih.MenuSeivice;
+import com.oracle.S20220601.service.ih.ReviewService;
 import com.oracle.S20220601.service.ih.StorePhotoService;
 import com.oracle.S20220601.service.ih.StoreService;
 
@@ -41,21 +44,27 @@ public class StoreController {
 	private StorePhotoService storePhotoService;
 	@Autowired
 	private MenuSeivice 	  menuSeivice;
-	
+	@Autowired
+	private ReviewService     reviewService;
 	 
 	@GetMapping(value = "storeRead")//식당상세정보
 	public String storeRead(int host_num, Model model) {
 		logger.info("StoreController storeRead Start..");
 		
-		HostStore       storeRead  = storeService.storeRead(host_num);
-		List<HostPhoto> storePhoto = storePhotoService.storePhoto(host_num);
-		List<Menu>      menuList   = menuSeivice.menuList(host_num);
-		Code      		foodcode   = codeService.foodcode(storeRead);
+		
+		HostStore       storeRead  = storeService.storeRead(host_num);      //식당정보
+		List<HostPhoto> storePhoto = storePhotoService.storePhoto(host_num);//식당사진
+		List<Menu>      menuList   = menuSeivice.menuList(host_num);        //메뉴정보
+		Code      		foodcode   = codeService.foodcode(storeRead);	 	//음식종류
+		List<Review>    revList    = reviewService.revList(host_num);		//리뷰
+		List<RevPhoto>	revPhotos  = reviewService.storeRevPhoto(revList);  //리뷰 사진
 		
 		model.addAttribute("store",storeRead);
 		model.addAttribute("storePhoto",storePhoto);
 		model.addAttribute("menuList",menuList);
 		model.addAttribute("foodcode",foodcode);
+		model.addAttribute("revList", revList);
+		model.addAttribute("revPhotos", revPhotos);
 		
 		return "ih/storeRead";
 	}
@@ -118,6 +127,7 @@ public class StoreController {
 		}
 		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
 		
+		//식당정보 등록 요청 확인 msg
 		if (storeInsert > 0 && menuInsert > 0) {
 			model.addAttribute("msg", "등록 요청 성공");
 		}else {

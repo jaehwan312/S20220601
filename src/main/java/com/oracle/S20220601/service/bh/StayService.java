@@ -17,6 +17,7 @@ public interface StayService {
 	Stay 				stayinfo(int host_num);
 	HostStay 			stayReadreview(int host_num);
 	List<Review1> 		reviewList(int host_num);
+	Host 				hostreview(int host_num);
 	
 }
 
