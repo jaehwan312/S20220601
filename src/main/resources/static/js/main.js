@@ -8,8 +8,10 @@ const result = document.querySelector(".search_result");
 const keywords = document.getElementsByClassName('keyword_child');
 const keywords_main = document.getElementsByClassName('keyword_child_main');
 
-
-
+$(document).ready(function() {
+			$('#fullpage').fullpage({
+			});
+		});
 
 toggleBtn.addEventListener('click', () => {
     menu.classList.toggle('active');
@@ -149,7 +151,7 @@ $(".navbar_search").click(function(e){
 //검색바 클릭할 경우(메인)
 $("#main_search").click(function(e){
 	$("#search_result_main").css("display","block");
-	$(".header_background").css("display", "block");
+	$(".main_background").css("display", "block");
 	$.ajax({
  		url:"/getSearchList",
  		dataType:'json',
@@ -157,6 +159,13 @@ $("#main_search").click(function(e){
 			s_result = data;
  		}
  	});
+ 	// 메인 검색창클릭할경우 스크롤 fullpage 얼림
+	// $('body').addClass('fixed');
+	$('body').on('scroll touchmove mousewheel', function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		return false;
+	});
 });
 
 //그림자배경 클릭할 경우(헤더)
@@ -166,9 +175,13 @@ $(".header_background").click(function(e){
 });
 
 //그림자배경 클릭할 경우(메인)
-$(".header_background").click(function(e){
+$(".main_background").click(function(e){
 	$("#search_result_main").css("display","none");
-	$(".header_background").css("display", "none");
+	$(".main_background").css("display", "none");
+	
+	// 배경 클릭할 경우 fullpage 얼림 해제
+	// $('body').removeClass('fixed');
+	$('body').off('scroll touchmove mousewheel');
 });
 
 
@@ -317,5 +330,5 @@ function typing(){
 
 
 // 배경이미지 랜덤 출력
- var images = ['jj0.jpg', 'jj1.jpg', 'jj2.jpg', 'jj3.jpg', 'jj4.jpg', 'jj5.jpg', 'jj6.jpg', 'jj7.jpg', 'jj8.jpg', 'jj9.jpg'];
+ var images = ['jj1.jpg', 'jj2.jpg', 'jj3.jpg', 'jj4.jpg', 'jj5.jpg', 'jj6.jpg', 'jj7.jpg', 'jj8.jpg', 'jj9.jpg'];
  $('.bg_img').css({'background-image': 'url(../images/' + images[Math.floor(Math.random() * images.length)] + ')'});

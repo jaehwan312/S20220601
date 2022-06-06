@@ -274,7 +274,17 @@ a {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0,0,0,0.8);
-	
+}
+
+.main_background {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.8);
 }
 
 #inputGroup-sizing-lg {
@@ -456,3 +466,8 @@ footer li {
 }
 
 /* ----- jh ----- */
+
+/* ----- jj start---- */
+
+
+/* ----- jj end---- */
