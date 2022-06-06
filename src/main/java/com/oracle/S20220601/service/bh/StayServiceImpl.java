@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.S20220601.dao.bh.StayDao;
+import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
@@ -61,6 +62,13 @@ public class StayServiceImpl implements StayService {
 		System.out.println("StayServiceImpl reviewList start...");
 		List<Review1> reviewList =sd.reviewList(host_num);
 		return reviewList;
+	}
+
+	@Override
+	public Host hostreview(int host_num) {
+		System.out.println("StayServiceImpl hostreview start...");
+		Host hostreview =sd.hostreview(host_num);
+		return hostreview;
 	}
 
 

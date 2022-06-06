@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.RevPhoto;
 import com.oracle.S20220601.model.Stay;
@@ -97,6 +98,18 @@ public class StayDaoImpl implements StayDao {
 			System.out.println("StayDaoImpl reviewList Exception->"+e.getMessage());
 		}
 		return reviewList;
+	}
+
+	@Override
+	public Host hostreview(int host_num) {
+		System.out.println("StayDaoImpl hostreview start...");
+		Host hostreview=null;
+		try {
+			hostreview = session.selectOne("hostreview", host_num);
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl hostreview Exception->"+e.getMessage());
+		}
+		return hostreview;
 	}
 
 

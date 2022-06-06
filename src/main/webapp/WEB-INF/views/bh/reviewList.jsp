@@ -16,8 +16,8 @@
     <div style="text-align: center; margin-top: 100px;">
     	<h1>리뷰</h1>
     		<div>
-    			<h2>${stay.rev_point}</h2><p/>
-    			리뷰 : ${stay.rev_count }			답변 : 0
+    			<h2>${hostreview.host_avg}</h2><p/>
+    			리뷰 : ${hostreview.rev_count }			
     		</div>
     		<div>
 	    			<c:forEach items="${reviewList }" var="getList">

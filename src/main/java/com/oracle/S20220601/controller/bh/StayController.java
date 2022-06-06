@@ -51,8 +51,11 @@ public class StayController {	//숙소 Controller
 	public String reviewList(Review1 review, Model model) {
 		logger.info("StayController reviwList Start");
 		List<Review1> reviewList = ss.reviewList(review.getHost_num());
-//		Host hostreview	=ss.hostreview(review.getHost_num());
+		Host hostreview	=ss.hostreview(review.getHost_num());
+		System.out.println(hostreview.getHost_avg());
+		System.out.println(hostreview.getRev_count());
 		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("hostreview", hostreview);
 		return "bh/reviewList";
 	}
 		
