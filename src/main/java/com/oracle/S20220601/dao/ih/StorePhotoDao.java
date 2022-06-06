@@ -8,9 +8,9 @@ import com.oracle.S20220601.model.HostPhoto;
 
 public interface StorePhotoDao {
 	
-	List<HostPhoto> storePhoto(int host_num);
+	List<HostPhoto> storePhoto(int host_num);						//등록된사진확인	
 
-	int             storePhotoInsert(List<MultipartFile> filename);
+	int             storePhotoInsert(List<MultipartFile> filename); //식당사진 등록
 
 
 }
