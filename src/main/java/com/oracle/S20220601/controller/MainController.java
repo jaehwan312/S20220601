@@ -18,14 +18,24 @@ import com.oracle.S20220601.service.jj.SearchService;
 public class MainController {
 	@Autowired
 	private SearchService ss;
+	@Autowired
+	private MainService ms;
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	@RequestMapping("main")
 	public String main(Model model) {
 		System.out.println("main Start...");
 		List<Search1> search1 = ss.getRecList();
+		int storeCount = ms.getStoreCount();
+		int stayCount = ms.getStayCount();
+		int resCount = ms.getResCount();
+		int reviewCount = ms.getReviewCount();
 		
 		model.addAttribute("search", search1);
+		model.addAttribute("storeCount", storeCount);
+		model.addAttribute("stayCount", stayCount);
+		model.addAttribute("resCount", resCount);
+		model.addAttribute("reviewCount", reviewCount);
 		
 		return "main";	
 	}

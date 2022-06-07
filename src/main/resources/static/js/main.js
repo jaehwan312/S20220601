@@ -332,3 +332,10 @@ function typing(){
 // 배경이미지 랜덤 출력
  var images = ['jj1.jpg', 'jj2.jpg', 'jj3.jpg', 'jj4.jpg', 'jj5.jpg', 'jj6.jpg', 'jj7.jpg', 'jj8.jpg', 'jj9.jpg'];
  $('.bg_img').css({'background-image': 'url(../images/' + images[Math.floor(Math.random() * images.length)] + ')'});
+ 
+ 
+// 메인화면 숫자 카운팅효과
+ $('.counter').counterUp({
+    delay: 10,
+    time: 2000
+});
