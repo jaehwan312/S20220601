@@ -17,6 +17,7 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
+    	
     	<form action="storeInsert" method="post" style="text-align: center;" enctype="multipart/form-data">
 			<div>
 				<div>

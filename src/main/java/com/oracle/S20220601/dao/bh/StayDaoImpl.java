@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.RevPhoto;
@@ -96,10 +97,10 @@ public class StayDaoImpl implements StayDao {
 		System.out.println("StayDaoImpl reviewList start...");
 		List<Review1> reviewList = null;
 		try {
-			reviewList = session.selectList("reviewList", host_num);
+			reviewList = session.selectList("bhreviewList", host_num);
 			List<RevPhoto> rp =null;
 			for(Review1 rv : reviewList) {
-				rp = session.selectList("revPhotoList", rv);
+				rp = session.selectList("bhrevPhotoList", rv);
 				rv.setRevPhoto(rp);
 			}
 		} catch (Exception e) {
@@ -118,6 +119,19 @@ public class StayDaoImpl implements StayDao {
 			System.out.println("StayDaoImpl hostreview Exception->"+e.getMessage());
 		}
 		return hostreview;
+	}
+
+	@Override
+	public List<Code> codeList(int bcd_code) {
+		System.out.println("StayDaoImpl codeList start...");
+		List<Code> codeList = null;
+		try {
+			codeList = session.selectList("bhcodeList", bcd_code);
+			System.out.println("StoreDaoImpl codeList codeList.size() --> " + codeList.size());
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl codeList Exception->"+e.getMessage());
+		}
+		return codeList;
 	}
 
 

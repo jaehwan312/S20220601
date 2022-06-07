@@ -24,22 +24,25 @@
 				<p />
 				리뷰 : ${hostreview.rev_count }
 			</div>
-			<div style="padding: 80px;">
+			<div style="padding: 80px; border: 1px solid black;">
 				<c:forEach items="${reviewList }" var="getList">
-					<div style="text-align: left; padding-left: 70px; padding-top: 30px;">
+				<div style="border: 1px solid black; margin-top: 20px;">
+					<div style="text-align: left; padding-left: 70px; padding-top:30px;  " >
 	    					${getList.room_name }
 	    			</div>
     				<div
 						style="width: 40%; text-align: left; padding-left: 60px; padding-bottom: 30px; padding-top: 30px;">
 						${getList.rev_content}</div>
 					<div
-						style="width: 100%; height: 200px; text-align: left; padding-left: 60px;">
+						style="width: 100%; height: 200px; text-align: left; padding-left: 60px; margin-bottom: 30px; ">
 						<c:forEach items="${getList.revPhoto }" var="getPhoto">
-							<img alt="리뷰사진" src="images/bh/${getPhoto.rev_photo}"
-								width="200px;" height="200px;">
+							<img alt="리뷰사진" src="images/bh/${getPhoto.rev_photo}" width="200px;" height="200px;">
+						
 						</c:forEach>
 					</div>
-				</c:forEach>
+				</div>
+				</c:forEach> 
+				
 			</div>
 		</div>
 		<!-- 여기 위로오 ============================================================ -->
