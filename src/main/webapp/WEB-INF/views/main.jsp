@@ -34,7 +34,7 @@
 						  	</c:forEach>
 						</ul>
 					  </div> 
-					  <span class="input-group-text" id="inputGroup-sizing-lg"><img alt="" src="images/jj/search.png" style="height: 30px"></span>
+					  <span class="input-group-text" id="inputGroup-sizing-lg" onclick="inputSearch()"><img alt="" src="images/jj/search.png" style="height: 30px"></span>
 					  </div>
 				  <div class="col-lg-4" style="position: fixed; margin-top: 50px; min-width: 416.66px;">
 					  <div class="input-group flex-nowrap" id="search_result_main">
@@ -90,7 +90,7 @@
 		<div class="container-xxl py-5">
 	            <div class="row justify-content-center g-4">
 	                <div class="col-lg-4 col-sm-6" style="cursor: pointer;"
-	                onclick="location.href='main'">
+	                onclick="location.href='#'">
 	                    <div class="service-item text-center pt-3">
 	                        <div class="p-4">
 	                            <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
@@ -100,7 +100,7 @@
 	                    </div>
 	                </div>
 	                <div class="col-lg-4 col-sm-6" style="cursor: pointer;"
-	                onclick="location.href='main'">
+	                onclick="location.href='#'">
 	                    <div class="service-item text-center pt-3">
 	                        <div class="p-4">
 	                            <i class="fa fa-3x fa-hotel text-primary mb-4"></i>

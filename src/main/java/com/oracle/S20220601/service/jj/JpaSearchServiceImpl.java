@@ -16,7 +16,7 @@ import com.oracle.S20220601.domain.jj.Store1;
 
 @Service
 @Transactional
-public class SearchServiceImpl implements SearchService {
+public class JpaSearchServiceImpl implements JpaSearchService {
 	@Autowired
 	private JpaSearchDao sd;
 

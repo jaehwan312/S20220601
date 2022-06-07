@@ -36,7 +36,16 @@
 					<div
 						style="width: 100%; height: 200px; text-align: left; padding-left: 60px; margin-bottom: 30px; ">
 						<c:forEach items="${getList.revPhoto }" var="getPhoto">
+						
+						
+						
+						
 							<img alt="리뷰사진" src="images/bh/${getPhoto.rev_photo}" width="200px;" height="200px;">
+						
+						
+						
+						
+						
 						
 						</c:forEach>
 					</div>

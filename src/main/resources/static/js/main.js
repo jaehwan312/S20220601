@@ -49,7 +49,7 @@ function keyword_rel(e){
 	 		dataType:'json',
 	 		success:function(data){
 				$(data).each(function(){
-					rec2 = "<div class='item'>"
+					rec2 = "<div class='item' onclick='selectSearch(this)'>"
 				          +"<i class='fa-solid fa-magnifying-glass fa-sm'></i>"
 				          +"<span class='name'>"+this+"</span>"
 				          +"</div>";
@@ -69,7 +69,7 @@ function keyword_rel(e){
 	 		dataType:'json',
 	 		success:function(data){
 				$(data).each(function(){
-					pop2 = "<div class='item'>"
+					pop2 = "<div class='item' onclick='selectSearch(this)'>"
 				          +"<i class='fa-solid fa-magnifying-glass fa-sm'></i>"
 				          +"<span class='name'>"+this+"</span>"
 				          +"</div>";
@@ -101,7 +101,7 @@ function keyword_rel_main(e){
 	 		dataType:'json',
 	 		success:function(data){
 				$(data).each(function(){
-					rec2 = "<div class='item_main'>"
+					rec2 = "<div class='item_main' onclick='selectSearch(this)'>"
 				          +"<i class='fa-solid fa-magnifying-glass fa-sm'></i>"
 				          +"<span class='name'>"+this+"</span>"
 				          +"</div>";
@@ -121,7 +121,7 @@ function keyword_rel_main(e){
 	 		dataType:'json',
 	 		success:function(data){
 				$(data).each(function(){
-					pop2 = "<div class='item_main'>"
+					pop2 = "<div class='item_main' onclick='selectSearch(this)'>"
 				          +"<i class='fa-solid fa-magnifying-glass fa-sm'></i>"
 				          +"<span class='name'>"+this+"</span>"
 				          +"</div>";
@@ -196,7 +196,7 @@ $('#search_area').keyup(function(){
 		var str="";
         s_result.forEach(function(arg){
             if(arg.indexOf(txt) > -1 ){
-            	str = "<div class='item'>"
+            	str = "<div class='item' onclick='selectSearch(this)'>"
 			          +"<i class='fa-solid fa-magnifying-glass fa-sm'></i>"
 			          +"<span class='name'>"+arg+"</span>"
 			          +"</div>";
@@ -228,7 +228,7 @@ $('#searchBar').keyup(function(){
 		var str="";
         s_result.forEach(function(arg){
             if(arg.indexOf(txt) > -1 ){
-            	str = "<div class='item_main'>"
+            	str = "<div class='item_main' onclick='selectSearch(this)'>"
 			          +"<i class='fa-solid fa-magnifying-glass fa-sm'></i>"
 			          +"<span class='name'>"+arg+"</span>"
 			          +"</div>";
@@ -339,3 +339,33 @@ function typing(){
     delay: 10,
     time: 2000
 });
+
+
+// 추천,인기검색어 클릭할 경우 해당 값으로 검색 실행
+function selectSearch(id){
+	var selectedKeyword = $(id).children('span').text();
+	alert(selectedKeyword);
+	$.ajax({
+		url: "/getSearchResult",
+		data:{keyword:selectedKeyword},
+		contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+		type: 'post',
+		dataType: 'text',
+		success: function(data){}
+	});
+}
+
+// 검색바에 입력한 값으로 검색 실행
+function inputSearch(){
+	var inputKeyword = $('#searchBar').val();
+	$.ajax({
+		url: "/getSearchResult",
+		data:{keyword:inputKeyword},
+		contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+		type: 'post',
+		dataType: 'text',
+		success: function(data){}
+	});
+}
+
+
