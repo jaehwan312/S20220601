@@ -245,7 +245,7 @@ $('#searchBar').keyup(function(){
             });
         });			
     } else {
-    	$(".header_background").css("display", "block");
+    	$(".main_background").css("display", "block");
         $('#autoMaker_main').children().remove();
         $('.keyword_main').css("display","flex");
     }  
