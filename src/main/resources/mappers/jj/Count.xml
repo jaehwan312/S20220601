@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+   <mapper namespace="com.oracle.S20220601.CountMapper">
+	 	<!-- 맛집 갯수 -->
+	  	<select id="jjStoreCount" resultType="int">
+	  		select count(*) from host where host_code=1
+	  	</select>
+	  	
+	  	<!-- 숙소 갯수 -->
+	  	<select id="jjStayCount" resultType="int">
+	  		select count(*) from host where host_code=2
+	  	</select>
+	  	
+	  	<!-- 진행된 예약 갯수 -->
+	  	<select id="jjResCount" resultType="int">
+	  		select count(*) from res
+	  	</select>
+	  	
+	  	<!-- 작성된 리뷰 갯수 -->
+	  	<select id="jjReviewCount" resultType="int">
+	  		select count(*) from review
+	  	</select>
+   </mapper>
