@@ -18,8 +18,10 @@ public class Res {
 	//join 조회용
 	private String name;
 	private String host_name;	//  업체명
-	private String status_name;	//	진행상태 번호 받은 다음에 상태명으로 저장
 	private String host_photo;
 	private String room_name;
+	private String nday;	//숙박일수
+	private String sday;	//예약시작일 to_char
+	private String eday;	//예약종료일 to_char
 	
 }

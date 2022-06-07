@@ -1,0 +1,51 @@
+@charset "UTF-8";
+body div {
+  font-size: medium;
+  margin-bottom: 50px;
+}
+
+.wrapper {
+	width: 355px;
+	border: 1px solid black;
+	text-align: center;
+	display: block;
+	
+
+}
+
+.reserve_list section {
+  display: inline;
+  background-color: blueviolet;
+}
+.list_past section {
+  display: inline;
+  background-color: blueviolet;
+}
+.list_cancle section {
+  display: inline;
+  background-color: blueviolet;
+}
+ul { 
+	list-style-type: none;
+	
+}
+
+.reserve_list li a{
+	line-height: normal;
+}
+.reserve_list li a strong {
+    display: block;
+    font-size: 18px;
+}
+.container {
+	margin-top: 10%;
+}
+.status {
+	 font-size: 13px;
+}
+section h4{
+		margin-bottom : 1rem;
+	  padding-inline-start: 32px;
+	
+}
+  

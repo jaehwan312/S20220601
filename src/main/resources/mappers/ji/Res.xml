@@ -3,14 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.oracle.S20220601.ResMepper">
+<mapper namespace="com.oracle.S20220601.ResMapper">
 	<select id="jiResTotal" resultType="int">
-		SELECT count(*)  FROM Res 
+		SELECT count(*)  FROM Res     
 	</select>
 	<select id="jiResList" parameterType="Res" resultType="Res">
-		SELECT p.name,h.host_name,
-		min_photo_num2(hp.host_num) host_photo, r.room_name, res.*
-		FROM profile p
+		SELECT p.name,h.host_name, 
+		min_photo_num2(hp.host_num) host_photo, r.room_name, res.*,(TO_DATE(res.res_end) - TO_DATE(res.res_start))  nday,
+		substr(TO_CHAR(TO_DATE(res.res_start),'YYYY.MM.DD') || ' ' ||TO_CHAR(TO_DATE(res.res_start),'DY'),6) sday,
+        substr(TO_CHAR(TO_DATE(res.res_end),'YYYY.MM.DD') || ' ' ||TO_CHAR(TO_DATE(res.res_end),'DY'),6) eday
+	
+		FROM profile p 
 		join res res on p.mem_num = res.mem_num
 		join host h on res.host_num = h.host_num
 		join room r on res.room_num = r.room_num
@@ -26,9 +29,12 @@
 
 	</select>
 	<select id="jiBeforeResList" parameterType="Res" resultType="Res">
-		SELECT p.name,h.host_name,
-		min_photo_num2(hp.host_num) host_photo, r.room_name, res.*
-		FROM profile p
+		SELECT p.name,h.host_name, 
+		min_photo_num2(hp.host_num) host_photo, r.room_name, res.*,(TO_DATE(res.res_end) - TO_DATE(res.res_start))  nday,
+		substr(TO_CHAR(TO_DATE(res.res_start),'YYYY.MM.DD') || ' ' ||TO_CHAR(TO_DATE(res.res_start),'DY'),6) sday,
+        substr(TO_CHAR(TO_DATE(res.res_end),'YYYY.MM.DD') || ' ' ||TO_CHAR(TO_DATE(res.res_end),'DY'),6) eday
+	
+		FROM profile p 
 		join res res on p.mem_num = res.mem_num
 		join host h on res.host_num = h.host_num
 		join room r on res.room_num = r.room_num
@@ -43,9 +49,12 @@
 		order by res_start
 	</select>
 	<select id="jiCancleResList" parameterType="Res" resultType="Res">
-		SELECT p.name,h.host_name,
-		min_photo_num2(hp.host_num) host_photo, r.room_name, res.*
-		FROM profile p
+		SELECT p.name,h.host_name, 
+		min_photo_num2(hp.host_num) host_photo, r.room_name, res.*,(TO_DATE(res.res_end) - TO_DATE(res.res_start))  nday,
+		substr(TO_CHAR(TO_DATE(res.res_start),'YYYY.MM.DD') || ' ' ||TO_CHAR(TO_DATE(res.res_start),'DY'),6) sday,
+        substr(TO_CHAR(TO_DATE(res.res_end),'YYYY.MM.DD') || ' ' ||TO_CHAR(TO_DATE(res.res_end),'DY'),6) eday
+	
+		FROM profile p 
 		join res res on p.mem_num = res.mem_num
 		join host h on res.host_num = h.host_num
 		join room r on res.room_num = r.room_num
