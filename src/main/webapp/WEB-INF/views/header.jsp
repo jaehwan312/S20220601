@@ -81,8 +81,8 @@
 		            <li><a href="logout">로그아웃</a></li>
         		</c:when>
         		<c:otherwise>
-					<li><a href="logout">로그인</a></li>
-					<li><a href="">회원가입</a></li>
+					<li><a href="loginPage">로그인</a></li>
+					<li><a href="signUpPage">회원가입</a></li>
 				</c:otherwise>
         	</c:choose>
         </ul>

@@ -6,7 +6,7 @@ import com.oracle.S20220601.model.Profile;
 
 public interface ProfileService {
 
-	String loginCheck(Profile profile, HttpSession session);
+	Profile loginCheck(Profile profile, HttpSession session);
 
 	void   logout(HttpSession session);
 

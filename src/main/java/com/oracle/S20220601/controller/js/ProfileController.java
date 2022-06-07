@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,18 +35,24 @@ public class ProfileController {
 	
 	// 로그인 눌렀을때 처리
 	@RequestMapping(value = "loginCheck")
-	public ModelAndView loginCheck(@ModelAttribute Profile profile, HttpSession session) {
+	public ModelAndView loginCheck(@ModelAttribute Profile profile, HttpSession session, HttpServletRequest request) {
 		System.out.println("----------- ProfileController Start -----------");
-		String name = ps.loginCheck(profile, session);
+		profile = ps.loginCheck(profile, session);
 		ModelAndView mav = new ModelAndView();
-		if (name != null) { // 로그인 성공
-			mav.setViewName("main");			
+		if (profile != null) { // 로그인 성공
+			session = request.getSession();
+			int mem_num = (int)session.getAttribute("mem_num");
+			String grade = (String) session.getAttribute("grade");
+			mav.setViewName("main");
+			mav.addObject("mem_num", mem_num);
+			mav.addObject("grade", grade);
 		} else {	        // 로그인 실패
 			mav.setViewName("js/loginPage");
 			mav.addObject("message", "error");
 		}
 		return mav;
 	}
+
 	
 	// 로그아웃
 	@RequestMapping(value = "logout")
@@ -67,15 +74,16 @@ public class ProfileController {
 		
 	}
 	
-	@RequestMapping(value = "signUpPage")	//회원가입 페이지
+	//회원가입 페이지
+	@RequestMapping(value = "signUpPage")	
 	public String signUpPage() {
 		System.out.println("----------- signUpPage Start -----------");
 		return "js/signUpPage";
 	}
 	
 	
-	
-	@RequestMapping(value = "signUpCheckPage")	// 이용약관 페이지
+	// 이용약관 페이지
+	@RequestMapping(value = "signUpCheckPage")	
 	public String checkPage() {
 		System.out.println("----------- signUpCheckPage Start -----------");
 		return "js/signUpCheckPage";

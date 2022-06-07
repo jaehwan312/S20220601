@@ -46,7 +46,6 @@
 	      <input type="password" class="form-control" id="pw" name="pw">
 	      <label for="floatingPassword">비밀번호</label>
 	    </div>
-	
 	    <button class="w-100 btn btn-lg btn-danger" id="btnLogin" type="submit" style="margin-top: 10px;">로그인</button>
 	    <c:if test="${message == 'error'}">
 	    	<div style="color:red;"> 아이디 또는 비밀번호가 일치하지 않습니다.</div>
