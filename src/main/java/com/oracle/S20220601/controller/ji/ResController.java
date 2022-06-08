@@ -31,6 +31,17 @@ public class ResController {
 		return "ji/res";
 	}
 	
+	@RequestMapping("resDetail")
+	public String resDetail() {
+		System.out.println("resDetail Start...");
+		return "ji/resDetail";
+	}
+	@RequestMapping("reReserve")
+	public String reReserve() {
+		System.out.println("reReserve Start...");
+		return "ji/reReserve";
+	}
+	
 	@RequestMapping("/resList")
 	public String resList(Res res, Model model) {
 		res.setMem_num(mem_num);
@@ -45,10 +56,11 @@ public class ResController {
 		//취소내역
 		List<Res> listCancleRes = rs.listCancleRes(res);
 		System.out.println("Rescontroller resList listCancleRes.size() ->"+listCancleRes.size());
-	
+		
 		model.addAttribute("listRes", listRes);
 		model.addAttribute("listBeforeRes", listBeforeRes);
 		model.addAttribute("listCancleRes", listCancleRes);
+		model.addAttribute("mem_num", mem_num);
 	
 		
 		return "ji/resList";

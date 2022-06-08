@@ -2,6 +2,7 @@ package com.oracle.S20220601.dao.bh;
 
 import java.util.List;
 
+import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Stay;
@@ -18,5 +19,6 @@ public interface StayDao {
 	HostStay 			stayReadreview(int host_num);
 	List<Review1> 		reviewList(int host_num);
 	Host 				hostreview(int host_num);
+	List<Code> 			codeList(int bcd_code);
 
 }
