@@ -1,6 +1,19 @@
-		function chatOpen() {
+		function chatOpen(mem_num) {
 			$(".chat_window").css("display","block");
+			$.ajax(
+					{
+						url:"/getUserName",
+						data:{mem_num : mem_num},
+						
+						dataType:'text',
+						success:function(data){
+							$('#meName').html(data);
+							wsOpen();
+						}
+					}
+			);
 		}
+		
 		function chatHide() {
 			$(".chat_window").css("display","none");
 		}
@@ -8,21 +21,6 @@
 			$(".chat_window").css("display","none");
 		}
 		
-		var ws;
-
-		function chatName(){
-			var userName = $("#userName").val();
-			console.log("chatName  userName: " + userName);
-			if(userName == null || userName.trim() == ""){
-				alert("사용자 이름을 입력해주세요.");
-				$("#userName").focus();
-			}else{
-				wsOpen();
-				$("#meName").append(userName); 
-				$("#yourName").hide();
-			}
-		}
-			
 		function wsEvt() {
 			console.log("wsEvt  start... ");
 			
@@ -106,27 +104,34 @@
 			});
 		}
 		// User 등록  Message 전송       saveStatus --> Create / Delete
-		function sendUser(saveStatus) {
+		function sendUser(saveStatus, mem_num) {
 			
 			var userOption ={
 					type       : "userSave",
 					sessionId  : $("#sessionId").val(),
-					userName   : $("#userName").val(),
+					userName   : $("#meName").val(),
 					saveStatus : saveStatus
 				}
 			// 자바스크립트의 값을 JSON 문자열로 변환
 			ws.send(JSON.stringify(userOption));
 		}
 		// 전체 Message 전송 
-		function send() {
+		function send(mem_num, grade) {
 			var option ={
 				type: "message",
 				sessionId : $("#sessionId").val(),
-				userName : $("#userName").val(),
+				userName : $("#meName").val(),
 				yourName : $("#member_sub").val(),
 				msg : $("#chatting").val()
 			}
 			// 자바스크립트의 값을 JSON 문자열로 변환
 			ws.send(JSON.stringify(option));
 			$('#chatting').val("");
+			$.ajax(
+					{
+						url:"/insertChat",
+						data:{mem_num : mem_num, grade : grade, msg : $("#chatting").val()},
+						}
+					}
+			);
 		}
