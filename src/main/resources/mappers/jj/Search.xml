@@ -4,8 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
    <mapper namespace="com.oracle.S20220601.jjSearchMapper">
-	 	<!-- 맛집 갯수 -->
-	  	<select id="jjPopSelect" parameterType="java.lang.String" resultType="int">
-	  		select count(*) from host where host_code=1
+	 	<!-- 인기 키워드 조회 -->
+	  	<select id="jjPopSelect" parameterType="java.lang.String" resultType="Search">
+	  		select * from search where search_code=2 and keyword=#{keyword}
 	  	</select>
+	  	<!-- 인기 키워드 카운트 증가 -->
+	  	<update id="jjPopUpdate" parameterType="java.lang.String">
+	  		update search set search_count=search_count+1 where search_code=2 and keyword=#{keyword}
+	  	</update>
+	  	<!-- 인기 키워드 추가 -->
+	  	<insert id="jjPopInsert" parameterType="java.lang.String">
+	  		insert into search values(2, seq_search_num.nextval, #{keyword}, to_char(sysdate, 'yyyymmdd'),1)
+	  	</insert>
    </mapper>

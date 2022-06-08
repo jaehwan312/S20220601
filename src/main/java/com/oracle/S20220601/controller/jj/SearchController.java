@@ -11,7 +11,7 @@ import com.oracle.S20220601.service.jj.SearchService;
 @Controller
 public class SearchController {
 	
-//	@Autowired
+	@Autowired
 	private SearchService ss;
 	
 	

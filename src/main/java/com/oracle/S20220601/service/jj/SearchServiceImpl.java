@@ -12,6 +12,7 @@ public class SearchServiceImpl implements SearchService {
 	
 	@Override
 	public void keywordInsert(String keyword) {
+		System.out.println("@@@keyword->"+keyword);
 		sd.keywordInsert(keyword);
 	}
 

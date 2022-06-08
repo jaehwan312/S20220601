@@ -9,6 +9,7 @@
 <link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/jj/mainIcon.css">
+<link rel="stylesheet" type="text/css" href="css/jj/jquery.fullPage.css" />
 
 
 <title>제주 감수광</title>
@@ -26,7 +27,7 @@
 			</div>
         	<div class="input-group input-group-lg" id="main_search">
         			<div class="input-group input-group-lg">
-					  <input id="searchBar" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+					  <input id="searchBar" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onkeyup="mainEnter()">
 					  <div class="typing-txt"> 
 						 <ul>
 						  	<c:forEach var="list" items="${search }">
@@ -129,6 +130,8 @@
      </div>
      <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 	<script src="js/jj/jquery.counterup.min.js"></script>
+     <script type="text/javascript" src="js/jj/mainPage.js"></script>
+     <script type="text/javascript" src="js/jj/jquery.fullPage.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>
