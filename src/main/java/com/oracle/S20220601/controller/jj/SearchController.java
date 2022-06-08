@@ -18,6 +18,10 @@ public class SearchController {
 	@PostMapping(value = "getSearchResult")
 	public String getSearchResult(Search search, Model model) {
 		System.out.println("@@@@@ search.getKeyword()-->"+search.getKeyword());
+		
+		//DB에 search Keyword 입력
+		ss.keywordInsert(search.getKeyword());
+		
 		return "jj/searchList";
 	}
 }
