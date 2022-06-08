@@ -22,6 +22,8 @@ public class SearchController {
 		//DB에 search Keyword 입력
 		ss.keywordInsert(search.getKeyword());
 		
+		model.addAttribute("keyword", search.getKeyword());
+		
 		return "jj/searchList";
 	}
 }
