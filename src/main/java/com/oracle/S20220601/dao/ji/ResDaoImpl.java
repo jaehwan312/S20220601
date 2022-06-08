@@ -71,4 +71,18 @@ public class ResDaoImpl implements ResDao {
 		}
 		return listCancleRes;
 	}
+
+	@Override
+	public Res resDetail(int res_num) {
+		Res res1 = null;
+		System.out.println("ResDaoImpl resDetail Start....");
+		try {
+			res1 = session.selectOne("jiResDetail",res_num);
+			
+		} catch (Exception e) {
+			System.out.println("ResDaoImpl resDetail Exception -> "+e.getMessage());
+		}
+		
+		return res1;
+	}
 }

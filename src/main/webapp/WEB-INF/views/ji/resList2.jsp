@@ -79,7 +79,128 @@
 
 		</div>
 
+			<section class="list_past">
+				<h4>이용 내역</h4>
+				<ul class="list_wrap">
+					<c:forEach var="listBeforeRes" items="${listBeforeRes}">
+						<li>
+							<div class="row">
+								<div class="col-6">
+									<div class="wrapper">
+										<p>
+											<img alt="숙소사진"
+												src="${context }/images/bh/${listBeforeRes.host_photo}"
+												style="cursor: pointer;" width="350" height="160">
+										</p>
+										<a href="resDetail?res_num=${listBeforeRes.res_num }"> <c:if
+												test="${listBeforeRes.res_status=='2'}">
+												<span class="status">이용 완료</span>
+												<span class="status">예약번호 : ${listBeforeRes.res_num }</span>
+											</c:if> <strong>${listBeforeRes.host_name}</strong> <span
+											class="day">${listBeforeRes.sday} -
+												${listBeforeRes.eday} • ${listBeforeRes.nday}박</span>
+										</a>
+										<p>
+											<a href="reReserve">다시 예약 </a>
+										</p>
 
+									</div>
+								</div>
+							</div>
+						</li>
+
+
+					</c:forEach>
+
+
+				</ul>
+				<!---->
+				<p>
+			</section>
+
+<section class="list_cancle">
+				<h4>취소 내역</h4>
+				<ul class="list_wrap">
+					<c:forEach var="listCancleRes" items="${listCancleRes}">
+						<li>
+							<div class="wrapper">
+								<p>
+									<img alt="숙소사진"
+										src="${context }/images/bh/${listCancleRes.host_photo}"
+										style="cursor: pointer;" width="350" height="160">
+								</p>
+								<a href="resDetail"> <c:if
+										test="${listCancleRes.res_status=='3'}">
+										<span class="status">예약 취소</span>
+										<span class="status">예약번호 : ${listCancleRes.res_num }</span>
+
+									</c:if> <strong>${listCancleRes.host_name}</strong> <span>${listCancleRes.sday}
+										- ${listCancleRes.eday} • ${listCancleRes.nday}박</span>
+								</a>
+								<p>
+									<a href="reReserve">다시 예약 </a>
+								</p>
+
+							</div>
+
+						</li>
+
+
+					</c:forEach>
+				</ul>
+				<!---->
+				<P>
+			</section>
+
+
+		</div>
+
+
+<script type="text/javascript">
+		$(document).ready(function() {
+			$("#cbx_chkAll").click(function() {
+				if ($("#cbx_chkAll").is(":checked"))
+					$("input[name=chk]").prop("checked", true);
+				else
+					$("input[name=chk]").prop("checked", false);
+			});
+
+			$("input[name=chk]").click(function() {
+				var total = $("input[name=chk]").length;
+				var checked = $("input[name=chk]:checked").length;
+
+				if (total != checked)
+					$("#cbx_chkAll").prop("checked", false);
+				else
+					$("#cbx_chkAll").prop("checked", true);
+			});
+		});
+	</script>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th><input type="checkbox" id="cbx_chkAll" /></th>
+				<th>체크박스 테스트</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="checkbox" name="chk"></td>
+				<td>체크 1</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="chk"></td>
+				<td>체크 2</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="chk"></td>
+				<td>체크 3</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
 
 
 

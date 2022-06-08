@@ -14,4 +14,6 @@ public interface ResService {
 
 	List<Res> listCancleRes(Res res);
 
+	Res resDetail(int res_num);
+
 }
