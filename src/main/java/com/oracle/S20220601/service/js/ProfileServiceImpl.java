@@ -41,7 +41,7 @@ public class ProfileServiceImpl implements ProfileService {
 		int cnt = pd.idCheck(id);
 		return cnt;
 	}
-
+	
 	
 	
 	
