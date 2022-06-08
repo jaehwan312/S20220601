@@ -36,8 +36,18 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public int storeUserRevDel(StoreReview review) {
-		
 		return reviewDao.storeUserRevDel(review);
+	}
+
+	@Override
+	public int storeRevcount(int host_num) {
+		return reviewDao.storeRevcount(host_num);
+	}
+
+	@Override
+	public int storeRevPointAvg(int host_num) {
+		// TODO 자동 생성된 메소드 스텁
+		return reviewDao.storeRevPointAvg(host_num);
 	}
 
 }
