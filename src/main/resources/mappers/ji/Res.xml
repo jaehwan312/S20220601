@@ -55,18 +55,35 @@
         substr(TO_CHAR(TO_DATE(res.res_end),'YYYY.MM.DD') || ' ' ||TO_CHAR(TO_DATE(res.res_end),'DY'),6) eday
 	
 		FROM profile p 
-		join res res on p.mem_num = res.mem_num
-		join host h on res.host_num = h.host_num
-		join room r on res.room_num = r.room_num
-		join hostphoto hp on h.host_num = hp.host_num
+			join res res on p.mem_num = res.mem_num
+			join host h on res.host_num = h.host_num
+			join room r on res.room_num = r.room_num
+			join hostphoto hp on h.host_num = hp.host_num
 		AND hp.host_photo_num = ( SELECT MIN(host_photo_num)
-								FROM hostphoto
-								WHERE host_num = hp.host_num
-								)
+									FROM hostphoto
+									WHERE host_num = hp.host_num
+									)
 						
 		AND res.res_status = 3
 		AND p.mem_num = #{mem_num}
 		order by res_start
 	</select>
+	<select id="jiResDetail" parameterType="int" resultType="Res">
+	SELECT p.name, p.phone, h.host_name, r.room_name, res.*,
+			(TO_DATE(res.res_end) - TO_DATE(res.res_start)) nday,
+			TO_CHAR(TO_DATE(res.res_start),'YYYY.MM.DD') || ' ' || TO_CHAR(TO_DATE(res.res_start),'DY') sday,
+			TO_CHAR(TO_DATE(res.res_end),'YYYY.MM.DD') 	 || ' ' || TO_CHAR(TO_DATE(res.res_end),'DY') eday,
+			TO_CHAR(pay.price, '999,999,999,999,999,999') price,
+			s.checkin,s.checkout
+
+	FROM profile p
+		join res res on p.mem_num = res.mem_num
+		join host h on res.host_num = h.host_num
+		join stay s on s.host_num = h.host_num 
+		join room r on res.room_num = r.room_num
+		join pay pay on res.res_num = pay.res_num
+
+	AND res.res_num = #{res_num}
 	
+	</select>
 </mapper>
