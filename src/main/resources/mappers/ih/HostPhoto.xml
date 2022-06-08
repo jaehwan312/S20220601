@@ -3,10 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-   <mapper namespace="com.oracle.S20220601.HostPhotoMepper">
+   <mapper namespace="com.oracle.S20220601.HostPhotoMapper">
 	 	<!-- 식당 사진 -->
 	  	<select id="storePhoto" parameterType="int" resultType="HostPhoto">
-	  		SELECT photo FROM hostphoto WHERE host_num = #{host_num}
+	  		SELECT host_photo FROM hostphoto WHERE host_num = #{host_num}
 	  	</select>
 	  	<!-- 식당사진등록 -->
 	  	<insert id="storePhotoInsert" parameterType="String">

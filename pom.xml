@@ -48,6 +48,13 @@
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
 		
+		<!-- STMP 메일 전송 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+			<version>2.2.8.RELEASE</version>
+		</dependency> 
+		
 		<!-- json simple  -->
 		<dependency>
 		  <groupId>com.googlecode.json-simple</groupId>

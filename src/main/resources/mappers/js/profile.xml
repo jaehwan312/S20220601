@@ -7,11 +7,8 @@
   	<select id="loginCheck" resultType="Profile">
   		SELECT * FROM PROFILE WHERE id = #{id} AND pw = #{pw}
   	</select>
-  	<select id="logCheck" parameterType="String" resultType="Profile">
-  		SELECT * FROM PROFILE WHERE id = #{id}	  	
-  	</select>
   	<select id="idCheck" parameterType="String" resultType="int">
   		SELECT COUNT(id) FROM PROFILE WHERE id = #{id}
   	</select>
   
-  </mapper>
+  </mapper>	

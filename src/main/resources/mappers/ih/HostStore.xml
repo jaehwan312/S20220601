@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-   <mapper namespace="com.oracle.S20220601.HostStoreMepper">
+   <mapper namespace="com.oracle.S20220601.HostStoreMapper">
    		
    		<!--식당정보 확인  -->
 	  	<select id="storeRead" parameterType="int" resultType="HostStore">

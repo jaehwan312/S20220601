@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Profile {
-	private int mem_num;		// 회원번호
+	private int    mem_num;		// 회원번호
 	private String id;			// 아이디
 	private String pw;			// 비밀번호
 	private String name;		// 이름

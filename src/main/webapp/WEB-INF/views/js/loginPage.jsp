@@ -5,8 +5,8 @@
 <html>
 <head>
 <script type="text/javascript">
-	$(function() {
-	$("#btnLogin").click(function() {
+/* 	
+	function logCheck() {
 		id=$("#id").val();
 		var pw=$("#pw").val(); 
 		if(id == ""){
@@ -23,8 +23,9 @@
 	
 		
 	  });	
-	});
-
+	
+	
+	 */
 </script>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -46,7 +47,7 @@
 	      <input type="password" class="form-control" id="pw" name="pw">
 	      <label for="floatingPassword">비밀번호</label>
 	    </div>
-	    <button class="w-100 btn btn-lg btn-danger" id="btnLogin" type="submit" style="margin-top: 10px;">로그인</button>
+	    <button class="w-100 btn btn-lg btn-danger" id="btnLogin" type="submit" style="margin-top: 10px;" onclick="logCheck">로그인</button>
 	    <c:if test="${message == 'error'}">
 	    	<div style="color:red;"> 아이디 또는 비밀번호가 일치하지 않습니다.</div>
 	    </c:if>
