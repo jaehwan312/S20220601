@@ -33,8 +33,10 @@ public class StoreRevController {
 		if (storeRevDel > 0) {
 			int storeRevcount    = reviewService.storeRevcount(review.getHost_num());
 			int storeRevPointAvg = reviewService.storeRevPointAvg(review.getHost_num());
+			System.out.println("storeRevcount --> " + storeRevcount);
+			System.out.println("storeRevPointAvg --> " + storeRevPointAvg);
 		}
-		
+		System.out.println(storeRevDel);
 		return storeRevDel;
 	}
 }

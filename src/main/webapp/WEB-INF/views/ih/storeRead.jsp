@@ -156,7 +156,7 @@
 		   		</label>
 				<button onclick="storeReviewInsert()" style="float: right;" class="btn btn-primary">리뷰등록</button>
 			</form><br/><br/><br/>
-			<label>현재 리뷰 <b id="StoreRevCount">${store.rev_count }개</b></label>
+			<div>현재 리뷰<b  id="StoreRevCount">${store.rev_count }</b>개</div>
 			<hr/>
 			<br/>
 			<c:forEach items="${revList }" var="user_rev" varStatus="u">

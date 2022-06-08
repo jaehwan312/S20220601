@@ -57,7 +57,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		int storeUserRevDel = 0;
 		
 		try {
-			storeUserRevDel += session.delete("storeUserRevDel",review);    //리뷰글 삭제
+			storeUserRevDel = session.delete("storeUserRevDel",review);    //리뷰글 삭제
 		} catch (Exception e) {
 			System.out.println("ReviewDaoImpl storeUserRevDel ErrorMessage --> " + e.getMessage());
 		}

@@ -9,12 +9,12 @@ function userRevDelete(e){
 	console.log("userRevNum --> " + userRevNum);
 	console.log("HostNum --> " + HostNum);
 	console.log("userRevMemNum --> " + userRevMemNum);
-	StoreAvgUpdate();
-	StoreRevCount();
+	
 	var del = {"rev_num" : userRevNum, "host_num": HostNum, "mem_num" : userRevMemNum}
 	
 	console.log(del);
-	/*
+	
+	
 	$.ajax({
 		url : "/storeUserRevDel",
 		type : 'post',
@@ -22,27 +22,48 @@ function userRevDelete(e){
 		contentType : 'application/json; charset=UTF-8',
 		dataType : 'json',
 		success: function(data){
-				if(data == 1) {
+				if(data > 0) {
+					alert(data);
 					$('#storeRevList' + e).remove();
 					
-				}			
+				}	
+					
 			}
 		});		
-	*/
 	
+	//StoreAvgUpdate();
+	//StoreRevCount();	
 }
 
+/*
 function StoreAvgUpdate(){
 	var StoreAvg = document.getElementById('StoreAvg').innerText;
 	console.log(StoreAvg);
-	StoreAvg = 3.5;
+	//StoreAvg.textContent  = "<b id='StoreRevCount'>1개</b>";
 	
 
 }
 
 function StoreRevCount(){
-	var StoreRevCount = document.getElementById('StoreRevCount').innerText;
+	var count = document.getElementById('StoreRevCount').innerText;
 	console.log(StoreRevCount);
+	
+	$.ajax({
+		url : "/StoreRevCount",
+		type : 'post',
+		data : count
+		dataType : 'text',
+		success: function(data){
+				if(data == 1) {
+					$('#storeRevList' + e).remove();
+					
+				}	
+					
+			}
+		});	
+	
+	
+	$("#StoreRevCount").text(2);
 }
 
 function userRevUpdate(e){
@@ -73,4 +94,4 @@ function storeReviewInsert(){
 		}
 	});
 	
-}
+}*/
