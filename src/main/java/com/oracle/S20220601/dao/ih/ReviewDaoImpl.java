@@ -53,16 +53,44 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	@Override
 	public int storeUserRevDel(StoreReview review) {
-
+		System.out.println("ReviewDaoImpl storeUserRevDel Start...");
 		int storeUserRevDel = 0;
 		
 		try {
-			storeUserRevDel = session.delete("storeUserRevDel",review);
+			storeUserRevDel = session.delete("storeUserRevDel",review);    //리뷰글 삭제
 		} catch (Exception e) {
 			System.out.println("ReviewDaoImpl storeUserRevDel ErrorMessage --> " + e.getMessage());
 		}
 		
 		return storeUserRevDel;
+	}
+
+	@Override
+	public int storeRevcount(int host_num) {
+		System.out.println("ReviewDaoImpl storeRevcount Start...");
+		
+		int storeRevcount = 0;
+		
+		try {
+			storeRevcount = session.update("storeRevcount",host_num);
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl storeUserRevDel ErrorMessage --> " + e.getMessage());
+		}
+		return storeRevcount;
+	}
+
+	@Override
+	public int storeRevPointAvg(int host_num) {
+		System.out.println("ReviewDaoImpl storeRevPointAvg Start...");
+		
+		int storeRevPointAvg = 0;
+		
+		try {
+			storeRevPointAvg = session.update("storeRevPointAvg",host_num);
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl storeRevPointAvg ErrorMessage --> " + e.getMessage());
+		}
+		return storeRevPointAvg;
 	}
 
 }

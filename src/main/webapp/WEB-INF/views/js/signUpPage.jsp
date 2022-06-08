@@ -14,9 +14,10 @@
 </head>
 <script type="text/javascript">
 
-		// ajax 아이디 체크
+		//ajax 아이디 체크
 		function checkId(){
 		    var id = $('#id').val(); //id값이 "id"인 입력란의 값을 저장
+		  
 		    $.ajax({
 		        url:'idCheck', //Controller에서 인식할 주소
 		        type:'post', //POST 방식으로 전달
@@ -24,11 +25,11 @@
 		        success:function(cnt){	// 컨트롤러에서 넘어온 cnt 값 받음
 		        if(cnt != 1){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
 		            $('.id_ok').css("display","inline-block"); 
-                    $('.id_already').css("display", "none");
-                } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-                    $('.id_already').css("display","inline-block");
-                    $('.id_ok').css("display", "none");
-                }
+		            $('.id_already').css("display", "none");
+		        } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+		            $('.id_already').css("display","inline-block");
+		            $('.id_ok').css("display", "none");
+		        }
 		        },
 		        error:function(){
 		            alert("에러입니다");
@@ -36,7 +37,7 @@
 		    });
 		};
 		
-		// 특수문자 입력 방지
+		// 아이디 특수문자 및 한글 입력 방지
 		function characterCheck(obj){
 		var regExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi; 
 		var regExp1 = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
@@ -54,29 +55,7 @@
 		
 	
 		
-		function chk(){
-		 var pw = $("#password").val();
-		 var num = pw.search(/[0-9]/g);
-		 var eng = pw.search(/[a-z]/ig);
-		 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-		
-		 if(pw.length < 8 || pw.length > 15){
-		
-		  alert("8자리 ~ 15자리 이내로 입력해주세요.");
-		  return false;
-		 }else if(pw.search(/\s/) != -1){
-		  alert("비밀번호는 공백 없이 입력해주세요.");
-		  return false;
-		 }else if(num < 0 || eng < 0 || spe < 0 ){
-		  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
-		  return false;
-		 }else {
-			console.log("통과"); 
-		    return true;
-		 }
-		
-		}
-		
+		// 이미지 미리보기
 		function readURL(input) {
 			
 //			alert('input.files[0]->'+input.files[0]);
@@ -93,7 +72,119 @@
 			}
 		}
 		
+		function auth_btn(){
+			 var email = $('#email').val();
+	    	 
+	    	 if(email == ''){
+	    	 	alert("이메일을 입력해주세요.");
+	    	 	return false;
+	    	 }
+	    		$.ajax({
+				type : "POST",
+				url : "/emailAuth",
+				data : {email : email},
+				success: function(data){
+					alert("인증번호가 발송되었습니다.");
+					email_auth_cd = data;
+				},
+				error: function(data){
+					alert("메일 발송에 실패했습니다.");
+				}
+			});  
+		}; 	
 		
+
+		 	
+		 	var email_auth_cd = '';
+		 			
+				  function join() {
+			
+					
+					if($('#id').val() == ""){
+						alert("아이디를 입력해주세요.");
+						return false;
+					}
+					
+					
+					if($('#pw').val() == ""){
+						alert("비밀번호를 입력해주세요.");
+						return false;
+					}
+					
+					if($('#pw').val() != $('#pwCheck').val()){
+						alert("비밀번호가 일치하지 않습니다.");
+						return false;
+					}
+					
+					if($('#name').val() == ""){
+						alert("이름을 입력해주세요.");
+						return false;
+					}
+					
+					if($('#gender').val() == ""){
+						alert("성별을 선택해주세요.");
+						return false;
+					}
+					
+					if($('#birth').val() == ""){
+						alert("생년월일을 입력해주세요.");
+						return false;
+					}
+					
+					if($('#phone').val() == ""){
+						alert("전화번호를 입력해주세요.");
+						return false;
+					}
+					
+					if($('#email').val() == ""){
+						alert("이메일을 입력해주세요.");
+						return false;
+					}
+					
+					if($('#email_auth_key').val() == ""){
+						alert("인증번호를 넣어주세요.");
+						return false;
+					}
+					
+					if($('#email_auth_key').val() != email_auth_cd){
+						alert("인증번호가 일치하지 않습니다.");
+						return false;
+					} 
+
+					if(!$("input:checked[id='agree']").is(":checked")){
+						alert("개인정보 수집 이용 및 약관에 동의하셔야 가입이 가능합니다.");
+						 document.getElementById("agree").focus();
+						return false;
+					}
+					
+						
+				}; 
+			
+				
+			 /*  function joinRootEx(){	
+				  console.log("--------------------------222");
+						var f = $('#joinRoot');
+						var formData = f.serialize();
+							
+						$.ajax({
+							type : "POST",
+							url : "/signUpPage",
+							data : formData,
+							success: function(data){
+								if(data == "Y"){
+									alert("회원가입이 완료되었습니다.");	
+									location.href="js/loginPage"
+								}else{
+									alert("회원가입에 실패하였습니다.");
+								}
+							},
+							error: function(data){
+								alert("회원가입 에러 발생!");
+								console.log(data);
+							}
+						});
+					 };   */
+	
 </script>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -102,13 +193,13 @@
 	<div class="row py-lg-5">
 			<div class="col-lg-5 col-md-5 mx-auto">
 				<h1 class="fw-bolder" style="text-align: center;">회원가입</h1>
-				<form class="row g-3" action="loginPage" onsubmit="return chk()" name="join" method="post">
+				<form class="row g-3" action="signUp" method="post" onsubmit="return join()">
 					<div style="text-align: center;">
 	    				<tr>
 							<td><img  id="preview" width="80%" style="width: 250px; height: 250px; margin: 10px;"/></td>
 						</tr>
 						<tr>
-							<td><input class="form-control" type="file" name="photo"
+							<td><input class="form-control" type="file" name="photo" id="photo"
 							onchange="readURL(this);" accept="image/png, image/jpeg, image/jpg"></td>
 						</tr>
 					</div>
@@ -122,56 +213,49 @@
 					</div>
 					<div class="col-12" style="margin-top: 0;">
 						<label for="passwd" class="form-label">비밀번호</label> 
-						<input type="password" name="pw1" required="required" class="form-control" id="passwd" placeholder="10글자 이하 알파벳 대소문자 및 숫자 조합" maxlength="10">
+						<input type="password" name="pw" class="form-control" id="pw" placeholder="4~12자의 영문 대소문자와 숫자로만 입력" maxlength="12">
 					</div>
 					<div class="col-12">
-						<label for="passwd2" class="form-label">비밀번호 확인</label>
-					    <input type="password" name="pw2" required="required" class="form-control" id="passwd2" placeholder="비밀번호 확인" maxlength="10">
+						<label for="pwCheck" class="form-label">비밀번호 확인</label>
+					    <input type="password" class="form-control" id="pwCheck" placeholder="비밀번호 확인" maxlength="12" >
 					</div>
 					<div class="col-md-6">
-						<label for="name" class="form-label">이름</label> <input
-							type="text" name="name" required="required" class="
-							form-control" id="name" maxlength="20">
+						<label for="name" class="form-label">이름</label>
+						<input type="text" name="name" class="form-control" id="name" maxlength="20">
 					</div>
 					<div class="col-md-6">
-						<label for="gender" class="form-label">성별</label> <select
-							id="gender" class="form-select" name="gender">
-							<option>선택하세요</option>
+						<label for="gender" class="form-label">성별</label> 
+						<select id="gender" class="form-select" name="gender">
+							<option value="" selected="selected">선택하세요</option>
 							<option value="M">남자</option>
 							<option value="W">여자</option>
 						</select>
 					</div>
 					<div class="col-12">
-						<label for="birth" class="form-label">생년월일</label> <input
-							type="text" name="birth" required="required" class="
-							form-control" id="birth" placeholder="ex)19980514">
+						<label for="birth" class="form-label">생년월일</label> 
+						<input type="text" name="birth" class="form-control" id="birth" placeholder="ex)19980514">
+					</div>
+					<div class="col-12">
+						<label for="phone" class="form-label">전화번호</label> 
+						<input type="tel" name="phone" class="form-control" id="phone" placeholder="'-'없이 입력" pattern="[0-9]{11}">
 					</div>
 					<div class="col-12">
 						<label for="email" class="form-label">이메일</label>
-						<div class="input-group" id="email">
-							<input type="text" class="form-control" name="email">
-							<div class="input-group-text">@</div>
-							<select class="form-select" name="emaillast">
-								<option>선택하세요</option>
-								<option value="naver.com" >naver.com</option>
-								<option value="google.com">google.com</option>
-								<option value="daum.net">daum.net</option>
-								<option value="hanmail.net">hanmail.net</option>
-							</select>
-						</div>
+						<input type="text" placeholder="이메일을 입력해주세요" name="email" id="email" class="form-control">
+						<button type="button" id="email_auth_btn" class="btn btn-danger" style="float: right;" onclick="auth_btn()">인증번호 받기</button>
 					</div>
-					<div class="col-12">
-						<label for="phone" class="form-label">전화번호</label> <input
-							type="tel" name="phone" required="required" class="
-							form-control" id="phone" placeholder="'-'없이 입력" pattern="[0-9]{11}">
+					<div class="col-12"  style="margin-top: 0px;">
+						<label for="email_auth_key" class="form-label" >인증번호</label>
+						<input type="text" placeholder="인증번호 입력" id="email_auth_key" class="form-control">
 					</div>
+					
+					
 					<div class="col-12"  style="margin-bottom: 10px; text-align: center;">
 						<br>
-						   <input type="checkbox" name="chk()"><a href="signUpCheckPage" target="_blank" style="text-decoration: underline;  color: #4b70fd;">개인정보 수집 이용 및 약관</a> 동의합니다.
+						   <input type="checkbox" name="agree" id="agree" value="Y"><a href="signUpCheckPage" target="_blank" style="text-decoration: underline;  color: #4b70fd;">개인정보 수집 이용 및 약관</a> 동의합니다.
 						<br>
 					</div>
-					<button type="submit" class="btn btn-danger btn-lg" style="margin-top: 50px;">회원가입</button>
-					
+					<button type="submit" class="btn btn-danger btn-lg" style="margin-top: 50px;">회원가입</button>					
 				</form>
 			</div>
 		</div>

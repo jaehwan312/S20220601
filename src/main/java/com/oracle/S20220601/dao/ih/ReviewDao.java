@@ -7,12 +7,9 @@ import com.oracle.S20220601.model.Review;
 import com.oracle.S20220601.model.ih.StoreReview;
 
 public interface ReviewDao {
-
-	List<Review>   revList(int host_num);
-
-	List<RevPhoto> storeRevPhoto(List<Review> revList);
-
-	int storeUserRevDel(StoreReview review);
-
- 
+	List<Review> 	revList(int host_num);					//리뷰내용
+	List<RevPhoto> 	storeRevPhoto(List<Review> revList);	//리뷰사진
+	int 			storeUserRevDel(StoreReview review);    //리뷰삭제
+	int			    storeRevcount(int host_num);			//리뷰카운트 업데이트
+	int             storeRevPointAvg(int host_num);			//식당 평점 업데이트
 }

@@ -15,12 +15,16 @@ public class SearchDaoImpl implements SearchDao {
 	@Override
 	public void keywordInsert(String keyword) {
 		Search search = session.selectOne("jjPopSelect", keyword);
+		int result = 0;
 		if(search != null) {
-			session.update("jjPopUpdate", keyword);
-			System.out.println("기존 keyword존재, search_count 추가");
+			result = session.update("jjPopUpdate", keyword);
+			if(result>0) System.out.println("기존 keyword존재, search_count 추가");
+			else System.out.println("search_count 수정 실패");
+			
 		}else {
-			session.insert("jjPopInsert", keyword);
-			System.out.println("새로운 keyword 추가");
+			result = session.insert("jjPopInsert", keyword);
+			if(result>0) System.out.println("새로운 keyword 추가");
+			else System.out.println("keyword 추가 실패");
 		}
 	}
 
