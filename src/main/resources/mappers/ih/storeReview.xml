@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+   <mapper namespace="com.oracle.S20220601.StoreRevPhotoMapper">
+	 	<!-- 식당 사진 -->
+	  	<select id="storeRevList" parameterType="int" resultType="review">
+	  		SELECT * FROM review WHERE host_num = #{host_num}
+	  	</select>
+	  	
+	  	<select id="storeRevPhoto" parameterType="Review" resultType="RevPhoto">
+	  		SELECT * FROM revphoto WHERE host_num = #{host_num}
+	  	</select>
+	  	<delete id="storeUserRevDel" parameterType="StoreReview">
+	  			  		DELETE FROM review   WHERE rev_num       = #{rev_num} 
+				  						     AND   host_num      = #{host_num} 
+				  						     AND   mem_num       = #{mem_num}
+	  	</delete>
+   </mapper>

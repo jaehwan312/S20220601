@@ -6,14 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.S20220601.dao.bh.StayDao;
+import com.oracle.S20220601.model.Code;
+import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
-import com.oracle.S20220601.model.RevPhoto;
-import com.oracle.S20220601.model.Review;
-import com.oracle.S20220601.model.Room;
-import com.oracle.S20220601.model.RoomPhoto;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
-import com.oracle.S20220601.model.ih.HostStore;
+import com.oracle.S20220601.model.bh.Review1;
+import com.oracle.S20220601.model.bh.RoomPhotoList;
 
 @Service
 public class StayServiceImpl implements StayService {
@@ -35,19 +34,13 @@ public class StayServiceImpl implements StayService {
 		return stayPhoto;
 	}
 
-	@Override
-	public List<Room> roomList(int host_num) {
-		System.out.println("StayServiceImpl roomList start...");
-		List<Room> roomList =sd.roomList(host_num);
-		return roomList;
-	}
 
 
 	@Override
-	public List<RoomPhoto> roomPhotoList(RoomPhoto roomPhoto) {
+	public List<RoomPhotoList> roomPhoto(RoomPhotoList roomPhotoList) {
 		System.out.println("StayServiceImpl roomPhoto start...");
-		List<RoomPhoto> roomPhotoList = sd.roomPhotoList(roomPhoto);
-		return roomPhotoList;
+		List<RoomPhotoList> roomPhoto = sd.roomPhoto(roomPhotoList);
+		return roomPhoto;
 	}
 
 	@Override
@@ -57,18 +50,37 @@ public class StayServiceImpl implements StayService {
 		return stayinfo;
 	}
 
+
 	@Override
-	public List<Review> reviewList(int host_num) {
+	public HostStay stayReadreview(int host_num) {
+		System.out.println("StayServiceImpl stayReadreview start...");
+		HostStay stayReadreview=sd.stayReadreview(host_num);
+		return stayReadreview;
+	}
+
+	@Override
+	public List<Review1> reviewList(int host_num) {
 		System.out.println("StayServiceImpl reviewList start...");
-		List<Review> reviewList = sd.reviewList(host_num);
+		List<Review1> reviewList =sd.reviewList(host_num);
 		return reviewList;
 	}
 
 	@Override
-	public List<RevPhoto> reviewPhotoList(int host_num) {
-		System.out.println("StayServiceImpl reviewList start...");
-		List<RevPhoto> reviewPhotoList = sd.reviewPhotoList(host_num);
-		return reviewPhotoList;
+	public Host hostreview(int host_num) {
+		System.out.println("StayServiceImpl hostreview start...");
+		Host hostreview =sd.hostreview(host_num);
+		return hostreview;
 	}
+
+	@Override
+	public List<Code> codeList(int bcd_code) {
+		System.out.println("StayServiceImpl codeList start...");
+		List<Code> codeList = sd.codeList(bcd_code);
+		return codeList;
+	}
+
+
+	
+
 
 }

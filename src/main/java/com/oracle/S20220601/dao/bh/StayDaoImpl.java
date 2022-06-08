@@ -6,13 +6,15 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oracle.S20220601.model.Code;
+import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.RevPhoto;
-import com.oracle.S20220601.model.Review;
-import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.RoomPhoto;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
+import com.oracle.S20220601.model.bh.Review1;
+import com.oracle.S20220601.model.bh.RoomPhotoList;
 
 @Repository
 public class StayDaoImpl implements StayDao {
@@ -46,30 +48,23 @@ public class StayDaoImpl implements StayDao {
 	}
 
 	@Override
-	public List<Room> roomList(int host_num) {
-		System.out.println("StayDaoImpl roomList start...");
-		List<Room> roomList = null;
-		try {
-			roomList = session.selectList("roomList", host_num);
-			System.out.println("StoreDaoImpl roomList roomList.size() --> " + roomList.size());
-		} catch (Exception e) {
-			System.out.println("StayDaoImpl roomList Exception->"+e.getMessage());
-		}
-		return roomList;
-	}
-
-	@Override
-	public List<RoomPhoto> roomPhotoList(RoomPhoto roomPhoto) {
+	public List<RoomPhotoList> roomPhoto(RoomPhotoList roomPhotoList) {
 		System.out.println("StayDaoImpl roomPhoto start...");
-		List<RoomPhoto> roomPhotoList = null;
+		List<RoomPhotoList> roomPhotoLists = null;
+		List<RoomPhoto> roomPhoto = null;
 		try {
-			roomPhotoList = session.selectList("roomPhotoList", roomPhoto);
+			roomPhotoLists = session.selectList("room", roomPhotoList);
+			for(RoomPhotoList roomList : roomPhotoLists) {
+				roomPhoto = session.selectList("roomPhoto", roomList);
+				roomList.setRoomPhotos(roomPhoto);
+				
+			}
 			
-			System.out.println("StoreDaoImpl roomPhoto roomPhotoList.size() --> " + roomPhotoList.size());
+			System.out.println("StoreDaoImpl roomPhoto roomPhoto.size() --> " + roomPhoto.size());
 		} catch (Exception e) {
-			System.out.println("StayDaoImpl roomPhotoList Exception->"+e.getMessage());
+			System.out.println("StayDaoImpl roomPhoto Exception->"+e.getMessage());
 		}
-		return roomPhotoList;
+		return roomPhotoLists;
 	}
 
 	@Override
@@ -86,13 +81,28 @@ public class StayDaoImpl implements StayDao {
 	}
 
 	@Override
-	public List<Review> reviewList(int host_num) {
-		System.out.println("StayDaoImpl reviewList start...");
-		List<Review> reviewList = null;
+	public HostStay stayReadreview(int host_num) {
+		System.out.println("StayDaoImpl stayReadreview start...");
+		HostStay stayReadreview=null;
 		try {
-			reviewList = session.selectList("reviewList", host_num);
-			
-			System.out.println("StoreDaoImpl reviewList reviewList.size() --> " + reviewList.size());
+			stayReadreview = session.selectOne("stayRead", host_num);
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl stayReadreview Exception->"+e.getMessage());
+		}
+		return stayReadreview;
+	}
+
+	@Override
+	public List<Review1> reviewList(int host_num) {
+		System.out.println("StayDaoImpl reviewList start...");
+		List<Review1> reviewList = null;
+		try {
+			reviewList = session.selectList("bhreviewList", host_num);
+			List<RevPhoto> rp =null;
+			for(Review1 rv : reviewList) {
+				rp = session.selectList("bhrevPhotoList", rv);
+				rv.setRevPhoto(rp);
+			}
 		} catch (Exception e) {
 			System.out.println("StayDaoImpl reviewList Exception->"+e.getMessage());
 		}
@@ -100,17 +110,29 @@ public class StayDaoImpl implements StayDao {
 	}
 
 	@Override
-	public List<RevPhoto> reviewPhotoList(int host_num) {
-		System.out.println("StayDaoImpl reviewPhotoList start...");
-		List<RevPhoto> reviewPhotoList = null;
+	public Host hostreview(int host_num) {
+		System.out.println("StayDaoImpl hostreview start...");
+		Host hostreview=null;
 		try {
-			reviewPhotoList = session.selectList("reviewPhotoList", host_num);
-			
-			System.out.println("StoreDaoImpl reviewPhotoList roomPhotoList.size() --> " + reviewPhotoList.size());
+			hostreview = session.selectOne("hostreview", host_num);
 		} catch (Exception e) {
-			System.out.println("StayDaoImpl reviewPhotoList Exception->"+e.getMessage());
+			System.out.println("StayDaoImpl hostreview Exception->"+e.getMessage());
 		}
-		return reviewPhotoList;	
+		return hostreview;
 	}
+
+	@Override
+	public List<Code> codeList(int bcd_code) {
+		System.out.println("StayDaoImpl codeList start...");
+		List<Code> codeList = null;
+		try {
+			codeList = session.selectList("bhcodeList", bcd_code);
+			System.out.println("StoreDaoImpl codeList codeList.size() --> " + codeList.size());
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl codeList Exception->"+e.getMessage());
+		}
+		return codeList;
+	}
+
 
 }

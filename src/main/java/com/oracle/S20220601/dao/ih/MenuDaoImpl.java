@@ -30,4 +30,24 @@ public class MenuDaoImpl implements MenuDao {
 		}
 		return menuList;
 	}
+
+	@Override
+	public int menuInsertList(List<Menu> menu) {
+		
+		System.out.println("MenuDaoImpl menuInsertList Start....");
+		
+		int  menuInsert = 0;
+		
+		try {
+			for (int i = 0; i < menu.size(); i++) {
+//				System.out.println("i --> " + i);
+//				System.out.println(menu.get(i).getMenu_name());
+//				System.out.println(menu.get(i).getMenu_price());
+				menuInsert += session.insert("menuInsert", menu.get(i));
+			}
+		} catch (Exception e) {
+			System.out.println("MenuDaoImpl menuInsertList ErrorMessage --> " + e.getMessage());
+		}
+		return menuInsert;
+	}
 }

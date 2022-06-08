@@ -7,13 +7,15 @@
 	<meta charset="UTF-8">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/jj/jquery.fullPage.css" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<title>제주 감수광</title>
 	<script src="https://kit.fontawesome.com/a42e829aa0.js" crossorigin="anonymous"></script>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+	<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 	<script src="js/main.js" defer></script>
 <!-- 	<script type="text/javascript">
 		$(function(){
@@ -34,8 +36,8 @@
         <div class="header_background"></div>
         <div class="navbar_search_alter"></div>
         <div class="navbar_search">
-            <form action="" class="search_form">
-                <input type="text" id="search_area" class="search_bar" placeholder="Typing..." autocomplete="off">                
+            <form action="getSearchResult" class="search_form" method="post">
+                <input type="text" id="search_area" name="keyword" class="search_bar" placeholder="Typing..." autocomplete="off">                
                 <button class="search_btn" type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -74,7 +76,7 @@
 		                    <a href="">나의 숙소정보</a>
 		                </div>
 		            </li>
-		            <li><a href="logout">로그아웃</a></li>
+		            <li><a href="">로그아웃</a></li>
         		</c:when>
         		<c:when test="${grade=='1' }">
         			<li class="dropdown">
@@ -88,10 +90,10 @@
 		                    <a href="admMain">관리자 페이지</a>
 		                </div>
 		            </li>
-		            <li><a href="logout">로그아웃</a></li>
+		            <li><a href="">로그아웃</a></li>
         		</c:when>
         		<c:otherwise>
-					<li><a href="loginPage">로그인</a></li>
+					<li><a href="">로그인</a></li>
 					<li><a href="">회원가입</a></li>
 				</c:otherwise>
         	</c:choose>
@@ -102,5 +104,7 @@
         </a>
     </nav>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="js/jj/jquery.fullPage.js"></script>
 </body>
 </html>

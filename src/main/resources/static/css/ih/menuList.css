@@ -20,10 +20,12 @@ label {
 }
 
 
-#menuInfo0{
-	display: block;	
-	text-align: center;
+#menuInfo{
+	display: inline;
 }
+
+
+
 
 
 

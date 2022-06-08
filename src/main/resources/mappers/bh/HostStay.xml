@@ -15,14 +15,13 @@
   	<select id="stayPhoto" parameterType="int" resultType="HoststayPhoto">
 	  		SELECT host_photo FROM hostphoto WHERE host_num = #{host_num}
 	 </select>
-  		<!-- 객실 정보 -->
-  	<select id="roomList" parameterType="int" resultType="HostRoom">
-  	select * from room where host_num=#{host_num}
-  	
+  		<!-- 객실  사진 -->
+  	<select id="roomPhoto" parameterType="int" resultType="RoomPhoto">
+  	<!-- select rp.* from room r, roomphoto rp where r.host_num=rp.host_num and r.room_num = rp.room_num and r.host_num=#{host_num} ORDER by rp.room_num -->
+		select * from roomphoto where host_num=#{host_num} and room_num=#{room_num}
   	</select>
-  		<!-- 객실 사진 -->
-  	<select id="roomPhotoList" parameterType="int" resultType="RoomPhoto">
-  	select * from roomphoto where host_num=#{host_num}
-  	
+  		<!-- 객실  정보 -->
+  	<select id="room" parameterType="RoomPhotoList" resultType="RoomPhotoList">
+  		select * from room where host_num=#{host_num}
   	</select>
   </mapper>

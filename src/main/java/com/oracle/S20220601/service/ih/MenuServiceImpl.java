@@ -23,4 +23,14 @@ public class MenuServiceImpl implements MenuSeivice {
 		return menuList;
 	}
 
+	@Override
+	public int menuInsertList(List<Menu> menu) {
+		
+		System.out.println("MenuServiceImpl menuInsertList Start....");
+		
+		int menuInsert = menuDao.menuInsertList(menu);
+		
+		return menuInsert;
+	}
+
 }

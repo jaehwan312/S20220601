@@ -50,7 +50,7 @@ public class StoreDaoImpl implements StoreDao {
 			hostStore.setBreak_time(hostStore.getBreak_start_time() 
 									    + " ~ " + 
 									    hostStore.getBreak_end_time());
-			prn(hostStore);
+//			prn(hostStore);
 			
 			storeInsert = session.insert("storeInsert", hostStore);
 			storeInsert = 1;

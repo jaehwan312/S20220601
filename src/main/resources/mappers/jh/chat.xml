@@ -4,6 +4,6 @@
   
 <mapper namespace="com.oracle.S20220601.chatMapper">
 	<insert id="jhInsertChat" parameterType="Chat">
-		insert into chat (mem_num, msg_num, grade, msg_read, msg_time, msg) values (#{mem_num}, 1, #{grade}, 'n', SYSTIMESTAMP, #{msg})
+		insert into chat (mem_num, msg_num, grade, msg_read, msg_time, msg) values (#{mem_num}, 1, #{grade}, 'n', to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{msg})
 	</insert>
 </mapper>
