@@ -57,15 +57,17 @@ public class StoreController {
 		List<Menu>      menuList   = menuSeivice.menuList(host_num);        //메뉴정보
 		Code      		foodcode   = codeService.foodcode(storeRead);	 	//음식종류
 		List<Review>    revList    = reviewService.revList(host_num);		//리뷰
-		List<RevPhoto>	revPhotos  = reviewService.storeRevPhoto(revList);  //리뷰 사진
-		System.out.println(revPhotos.size());
 		
+		if (revList.size() != 0) {
+			List<RevPhoto>	revPhotos  = reviewService.storeRevPhoto(revList);  //리뷰 사진
+			model.addAttribute("revPhotos", revPhotos);
+		}
+
 		model.addAttribute("store",storeRead);
 		model.addAttribute("storePhoto",storePhoto);
 		model.addAttribute("menuList",menuList);
 		model.addAttribute("foodcode",foodcode);
 		model.addAttribute("revList", revList);
-		model.addAttribute("revPhotos", revPhotos);
 		
 		return "ih/storeRead";
 	}
