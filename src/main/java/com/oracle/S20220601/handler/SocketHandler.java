@@ -157,8 +157,6 @@ public class SocketHandler extends TextWebSocketHandler {
 				}
 		        break;	
 			
-			
-			
 			}
 	}
 	

@@ -43,4 +43,11 @@ public class ResServiceImpl implements ResService {
 		return listCancleRes;
 	}
 
+	@Override
+	public Res resDetail(int res_num) {
+		System.out.println("ResServiceImpl resDetail Start...");
+		Res res1 = rd.resDetail(res_num);
+		return res1;
+	}
+
 }

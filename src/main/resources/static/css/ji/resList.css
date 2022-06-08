@@ -1,33 +1,20 @@
 @charset "UTF-8";
 body div {
   font-size: medium;
-  margin-bottom: 50px;
 }
 
 .wrapper {
-	width: 355px;
+	width: 350px;
 	border: 1px solid black;
 	text-align: center;
 	display: block;
-	
-
+	margin: 50px;
 }
 
-.reserve_list section {
-  display: inline;
-  background-color: blueviolet;
-}
-.list_past section {
-  display: inline;
-  background-color: blueviolet;
-}
-.list_cancle section {
-  display: inline;
-  background-color: blueviolet;
-}
-ul { 
+
+.list_wrap { 
 	list-style-type: none;
-	
+	display: flex;
 }
 
 .reserve_list li a{

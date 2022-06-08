@@ -30,13 +30,20 @@
     		<input type="hidden" id="sessionId" value="">
     		<i class="fa-solid fa-chevron-down" id="chat_hide" onclick="chatHide()"></i>
     		<div id="meName"></div>
+    		<div id="member" class="member"></div>
+    		<div id="yourName">
+    			<input type="text" name="userName" id="userName">
+	    		<button onclick="chatName()" id="startBtn">
+	    			<i class="fa-solid fa-user"></i>
+	    		</button>
+    		</div>
 			<i class="fa-solid fa-xmark" id="chat_out" onclick="chatOut()"></i>
     	</div>
     	<div id="chating" class="chating">
     	</div>
     	<div class="chat_input">
     		<input class="chat_msg" id="chatting" placeholder="메시지를 입력하세요.">
-    		<button onclick="send(${mem_num},${grade})" id="sendBtn">
+    		<button onclick="send(${mem_num}, ${grade})" id="sendBtn">
     			<i class="fa-solid fa-paper-plane"></i>
     		</button>
     	</div>
