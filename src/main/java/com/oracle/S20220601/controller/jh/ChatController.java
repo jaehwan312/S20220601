@@ -42,7 +42,7 @@ public class ChatController {
 	
 	@RequestMapping(value = "insertChat", method = RequestMethod.POST, produces = "application/text;charset=UTF-8")
 	public void insertChat(Chat chat, Model model) {
-		System.out.println("나와라"+chat);
+		System.out.println("@@@@@나와라"+chat);
 		int result = cs.insertChat(chat);
 	}
 	
