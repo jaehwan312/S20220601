@@ -18,6 +18,6 @@
 		<typeAlias alias="Review"      		type="com.oracle.S20220601.model.Review"/>
 		<typeAlias alias="RevPhoto"      	type="com.oracle.S20220601.model.RevPhoto"/>
 		<typeAlias alias="Res"     			type="com.oracle.S20220601.model.Res"/>
-
+		<typeAlias alias="Chat"     		type="com.oracle.S20220601.model.Chat"/>
 	</typeAliases>
 </configuration>

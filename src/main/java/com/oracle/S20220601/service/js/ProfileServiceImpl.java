@@ -19,9 +19,13 @@ public class ProfileServiceImpl implements ProfileService {
 	public String loginCheck(Profile profile, HttpSession session) {
 		System.out.println("----------- ProfileServiceImpl Start -----------");
 		String name = pd.loginCheck(profile);
+		
+		// profile안있는 이름, 비번을 가지고 DB에 들어가서 mem_num과 grade를 가져와야 함
+		
 		if(name != null) { // 세션 변수 저장
-			session.setAttribute("mem_num", profile.getMem_num());
-			session.setAttribute("name", name);			
+			session.setAttribute("mem_num", 10);	// 현재 0
+			session.setAttribute("grade", 1);	// 현재 null
+			session.setAttribute("name", name);	// name 빼줘			
 		}
 		
 		return name;

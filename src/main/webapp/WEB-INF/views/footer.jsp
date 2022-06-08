@@ -10,6 +10,8 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="js/jh/chat.js" defer></script>
 	<script type="text/javascript">
+		var ws;
+		
 		function wsOpen(){
 			console.log("wsOpen  location.host: " + location.host);
 	        var wsUri  = "ws://" + location.host + "${pageContext.request.contextPath}/chating";
@@ -22,27 +24,20 @@
 </head>
 <body class="main_container">
 	<div class="icon_frame">
-    	<img id="msg_icon" alt="msg_icon" src="images/jh/msg_icon.png" onclick="chatOpen()">
+    	<img id="msg_icon" alt="msg_icon" src="images/jh/msg_icon.png" onclick="chatOpen(${mem_num})">
     </div>
     <div class="chat_window">
     	<div class="chat_header">
     		<input type="hidden" id="sessionId" value="">
     		<i class="fa-solid fa-chevron-down" id="chat_hide" onclick="chatHide()"></i>
     		<div id="meName"></div>
-    		<div id="member" class="member"></div>
-    		<div id="yourName">
-    			<input type="text" name="userName" id="userName">
-	    		<button onclick="chatName()" id="startBtn">
-	    			<i class="fa-solid fa-user"></i>
-	    		</button>
-    		</div>
 			<i class="fa-solid fa-xmark" id="chat_out" onclick="chatOut()"></i>
     	</div>
     	<div id="chating" class="chating">
     	</div>
     	<div class="chat_input">
     		<input class="chat_msg" id="chatting" placeholder="메시지를 입력하세요.">
-    		<button onclick="send()" id="sendBtn">
+    		<button onclick="send(${mem_num},${grade})" id="sendBtn">
     			<i class="fa-solid fa-paper-plane"></i>
     		</button>
     	</div>
