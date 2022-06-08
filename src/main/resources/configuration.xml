@@ -26,6 +26,9 @@
 		<typeAlias alias="Review1"          type="com.oracle.S20220601.model.bh.Review1"/>
 		<typeAlias alias="RevPhoto"         type="com.oracle.S20220601.model.RevPhoto"/>
 		<typeAlias alias="Host"          	type="com.oracle.S20220601.model.Host"/>
+		<!-- jj -->
+		<typeAlias alias="Search"     		type="com.oracle.S20220601.model.Search"/>
+		
 		
 	</typeAliases>
 </configuration>
