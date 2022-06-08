@@ -52,7 +52,7 @@ public class ProfileController {
 			session = request.getSession();
 			int mem_num = (int)session.getAttribute("mem_num");
 			String grade = (String) session.getAttribute("grade");
-			mav.setViewName("main");
+			mav.setViewName("redirect:main");
 			mav.addObject("mem_num", mem_num);
 			mav.addObject("grade", grade);
 		} else {	        // 로그인 실패
@@ -66,6 +66,7 @@ public class ProfileController {
 	// 로그아웃
 	@RequestMapping(value = "logout")
 	public ModelAndView	logout(HttpSession session, ModelAndView mav) {
+		System.out.println("----------- logout Start -----------");
 		ps.logout(session);
 		mav.setViewName("js/loginPage");	// 로그아웃 적용된 메인페이지로 이동이 좋아보임
 		mav.addObject("message", "logout");

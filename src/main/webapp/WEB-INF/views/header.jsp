@@ -76,7 +76,7 @@
 		                    <a href="">나의 숙소정보</a>
 		                </div>
 		            </li>
-		            <li><a href="">로그아웃</a></li>
+		            <li><a href="logout">로그아웃</a></li>
         		</c:when>
         		<c:when test="${grade=='1' }">
         			<li class="dropdown">
@@ -90,7 +90,7 @@
 		                    <a href="admMain">관리자 페이지</a>
 		                </div>
 		            </li>
-		            <li><a href="">로그아웃</a></li>
+		            <li><a href="logout">로그아웃</a></li>
         		</c:when>
         		<c:otherwise>
 					<li><a href="loginPage">로그인</a></li>

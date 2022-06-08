@@ -18,7 +18,7 @@ public class ProfileDaoImpl implements ProfileDao {
 
 	@Override
 	public Profile loginCheck(Profile profile) {
-		System.out.println("----------- ProfileDaoImpl Start -----------");
+		System.out.println("----------- ProfileDaoImpl loginCheck Start -----------");
 		profile =  session.selectOne("loginCheck", profile);
 		// grade, mem_num 값 확인 완료 (로그인성공 시에만 뜸 -> 실패하면 null 오류)
 		return profile;
