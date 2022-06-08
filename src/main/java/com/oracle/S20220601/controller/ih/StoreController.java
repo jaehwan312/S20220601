@@ -58,6 +58,7 @@ public class StoreController {
 		Code      		foodcode   = codeService.foodcode(storeRead);	 	//음식종류
 		List<Review>    revList    = reviewService.revList(host_num);		//리뷰
 		List<RevPhoto>	revPhotos  = reviewService.storeRevPhoto(revList);  //리뷰 사진
+		System.out.println(revPhotos.size());
 		
 		model.addAttribute("store",storeRead);
 		model.addAttribute("storePhoto",storePhoto);

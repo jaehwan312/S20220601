@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.oracle.S20220601.dao.ih.ReviewDao;
 import com.oracle.S20220601.model.RevPhoto;
 import com.oracle.S20220601.model.Review;
+import com.oracle.S20220601.model.ih.StoreReview;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
@@ -29,8 +30,14 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		System.out.println("ReviewServiceImpl storeRevPhoto Start...");
 		List<RevPhoto> storeRevPhoto = reviewDao.storeRevPhoto(revList);
-				
+		System.out.println(storeRevPhoto.size());	
 		return storeRevPhoto;
 	}
-	
+
+	@Override
+	public int storeUserRevDel(StoreReview review) {
+		
+		return reviewDao.storeUserRevDel(review);
+	}
+
 }
