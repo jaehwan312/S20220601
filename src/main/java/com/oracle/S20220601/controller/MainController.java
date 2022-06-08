@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.oracle.S20220601.domain.jj.Search1;
 import com.oracle.S20220601.service.jj.MainService;
-import com.oracle.S20220601.service.jj.SearchService;
+import com.oracle.S20220601.service.jj.JpaSearchService;
 
 @Controller
 public class MainController {
 	@Autowired
-	private SearchService ss;
+	private JpaSearchService ss;
 	@Autowired
 	private MainService ms;
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);

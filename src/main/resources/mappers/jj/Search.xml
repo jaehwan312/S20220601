@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+   <mapper namespace="com.oracle.S20220601.jjSearchMapper">
+	 	<!-- 맛집 갯수 -->
+	  	<select id="jjPopSelect" parameterType="java.lang.String" resultType="int">
+	  		select count(*) from host where host_code=1
+	  	</select>
+   </mapper>

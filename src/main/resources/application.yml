@@ -5,8 +5,8 @@ spring:
   # File Size
   servlet:
     multipart:
-      max-file-size: 20MB
-      max-request-size: 20MB
+      max-file-size: 10MB
+      max-request-size: 10MB
       
 # Oracle Connect
   datasource:
@@ -19,8 +19,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: 
-    password: 
+    username: kjs9502@gmail.com
+    password: ylusdhsatmyewqqw
     properties:
       mail:
         smtp:
