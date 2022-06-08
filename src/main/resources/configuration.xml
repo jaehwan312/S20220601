@@ -23,9 +23,21 @@
 		<typeAlias alias="HoststayPhoto"    type="com.oracle.S20220601.model.HostPhoto"/>
 		<typeAlias alias="Stay"      		type="com.oracle.S20220601.model.Stay"/>
 		<typeAlias alias="Review"      		type="com.oracle.S20220601.model.Review"/>
+		<typeAlias alias="RevPhoto"      	type="com.oracle.S20220601.model.RevPhoto"/>
+		<typeAlias alias="Res"     			type="com.oracle.S20220601.model.Res"/>
+
+		<!-- js -->
+		<typeAlias alias="Profile"    		type="com.oracle.S20220601.model.Profile"/>
+
 		<typeAlias alias="Review1"          type="com.oracle.S20220601.model.bh.Review1"/>
 		<typeAlias alias="RevPhoto"         type="com.oracle.S20220601.model.RevPhoto"/>
 		<typeAlias alias="Host"          	type="com.oracle.S20220601.model.Host"/>
+		<!-- jj -->
+		<typeAlias alias="Search"     		type="com.oracle.S20220601.model.Search"/>
+		
+		
+		<!-- jh -->
+		<typeAlias alias="Chat"     		type="com.oracle.S20220601.model.Chat"/>
 		
 	</typeAliases>
 </configuration>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.oracle.S20220601.chatMapper">
+	<insert id="jhInsertChat" parameterType="Chat">
+		insert into chat (mem_num, msg_num, grade, msg_read, msg_time, msg) values (#{mem_num}, 1, #{grade}, 'n', to_char(sysdate,'yyyy.mm.dd hh24:mi:ss'), #{msg})
+	</insert>
+</mapper>

@@ -3,12 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.oracle.S20220601.profileMapper">
-  	<select id="loginCheck" resultType="String">
-  		SELECT name FROM PROFILE WHERE id = #{id} AND pw = #{pw}
+  <mapper namespace="com.oracle.S20220601.ProfileMapper" >
+  	<select id="loginCheck" resultType="Profile">
+  		SELECT * FROM PROFILE WHERE id = #{id} AND pw = #{pw}
   	</select>
   	<select id="idCheck" parameterType="String" resultType="int">
   		SELECT COUNT(id) FROM PROFILE WHERE id = #{id}
   	</select>
   
-  </mapper>
+  </mapper>	
