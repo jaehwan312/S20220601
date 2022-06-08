@@ -18,6 +18,7 @@
 	<div class="container">
 		<!-- 여기 밑으로 ============================================================ -->
 		<div>
+		<div>
 		<c:forEach items="${stayPhoto }" var="photo">
 			<div style="float: left; width: 30%; height: 300px;">
 				<img alt="숙소사진" src="images/bh/${photo.host_photo}" width="300px;"
@@ -55,22 +56,24 @@
 		<div>
 			<c:forEach items="${roomPhoto }" var="room">
 				<div style="text-align: left; width: 70%; float: left; height: 200px; margin-top: 50px;">
+			<div style="border: 1px solid black; margin-bottom: 20px;">
 					<c:forEach items="${room.roomPhotos }" var="photo">
 						<img alt="객실사진" src="images/bh/${photo.room_photo}" width="200px;"
 						height="200px;">
 					</c:forEach>
-				</div>
-				<div style="float: left; width: 30%; height: 200px;">
+				<div style="float: right; width: 30%; height: 200px;">
 							${room.room_name }<p />
 							${room.dayfee }원<p />
 							${room.room_info }<p />
 							<button>예약</button>
 				</div>
+				</div>
+				</div>
 			</c:forEach>
 
 
 		</div>
-
+		</div>
 
 		<!-- 여기 위로오 ============================================================ -->
 	</div>

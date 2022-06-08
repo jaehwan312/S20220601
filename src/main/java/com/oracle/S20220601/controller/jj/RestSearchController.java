@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.oracle.S20220601.domain.jj.Host1;
 import com.oracle.S20220601.domain.jj.Search1;
-import com.oracle.S20220601.service.jj.SearchService;
+import com.oracle.S20220601.service.jj.JpaSearchService;
 
 @RestController
 public class RestSearchController {
 	
 	@Autowired
-	private SearchService ss;
+	private JpaSearchService ss;
 	private static final Logger logger = LoggerFactory.getLogger(RestSearchController.class);
 	
 	@GetMapping("/getSearchList")

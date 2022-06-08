@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.oracle.S20220601.model.RevPhoto;
 import com.oracle.S20220601.model.Review;
+import com.oracle.S20220601.model.ih.StoreReview;
 
 public interface ReviewDao {
 
@@ -11,4 +12,7 @@ public interface ReviewDao {
 
 	List<RevPhoto> storeRevPhoto(List<Review> revList);
 
+	int storeUserRevDel(StoreReview review);
+
+ 
 }

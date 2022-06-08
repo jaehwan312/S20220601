@@ -17,6 +17,16 @@
 	
 	<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 	<script src="js/main.js" defer></script>
+<!-- 	<script type="text/javascript">
+		$(function(){
+			$('#MyPage_box').mouseover(function(){
+				$('#MyPage').text("마이페이지");
+			});
+			$('#MyPage_box').mouseout(function(){
+				$('#MyPage').text("${id} 님");
+			});
+		});
+	</script> -->
 </head>
 <body class="main_container">
     <nav class="navbar">
@@ -26,8 +36,8 @@
         <div class="header_background"></div>
         <div class="navbar_search_alter"></div>
         <div class="navbar_search">
-            <form action="" class="search_form">
-                <input type="text" id="search_area" class="search_bar" placeholder="Typing..." autocomplete="off">                
+            <form action="getSearchResult" class="search_form" method="post">
+                <input type="text" id="search_area" name="keyword" class="search_bar" placeholder="Typing..." autocomplete="off">                
                 <button class="search_btn" type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -55,7 +65,7 @@
         </ul>
         <ul class="navbar_user">
         	<c:choose>
-        		<c:when test="${grade==2 }">
+        		<c:when test="${grade=='2' }">
         			<li class="dropdown">
 		                <a href="" class="dropdown_button">마이페이지</a>
 		                <div class="dropdown_content" id="mypage">
@@ -66,9 +76,9 @@
 		                    <a href="">나의 숙소정보</a>
 		                </div>
 		            </li>
-		            <li><a href="logout">로그아웃</a></li>
+		            <li><a href="">로그아웃</a></li>
         		</c:when>
-        		<c:when test="${grade==1 }">
+        		<c:when test="${grade=='1' }">
         			<li class="dropdown">
 		                <a href="" class="dropdown_button">마이페이지</a>
 		                <div class="dropdown_content" id="mypage">
@@ -80,7 +90,7 @@
 		                    <a href="admMain">관리자 페이지</a>
 		                </div>
 		            </li>
-		            <li><a href="logout">로그아웃</a></li>
+		            <li><a href="">로그아웃</a></li>
         		</c:when>
         		<c:otherwise>
 					<li><a href="loginPage">로그인</a></li>

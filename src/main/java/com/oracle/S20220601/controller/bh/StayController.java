@@ -2,16 +2,19 @@ package com.oracle.S20220601.controller.bh;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
-import com.oracle.S20220601.model.Review;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
 import com.oracle.S20220601.model.bh.Review1;
@@ -28,11 +31,10 @@ public class StayController {	//숙소 Controller
 	
 	@RequestMapping(value = "stayRead")
 	public String stayRead(RoomPhotoList roomPhotoList,Model model) {//업체 정보 사진 룸정보 사진
-		logger.info("StayController stayList Start");
+		logger.info("StayController stayRead Start");
 		HostStay       		stayRead  			= ss.stayRead(roomPhotoList.getHost_num());
 		List<HostPhoto> 	stayPhoto 			= ss.stayPhoto(roomPhotoList.getHost_num());
 		List<RoomPhotoList>	roomPhoto			= ss.roomPhoto(roomPhotoList);
-		
 		model.addAttribute("stay", stayRead);
 		model.addAttribute("stayPhoto", stayPhoto);
 		model.addAttribute("roomPhoto", roomPhoto);
@@ -57,6 +59,15 @@ public class StayController {	//숙소 Controller
 		model.addAttribute("hostreview", hostreview);
 		return "bh/reviewList";
 	}
-		
+	
+	
+	@GetMapping(value = "stayInsert") //숙소 등록페이지
+	public String stayInsert(HttpServletRequest request,Model model) {
+		logger.info("StayController stayInsert Start");
+		HostStay hostStay = new HostStay();
+		List<Code>	 codeList	= ss.codeList(hostStay.getBcd_code());
+		model.addAttribute("codeList", codeList);
+		return "bh/stayInsert";
+	}
 	
 }

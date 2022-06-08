@@ -9,7 +9,12 @@
 	  		SELECT * FROM review WHERE host_num = #{host_num}
 	  	</select>
 	  	
-	  	<select id="storeRevPhoto" parameterType="RevPhoto" resultType="RevPhoto">
-	  		SELECT * FROM revphoto WHERE host_num = #{host_num} AND rev_num = #{rev_num}
+	  	<select id="storeRevPhoto" parameterType="Review" resultType="RevPhoto">
+	  		SELECT * FROM revphoto WHERE host_num = #{host_num}
 	  	</select>
+	  	<delete id="storeUserRevDel" parameterType="StoreReview">
+	  			  		DELETE FROM review   WHERE rev_num       = #{rev_num} 
+				  						     AND   host_num      = #{host_num} 
+				  						     AND   mem_num       = #{mem_num}
+	  	</delete>
    </mapper>

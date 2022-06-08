@@ -1,5 +1,7 @@
 package com.oracle.S20220601.model.bh;
 
+import com.oracle.S20220601.model.Code;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,4 +24,8 @@ public class HostStay {
 	private String way;			// 숙소 오는길
 	private String checkin;		// 체크인 시간
 	private String checkout;	// 체크아웃 시간
+	private String stay_type;	// 숙소코드
+	
+	//코드
+	private int	   bcd_code = 300;	// bcd코드
 }

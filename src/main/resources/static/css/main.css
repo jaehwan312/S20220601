@@ -8,7 +8,8 @@ html, body {
     margin: 0; 
     padding: 0;
     height: 100%;
-    
+    display: flex;
+    flex-direction: column;
 }
 
 .typing-txt{display: none;}
@@ -240,7 +241,7 @@ a {
 	cursor: pointer;
 }
 
-.item:hover {
+.item:hover{
 	box-shadow: 1px 1px 20px #ddd;
 }
 
@@ -469,5 +470,18 @@ footer li {
 
 /* ----- jj start---- */
 
+#countIcons {
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#registry {
+	position: absolute;
+	top: 80%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
 
 /* ----- jj end---- */
