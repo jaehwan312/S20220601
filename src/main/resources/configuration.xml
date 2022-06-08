@@ -4,7 +4,7 @@
 
 <configuration>
 	<typeAliases>
-		
+		<!-- ih -->
 		<typeAlias alias="Store"     		type="com.oracle.S20220601.model.Store"/>
 		<typeAlias alias="HostStore" 		type="com.oracle.S20220601.model.ih.HostStore"/>
 		<typeAlias alias="Menu"      		type="com.oracle.S20220601.model.Menu"/>
@@ -13,7 +13,10 @@
 		<typeAlias alias="Room"    			type="com.oracle.S20220601.model.Room"/>
 		<typeAlias alias="RoomPhoto"    	type="com.oracle.S20220601.model.RoomPhoto"/>
 		<typeAlias alias="Code"      		type="com.oracle.S20220601.model.Code"/>
+		<typeAlias alias="StoreReview"  	type="com.oracle.S20220601.model.ih.StoreReview"/>
+		<!-- ji -->
 		<typeAlias alias="Res"     			type="com.oracle.S20220601.model.Res"/>
+		
 		<!-- bh -->
 		<typeAlias alias="HostStay"      	type="com.oracle.S20220601.model.bh.HostStay"/>
 		<typeAlias alias="RoomPhotoList"    type="com.oracle.S20220601.model.bh.RoomPhotoList"/>
