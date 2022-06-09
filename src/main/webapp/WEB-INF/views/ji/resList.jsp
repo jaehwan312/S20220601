@@ -48,11 +48,7 @@
 								</div>
 							</div>
 						</li>
-
-
 					</c:forEach>
-
-
 				</ul>
 				<!---->
 				<p>
@@ -110,7 +106,7 @@
 												style="cursor: pointer;" width="350" height="160">
 										</p>
 										<a href="resDetail?res_num=${listCancleRes.res_num }"> <c:if
-												test="${listCancleRes.res_status=='1'}">
+												test="${listCancleRes.res_status=='3'}">
 												<span class="status">예약 취소</span>
 												<span>예약번호 : ${listCancleRes.res_num }</span>
 											</c:if> <strong>${listCancleRes.host_name}</strong> <span

@@ -8,13 +8,17 @@ body div {
 	border: 1px solid black;
 	text-align: center;
 	display: block;
-	margin: 50px;
+	margin: 30px;
 }
 
 
 .list_wrap { 
 	list-style-type: none;
 	display: flex;
+	align-items: center;
+	padding-left: 0;
+	width: 100%;
+	flex-wrap: wrap;
 }
 
 .reserve_list li a{
