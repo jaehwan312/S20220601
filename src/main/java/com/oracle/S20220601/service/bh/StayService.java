@@ -2,6 +2,8 @@ package com.oracle.S20220601.service.bh;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
@@ -20,6 +22,8 @@ public interface StayService {
 	List<Review1> 		reviewList(int host_num);
 	Host 				hostreview(int host_num);
 	List<Code> 			codeList(int bcd_code);
+	int 				stayInsert(HostStay hostStay);
+	int 				stayPhotoInsert(List<MultipartFile> stayPhotoInsertList);
 	
 }
 

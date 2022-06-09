@@ -24,4 +24,33 @@
   	<select id="room" parameterType="RoomPhotoList" resultType="RoomPhotoList">
   		select * from room where host_num=#{host_num}
   	</select>
+  	
+  	<!-- 숙박등록 -->
+  	<insert id="stayInsert" parameterType="HostStay" statementType="CALLABLE">
+  	{
+  		call HOSTSTAY_INSERT(
+  				    #{host_num   , mode=IN   , jdbcType=INTEGER}
+	   			   ,#{host_name  , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{mem_num  	 , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{host_addr  , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{host_info  , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{host_code  , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{rev_count  , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{host_avg   , mode=IN   , jdbcType=FLOAT}
+	  			   ,#{like_count , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{host_app   , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{convenient , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{way  		 , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{checkin  	 , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{checkout 	 , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{stay_type  , mode=IN   , jdbcType=VARCHAR}
+  		)
+  	}
+  	</insert>
+  	
+  	<!-- 숙박사진등록 -->
+  	<insert id="storePhotoInsert" parameterType="String">
+  	INSERT INTO hostphoto VALUES(9,SEQ_STAY_PHOTO_NUM.nextval,#{host_photo})
+  	
+  	</insert>
   </mapper>

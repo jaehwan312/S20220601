@@ -1,7 +1,5 @@
 package com.oracle.S20220601.model.bh;
 
-import com.oracle.S20220601.model.Code;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +17,7 @@ public class HostStay {
 	private int rev_count;		// 리뷰 갯수
 	private float host_avg;		// 평점
 	private int like_count;		// 찜한사람 수
+	private int host_app;		// 관리자승인
 	//Stay
 	private String convenient;	// 편의시설
 	private String way;			// 숙소 오는길
