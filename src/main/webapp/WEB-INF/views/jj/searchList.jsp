@@ -6,23 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/template.css">
 <link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
-<link href="css/jj/searchList.css" rel="stylesheet">
+<link href="css/jj/searchList.css" rel="stylesheet">    
+
 <title>제주 감수광</title>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-    
 
            <div class="container">
               <div class="row">
                   <div class="col-lg-12 text-center mb100">
-                      <h2 class="section-heading">Browse <span class="theme-accent-color">The</span> Menu</h2>
+                      <h2 class="section-heading">숙박<span class="theme-accent-color">&</span>맛집</h2>
                       <hr class="thin-hr">
-                      <h3 class="section-subheading secondary-font">Your tastebuds will thank you.</h3>
+                      <h3 class="section-subheading secondary-font">'${keyword }'에 대한 검색 결과</h3>
                   </div>
               </div>
           </div>
@@ -30,9 +30,9 @@
           <div class="container">
 
               <div class="row">
-                  <div class="col-md-6 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
-                      <h2 class="mb50"><span class="heading-font text-uppercase">Starters</span></h2>
-                      <div class="food-menu-item">
+                  <div class="col-md-6">
+                      <h2 class="mb50"><span class="heading-font text-uppercase">맛집</span></h2>
+                      <div class="host-item">
                           <div class="row">
                               <div class="col-xs-3">
                                   <img src="images/jj/hotel1.jpg" class="img-responsive">
@@ -43,7 +43,7 @@
                               </div>
                           </div>
                       </div>
-                      <div class="food-menu-item">
+                      <div class="host-item">
                           <div class="row">
                               <div class="col-xs-3">
                                   <img src="images/jj/hotel2.jpg" class="img-responsive">
@@ -54,7 +54,7 @@
                               </div>
                           </div>
                       </div>
-                      <div class="food-menu-item">
+                      <div class="host-item">
                           <div class="row">
                               <div class="col-xs-3">
                                   <img src="images/jj/hotel3.jpg" class="img-responsive">
@@ -65,7 +65,7 @@
                               </div>
                           </div>
                       </div>
-                      <div class="food-menu-item">
+                      <div class="host-item">
                           <div class="row">
                               <div class="col-xs-3">
                                   <img src="images/jj/hotel4.jpg" class="img-responsive">
@@ -78,9 +78,9 @@
                       </div>
                   </div>
 
-                  <div class="col-md-6 wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
-                      <h2 class="mb50"><span class="heading-font text-uppercase">Main Course</span></h2>
-                      <div class="food-menu-item">
+                  <div class="col-md-6">
+                      <h2 class="mb50"><span class="heading-font text-uppercase">숙박</span></h2>
+                      <div class="host-item">
                           <div class="row">
                               <div class="col-xs-3">
                                   <img src="images/jj/hotel5.jpg" class="img-responsive">
