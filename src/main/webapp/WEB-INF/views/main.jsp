@@ -24,22 +24,6 @@
         </div>
         <div class="header_background"></div>
         <div class="navbar_search_alter"></div>
-        <div class="navbar_search">
-            <form action="getSearchResult" class="search_form" method="post">
-                <input type="text" id="search_area" name="keyword" class="search_bar" placeholder="Typing..." autocomplete="off" onkeyup="headerEnter()">                
-                <button class="search_btn" type="submit">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>
-                <div class="search_result">
-                	<div class="keyword">
-                    	<div class="keyword_child" id="keyword_rec" onclick="keyword_rel(0)">추천검색어</div>
-                    	<div class="keyword_child" id="keyword_pop" onclick="keyword_rel(1)">인기검색어</div>
-                    </div>
-                    	<div id='autoMaker'></div>
-
-    		    </div>
-        </div>
         <ul class="navbar_menu">
             <li><a href="">숙박</a></li>
             <li><a href="">맛집</a></li>
@@ -91,6 +75,7 @@
         <a href="#" class="hamburger">
             <i class="fa-solid fa-bars"></i>
         </a>
+        
     </nav>
 	<div id="fullpage">
 	<div class="section">

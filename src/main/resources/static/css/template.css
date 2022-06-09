@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-.section {
-	width: 100%; height: 100%;
-}
-
 html, body {
     margin: 0; 
     padding: 0;
@@ -12,41 +8,10 @@ html, body {
     flex-direction: column;
 }
 
-.typing-txt{display: none;}
-.typeing-txt ul{list-style:none;}
 
 a {
     text-decoration: none;
     color: #333333;
-}
-
-/* @font-face {
-    font-family: 'SBAggroM';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-} */
-
-.title {
-	font-family: 'Gugi', cursive;
-	color: white;
-	font-size: 35px; 
-	text-align: center;
-	text-shadow: 2px 2px 5px #3e3e3e;
-}
-
-.title_text > p {
-	margin-bottom: 0px;
-}
-
-.title_text > h1 {
-	margin-bottom: 60px;
-}
-
-#main_search {
-	margin-bottom: 100px;
-	min-width: 416.66px;
-	z-index: 105;
 }
 
 .navbar {
@@ -54,11 +19,11 @@ a {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    position: fixed;
-    z-index: 80;
+    /* position: fixed; */
+    /* z-index: 80; */
     background-color: white;
-    width: 100vw;
-    top: 0px;
+    /* width: 100vw;
+    top: 0px; */
 }
 
 .navbar_logo a {
@@ -68,11 +33,6 @@ a {
 .navbar_search {
 	font-family: 'SCoreDream';
 	z-index: 105;
-}
-
-.navbar_search_alter {
-	width: 332.66px;
-	display: none;
 }
 
 .search_bar {
@@ -87,6 +47,74 @@ a {
     outline: none;
     background-color: white;
 }
+
+.header_background {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.8);
+}
+
+.item {
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+}
+
+.item:hover{
+	box-shadow: 1px 1px 20px #ddd;
+}
+
+.item > i {
+	margin-left: 5px;
+	margin-right: 3px;
+}
+
+.keyword {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 3px;
+	margin-bottom: 10px;
+}
+
+.keyword_child {
+	cursor: pointer;
+	margin-bottom: 1px;
+}
+
+#autoMaker {
+  display: block;
+  align-items: center;
+  width: 332.812px;
+}
+
+.search_result {
+	margin: 5px auto;
+	position: fixed;
+	width: 332.812px;
+	max-height: 198px;
+	background-color: white;
+	overflow-x: hidden;
+	display: none;
+	border-radius: 7px;
+}
+
+.search_result::-webkit-scrollbar {
+   width: 10px;
+ }
+ .search_result::-webkit-scrollbar-thumb {
+   background-color: #808080;
+   border-radius: 10px;
+ }
+ .search_result::-webkit-scrollbar-track {
+   background-color: #f1f3f4;
+   border-radius: 10px;
+   box-shadow: inset 0px 0px 5px white;
+ }
 
 .navbar_menu {
     display: flex;
@@ -140,81 +168,6 @@ a {
     top: 8px;
     right: 36px;
 }
-
-#autoMaker_main {
-  display: block;
-  align-items: center;
-  width: 100%;
-}
-
-#search_result_main {
-	font-family: 'SCoreDream';
-	margin: 5px auto;
-	max-height: 198px;
-	background-color: white;
-	overflow-x: hidden;
-	display: none;
-	border-radius: 7px;
-	font-size: 18px;
-	
-}
-
-#search_result_main::-webkit-scrollbar {
-   width: 10px;
- }
-#search_result_main::-webkit-scrollbar-thumb {
-   background-color: #808080;
-   border-radius: 10px;
- }
-#search_result_main::-webkit-scrollbar-track {
-   background-color: #f1f3f4;
-   border-radius: 10px;
-   box-shadow: inset 0px 0px 5px white;
- }
-
-.keyword_main {
-	display: flex;
-	justify-content: space-around;
-	margin-top: 3px;
-	margin-bottom: 10px;
-}
-
-.keyword_child_main {
-	cursor: pointer;
-	margin-bottom: 1px;
-}
-
-.item_main {
-	height: 40px;
-	line-height: 40px;
-	cursor: pointer;
-	width: 100%;
-}
-
-.item_main:hover {
-	box-shadow: 1px 1px 20px #ddd;
-}
-
-.item_main > i {
-	margin-left: 15px;
-	margin-right: 10px;
-}
-
-.main_background {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 100;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0,0,0,0.8);
-}
-
-#inputGroup-sizing-lg {
-	cursor: pointer;
-}
-
 
 @media screen and (max-width: 768px) {
     .navbar {
@@ -270,21 +223,6 @@ a {
     }
 }
 
-/* image */
-.bg_img {
-	width: 100%;
-	height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    background-blend-mode: darken;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'SCoreDream';
-}
-
-
 /* main */
 .container {
     flex: 1 ;
@@ -312,20 +250,81 @@ footer li {
     list-style: none;
 }
 
-/* ----- jj start---- */
+/* ----- jh ----- */
 
-#countIcons {
-	position: absolute;
-	top: 30%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+.icon_frame {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 75px;
+  right: 75px;
 }
 
-#registry {
-	position: absolute;
-	top: 80%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+#msg_icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
 }
 
-/* ----- jj end---- */
+.chat_window {
+	width: 259px;
+	height: 476px;
+	border-radius: 10px;
+	position: fixed;
+	bottom: 75px;
+    right: 75px;
+    overflow: hidden;
+    box-shadow: 1px 1px 40px 10px gray;
+    display: none;
+}
+
+.chatAd_window {
+	width: 259px;
+	height: 476px;
+	border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 1px 1px 40px 10px gray;
+    margin: auto;
+}
+
+.chat_header {
+	height: 45px;
+	background-color: #4234f5;
+	object-fit: cover;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#chat_hide {
+	cursor: pointer;
+}
+
+#chat_out {
+	cursor: pointer;
+}
+
+.chating {
+	height: 386px;
+	background-color: white;
+}
+
+.chat_input {
+	height: 45px;
+	background-color: #ebebeb;
+	object-fit: cover;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+#sendBtn {
+	border: none;
+    outline: none;
+    background-color: #ebebeb;
+}
+
+/* ----- jh ----- */
