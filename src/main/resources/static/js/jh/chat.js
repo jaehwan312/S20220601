@@ -104,7 +104,7 @@
 			});
 		}
 		// User 등록  Message 전송       saveStatus --> Create / Delete
-		function sendUser(saveStatus, mem_num) {
+		function sendUser(saveStatus) {
 			
 			var userOption ={
 					type       : "userSave",
@@ -120,18 +120,18 @@
 			var option ={
 				type: "message",
 				sessionId : $("#sessionId").val(),
-				userName : $("#meName").val(),
+				userName : $("meName").val(),
 				yourName : $("#member_sub").val(),
 				msg : $("#chatting").val()
 			}
-			// 자바스크립트의 값을 JSON 문자열로 변환
-			ws.send(JSON.stringify(option));
-			$('#chatting').val("");
+			// 자바스크립트의 값을 JSON 문자열로 변환 
+			// 보내면 무조건 소켓핸들러를 탐
+	        ws.send(JSON.stringify(option));
 			$.ajax(
 					{
 						url:"/insertChat",
-						data:{mem_num : mem_num, grade : grade, msg : $("#chatting").val()},
-						}
+						type:'post',
+						data:{mem_num : mem_num, grade : grade, msg : $("#chatting").val()}
 					}
 			);
 		}

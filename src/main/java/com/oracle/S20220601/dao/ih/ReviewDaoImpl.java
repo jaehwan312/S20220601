@@ -16,7 +16,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Autowired
 	private SqlSession session;
 	
-	@Override
+	@Override//리뷰리스트
 	public List<Review> revList(int host_num) {
 		System.out.println("ReviewDaoImpl revList Start...");
 		List<Review> revList = null;
@@ -31,16 +31,13 @@ public class ReviewDaoImpl implements ReviewDao {
 		return revList;
 	}
 
-	@Override
+	@Override//리뷰사진리스트
 	public List<RevPhoto> storeRevPhoto(List<Review> revList) {
 		
 		System.out.println("ReviewDaoImpl storeRevPhoto Start...");
 		List<RevPhoto> storeRevPhoto = null;
-		int i = 0;
 		try {
 			for (Review revPhoto : revList) {
-//				System.out.println(revPhoto.getRev_num());
-//				System.out.println(revPhoto.getMem_num());
 				storeRevPhoto = session.selectList("storeRevPhoto", revPhoto);
 			}
 			System.out.println("ReviewDaoImpl storeRevPhoto storeRevPhoto.size() --> " + storeRevPhoto.size());
@@ -53,16 +50,44 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	@Override
 	public int storeUserRevDel(StoreReview review) {
-
+		System.out.println("ReviewDaoImpl storeUserRevDel Start...");
 		int storeUserRevDel = 0;
 		
 		try {
-			storeUserRevDel = session.delete("storeUserRevDel",review);
+			storeUserRevDel = session.delete("storeUserRevDel",review);    //리뷰글 삭제
 		} catch (Exception e) {
 			System.out.println("ReviewDaoImpl storeUserRevDel ErrorMessage --> " + e.getMessage());
 		}
 		
 		return storeUserRevDel;
+	}
+
+	@Override
+	public int storeRevcount(int host_num) {
+		System.out.println("ReviewDaoImpl storeRevcount Start...");
+		
+		int storeRevcount = 0;
+		
+		try {
+			storeRevcount = session.update("storeRevcount",host_num);
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl storeUserRevDel ErrorMessage --> " + e.getMessage());
+		}
+		return storeRevcount;
+	}
+
+	@Override
+	public float storeRevPointAvg(int host_num) {
+		System.out.println("ReviewDaoImpl storeRevPointAvg Start...");
+		
+		float storeRevPointAvg = 0;
+		
+		try {
+			storeRevPointAvg = session.update("storeRevPointAvg",host_num);
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl storeRevPointAvg ErrorMessage --> " + e.getMessage());
+		}
+		return storeRevPointAvg;
 	}
 
 }

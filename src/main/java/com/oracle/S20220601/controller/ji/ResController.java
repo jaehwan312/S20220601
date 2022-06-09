@@ -20,20 +20,38 @@ public class ResController {
 	private static final Logger logger = LoggerFactory.getLogger(ResController.class);
 	//세션으로 받을 예정
 	int mem_num = 5;
+	/* int mem_num = (int)session.getAttribute("mem_num"); */
 	
     @Autowired
 	private ResService rs;
 	
-	
+
 	@RequestMapping("res")
 	public String res() {
 		System.out.println("res Start...");
 		return "ji/res";
 	}
-	
+	//예약하기 화면
+	@RequestMapping("resContent")
+	public String resContent() {
+		System.out.println("resContent Start...");
+		return "ji/resContent";
+	}
+	@RequestMapping("resContent2")
+	public String resContent2() {
+		System.out.println("resContent2 Start...");
+		return "ji/resContent2";
+	}
+	//예약 상세
 	@RequestMapping("resDetail")
-	public String resDetail() {
+	public String resDetail(Model model,int res_num) {
+		System.out.println("res_num -->"+res_num);
+
 		System.out.println("resDetail Start...");
+		Res res1 = rs.resDetail(res_num);
+		model.addAttribute("res", res1);
+		
+		
 		return "ji/resDetail";
 	}
 	@RequestMapping("reReserve")

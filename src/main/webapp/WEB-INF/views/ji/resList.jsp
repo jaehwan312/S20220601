@@ -21,101 +21,115 @@
 	<div class="container">
 		<!-- 여기 밑으로 ============================================================ -->
 		<div class="reserve_list">
-		${mem_num } 
-		<h5>이제 재준오빠가 가로로 배치해주면 좋겠다 가로에 2개씩 ^.^</h5>
+			${mem_num }
+			<h5>이제 재준오빠가 가로로 배치해주면 좋겠다 가로에 3개씩 ^.^</h5>
 			<section class="list_present">
 				<h4>예약 내역</h4>
 				<ul class="list_wrap">
 					<c:forEach var="listRes" items="${listRes}">
 						<li>
-							<div class="wrapper">
-								<p><img alt="숙소사진"
-									src="${context }/images/bh/${listRes.host_photo}"
-									style="cursor: pointer;" width="350" height="160"></p>
-								<a href="resDetail">	
-								<c:if test="${listRes.res_status=='1'}">
-									<span class="status">예약확정</span>
-									<span>예약번호 : ${listRes.res_num }</span>
-								</c:if>
-
-								<strong>${listRes.host_name}</strong> 
-								<span  class="day">${listRes.sday} - ${listRes.eday} • ${listRes.nday}박</span>
-								</a><P>
-
+							<div class="row">
+								<div class="col-6">
+									<div class="wrapper">
+										<p>
+											<img alt="숙소사진"
+												src="${context }/images/bh/${listRes.host_photo}"
+												style="cursor: pointer;" width="350" height="160">
+										</p>
+										<a href="resDetail?res_num=${listRes.res_num }"> <c:if
+												test="${listRes.res_status=='1'}">
+												<span class="status">예약확정</span>
+												<span>예약번호 : ${listRes.res_num }</span>
+											</c:if> <strong>${listRes.host_name}</strong> <span class="day">${listRes.sday}
+												- ${listRes.eday} • ${listRes.nday}박</span>
+										</a>
+										<P>
+									</div>
+								</div>
 							</div>
-
 						</li>
-
-
 					</c:forEach>
-
-
 				</ul>
-				<!----><p>
+				<!---->
+				<p>
 			</section>
 			<section class="list_past">
 				<h4>이용 내역</h4>
 				<ul class="list_wrap">
 					<c:forEach var="listBeforeRes" items="${listBeforeRes}">
 						<li>
-							<div class="wrapper">
-								<p><img alt="숙소사진"
-									src="${context }/images/bh/${listBeforeRes.host_photo}"
-									style="cursor: pointer;" width="350" height="160"></p>
-								<a href="resDetail">	
-								<c:if test="${listBeforeRes.res_status=='2'}">
-									<span class="status">이용 완료</span>
-									<span class="status">예약번호 : ${listBeforeRes.res_num }</span>
-								</c:if>
+							<div class="row">
+								<div class="col-6">
+									<div class="wrapper">
+										<p>
+											<img alt="숙소사진"
+												src="${context }/images/bh/${listBeforeRes.host_photo}"
+												style="cursor: pointer;" width="350" height="160">
+										</p>
+										<a href="resDetail?res_num=${listBeforeRes.res_num }"> <c:if
+												test="${listBeforeRes.res_status=='2'}">
+												<span class="status">이용 완료</span>
+												<span class="status">예약번호 : ${listBeforeRes.res_num }</span>
+											</c:if> <strong>${listBeforeRes.host_name}</strong> <span
+											class="day">${listBeforeRes.sday} -
+												${listBeforeRes.eday} • ${listBeforeRes.nday}박</span>
+										</a>
+										<p>
+											<a href="reReserve">다시 예약 </a>
+										</p>
 
-								<strong>${listBeforeRes.host_name}</strong> 
-								<span>${listBeforeRes.sday} - ${listBeforeRes.eday} • ${listBeforeRes.nday}박</span>
-								</a>
-								<p>
-									<a href="reReserve">다시 예약 </a>
-								</p>
-
+									</div>
+								</div>
 							</div>
-
 						</li>
 
 
 					</c:forEach>
+
+
 				</ul>
+				<!---->
+				<p>
 			</section>
-				<section class="list_cancle">
-					<h4>취소 내역</h4>
-					<ul class="list_wrap">
-										<c:forEach var="listCancleRes" items="${listCancleRes}">
+
+			<section class="list_cancle">
+				<h4>취소 내역</h4>
+				<ul class="list_wrap">
+					<c:forEach var="listCancleRes" items="${listCancleRes}">
 						<li>
-							<div class="wrapper">
-								<p><img alt="숙소사진"
-									src="${context }/images/bh/${listCancleRes.host_photo}"
-									style="cursor: pointer;" width="350" height="160"></p>
-								<a href="resDetail">	
-								<c:if test="${listCancleRes.res_status=='3'}">
-									<span class="status">예약 취소</span>
-									<span class="status">예약번호 : ${listCancleRes.res_num }</span>
-									
-								</c:if>
+							<div class="row">
+								<div class="col-6">
+									<div class="wrapper">
+										<p>
+											<img alt="숙소사진"
+												src="${context }/images/bh/${listCancleRes.host_photo}"
+												style="cursor: pointer;" width="350" height="160">
+										</p>
+										<a href="resDetail?res_num=${listCancleRes.res_num }"> <c:if
+												test="${listCancleRes.res_status=='3'}">
+												<span class="status">예약 취소</span>
+												<span>예약번호 : ${listCancleRes.res_num }</span>
+											</c:if> <strong>${listCancleRes.host_name}</strong> <span
+											class="day">${listCancleRes.sday} -
+												${listCancleRes.eday} • ${listCancleRes.nday}박</span>
+										</a>
+										<p>
+											<a href="reReserve">다시 예약 </a>
+										</p>
 
-								<strong>${listCancleRes.host_name}</strong> 
-								<span>${listCancleRes.sday} - ${listCancleRes.eday} • ${listCancleRes.nday}박</span>
-								</a>
-								<p>
-									<a href="reReserve">다시 예약 </a>
-								</p>
-
+									</div>
+								</div>
 							</div>
-
 						</li>
 
 
 					</c:forEach>
-					</ul>
-					<!----><P>
-				</section>
 
+
+				</ul>
+				<!---->
+				<p>
+			</section>
 
 		</div>
 

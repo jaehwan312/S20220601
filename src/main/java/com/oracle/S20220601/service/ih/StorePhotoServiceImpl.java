@@ -24,7 +24,7 @@ public class StorePhotoServiceImpl implements StorePhotoService{
 		return storePhoto;
 	}
 	
-	@Override
+	@Override//식당 사진 등록
 	public int storePhotoInsert(List<MultipartFile> filename) {
 		System.out.println("StorePhotoServiceImpl storePhotoInsert Start....");
 		int storePhotoInsert = storePhotoDao.storePhotoInsert(filename);

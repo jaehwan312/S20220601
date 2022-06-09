@@ -6,18 +6,30 @@
 <head>
 	<meta charset="UTF-8">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" type="text/css" href="css/jj/jquery.fullPage.css" />
+	<link rel="stylesheet" href="css/template.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<title>제주 감수광</title>
 	<script src="https://kit.fontawesome.com/a42e829aa0.js" crossorigin="anonymous"></script>
-	
-	<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 	<script src="js/main.js" defer></script>
+	<script src="js/jh/chat.js" defer></script>
+	<script type="text/javascript">
+		var ws;
+		
+		function wsOpen(){
+			console.log("wsOpen  location.host: " + location.host);
+	        var wsUri  = "ws://" + location.host + "${pageContext.request.contextPath}/chating";
+	        // WebSocket 프로토콜을 사용하여 통신하기 위해서는 WebSocket객체를 생성. 
+	        // 객체는 자동으로 서버로의 연결
+	 		ws = new WebSocket(wsUri);
+			wsEvt();
+		}
+	</script>
 <!-- 	<script type="text/javascript">
+		나중에 수정해서 넣을것!!!
+
 		$(function(){
 			$('#MyPage_box').mouseover(function(){
 				$('#MyPage').text("마이페이지");
@@ -34,10 +46,9 @@
             <a href="main">제주 감수광</a>
         </div>
         <div class="header_background"></div>
-        <div class="navbar_search_alter"></div>
         <div class="navbar_search">
             <form action="getSearchResult" class="search_form" method="post">
-                <input type="text" id="search_area" name="keyword" class="search_bar" placeholder="Typing..." autocomplete="off">                
+                <input type="text" id="search_area" name="keyword" class="search_bar" placeholder="Typing..." autocomplete="off" onkeyup="headerEnter()">                
                 <button class="search_btn" type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -76,7 +87,7 @@
 		                    <a href="">나의 숙소정보</a>
 		                </div>
 		            </li>
-		            <li><a href="">로그아웃</a></li>
+		            <li><a href="logout">로그아웃</a></li>
         		</c:when>
         		<c:when test="${grade=='1' }">
         			<li class="dropdown">
@@ -90,7 +101,7 @@
 		                    <a href="admMain">관리자 페이지</a>
 		                </div>
 		            </li>
-		            <li><a href="">로그아웃</a></li>
+		            <li><a href="logout">로그아웃</a></li>
         		</c:when>
         		<c:otherwise>
 					<li><a href="loginPage">로그인</a></li>
@@ -102,9 +113,36 @@
         <a href="#" class="hamburger">
             <i class="fa-solid fa-bars"></i>
         </a>
+        
     </nav>
+    
+    <div class="icon_frame">
+    	<img id="msg_icon" alt="msg_icon" src="images/jh/msg_icon.png" onclick="chatOpen(${mem_num})">
+    </div>
+    <div class="chat_window">
+    	<div class="chat_header">
+    		<input type="hidden" id="sessionId" value="">
+    		<i class="fa-solid fa-chevron-down" id="chat_hide" onclick="chatHide()"></i>
+    		<div id="meName"></div>
+    		<div id="member" class="member"></div>
+    		<div id="yourName">
+    			<input type="text" name="userName" id="userName">
+	    		<button onclick="chatName()" id="startBtn">
+	    			<i class="fa-solid fa-user"></i>
+	    		</button>
+    		</div>
+			<i class="fa-solid fa-xmark" id="chat_out" onclick="chatOut()"></i>
+    	</div>
+    	<div id="chating" class="chating">
+    	</div>
+    	<div class="chat_input">
+    		<input class="chat_msg" id="chatting" placeholder="메시지를 입력하세요.">
+    		<button onclick="send(${mem_num}, ${grade})" id="sendBtn">
+    			<i class="fa-solid fa-paper-plane"></i>
+    		</button>
+    	</div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="text/javascript" src="js/jj/jquery.fullPage.js"></script>
 </body>
 </html>
