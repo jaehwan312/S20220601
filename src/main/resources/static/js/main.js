@@ -154,20 +154,9 @@ function selectSearch(id){
 		contentType:"application/x-www-form-urlencoded; charset=UTF-8",
 		type: 'post',
 		dataType: 'text',
-		success: function(data){}
-	});
-}
-
-// 검색바에 입력한 값으로 검색 실행
-function inputSearch(){
-	var inputKeyword = $('#searchBar').val();
-	$.ajax({
-		url: "/getSearchResult",
-		data:{keyword:inputKeyword},
-		contentType:"application/x-www-form-urlencoded; charset=UTF-8",
-		type: 'post',
-		dataType: 'text',
-		success: function(data){}
+		success: function(data){
+			
+		}
 	});
 }
 

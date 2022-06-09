@@ -231,3 +231,11 @@ function mainEnter(){
 		inputSearch();
 	}
 }
+
+//검색바에 입력한 값으로 검색 실행
+function inputSearch(){
+	document.getElementById('main_search_area').submit();
+	
+}
+
+
