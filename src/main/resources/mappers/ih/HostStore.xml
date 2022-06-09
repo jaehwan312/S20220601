@@ -24,6 +24,7 @@
 	  			   ,#{rev_count  , mode=IN   , jdbcType=INTEGER}
 	  			   ,#{host_avg   , mode=IN   , jdbcType=FLOAT}
 	  			   ,#{like_count , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{host_app   , mode=IN   , jdbcType=INTEGER}
 	  			   ,#{parking    , mode=IN   , jdbcType=VARCHAR}
 	  			   ,#{food_type  , mode=IN   , jdbcType=INTEGER}
 	  			   ,#{open_time  , mode=IN   , jdbcType=VARCHAR}
