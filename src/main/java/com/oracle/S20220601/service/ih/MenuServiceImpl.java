@@ -23,7 +23,7 @@ public class MenuServiceImpl implements MenuSeivice {
 		return menuList;
 	}
 
-	@Override
+	@Override//메뉴 insert
 	public int menuInsertList(List<Menu> menu) {
 		
 		System.out.println("MenuServiceImpl menuInsertList Start....");

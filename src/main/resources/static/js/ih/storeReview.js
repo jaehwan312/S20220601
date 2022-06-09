@@ -1,3 +1,91 @@
+function storeReviewInsert(){
+	
+	var HostNum       	 = document.getElementById('HostNum').value;
+	var userRevMemNum	 = 1;
+	
+	console.log("userRevNum --> " + userRevNum);
+	console.log("HostNum --> " + HostNum);
+	console.log("userRevMemNum --> " + userRevMemNum);
+	
+	var del = {"rev_num" : userRevNum, "host_num": HostNum, "mem_num" : userRevMemNum}
+	
+	console.log(del);
+	
+	$.ajax({
+		type:'post',
+		url: "/storeRevInsert",
+		data : JSON.stringify(insert),
+		contentType : 'application/json; charset=UTF-8',
+		dataType : 'json',
+		success: function(data){
+				if(data > 0) {
+					$('#storeRevList' + e).remove();
+					StoreRevCount(HostNum);
+					StoreAvgUpdate(HostNum);
+				}	
+					
+		}
+	});
+	
+}
+
+//식당 평점 업데이트
+function StoreAvgUpdate(e){
+	var StoreAvg = document.getElementById('StoreAvg').innerText;
+	console.log(StoreAvg);
+	var host_num = e;
+	console.log("host_num --> " + host_num);
+	
+	$.ajax({
+		url : "/storeRevPointAvg",
+		type : 'post',
+		data : {host_num : host_num},
+		dataType : 'json',
+		success: function(data){
+				console.log("data --> " + data);
+				$("#StoreAvg").text(data);
+			}
+		});	
+
+}
+
+//리뷰 갯수 업데이트
+function StoreRevCount(e){
+	var count = document.getElementById('StoreRevCount').innerText;
+	console.log(count);
+	var host_num = e;
+	console.log("host_num --> " + host_num);
+	
+	$.ajax({
+		url : "/StoreRevCount",
+		type : 'post',
+		data : {host_num : host_num},
+		dataType : 'json',
+		success: function(data){
+				console.log("data --> " + data);
+				$("#StoreRevCount").text(data);
+			}
+		});	
+	
+	
+	
+}
+
+/*
+function userRevUpdate(e){
+	console.log('userRevUpdate' + e);
+}
+
+function hostRevUpdate(e){
+	console.log('hostRevUpdate' + e);
+}
+
+function hostRevDelete(e){
+	console.log('hostRevDelete' + e);
+}
+*/
+
+/*
 //리뷰삭제
 function userRevDelete(e){
 	
@@ -14,7 +102,7 @@ function userRevDelete(e){
 	
 	console.log(del);
 	
-	
+
 	$.ajax({
 		url : "/storeUserRevDel",
 		type : 'post',
@@ -23,75 +111,14 @@ function userRevDelete(e){
 		dataType : 'json',
 		success: function(data){
 				if(data > 0) {
-					alert(data);
 					$('#storeRevList' + e).remove();
-					
+					StoreRevCount(HostNum);
+					StoreAvgUpdate(HostNum);
 				}	
 					
 			}
 		});		
+
 	
-	//StoreAvgUpdate();
-	//StoreRevCount();	
 }
-
-/*
-function StoreAvgUpdate(){
-	var StoreAvg = document.getElementById('StoreAvg').innerText;
-	console.log(StoreAvg);
-	//StoreAvg.textContent  = "<b id='StoreRevCount'>1개</b>";
-	
-
-}
-
-function StoreRevCount(){
-	var count = document.getElementById('StoreRevCount').innerText;
-	console.log(StoreRevCount);
-	
-	$.ajax({
-		url : "/StoreRevCount",
-		type : 'post',
-		data : count
-		dataType : 'text',
-		success: function(data){
-				if(data == 1) {
-					$('#storeRevList' + e).remove();
-					
-				}	
-					
-			}
-		});	
-	
-	
-	$("#StoreRevCount").text(2);
-}
-
-function userRevUpdate(e){
-	console.log('userRevUpdate' + e);
-}
-
-function hostRevUpdate(e){
-	console.log('hostRevUpdate' + e);
-}
-
-function hostRevDelete(e){
-	console.log('hostRevDelete' + e);
-}
-
-function storeReviewInsert(){
-
-	$.ajax({
-		type:'post',
-		url: "/storeRevInsert",
-		data: $('#storeRevInsert').serialize(),
-		
-		success : function(data){
-			 if(data=="success")
-            {
-                storeRevList();
-                $("#content").val("");
-            }
-		}
-	});
-	
-}*/
+*/
