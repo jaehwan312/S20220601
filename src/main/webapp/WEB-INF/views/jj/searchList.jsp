@@ -17,7 +17,7 @@
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
 
-           <div class="container">
+          <div class="container">
               <div class="row">
                   <div class="col-lg-12 text-center mb100">
                       <h2 class="section-heading">숙박<span class="theme-accent-color">&</span>맛집</h2>
@@ -27,103 +27,47 @@
               </div>
           </div>
           
-          <div class="container">
+           <div class="container">
 
               <div class="row">
                   <div class="col-md-6">
                       <h2 class="mb50"><span class="heading-font text-uppercase">맛집</span></h2>
-                      <div class="host-item">
+                      
+                       <c:forEach var="store" items="${storeList }">
+                      	<div class="host-item">
                           <div class="row">
                               <div class="col-xs-3">
-                                  <img src="images/jj/hotel1.jpg" class="img-responsive">
+                                  <img src="images/jj/${store.host_photo }" class="img-responsive">
                               </div>
-                              <div class="col-xs-9">
-                                  <h3>Lorem Ipsum <span class="theme-accent-color">$8.95</span></h3>
-                                  <p>No phone no lights no motor car not a single luxury. Like Robinson Crusoe it's primitive as can be. Like Robinson Crusoe it's primitive as can be</p>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="host-item">
-                          <div class="row">
-                              <div class="col-xs-3">
-                                  <img src="images/jj/hotel2.jpg" class="img-responsive">
-                              </div>
-                              <div class="col-xs-9">
-                                  <h3>Lorem Ipsum <span class="theme-accent-color">$8.95</span></h3>
-                                  <p>No phone no lights no motor car not a single luxury. Like Robinson Crusoe it's primitive as can be. Like Robinson Crusoe it's primitive as can be</p>
+                            <div class="col-xs-9">
+                                  <h3>${store.host_name } <span class="theme-accent-color">평점 ${store.host_avg }</span><button>지도</button> </h3>
+                                  <p>${store.host_addr }<br>가격대 : ${store.min_price }~${store.max_price }
+                                  <br>${store.type_name }&ensp;찜한수 : ${store.like_count }&ensp;리뷰 : ${store.rev_count }
+                                   </p>
                               </div>
                           </div>
-                      </div>
-                      <div class="host-item">
-                          <div class="row">
-                              <div class="col-xs-3">
-                                  <img src="images/jj/hotel3.jpg" class="img-responsive">
-                              </div>
-                              <div class="col-xs-9">
-                                  <h3>Lorem Ipsum <span class="theme-accent-color">$8.95</span></h3>
-                                  <p>No phone no lights no motor car not a single luxury. Like Robinson Crusoe it's primitive as can be. Like Robinson Crusoe it's primitive as can be</p>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="host-item">
-                          <div class="row">
-                              <div class="col-xs-3">
-                                  <img src="images/jj/hotel4.jpg" class="img-responsive">
-                              </div>
-                              <div class="col-xs-9">
-                                  <h3>Lorem Ipsum <span class="theme-accent-color">$8.95</span></h3>
-                                  <p>No phone no lights no motor car not a single luxury. Like Robinson Crusoe it's primitive as can be. Like Robinson Crusoe it's primitive as can be</p>
-                              </div>
-                          </div>
-                      </div>
+                       </div>
+                      </c:forEach> 
                   </div>
 
-                  <div class="col-md-6">
+                   <div class="col-md-6">
                       <h2 class="mb50"><span class="heading-font text-uppercase">숙박</span></h2>
-                      <div class="host-item">
+						<c:forEach var="stay" items="${stayList }">
+                      	<div class="host-item">
                           <div class="row">
                               <div class="col-xs-3">
-                                  <img src="images/jj/hotel5.jpg" class="img-responsive">
+                                  <img src="images/jj/${stay.host_photo }" class="img-responsive">
                               </div>
                               <div class="col-xs-9">
-                                  <h3>Lorem Ipsum <span class="theme-accent-color">$8.95</span></h3>
-                                  <p>No phone no lights no motor car not a single luxury. Like Robinson Crusoe it's primitive as can be. Like Robinson Crusoe it's primitive as can be</p>
+                                  <h3>${stay.host_name } <span class="theme-accent-color">평점 ${stay.host_avg }</span><button>지도</button> </h3>
+                                  <p>${stay.host_addr }<br>평일비용 : ${stay.min_dayfee }~${stay.max_dayfee }
+                                  <br>주말비용 : ${stay.min_weekfee }~${stay.max_weekfee }
+                                  <br>${stay.type_name }&ensp;찜한수 : ${stay.like_count }&ensp;리뷰 : ${stay.rev_count }
+                                   </p>
                               </div>
                           </div>
-                      </div>
-                      <div class="food-menu-item">
-                          <div class="row">
-                              <div class="col-xs-3">
-                                  <img src="images/jj/hotel6.jpg" class="img-responsive">
-                              </div>
-                              <div class="col-xs-9">
-                                  <h3>Lorem Ipsum <span class="theme-accent-color">$8.95</span></h3>
-                                  <p>No phone no lights no motor car not a single luxury. Like Robinson Crusoe it's primitive as can be. Like Robinson Crusoe it's primitive as can be</p>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="food-menu-item">
-                          <div class="row">
-                              <div class="col-xs-3">
-                                  <img src="images/jj/hotel7.jpg" class="img-responsive">
-                              </div>
-                              <div class="col-xs-9">
-                                  <h3>Lorem Ipsum <span class="theme-accent-color">$8.95</span></h3>
-                                  <p>No phone no lights no motor car not a single luxury. Like Robinson Crusoe it's primitive as can be. Like Robinson Crusoe it's primitive as can be</p>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="food-menu-item">
-                          <div class="row">
-                              <div class="col-xs-3">
-                                  <img src="images/jj/hotel8.jpg" class="img-responsive">
-                              </div>
-                              <div class="col-xs-9">
-                                  <h3>Lorem Ipsum <span class="theme-accent-color">$8.95</span></h3>
-                                  <p>No phone no lights no motor car not a single luxury. Like Robinson Crusoe it's primitive as can be. Like Robinson Crusoe it's primitive as can be</p>
-                              </div>
-                          </div>
-                      </div>
+                       </div>
+                      </c:forEach>
                   </div>
               </div>
           </div>
