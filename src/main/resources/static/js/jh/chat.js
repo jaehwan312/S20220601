@@ -127,12 +127,5 @@
 			// 자바스크립트의 값을 JSON 문자열로 변환 
 			// 보내면 무조건 소켓핸들러를 탐
 	        ws.send(JSON.stringify(option));
-	        $.ajax(
-					{
-						url:"/insertChat",
-						data:{mem_num : mem_num, grade : grade, msg : $("#chatting").val()};
-						
-					}
-			);
-			$('#chatting').val("");
+			
 		}
