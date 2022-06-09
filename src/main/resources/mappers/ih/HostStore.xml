@@ -24,10 +24,12 @@
 	  			   ,#{rev_count  , mode=IN   , jdbcType=INTEGER}
 	  			   ,#{host_avg   , mode=IN   , jdbcType=FLOAT}
 	  			   ,#{like_count , mode=IN   , jdbcType=INTEGER}
-	  			   ,#{parking    , mode=IN   , jdbcType=VARCHAR}
-	  			   ,#{food_type  , mode=IN   , jdbcType=INTEGER}
-	  			   ,#{open_time  , mode=IN   , jdbcType=VARCHAR}
-	  			   ,#{break_time , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{host_app   , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{convenient , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{way  		 , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{checkin  	 , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{checkout 	 , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{stay_type  , mode=IN   , jdbcType=VARCHAR}
 	  			)
   			}
   		</insert>

@@ -17,7 +17,6 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-    	
     	<form action="storeInsert" method="post" style="text-align: center;" enctype="multipart/form-data">
 			<div>
 				<div>
@@ -102,7 +101,6 @@
 	    	</div>
 			<input type="submit" value="등록요청">
     	</form>
-    	
     	
     <!-- 여기 위로오 ============================================================ -->   
     </div>
