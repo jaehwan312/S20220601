@@ -24,14 +24,14 @@ public class MenuDaoImpl implements MenuDao {
 		
 		try {
 			menuList = session.selectList("menuList", host_num);
-			System.out.println("MenuDaoImpl menuList storePhoto.size() --> " + menuList.size());
+//			System.out.println("MenuDaoImpl menuList storePhoto.size() --> " + menuList.size());
 		} catch (Exception e) {
 			System.out.println("MenuDaoImpl menuList ErrorMessage --> " + e.getMessage());
 		}
 		return menuList;
 	}
 
-	@Override
+	@Override//메뉴 정보 등록
 	public int menuInsertList(List<Menu> menu) {
 		
 		System.out.println("MenuDaoImpl menuInsertList Start....");
@@ -40,9 +40,6 @@ public class MenuDaoImpl implements MenuDao {
 		
 		try {
 			for (int i = 0; i < menu.size(); i++) {
-//				System.out.println("i --> " + i);
-//				System.out.println(menu.get(i).getMenu_name());
-//				System.out.println(menu.get(i).getMenu_price());
 				menuInsert += session.insert("menuInsert", menu.get(i));
 			}
 		} catch (Exception e) {

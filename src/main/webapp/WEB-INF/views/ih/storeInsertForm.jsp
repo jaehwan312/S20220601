@@ -25,9 +25,9 @@
 					</div>
 					
 					<div>
-						<div class="insertPhoto">
+						<div class="insertPhoto" >
 							<c:forEach begin="0" end="4" varStatus="i">
-			                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
+			                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
 			                       	 👉 CLICK HERE!👈 
 									<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
 										onchange="previewFiles(${i.index })" accept="images/ih/*">
@@ -90,7 +90,7 @@
 	   					<label class="labelmenuInfo" id="labelmenuInfo0" for="menuinputInfo0">
 		    				메뉴명 : <input type="text" name="menu_list[0].menu_name" id="menuinputInfo0" required="required">
 					    	가격    : <input type="number" name="menu_list[0].menu_price" id="menuinputInfo0" required="required">
-				    			  <input type="button" onclick="menuPlus(0)" id="menuInfoInsert0" value="+" >
+				    			  <input type="button" onclick="menuPlus(0)" id="menuInfoInsert0" value="+" class="btn btn-primary">
 			    		</label><p/>
 			    	<p/>
 		    		<label style="float: left;  margin-right: 25px; width: 100px;">
@@ -100,7 +100,7 @@
 		    			<textarea rows="5px;" cols="70px;" name="host_info" required="required"></textarea>
 		    		</label>
 		    	</div>
-				<input type="submit" value="등록요청">
+				<input type="submit" value="등록요청" class='btn btn-primary'>
 	    	</form>
     	</div>
     <!-- 여기 위로오 ============================================================ -->   

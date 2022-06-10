@@ -11,5 +11,6 @@ public interface ReviewService {
 	List<RevPhoto> 	storeRevPhoto(List<Review> revList);	//리뷰사진
 	int 			storeUserRevDel(StoreReview review);    //리뷰삭제
 	int			    storeRevcount(int host_num);			//리뷰카운트 업데이트
-	int             storeRevPointAvg(int host_num);		//식당 평점 업데이트
+	float           storeRevPointAvg(int host_num);		    //식당 평점 업데이트
+	int             storeUserRevInsert(StoreReview review); //식당 리뷰 작성
 } 
