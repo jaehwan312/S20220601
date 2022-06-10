@@ -30,3 +30,26 @@ function previewFiles(e){
 	$('#labelInfo' + (e+1)).show();
 	$('#labelInfo' + e).remove();
 }
+
+$(function() {
+    $("#stay_checkin").timepicker({
+        timeFormat: 'HH:mm p',
+        interval: 60,
+        startTime: '00:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true        
+    });
+});
+
+$(function() {
+    $("#stay_checkout").timepicker({
+        timeFormat: 'HH:mm p',
+        interval: 60,
+        startTime: '00:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true        
+    });
+});
+

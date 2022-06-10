@@ -29,6 +29,7 @@
 	  			   ,#{food_type  , mode=IN   , jdbcType=INTEGER}
 	  			   ,#{open_time  , mode=IN   , jdbcType=VARCHAR}
 	  			   ,#{break_time , mode=IN   , jdbcType=VARCHAR}
+
 	  			)
   			}
   		</insert>

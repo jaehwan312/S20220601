@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.S20220601.dao.bh.StayDao;
 import com.oracle.S20220601.model.Code;
@@ -77,6 +78,20 @@ public class StayServiceImpl implements StayService {
 		System.out.println("StayServiceImpl codeList start...");
 		List<Code> codeList = sd.codeList(bcd_code);
 		return codeList;
+	}
+
+	@Override
+	public int stayInsert(HostStay hostStay) {
+		System.out.println("StayServiceImpl stayInsert start...");
+		int stayInsert = sd.stayInsert(hostStay);
+		return stayInsert;
+	}
+
+	@Override
+	public int stayPhotoInsert(List<MultipartFile> file) {
+		System.out.println("StayServiceImpl stayPhotoInsert start...");
+		int stayPhotoInsert = sd.stayPhotoInsert(file);
+		return stayPhotoInsert;
 	}
 
 

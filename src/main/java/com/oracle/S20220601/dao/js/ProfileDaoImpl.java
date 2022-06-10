@@ -31,6 +31,29 @@ public class ProfileDaoImpl implements ProfileDao {
 		return cnt;
 	}
 
+	@Override
+	public int getMem_numSeq(){
+		return session.selectOne("getSeq");
+	}
+
+	@Override
+	public int insert(Profile profile) {
+		
+		return session.insert("insertProfile", profile);
+	}
+
+
+	@Override
+	public String searchId(String name, String phone) {
+		System.out.println("----------------- Dao SearchId Start --------------");			
+		return session.selectOne("searchId", name);
+	}
+
+
+	
+
+
+
 
 	
 	
