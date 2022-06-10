@@ -43,6 +43,13 @@ public class ProfileDaoImpl implements ProfileDao {
 	}
 
 
+	@Override
+	public String searchId(String name, String phone) {
+		System.out.println("----------------- Dao SearchId Start --------------");			
+		return session.selectOne("searchId", name);
+	}
+
+
 	
 
 

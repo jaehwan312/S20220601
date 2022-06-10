@@ -58,6 +58,21 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 
+	@Override
+	public String searchId(String name, String phone) {
+		System.out.println("----------------- Service SearchId Start --------------");
+		String result = "";
+		
+		try {
+			result = pd.searchId(name, phone);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+
 
 
 

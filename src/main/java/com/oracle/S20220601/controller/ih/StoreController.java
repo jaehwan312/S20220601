@@ -48,8 +48,10 @@ public class StoreController {
 	private ReviewService     reviewService;
 	 
 	@GetMapping(value = "storeRead")//식당상세정보
-	public String storeRead(int host_num, Model model) {
+	public String storeRead(int host_num, Model model, HttpSession session, HttpServletRequest request) {
 		logger.info("StoreController storeRead Start..");
+		session = request.getSession();
+		System.out.println("----------------------->> mem_num "+ session.getAttribute("mem_num"));
 		
 		HostStore       storeRead  	   = storeService.storeRead(host_num);      //식당정보
 		List<HostPhoto> storePhoto 	   = storePhotoService.storePhoto(host_num);//식당사진

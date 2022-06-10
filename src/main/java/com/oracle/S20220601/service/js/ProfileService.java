@@ -18,6 +18,8 @@ public interface ProfileService {
 
 	int    signUp(Profile profile);
 
+	String searchId(String name, String phone);
+
 
 
 

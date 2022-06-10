@@ -53,11 +53,10 @@ public class ProfileController {
 		ModelAndView mav = new ModelAndView();
 		if (profile != null) { // 로그인 성공
 			session = request.getSession();
-			int mem_num = (int)session.getAttribute("mem_num");
-			String grade = (String) session.getAttribute("grade");
+			session.setAttribute("mem_num", session.getAttribute("mem_num"));
+			session.setAttribute("grade",  session.getAttribute("grade"));
 			mav.setViewName("redirect:main");
-			mav.addObject("mem_num", mem_num);
-			mav.addObject("grade", grade);
+			
 		} else {	        // 로그인 실패
 			mav.setViewName("js/loginPage");
 			mav.addObject("message", "error");
@@ -71,7 +70,7 @@ public class ProfileController {
 	public ModelAndView	logout(HttpSession session, ModelAndView mav) {
 		System.out.println("----------- logout Start -----------");
 		ps.logout(session);
-		mav.setViewName("redirect:js/loginPage");	// 로그아웃 적용된 메인페이지로 이동이 좋아보임
+		mav.setViewName("redirect:loginPage");	// 로그아웃 적용된 메인페이지로 이동이 좋아보임
 		mav.addObject("message", "logout");
 		return mav;
 	}
@@ -192,6 +191,17 @@ public class ProfileController {
 	public String userSearch() {
 		System.out.println("----------------- userSearch Start --------------");
 		return "js/userSearch";
+		
+	}
+
+	// 아이디 찾기
+	@RequestMapping(value = "SearchId", method = RequestMethod.POST)
+	@ResponseBody
+	public String SearchId(@RequestParam("name") String name, @RequestParam String phone ) {
+		System.out.println("----------------- Controller SearchId Start --------------");
+		String result = ps.searchId(name, phone);
+		
+		return result;
 		
 	}
 	

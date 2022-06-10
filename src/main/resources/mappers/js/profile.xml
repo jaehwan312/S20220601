@@ -17,5 +17,8 @@
   		INSERT INTO PROFILE(mem_num, id, pw, name, gender, email, phone, birth, agree , join_date,photo, grade)
 					VALUES (#{mem_num}, #{id}, #{pw}, #{name},#{gender},#{email},#{phone},#{birth},#{agree},sysdate,#{photo},1)
   	</insert>
-  
+  	<select id="searchId" resultType="String">
+		SELECT id from PROFILE 
+        WHERE name = #{name} and phone = #{phone}
+	</select>
   </mapper>	
