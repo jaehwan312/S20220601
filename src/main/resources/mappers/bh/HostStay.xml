@@ -49,7 +49,7 @@
   	</insert>
   	
   	<!-- 숙박사진등록 -->
-  	<insert id="storePhotoInsert" parameterType="String">
+  	<insert id="stayPhotoInsert" parameterType="String">
   	INSERT INTO hostphoto VALUES(9,SEQ_STAY_PHOTO_NUM.nextval,#{host_photo})
   	
   	</insert>
