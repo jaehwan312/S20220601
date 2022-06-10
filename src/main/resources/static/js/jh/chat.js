@@ -22,8 +22,6 @@
 		}
 		
 		function wsEvt() {
-			console.log("wsEvt  start... ");
-			
 			//소켓이 열리면 동작
 			ws.onopen = function(data){
 				console.log("wsEvt  소켓이 열리면 초기화 세팅하기..");
@@ -50,7 +48,7 @@
 					if(jsonMsg.type == "getId"){
 						var sid = jsonMsg.sessionId != null ? jsonMsg.sessionId : "";
 						if(sid != ''){
-							$("#sessionId").val(sid); 
+							$("#sessionId").val(sid); // 세션id를 태그에 담아야 할까? 어차피 유저끼리 구분하는데?
 							// session User 등록 수행
 							sendUser('Create');
 						}
