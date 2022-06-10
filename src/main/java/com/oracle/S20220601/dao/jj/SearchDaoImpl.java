@@ -40,7 +40,8 @@ public class SearchDaoImpl implements SearchDao {
 		
 		// keyword 조건 문자열 변환
 		if(search.getKeyword()!=null) {
-			searchStr.setKeyword(" and host_addr like '%"+search.getKeyword()+"%'");
+			searchStr.setKeyword(" and (host_name like '%"+search.getKeyword()+"%' or host_addr like '%"+search.getKeyword()
+			+"%' or (select c.name from code c where c.bcd=200 and c.mcd=s.food_type) like '%"+search.getKeyword()+"%')");
 		}else {
 			searchStr.setKeyword("");
 		}
@@ -91,7 +92,8 @@ public class SearchDaoImpl implements SearchDao {
 		
 		// keyword 조건 문자열 변환
 		if(search.getKeyword()!=null) {
-			searchStr.setKeyword(" and host_addr like '%"+search.getKeyword()+"%'");
+			searchStr.setKeyword(" and (host_name like '%"+search.getKeyword()+"%' or host_addr like '%"+search.getKeyword()+
+					"%' or (select c.name from code c where c.bcd=300 and c.mcd=s.stay_type) like '%"+search.getKeyword()+"%')");
 		}else {
 			searchStr.setKeyword("");
 		}

@@ -31,7 +31,7 @@
 
               <div class="row">
                   <div class="col-md-6">
-                      <h2 class="mb50"><span class="heading-font text-uppercase">맛집</span></h2>
+                      <h2 class="mb50"><span class="heading-font text-uppercase">맛집</span>${storeList.size() }건</h2>
                       
                        <c:forEach var="store" items="${storeList }">
                       	<div class="host-item">
@@ -51,7 +51,7 @@
                   </div>
 
                    <div class="col-md-6">
-                      <h2 class="mb50"><span class="heading-font text-uppercase">숙박</span></h2>
+                      <h2 class="mb50"><span class="heading-font text-uppercase">숙박</span>${stayList.size() }건</h2>
 						<c:forEach var="stay" items="${stayList }">
                       	<div class="host-item">
                           <div class="row">
