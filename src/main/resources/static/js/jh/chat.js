@@ -17,13 +17,28 @@
 		function chatHide() {
 			$(".chat_window").css("display","none");
 		}
-		function chatOut() {
-			$(".chat_window").css("display","none");
+		function chatOut(mem_num) {
+			if (confirm("채팅창을 나가시면 채팅 내용이 전부 삭제됩니다. 채팅창을 나가시겠습니까?")){
+				$(".chat_window").css("display","none");
+				$.ajax(
+						{
+							url:"/deleteChat",
+							data:{mem_num : mem_num},
+							
+							success:function(){
+								$('#chatting').remove();
+							}
+						}
+				);
+			} else {
+			
+				return false;
+
+			}
+
 		}
 		
 		function wsEvt() {
-			console.log("wsEvt  start... ");
-			
 			//소켓이 열리면 동작
 			ws.onopen = function(data){
 				console.log("wsEvt  소켓이 열리면 초기화 세팅하기..");
@@ -50,7 +65,7 @@
 					if(jsonMsg.type == "getId"){
 						var sid = jsonMsg.sessionId != null ? jsonMsg.sessionId : "";
 						if(sid != ''){
-							$("#sessionId").val(sid); 
+							$("#sessionId").val(sid); // 세션id를 태그에 담아야 할까? 어차피 유저끼리 구분하는데?
 							// session User 등록 수행
 							sendUser('Create');
 						}
@@ -61,9 +76,9 @@
 		                // 메시지이므로 오른쪽으로 정렬하는 클래스를 처리하고 메시지를 출력.     
 		                // 비교하여 같지 않다면 타인이 발신한 메시지이므로 왼쪽으로 정렬하는 클래스를 처리하고 메시지를 출력
 						if(jsonMsg.sessionId == $("#sessionId").val()){
-							$("#chating").append("<p class='me'>나 :" + jsonMsg.msg + "</p>");	
+							$("#chatting").append("<p class='me'>나 :" + jsonMsg.msg + "</p>");	
 						}else{
-							$("#chating").append("<p class='others'>" + jsonMsg.userName + " :" + jsonMsg.msg + "</p>");
+							$("#chatting").append("<p class='others'>" + jsonMsg.userName + " :" + jsonMsg.msg + "</p>");
 						}
 					}else if(memberSave == true){
 						alert("userSave");
@@ -104,7 +119,7 @@
 			});
 		}
 		// User 등록  Message 전송       saveStatus --> Create / Delete
-		function sendUser(saveStatus, mem_num) {
+		function sendUser(saveStatus) {
 			
 			var userOption ={
 					type       : "userSave",
@@ -120,18 +135,19 @@
 			var option ={
 				type: "message",
 				sessionId : $("#sessionId").val(),
-				userName : $("#meName").val(),
+				userName : $("meName").val(),
 				yourName : $("#member_sub").val(),
-				msg : $("#chatting").val()
+				msg : $("#chat_msg").val()
 			}
-			// 자바스크립트의 값을 JSON 문자열로 변환
-			ws.send(JSON.stringify(option));
-			$('#chatting').val("");
+			// 자바스크립트의 값을 JSON 문자열로 변환 
+			// 보내면 무조건 소켓핸들러를 탐
+	        ws.send(JSON.stringify(option));
 			$.ajax(
 					{
 						url:"/insertChat",
-						data:{mem_num : mem_num, grade : grade, msg : $("#chatting").val()},
-						}
+						type:'post',
+						data:{mem_num : mem_num, grade : grade, msg : $("#chat_msg").val()}
 					}
 			);
+			$('#chat_msg').val("");
 		}

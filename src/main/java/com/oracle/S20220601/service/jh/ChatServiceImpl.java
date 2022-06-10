@@ -24,4 +24,11 @@ public class ChatServiceImpl implements ChatService {
 		return result;
 	}
 
+	@Override
+	public int deleteChat(int mem_num) {
+		int result = 0;
+		result = cd.deleteChat(mem_num);
+		return result;
+	}
+
 }

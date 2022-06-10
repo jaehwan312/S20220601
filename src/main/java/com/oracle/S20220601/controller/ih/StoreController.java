@@ -51,12 +51,12 @@ public class StoreController {
 	public String storeRead(int host_num, Model model) {
 		logger.info("StoreController storeRead Start..");
 		
-		
-		HostStore       storeRead  = storeService.storeRead(host_num);      //식당정보
-		List<HostPhoto> storePhoto = storePhotoService.storePhoto(host_num);//식당사진
-		List<Menu>      menuList   = menuSeivice.menuList(host_num);        //메뉴정보
-		Code      		foodcode   = codeService.foodcode(storeRead);	 	//음식종류
-		List<Review>    revList    = reviewService.revList(host_num);		//리뷰
+		HostStore       storeRead  	   = storeService.storeRead(host_num);      //식당정보
+		List<HostPhoto> storePhoto 	   = storePhotoService.storePhoto(host_num);//식당사진
+		List<Menu>      menuList   	   = menuSeivice.menuList(host_num);        //메뉴정보
+		Code      		foodcode   	   = codeService.foodcode(storeRead);	 	//음식종류
+		List<Review>    revList   	   = reviewService.revList(host_num);		//리뷰
+		HostStore 		storeRevcount  = storeService.storeRead(host_num);		//리뷰갯수
 		
 		if (revList.size() != 0) {
 			List<RevPhoto>	revPhotos  = reviewService.storeRevPhoto(revList);  //리뷰 사진
@@ -76,8 +76,11 @@ public class StoreController {
 	public String storeInsertForm(Model model, HttpServletRequest request) {
 		
 		logger.info("StoreController storeInsertForm Start..");
-		HostStore hostStore = new HostStore();
+		
+		//식당의 음식 코드 리스트
+		HostStore  hostStore 	= new HostStore();
 		List<Code> foodcodeList = codeService.foodcodeList(hostStore.getBcd_code());
+		
 		model.addAttribute("foodcodeList",foodcodeList);
 		
 		return "ih/storeInsertForm";
@@ -89,11 +92,12 @@ public class StoreController {
 							  MultipartFile host_photo1,       MultipartFile host_photo2,
 				              MultipartFile host_photo3,       MultipartFile host_photo4
 				              ) {
+		System.out.println("StoreController storeInsert Start..");
 		
-		//식당정보 등록
+		//식당정보 등록(DB저장)
 		int storeInsert = storeService.storeInsert(hostStore);
 		
-		//메뉴 등록
+		//등록할 메뉴 List 변환
 		List<Menu> menus = new ArrayList<Menu>();
 		for (int i = 0; i < menu.getMenu_list().size(); i++) {
 //			System.out.println("menu_name --> " + menu.getMenu_list().get(i).getMenu_name());	
@@ -101,10 +105,11 @@ public class StoreController {
 			menus.add(menu.getMenu_list().get(i));
 		}
 		
+		//메뉴 등록(DB저장)
 		int menuInsert = menuSeivice.menuInsertList(menus);
 		System.out.println("추가한 메뉴 갯수 --> " + menuInsert);
 		
-		//사진 업로드
+		//저장할 사진 Map저장 및 리스트 변환
 		Map<Integer, MultipartFile> storePhotoInsert     = new HashMap<Integer, MultipartFile>();
 		List<MultipartFile>			storePhotoInsertList = new ArrayList<MultipartFile>();
 		
@@ -115,7 +120,7 @@ public class StoreController {
 		storePhotoInsert.put(3, host_photo3);
 		storePhotoInsert.put(4, host_photo4);
 		
-		//업로드한 사진 갯수 확인
+		//업로드한 사진 갯수 확인 및 Null값 입력 방지
 		for (int i = 0; i < storePhotoInsert.size(); i++) {
 			if (storePhotoInsert.get(i).getSize() != 0) {
 				storePhotoInsertList.add(storePhotoInsert.get(i));
@@ -130,7 +135,8 @@ public class StoreController {
 		}
 		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
 		
-		//식당정보 등록 요청 확인 msg
+		
+		//식당정보 등록 요청 확인 msg 보냄
 		if (storeInsert > 0 && menuInsert > 0) {
 			model.addAttribute("msg", "등록 요청 성공");
 		}else {

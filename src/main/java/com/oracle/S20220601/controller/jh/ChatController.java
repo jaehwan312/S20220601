@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oracle.S20220601.model.Chat;
@@ -40,10 +41,15 @@ public class ChatController {
 		return name;
 	}
 	
-	@RequestMapping(value = "insertChat", method = RequestMethod.POST, produces = "application/text;charset=UTF-8")
+	@RequestMapping(value = "insertChat", method = RequestMethod.POST)
 	public void insertChat(Chat chat, Model model) {
-		System.out.println("나와라"+chat);
 		int result = cs.insertChat(chat);
+	}
+	
+	@RequestMapping(value = "deleteChat")
+	public void deleteChat(int mem_num, Model model) {
+		System.out.println("mem_num->"+mem_num);
+		int result = cs.deleteChat(mem_num);
 	}
 	
 }

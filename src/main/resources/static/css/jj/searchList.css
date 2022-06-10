@@ -1,0 +1,38 @@
+
+.mb50 {
+    margin-bottom: 50px;
+    display: block;
+}
+
+.mb100 {
+    margin-bottom: 100px;
+}
+
+.img-responsive,
+.thumbnail>img,
+.thumbnail a>img,
+.carousel-inner>.item>img,
+.carousel-inner>.item>a>img {
+    width: 100%
+}
+
+
+.theme-accent-color, .navbar-default.navbar-shrink #navbar-social a:hover, .navbar-default .nav li a:hover, .navbar-default .nav li a:focus {
+    color: #F22613 !important;
+}
+
+
+
+section h2.section-heading, .section-heading {
+    margin-top: 150px;
+    margin-bottom: 20px;
+    font-size: 48px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+
+/* FOOD MENU */
+.host-item {
+    margin-bottom: 15px;
+}

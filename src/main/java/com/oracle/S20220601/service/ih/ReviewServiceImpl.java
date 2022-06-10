@@ -16,7 +16,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Autowired
 	private ReviewDao reviewDao;
 	
-	@Override
+	@Override//리뷰내용
 	public List<Review> revList(int host_num) {
 
 		System.out.println("ReviewServiceImpl revList Start...");
@@ -25,7 +25,7 @@ public class ReviewServiceImpl implements ReviewService {
 		return revList;
 	}
 
-	@Override
+	@Override//리뷰사진
 	public List<RevPhoto> storeRevPhoto(List<Review> revList) {
 		
 		System.out.println("ReviewServiceImpl storeRevPhoto Start...");
@@ -34,20 +34,28 @@ public class ReviewServiceImpl implements ReviewService {
 		return storeRevPhoto;
 	}
 
-	@Override
+	@Override//리뷰삭제
 	public int storeUserRevDel(StoreReview review) {
+		System.out.println("ReviewServiceImpl storeUserRevDel Start...");
 		return reviewDao.storeUserRevDel(review);
 	}
 
-	@Override
+	@Override//리뷰카운트 업데이트
 	public int storeRevcount(int host_num) {
+		System.out.println("ReviewServiceImpl storeRevcount Start...");
 		return reviewDao.storeRevcount(host_num);
 	}
 
-	@Override
-	public int storeRevPointAvg(int host_num) {
-		// TODO 자동 생성된 메소드 스텁
+	@Override//식당 평점 업데이트
+	public float storeRevPointAvg(int host_num) {
+		System.out.println("ReviewServiceImpl storeRevPointAvg Start...");
 		return reviewDao.storeRevPointAvg(host_num);
+	}
+
+	@Override
+	public int storeUserRevInsert(StoreReview review) {
+		// TODO 자동 생성된 메소드 스텁
+		return 0;
 	}
 
 }
