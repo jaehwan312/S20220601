@@ -32,7 +32,7 @@
 	    	<div>
 				<input type="checkbox" style="float: right;" id="checkbox">
 	    	</div><br/><br/>
-	
+			
 	
 	    	
 	    	
@@ -148,11 +148,10 @@
 	    	<!-- 리뷰 시작  -->
 	    	<div>
 	    		<!-- 리뷰 등록 시작 -->
-	    		<form id="storeRevInsert" name="storeRevInsert" method="POST">
 			   		<label>
 							<img alt="업체사진" src="images/ih/스시호시카이.jpg"
 								 style="float: right;" width="100px;" height="100px;"><br/>
-							<b>홍길동</b>
+							<b>로그인한 계정:${mem_num }</b>
 			   		</label>
 			   		<label>
 			   			<textarea rows="4px;" cols="155px;" style="float: right;" id="content" name="content"></textarea>
@@ -162,7 +161,7 @@
 					</div>
 					<!-- 사진  시작-->
 					<div>
-						<div class="insertPhoto" >
+						<div class="insertPhoto">
 							<c:forEach begin="0" end="4" varStatus="i">
 			                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
 			                       	 👉 CLICK HERE!👈 
@@ -173,9 +172,10 @@
 	      				</div>
 					</div>
 					<!-- 사진 끝 -->
-					<button onclick="storeReviewInsert()" style="float: right;" class="btn btn-primary">리뷰등록</button>
+					<button onclick="storeReviewInsert(${store.host_num})" style="float: right;" class="btn btn-primary">리뷰등록</button>
 					<!-- 리뷰등록 끝 -->
-				</form><br/><br/><br/>
+					</div>
+				<br/><br/><br/>
 				<div>현재 리뷰<b  id="StoreRevCount">${store.rev_count }</b>개</div>
 				<c:forEach items="${revList }" var="user_rev" varStatus="u">
 				<h6 hidden=""><%=count = 0 %></h6>

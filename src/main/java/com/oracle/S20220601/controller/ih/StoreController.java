@@ -1,9 +1,12 @@
 package com.oracle.S20220601.controller.ih;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,7 +52,7 @@ public class StoreController {
 	private ReviewService     reviewService;
 	 
 	@GetMapping(value = "storeRead")//식당상세정보
-	public String storeRead(int host_num, Model model) {
+	public String storeRead(int host_num, Model model, HttpSession session, HttpServletRequest request) {
 		logger.info("StoreController storeRead Start..");
 		
 		HostStore       storeRead  	   = storeService.storeRead(host_num);      //식당정보
@@ -62,7 +66,10 @@ public class StoreController {
 			List<RevPhoto>	revPhotos  = reviewService.storeRevPhoto(revList);  //리뷰 사진
 			model.addAttribute("revPhotos", revPhotos);
 		}
-
+		session = request.getSession();
+		int mem_num = (int) session.getAttribute("mem_num");
+		System.out.println("현재 mem_num --> " + mem_num);
+		System.out.println();
 		model.addAttribute("store",storeRead);
 		model.addAttribute("storePhoto",storePhoto);
 		model.addAttribute("menuList",menuList);
@@ -88,10 +95,10 @@ public class StoreController {
 	
 	
 	@PostMapping(value = "storeInsert")//식당정보 insert
-	public String storeInsert(HostStore hostStore,Menu menu ,Model model, MultipartFile host_photo0,
-							  MultipartFile host_photo1,       MultipartFile host_photo2,
-				              MultipartFile host_photo3,       MultipartFile host_photo4
-				              ) {
+	public String storeInsert(HostStore     hostStore,       Menu menu ,   Model model,
+							  MultipartFile host_photo0,     MultipartFile host_photo1,       
+							  MultipartFile host_photo2,     MultipartFile host_photo3,      
+							  MultipartFile host_photo4,     HttpServletRequest request) throws Exception {
 		System.out.println("StoreController storeInsert Start..");
 		
 		//식당정보 등록(DB저장)
@@ -109,11 +116,12 @@ public class StoreController {
 		int menuInsert = menuSeivice.menuInsertList(menus);
 		System.out.println("추가한 메뉴 갯수 --> " + menuInsert);
 		
-		//저장할 사진 Map저장 및 리스트 변환
+		//저장할 사진 Map저장 및 리스트 변환 및 업로드
 		Map<Integer, MultipartFile> storePhotoInsert     = new HashMap<Integer, MultipartFile>();
 		List<MultipartFile>			storePhotoInsertList = new ArrayList<MultipartFile>();
-		
-		//사진 이름 put
+		String uploadPath = request.getSession().getServletContext().getRealPath("/images/ih/");
+	    
+	    //사진 이름 put
 		storePhotoInsert.put(0, host_photo0);
 		storePhotoInsert.put(1, host_photo1);
 		storePhotoInsert.put(2, host_photo2);
@@ -124,6 +132,7 @@ public class StoreController {
 		for (int i = 0; i < storePhotoInsert.size(); i++) {
 			if (storePhotoInsert.get(i).getSize() != 0) {
 				storePhotoInsertList.add(storePhotoInsert.get(i));
+				uploadFile(storePhotoInsert.get(i).getOriginalFilename(), storePhotoInsert.get(i).getBytes(), uploadPath);
 			}
 		}
 		
@@ -145,4 +154,27 @@ public class StoreController {
 		
 		return "ih/test"; //현재 리스트가 존재 하지 않으 므로 test으로 이동
 	}
+	
+	  private String uploadFile(String originalName, byte[] fileData , String uploadPath) 
+			  throws Exception {
+		 // universally unique identifier 
+	     UUID uid = UUID.randomUUID();
+	   // requestPath = requestPath + "/resources/image";
+	    System.out.println("uploadPath->"+uploadPath);
+	    // Directory 생성 
+		File fileDirectory = new File(uploadPath);
+		if (!fileDirectory.exists()) {
+			fileDirectory.mkdirs();
+			System.out.println("업로드용 폴더 생성 : " + uploadPath);
+		}
+	
+//	    String savedName = uid.toString() + "_" + originalName;
+		String savedName = originalName;
+	    logger.info("savedName: " + savedName);
+	    File target = new File(uploadPath, savedName);
+	//	    File target = new File(requestPath, savedName);
+	    FileCopyUtils.copy(fileData, target);   // org.springframework.util.FileCopyUtils
+	    // Service ---> DAO 연결 
+	    return savedName;
+	  }	
 }
