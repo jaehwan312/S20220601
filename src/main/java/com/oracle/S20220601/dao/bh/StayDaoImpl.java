@@ -11,6 +11,7 @@ import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.RevPhoto;
+import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.RoomPhoto;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
@@ -186,6 +187,19 @@ public class StayDaoImpl implements StayDao {
 		}
 		
 		return stayPhotoInsert;
+	}
+
+	@Override
+	public int roomInsert(Room room) {
+		System.out.println("StayDaoImpl roomInsert start...");
+		int roomInsert =0;
+		try {
+			roomInsert =session.insert("roomInsert", room);
+			roomInsert=1;
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl roomInsert Exception->"+e.getMessage());
+		}
+		return roomInsert;
 	}
 
 
