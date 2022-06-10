@@ -33,12 +33,12 @@
     		<i class="fa-solid fa-chevron-down" id="chat_hide" onclick="chatHide()"></i>
     		<div id="meName"></div>
     		<div id="member" class="member" style="display:none;"></div>
-			<i class="fa-solid fa-xmark" id="chat_out" onclick="chatOut()"></i>
+			<i class="fa-solid fa-xmark" id="chat_out" onclick="chatOut(${mem_num})"></i>
     	</div>
-    	<div id="chating" class="chating">
+    	<div id="chatting" class="chatting">
     	</div>
     	<div class="chat_input">
-    		<input class="chat_msg" id="chatting" placeholder="메시지를 입력하세요.">
+    		<input class="chat_msg" id="chat_msg" placeholder="메시지를 입력하세요.">
     		<button onclick="send(${mem_num}, ${grade})" id="sendBtn">
     			<i class="fa-solid fa-paper-plane"></i>
     		</button>

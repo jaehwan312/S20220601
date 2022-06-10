@@ -8,4 +8,6 @@ public interface ChatDao {
 
 	int insertChat(Chat chat);
 
+	int deleteChat(int mem_num);
+
 }

@@ -46,4 +46,10 @@ public class ChatController {
 		int result = cs.insertChat(chat);
 	}
 	
+	@RequestMapping(value = "deleteChat")
+	public void deleteChat(int mem_num, Model model) {
+		System.out.println("mem_num->"+mem_num);
+		int result = cs.deleteChat(mem_num);
+	}
+	
 }

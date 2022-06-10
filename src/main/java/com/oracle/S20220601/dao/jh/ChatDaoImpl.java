@@ -35,6 +35,17 @@ public class ChatDaoImpl implements ChatDao {
 		return result;
 	}
 
+	@Override
+	public int deleteChat(int mem_num) {
+		int result = 0;
+		try {
+			result = session.insert("jhDeleteChat", mem_num);
+		} catch (Exception e) {
+			System.out.println("ChatDaoImpl deleteChat Exception->"+e.getMessage());
+		}
+		return result;
+	}
+
 
 
 }
