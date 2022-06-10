@@ -1,7 +1,8 @@
-function storeReviewInsert(){
+function storeReviewInsert(e){
+	console.log(e)
 	
 	var HostNum       	 = document.getElementById('HostNum').value;
-	var userRevMemNum	 = 1;
+	var userRevMemNum	 = e;
 	
 	console.log("userRevNum --> " + userRevNum);
 	console.log("HostNum --> " + HostNum);
@@ -11,6 +12,7 @@ function storeReviewInsert(){
 	
 	console.log(del);
 	
+	/*
 	$.ajax({
 		type:'post',
 		url: "/storeRevInsert",
@@ -26,9 +28,9 @@ function storeReviewInsert(){
 					
 		}
 	});
-	
+	*/
 }
-
+/*
 //식당 평점 업데이트
 function StoreAvgUpdate(e){
 	var StoreAvg = document.getElementById('StoreAvg').innerText;
@@ -70,7 +72,7 @@ function StoreRevCount(e){
 	
 	
 }
-
+*/
 /*
 function userRevUpdate(e){
 	console.log('userRevUpdate' + e);

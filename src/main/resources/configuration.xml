@@ -34,7 +34,8 @@
 		<typeAlias alias="Host"          	type="com.oracle.S20220601.model.Host"/>
 		<!-- jj -->
 		<typeAlias alias="Search"     		type="com.oracle.S20220601.model.Search"/>
-		
+		<typeAlias alias="HostStorejj"     	type="com.oracle.S20220601.model.jj.HostStorejj"/>
+		<typeAlias alias="HostStayjj"     	type="com.oracle.S20220601.model.jj.HostStayjj"/>
 		
 		<!-- jh -->
 		<typeAlias alias="Chat"     		type="com.oracle.S20220601.model.Chat"/>

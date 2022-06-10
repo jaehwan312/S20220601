@@ -16,4 +16,26 @@
 	  	<insert id="jjPopInsert" parameterType="java.lang.String">
 	  		insert into search values(2, seq_search_num.nextval, #{keyword}, to_char(sysdate, 'yyyymmdd'),1)
 	  	</insert>
+	  	<!-- 맛집 검색 결과 조회 -->
+	  	<select id="jjHostStoreList" parameterType="Search" resultType="HostStorejj">
+	  		select h.*, s.*, m.min_price, m.max_price, (select c.name from code c where c.bcd=200 and c.mcd=s.food_type) type_name,
+	  		(select host_photo from hostphoto p where p.host_num = h.host_num and rownum=1) host_photo  
+	  		from host h, store s, (select host_num, min(menu_price) min_price, max(menu_price) max_price from menu group by host_num) m
+			where h.host_num = s.host_num and s.host_num = m.host_num
+			${keyword}
+			${min_price}
+			${total_food_type}
+			${order}
+	  	</select>
+	  	<!-- 맛집 검색 결과 조회 -->
+	  	<select id="jjHostStayList" parameterType="Search" resultType="HostStayjj">
+	  		select h.*, s.*, r.min_dayfee, r.max_dayfee, r.min_weekfee, r.max_weekfee, (select c.name from code c where c.bcd=300 and c.mcd=s.stay_type) type_name,
+	  		(select host_photo from hostphoto p where p.host_num = h.host_num and rownum=1) host_photo  
+	  		from host h, stay s, (select host_num, min(dayfee) min_dayfee, max(dayfee) max_dayfee, min(weekfee) min_weekfee, max(weekfee) max_weekfee from room group by host_num) r
+			where h.host_num = s.host_num and s.host_num = r.host_num
+			${keyword}
+			${min_price}
+			${total_stay_type}
+			${order}
+	  	</select>
    </mapper>

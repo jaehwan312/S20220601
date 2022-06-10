@@ -17,7 +17,7 @@ public class Profile {
 	private String phone;		// 연락처
 	private String birth;		// 생년월일
 	private String agree;		// 동의여부
-	private Date join_date;		// 가입날짜
+	private Date   join_date;		// 가입날짜
 	private String photo;		// 회원사진
 	private String grade;		// 등급
 	

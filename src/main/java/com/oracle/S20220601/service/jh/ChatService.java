@@ -8,5 +8,7 @@ public interface ChatService {
 
 	int insertChat(Chat chat);
 
+	int deleteChat(int mem_num);
+
 
 }

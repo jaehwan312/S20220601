@@ -26,4 +26,7 @@ public class HostStorejj {
 	private int min_price;		// 메뉴 최소가격
 	private int max_price;		// 메뉴 최대가격
 	private String type_name;	// 유형 이름
+	
+	// 맛집 사진
+	private String host_photo;
 }

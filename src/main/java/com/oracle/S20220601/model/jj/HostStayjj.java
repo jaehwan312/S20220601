@@ -28,5 +28,8 @@ public class HostStayjj {
 	private int max_dayfee;		 // 평일 최대가격
 	private int min_weekfee;	 // 주말 최소가격
 	private int max_weekfee;	 // 주말 최대가격
-	private int type_name;		 // 유형 이름
+	private String type_name;		 // 유형 이름
+	
+	// 숙소 사진
+	private String host_photo;
 }

@@ -112,6 +112,8 @@ public class SocketHandler extends TextWebSocketHandler {
 	     	    // 신규 등록
 	     	    if (saveStatus.equals("Create")) {
 		     	    sessionUserMap.put(sessionId, userName);
+		     	    System.out.println("여기여기여기@@@"+sessionId);
+		     	    System.out.println("여기여기여기@@@"+userName);
 		     	    System.out.println("==================================================");
 		     	    System.out.println("== sessionUserMap 저장내용 조회하여 arrayJsonUser에   ==");
 		     	    System.out.println("==  각각의 JSONObject jsonUser로  변환                           ==");
