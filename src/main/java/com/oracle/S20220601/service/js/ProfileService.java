@@ -20,6 +20,8 @@ public interface ProfileService {
 
 	String searchId(String name, String phone);
 
+	Profile selectProfile(int mem_num); //로그인한 회원 정보 가져오기
+
 
 
 

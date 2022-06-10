@@ -1,7 +1,6 @@
 package com.oracle.S20220601.controller.ih;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,13 +18,12 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Menu;
+import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.RevPhoto;
 import com.oracle.S20220601.model.Review;
 import com.oracle.S20220601.model.ih.HostStore;
@@ -34,6 +32,7 @@ import com.oracle.S20220601.service.ih.MenuSeivice;
 import com.oracle.S20220601.service.ih.ReviewService;
 import com.oracle.S20220601.service.ih.StorePhotoService;
 import com.oracle.S20220601.service.ih.StoreService;
+import com.oracle.S20220601.service.js.ProfileService;
 
 @Controller
 public class StoreController {
@@ -50,34 +49,35 @@ public class StoreController {
 	private MenuSeivice 	  menuSeivice;
 	@Autowired
 	private ReviewService     reviewService;
-	 
+	@Autowired
+	private ProfileService    profileService;
+	
 	@GetMapping(value = "storeRead")//식당상세정보
 	public String storeRead(int host_num, Model model, HttpSession session, HttpServletRequest request) {
 		logger.info("StoreController storeRead Start..");
-		session = request.getSession();
-		System.out.println("----------------------->> mem_num "+ session.getAttribute("mem_num"));
-		
+//		session = request.getSession();
+//		int mem_num = (int) session.getAttribute("mem_num");
+//		System.out.println("현재 로그인한 mem_num --> " + mem_num);
 		HostStore       storeRead  	   = storeService.storeRead(host_num);      //식당정보
 		List<HostPhoto> storePhoto 	   = storePhotoService.storePhoto(host_num);//식당사진
 		List<Menu>      menuList   	   = menuSeivice.menuList(host_num);        //메뉴정보
 		Code      		foodcode   	   = codeService.foodcode(storeRead);	 	//음식종류
 		List<Review>    revList   	   = reviewService.revList(host_num);		//리뷰
 		HostStore 		storeRevcount  = storeService.storeRead(host_num);		//리뷰갯수
-		
+//		Profile         profile        = profileService.selectProfile((int)session.getAttribute("mem_num"));
+		Profile         profile        = profileService.selectProfile(1);
 		if (revList.size() != 0) {
 			List<RevPhoto>	revPhotos  = reviewService.storeRevPhoto(revList);  //리뷰 사진
 			model.addAttribute("revPhotos", revPhotos);
 		}
-		session = request.getSession();
-		int mem_num = (int) session.getAttribute("mem_num");
-		System.out.println("현재 mem_num --> " + mem_num);
 		System.out.println();
 		model.addAttribute("store",storeRead);
 		model.addAttribute("storePhoto",storePhoto);
 		model.addAttribute("menuList",menuList);
 		model.addAttribute("foodcode",foodcode);
 		model.addAttribute("revList", revList);
-		
+		model.addAttribute("name", profile.getName());
+		model.addAttribute("mem_num", profile.getMem_num());
 		return "ih/storeRead";
 	}
 	

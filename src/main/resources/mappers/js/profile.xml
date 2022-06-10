@@ -21,4 +21,8 @@
 		SELECT id from PROFILE 
         WHERE name = #{name} and phone = #{phone}
 	</select>
+	<select id="selectProfile" resultType="Profile">
+		SELECT * from PROFILE 
+        WHERE mem_num = #{mem_num}
+	</select>
   </mapper>	

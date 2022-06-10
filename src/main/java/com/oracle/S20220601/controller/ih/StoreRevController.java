@@ -61,7 +61,7 @@ public class StoreRevController {
 	
 	@ResponseBody//식당 평점 업데이트
 	@RequestMapping(value = "/storeRevPointAvg", method = RequestMethod.POST)
-	public float storeRevPointAvg(@RequestParam int host_num) {
+	public float storeRevPointAvg(int host_num) {
 		
 		System.out.println("StoreRevController storeRevPointAvg Start...");
 		HostStore storeRevPointAvg  = storeService.storeRead(host_num);
@@ -72,63 +72,65 @@ public class StoreRevController {
 	
 	@ResponseBody
 	@PostMapping(value = "storeRevInsert")
-	public int storeRevInsert(StoreReview review, RevPhoto photo, HttpServletRequest request,MultipartFile store_rev_photo0,
+	public int storeRevInsert(@RequestBody StoreReview review, HttpServletRequest request,MultipartFile inputInfo0,
 							  MultipartFile store_rev_photo1,MultipartFile store_rev_photo2,
 							  MultipartFile store_rev_photo3,MultipartFile store_rev_photo4) throws Exception {
 		
 		System.out.println("StoreRevController storeRevInsert Start...");
-		int storeRevDel = reviewService.storeUserRevInsert(review);
 		
-		
-		Map<Integer, MultipartFile> storeRevPhotoInsert     = new HashMap<Integer, MultipartFile>();
-		List<MultipartFile>			storeRevPhotoInsertList = new ArrayList<MultipartFile>();
-		String uploadPath = request.getSession().getServletContext().getRealPath("/images/ih/");
-	    
-	    //사진 이름 put
-		storeRevPhotoInsert.put(0, store_rev_photo0);
-		storeRevPhotoInsert.put(1, store_rev_photo1);
-		storeRevPhotoInsert.put(2, store_rev_photo2);
-		storeRevPhotoInsert.put(3, store_rev_photo3);
-		storeRevPhotoInsert.put(4, store_rev_photo4);
-		
-		//업로드한 사진 갯수 확인 및 Null값 입력 방지
-		for (int i = 0; i < storeRevPhotoInsert.size(); i++) {
-			if (storeRevPhotoInsert.get(i).getSize() != 0) {
-				storeRevPhotoInsertList.add(storeRevPhotoInsert.get(i));
-				uploadFile(storeRevPhotoInsert.get(i).getOriginalFilename(), storeRevPhotoInsert.get(i).getBytes(), uploadPath);
-			}
-		}
-		
-		//사진 이름 DB저장
-		System.out.println("업로드할 사진 갯수 --> " + storeRevPhotoInsertList.size());
-		int uploadPhoto = 0;
-		if (storeRevPhotoInsertList.size() != 0) {
-			uploadPhoto = reviewService.storeRevPhotoInsert(storeRevPhotoInsertList);
-		}
-		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
+		System.out.println(review.getHost_num());
+		System.out.println(review.getMem_num());
+		System.out.println(review.getRev_content());
+		System.out.println(inputInfo0);
+//		Map<Integer, MultipartFile> storeRevPhotoInsert     = new HashMap<Integer, MultipartFile>();
+//		List<MultipartFile>			storeRevPhotoInsertList = new ArrayList<MultipartFile>();
+//		String uploadPath = request.getSession().getServletContext().getRealPath("/images/ih/");
+//	    
+//	    //사진 이름 put
+//		storeRevPhotoInsert.put(0, store_rev_photo0);
+//		storeRevPhotoInsert.put(1, store_rev_photo1);
+//		storeRevPhotoInsert.put(2, store_rev_photo2);
+//		storeRevPhotoInsert.put(3, store_rev_photo3);
+//		storeRevPhotoInsert.put(4, store_rev_photo4);
+//		
+//		//업로드한 사진 갯수 확인 및 Null값 입력 방지
+//		for (int i = 0; i < storeRevPhotoInsert.size(); i++) {
+//			if (storeRevPhotoInsert.get(i).getSize() != 0) {
+//				storeRevPhotoInsertList.add(storeRevPhotoInsert.get(i));
+//				uploadFile(storeRevPhotoInsert.get(i).getOriginalFilename(), storeRevPhotoInsert.get(i).getBytes(), uploadPath);
+//			}
+//		}
+//		
+//		//사진 이름 DB저장
+//		System.out.println("업로드할 사진 갯수 --> " + storeRevPhotoInsertList.size());
+//		int uploadPhoto = 0;
+//		if (storeRevPhotoInsertList.size() != 0) {
+//			uploadPhoto = reviewService.storeRevPhotoInsert(storeRevPhotoInsertList);
+//		}
+//		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
 		return 0;
 	}
 	
-	 private String uploadFile(String originalName, byte[] fileData , String uploadPath) 
-			  throws Exception {
-		 // universally unique identifier 
-	     UUID uid = UUID.randomUUID();
-	   // requestPath = requestPath + "/resources/image";
-	    System.out.println("uploadPath->"+uploadPath);
-	    // Directory 생성 
-		File fileDirectory = new File(uploadPath);
-		if (!fileDirectory.exists()) {
-			fileDirectory.mkdirs();
-			System.out.println("업로드용 폴더 생성 : " + uploadPath);
-		}
-	
-//	    String savedName = uid.toString() + "_" + originalName;
-		String savedName = originalName;
-	    logger.info("savedName: " + savedName);
-	    File target = new File(uploadPath, savedName);
-	//	    File target = new File(requestPath, savedName);
-	    FileCopyUtils.copy(fileData, target);   // org.springframework.util.FileCopyUtils
-	    // Service ---> DAO 연결 
-	    return savedName;
-	  }	
+//	 private String uploadFile(String originalName, byte[] fileData , String uploadPath) 
+//			  throws Exception {
+//		 // universally unique identifier 
+//	     UUID uid = UUID.randomUUID();
+//	   // requestPath = requestPath + "/resources/image";
+//	    System.out.println("uploadPath->"+uploadPath);
+//	    // Directory 생성 
+//		File fileDirectory = new File(uploadPath);
+//		if (!fileDirectory.exists()) {
+//			fileDirectory.mkdirs();
+//			System.out.println("업로드용 폴더 생성 : " + uploadPath);
+//		}
+//	
+////	    String savedName = uid.toString() + "_" + originalName;
+//		String savedName = originalName;
+//	    logger.info("savedName: " + savedName);
+//	    File target = new File(uploadPath, savedName);
+//	//	    File target = new File(requestPath, savedName);
+//	    FileCopyUtils.copy(fileData, target);   // org.springframework.util.FileCopyUtils
+//	    // Service ---> DAO 연결 
+//	    return savedName;
+//	  }	
 }

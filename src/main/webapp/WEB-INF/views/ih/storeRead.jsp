@@ -52,12 +52,12 @@
 			     <c:forEach items="${storePhoto }" var="photo" varStatus="i">
 				      <c:if test="${i.index == 0 }">
 				      	<div class="carousel-item active">
-							<img alt="업체사진" src="images/ih/${photo.host_photo}" class="d-block w-100" height="500px;">
+							<img alt="업체사진" src="images/ih/${photo.host_photo}" class="d-block w-100" style="height:500px;">
 			    		</div>	
 				      </c:if>
 				      <c:if test="${i.index != 0 }">
 				      	<div class="carousel-item">
-							<img alt="업체사진" src="images/ih/${photo.host_photo}" class="d-block w-100" height="500px;">
+							<img alt="업체사진" src="images/ih/${photo.host_photo}" class="d-block w-100" style="height:500px;">
 			    		</div>	
 				      </c:if>
 			     </c:forEach>
@@ -148,13 +148,14 @@
 	    	<!-- 리뷰 시작  -->
 	    	<div>
 	    		<!-- 리뷰 등록 시작 -->
+	    		<c:if test="${mem_num != null }">
 			   		<label>
 							<img alt="업체사진" src="images/ih/스시호시카이.jpg"
-								 style="float: right;" width="100px;" height="100px;"><br/>
-							<b>로그인한 계정:${mem_num }</b>
+								 style="float: right; border-radius: 50%;" width="100px;" height="100px;"><br/>
+							<b>작성자:${name }</b>
 			   		</label>
 			   		<label>
-			   			<textarea rows="4px;" cols="155px;" style="float: right;" id="content" name="content"></textarea>
+			   			<textarea rows="4px;" cols="135px;" style="float: right;" id="rev_content" name="rev_content"></textarea>
 			   		</label>
 					<div>
 						<div class="" id="preview"></div>
@@ -172,8 +173,9 @@
 	      				</div>
 					</div>
 					<!-- 사진 끝 -->
-					<button onclick="storeReviewInsert(${store.host_num})" style="float: right;" class="btn btn-primary">리뷰등록</button>
+					<button onclick="storeReviewInsert(${mem_num})" style="float: right;" class="btn btn-primary">리뷰등록</button>
 					<!-- 리뷰등록 끝 -->
+					</c:if>
 					</div>
 				<br/><br/><br/>
 				<div>현재 리뷰<b  id="StoreRevCount">${store.rev_count }</b>개</div>
