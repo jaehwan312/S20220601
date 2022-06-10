@@ -31,6 +31,45 @@ public class ProfileDaoImpl implements ProfileDao {
 		return cnt;
 	}
 
+	@Override
+	public int getMem_numSeq(){
+		return session.selectOne("getSeq");
+	}
+
+	@Override
+	public int insert(Profile profile) {
+		
+		return session.insert("insertProfile", profile);
+	}
+
+
+	@Override
+	public String searchId(String name, String phone) {
+		System.out.println("----------------- Dao SearchId Start --------------");			
+		return session.selectOne("searchId", name);
+	}
+
+	//로그인한 회원 정보 가져오기
+	@Override
+	public Profile selectProfile(int mem_num) {
+		System.out.println("----------------- Dao selectProfile Start --------------");
+		
+		Profile selectProfile = null;
+		
+		try {
+			selectProfile = session.selectOne("selectProfile",mem_num);
+		} catch (Exception e) {
+			System.out.println("selectProfile ErrorMessage --> " + e.getMessage());
+		}
+		
+		return selectProfile;
+	}
+	//로그인한 회원 정보 가져오기
+
+	
+
+
+
 
 	
 	

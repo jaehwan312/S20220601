@@ -6,4 +6,8 @@
 	<insert id="jhInsertChat" parameterType="Chat">
 		insert into chat (mem_num, msg_num, grade, msg_read, msg_time, msg) values (#{mem_num}, SEQ_MSG_NUM.nextval, #{grade}, 'n', to_char(sysdate,'hh24:mi:ss'), #{msg})
 	</insert>
+	
+	<delete id="jhDeleteChat" parameterType="int">
+		delete from chat where mem_num=#{mem_num}
+	</delete>
 </mapper>

@@ -40,22 +40,22 @@
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
     	<div style="text-align: center; margin-top: 100px;">
-    	<form action="stayInsert" method="post" style="text-align: center;" enctype="multipart/form-data">
+    	<form action="roomInsert" method="post" style="text-align: center;" enctype="multipart/form-data">
 			<div>
 				<label>
-					숙소명 :
+					객실명 :
 				</label>
 				<label>
-					<input type="text" name="host_name" required="required">
+					<input type="text" name="room_name" required="required">
 				</label><p/><p/>
 				<label>
-					업체주소 :
+					인원 :
 				</label>
 				<label>
-					<input type="text" name="host_addr" required="required">
+					<input type="number" name="allow" required="required" min="1" max="20">
 				</label><p/>
 
-			<div>
+		<%-- 	<div>
 				<div>
 					<div id="preview" ></div>
 				</div>
@@ -70,48 +70,27 @@
 		                </c:forEach>
       				</div>
 				</div>
-			</div>
+			</div> --%>
 			
 			
+				
 				<label>
-					숙소종류 :
+					객실 소개글 :
 				</label>
 				<label>
-					<select name="stay_type">
-	    				<c:forEach var="staycode" items="${codeList }">
-	    					<option value="${staycode.mcd}">${staycode.name }</option>
-	    				</c:forEach>
-	    			</select>
+					<input type="text" name="room_info" required="required">
 				</label><p/>
 				<label>
-					업체소개 :
+					평일 요금 :
 				</label>
 				<label>
-					<input type="text" name="host_info" required="required">
+					 <input  type="text"  name="dayfee" required="required" value="원" >
 				</label><p/>
 				<label>
-					편의시설 :
+					주말 요금 :
 				</label>
 				<label>
-					<input type="text" name="convenient" required="required">
-				</label><p/>
-				<label>
-					오시는길 :
-				</label>
-				<label>
-					<input type="text" name="way" required="required">
-				</label><p/>
-				<label>
-					체크인 가능시간 :
-				</label>
-				<label>
-					 <input autocomplete="off" type="time" class="form-control" name="checkin" id="stay_checkin"  >
-				</label><p/>
-				<label>
-					체크아웃 완료시간 :
-				</label>
-				<label>
-					<input type="time" step="60" class="form-control" name="checkout" id="stay_checkout" autocomplete="off">
+					<input type="text"   name="weekfee" required="required" value="원" >
 				</label><p/>
 			
 			

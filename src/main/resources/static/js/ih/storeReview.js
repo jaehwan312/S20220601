@@ -1,15 +1,38 @@
-function storeReviewInsert(){
+function storeReviewInsert(e){
+	console.log(e)
+	var formData = new FormData();
+	var host_num     = document.getElementById('HostNum').value;
+	var mem_num		 = e;
+	var rev_content  = document.getElementById('rev_content').value;
 	
-	var HostNum       	 = document.getElementById('HostNum').value;
-	var userRevMemNum	 = 1;
+	var inputInfo0  = document.getElementById('inputInfo0').value;
+	var inputInfo1  = document.getElementById('inputInfo1').value;
+	var inputInfo2  = document.getElementById('inputInfo2').value;
+	var inputInfo3  = document.getElementById('inputInfo3').value;
+	var inputInfo4  = document.getElementById('inputInfo4').value;
+	console.log("inputInfo0 	 --> " + inputInfo0);
 	
-	console.log("userRevNum --> " + userRevNum);
-	console.log("HostNum --> " + HostNum);
-	console.log("userRevMemNum --> " + userRevMemNum);
+	/*
+	var host_photo   = $('.host_photo');
 	
-	var del = {"rev_num" : userRevNum, "host_num": HostNum, "mem_num" : userRevMemNum}
+	for(var i = 0; i < host_photo.length; i++){
+		if(host_photo[i].files.lenght > 0){
+			for(var j = 0; host_photo[i].files[j].length; j++){
+				console.log("host_photo[i].files[j] --> " + host_photo[i].files[j]);
+				formData.append('file',$('.host_photo')[i].files[j]);
+			}
+		}
+	}
+	*/
 	
-	console.log(del);
+	console.log("mem_num 	 --> " + mem_num);
+	console.log("host_num	 --> " + host_num);
+	console.log("rev_content --> " + rev_content);
+	
+	var insert = {"host_num": host_num, "mem_num" : mem_num, "rev_content" : rev_content,"inputInfo0":inputInfo0}
+	
+	console.log(insert);
+	
 	
 	$.ajax({
 		type:'post',
@@ -19,16 +42,16 @@ function storeReviewInsert(){
 		dataType : 'json',
 		success: function(data){
 				if(data > 0) {
-					$('#storeRevList' + e).remove();
-					StoreRevCount(HostNum);
-					StoreAvgUpdate(HostNum);
+				//	$('#storeRevList' + e).add();
+					//StoreRevCount(HostNum);
+					//StoreAvgUpdate(HostNum);
 				}	
 					
 		}
 	});
 	
 }
-
+/*
 //식당 평점 업데이트
 function StoreAvgUpdate(e){
 	var StoreAvg = document.getElementById('StoreAvg').innerText;
@@ -70,7 +93,7 @@ function StoreRevCount(e){
 	
 	
 }
-
+*/
 /*
 function userRevUpdate(e){
 	console.log('userRevUpdate' + e);

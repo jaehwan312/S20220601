@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.S20220601.dao.ih.ReviewDao;
 import com.oracle.S20220601.model.RevPhoto;
@@ -54,6 +55,12 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public int storeUserRevInsert(StoreReview review) {
+		// TODO 자동 생성된 메소드 스텁
+		return 0;
+	}
+
+	@Override
+	public int storeRevPhotoInsert(List<MultipartFile> storeRevPhotoInsertList) {
 		// TODO 자동 생성된 메소드 스텁
 		return 0;
 	}

@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
+import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
 import com.oracle.S20220601.model.bh.Review1;
@@ -46,13 +47,13 @@ public class StayController {	//숙소 Controller
 		return "bh/stayRead";
 	}
 	
-	@RequestMapping(value = "stayinfo")
+	@RequestMapping(value = "stayInfo")
 	public String stayinfo(int host_num, Model model) {//업소 기본정보
 		logger.info("StayController stayinfo Start");
 		Stay       	stayinfo  		= ss.stayinfo(host_num);
 		model.addAttribute("stay", stayinfo);
 		
-		return "bh/roominfo";
+		return "bh/roomInfo";
 	}
 	
 	@RequestMapping(value = "reviewList")
@@ -79,22 +80,53 @@ public class StayController {	//숙소 Controller
 	public String stayInsert(HostStay hostStay,Model model,MultipartFile host_photo0,
 										  MultipartFile host_photo1,MultipartFile host_photo2,
 										  MultipartFile host_photo3,MultipartFile host_photo4) {
-		
 		int stayInsert = ss.stayInsert(hostStay);
+		
+		System.out.println(host_photo0.getOriginalFilename());
+		System.out.println(host_photo1.getOriginalFilename());
+		System.out.println(host_photo2.getOriginalFilename());
+		System.out.println(host_photo3.getOriginalFilename());
+		System.out.println(host_photo4.getOriginalFilename());
 		
 		Map<Integer, MultipartFile> stayPhotoInsert     = new HashMap<Integer, MultipartFile>();
 		List<MultipartFile>			stayPhotoInsertList = new ArrayList<MultipartFile>();
+		
+//		if(host_photo0.getOriginalFilename()!=null) {
+//			stayPhotoInsert.put(0, host_photo0);
+//		}
+//		if(host_photo1.getOriginalFilename()!=null) {
+//			stayPhotoInsert.put(1, host_photo1);
+//		}
+//		if(host_photo2.getOriginalFilename()!=null) {
+//			stayPhotoInsert.put(2, host_photo2);
+//		}
+//		if(host_photo3.getOriginalFilename()!=null) {
+//			stayPhotoInsert.put(3, host_photo3);
+//		}
+//		if((host_photo4.getOriginalFilename().length() > 0 ) ) {
+//			System.out.println("stayInsert host_photo4 무언가 있음  ");
+//			System.out.println("stayInsert host_photo4 !=null host_photo4.getOriginalFilename()->"+host_photo4.getOriginalFilename());
+//			stayPhotoInsert.put(4, host_photo4);
+//		} else {
+//			System.out.println("stayInsert host_photo4  NULL 또는 없음 ");
+//		}
+		
 		stayPhotoInsert.put(0, host_photo0);
-		stayPhotoInsert.put(0, host_photo1);
-		stayPhotoInsert.put(0, host_photo2);
-		stayPhotoInsert.put(0, host_photo3);
-		stayPhotoInsert.put(0, host_photo4);
+		stayPhotoInsert.put(1, host_photo1);
+		stayPhotoInsert.put(2, host_photo2);
+		stayPhotoInsert.put(3, host_photo3);
+		stayPhotoInsert.put(4, host_photo4);
+		
+		System.out.println("stayPhotoInsert.size()->"+stayPhotoInsert.size());
 		
 		for (int i = 0; i < stayPhotoInsert.size(); i++) {
+			System.out.println("start  stayPhotoInsert.size()->"+i);
 			if (stayPhotoInsert.get(i).getSize() != 0) {
-				stayPhotoInsertList.add(stayPhotoInsertList.get(i));
+				stayPhotoInsertList.add(stayPhotoInsert.get(i));
 			}
-		}
+			System.out.println("end  stayPhotoInsert.size()->"+i);
+	}
+		
 		
 		int uploadPhoto = 0;
 		System.out.println("업로드할 사진 갯수 --> " + stayPhotoInsertList.size());
@@ -111,6 +143,26 @@ public class StayController {	//숙소 Controller
 		}
 		
 		
-		return "ih/test";
+		return "bh/roomInsertForm";
+	}
+	
+	@GetMapping(value = "roomInsertForm")
+	
+	
+	
+	
+	@PostMapping(value = "roomInsert")
+	public String roomInsert( HttpServletRequest request,Room room,Model model,MultipartFile stay_photo0,
+			  MultipartFile stay_photo1,MultipartFile stay_photo2,
+			  MultipartFile stay_photo3,MultipartFile stay_photo4) {
+		int roomInsert = ss.roomInsert(room);
+		
+		if (roomInsert > 0) {
+			model.addAttribute("msg", "성공");
+		}else {
+			model.addAttribute("msg", "실패");
+		}
+		return "bh/test";
+		
 	}
 }
