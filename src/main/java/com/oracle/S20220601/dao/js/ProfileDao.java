@@ -10,6 +10,12 @@ public interface ProfileDao {
 
 	int    idCheck(String id);
 
+	int    insert(Profile profile);
+
+	int    getMem_numSeq();
+
+
+
 
 
 

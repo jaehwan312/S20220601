@@ -31,6 +31,22 @@ public class ProfileDaoImpl implements ProfileDao {
 		return cnt;
 	}
 
+	@Override
+	public int getMem_numSeq(){
+		return session.selectOne("getSeq");
+	}
+
+	@Override
+	public int insert(Profile profile) {
+		
+		return session.insert("insertProfile", profile);
+	}
+
+
+	
+
+
+
 
 	
 	

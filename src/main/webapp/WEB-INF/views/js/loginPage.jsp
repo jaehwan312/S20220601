@@ -59,9 +59,9 @@
 	    </button>
 	    <div style="margin-bottom: 10px; text-align: center;">
 		    <button type="button" class="btn btn-link btn-block" style="margin-top: 10px;"
-		            onclick="location.href=' '">아이디 찾기</button>
-		    <button type="button" class="btn btn-link btn-block" style="margin-top: 10px;"
-		            onclick="location.href=' '">비밀번호 찾기</button>
+		            onclick="location.href=' '">아이디/비밀번호 찾기</button>
+		  <!--   <button type="button" class="btn btn-link btn-block" style="margin-top: 10px;"
+		            onclick="location.href=' '">비밀번호 찾기</button> -->
 	    </div>
 	  	</form>	
 		</div>

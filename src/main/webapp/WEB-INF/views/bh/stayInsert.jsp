@@ -27,7 +27,7 @@
 		                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
 		                       	 사진 업로드
 								<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
-									onchange="previewFiles(${i.index })" accept="images/bh/*">
+									onchange="previewFiles(	)" accept="images/bh/*">
 		                    </label>
 		                </c:forEach>
       				</div>

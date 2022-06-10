@@ -7,10 +7,13 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/profile.css">
 <link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <title>제주 감수광</title>
+<style type="text/css">
+	.id_ok{color:#6A82FB; display: none; margin: 5px;}
+	.id_already{color:#FF0000; display: none; margin: 5px;}
+</style>
 </head>
 <script type="text/javascript">
 
@@ -160,30 +163,7 @@
 						
 				}; 
 			
-				
-			 /*  function joinRootEx(){	
-				  console.log("--------------------------222");
-						var f = $('#joinRoot');
-						var formData = f.serialize();
-							
-						$.ajax({
-							type : "POST",
-							url : "/signUpPage",
-							data : formData,
-							success: function(data){
-								if(data == "Y"){
-									alert("회원가입이 완료되었습니다.");	
-									location.href="js/loginPage"
-								}else{
-									alert("회원가입에 실패하였습니다.");
-								}
-							},
-							error: function(data){
-								alert("회원가입 에러 발생!");
-								console.log(data);
-							}
-						});
-					 };   */
+		
 	
 </script>
 <body>
@@ -193,25 +173,29 @@
 	<div class="row py-lg-5">
 			<div class="col-lg-5 col-md-5 mx-auto">
 				<h1 class="fw-bolder" style="text-align: center;">회원가입</h1>
-				<form class="row g-3" action="signUp" method="post" onsubmit="return join()">
+				<c:if test="${msg!=null}">${msg}</c:if>
+				<form class="row g-3" action="signUp" method="post" enctype="multipart/form-data">
 					<div style="text-align: center;">
 	    				<tr>
 							<td><img  id="preview" width="80%" style="width: 250px; height: 250px; margin: 10px;"/></td>
 						</tr>
 						<tr>
-							<td><input class="form-control" type="file" name="photo" id="photo"
-							onchange="readURL(this);" accept="image/png, image/jpeg, image/jpg"></td>
+							<td><input class="form-control" type="file" name="profilePhoto" id="photo"	
+							onchange="readURL(this);" accept="images/js/*"></td>
 						</tr>
 					</div>
-					<label for="userId2" class="form-label" style="margin-bottom: -10px;">아이디</label>
-					<div class="input-group mb-3">
-					  <input type="text" name="id" id="id" class="form-control" placeholder="아이디를 입력해주세요"  
-					  		 autocomplete="username" maxlength="10" required oninput = "checkId()" 
+					
+					
+					<div class="col-12" style="margin-bottom: 0px">
+						<label for="id" class="form-label">아이디</label>
+					    <input type="text" name="id" id="id" class="form-control" placeholder="아이디를 입력해주세요"  
+					  		 autocomplete="off" maxlength="10" oninput = "checkId()" 
 					  		 onkeyup="characterCheck(this)" onkeydown="characterCheck(this)">
-					   <span class="id_ok">사용 가능한 아이디입니다.</span>
-					   <span class="id_already">누군가 이 아이디를 사용중입니다.</span>
 					</div>
-					<div class="col-12" style="margin-top: 0;">
+					   <span class="id_ok" style="margin: 0px">사용 가능한 아이디입니다.</span>
+					   <span class="id_already" style="margin: 0px">누군가 이 아이디를 사용중입니다.</span>
+					
+					<div class="col-12">
 						<label for="passwd" class="form-label">비밀번호</label> 
 						<input type="password" name="pw" class="form-control" id="pw" placeholder="4~12자의 영문 대소문자와 숫자로만 입력" maxlength="12">
 					</div>
