@@ -148,34 +148,34 @@
 	    	<!-- 리뷰 시작  -->
 	    	<div>
 	    		<!-- 리뷰 등록 시작 -->
-	    		<c:if test="${mem_num != null }">
-			   		<label>
-							<img alt="업체사진" src="images/ih/스시호시카이.jpg"
-								 style="float: right; border-radius: 50%;" width="100px;" height="100px;"><br/>
-							<b>작성자:${name }</b>
-			   		</label>
-			   		<label>
-			   			<textarea rows="4px;" cols="135px;" style="float: right;" id="rev_content" name="rev_content"></textarea>
-			   		</label>
-					<div>
-						<div class="" id="preview"></div>
-					</div>
-					<!-- 사진  시작-->
-					<div>
-						<div class="insertPhoto">
-							<c:forEach begin="0" end="4" varStatus="i">
-			                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
-			                       	 👉 CLICK HERE!👈 
-									<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
-										onchange="previewFiles(${i.index })" accept="images/ih/*">
-			                    </label>
-			                </c:forEach>
-	      				</div>
-					</div>
-					<!-- 사진 끝 -->
-					<button onclick="storeReviewInsert(${mem_num})" style="float: right;" class="btn btn-primary">리뷰등록</button>
-					<!-- 리뷰등록 끝 -->
-					</c:if>
+		    		<c:if test="${mem_num != null }">
+				   		<label>
+								<img alt="업체사진" src="images/ih/스시호시카이.jpg"
+									 style="float: right; border-radius: 50%;" width="100px;" height="100px;"><br/>
+								<b>작성자:${name }</b>
+				   		</label>
+				   		<label>
+				   			<textarea rows="4px;" cols="135px;" style="float: right;" id="rev_content" name="rev_content"></textarea>
+				   		</label>
+						<div>
+							<div class="" id="preview"></div>
+						</div>
+						<!-- 사진  시작-->
+						<div>
+							<div class="insertPhoto">
+								<c:forEach begin="0" end="4" varStatus="i">
+				                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
+				                       	 👉 CLICK HERE!👈 
+										<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
+											onchange="previewFiles(${i.index })" accept="images/ih/*">
+				                    </label>
+				                </c:forEach>
+		      				</div>
+						</div>
+						<!-- 사진 끝 -->
+						<button type="submit" onclick="storeReviewInsert(${mem_num})" style="float: right;" class="btn btn-primary">리뷰등록</button>
+						<!-- 리뷰등록 끝 -->
+						</c:if>
 					</div>
 				<br/><br/><br/>
 				<div>현재 리뷰<b  id="StoreRevCount">${store.rev_count }</b>개</div>
