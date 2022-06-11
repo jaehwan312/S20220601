@@ -211,7 +211,7 @@
 						</p>
 						<p>
 							<span>체크아웃</span>${checkout } ${room1.checkout }
-						</p>
+						</p> 
 						<p>
 							<span>----------------------------------------</span>
 						</p>
