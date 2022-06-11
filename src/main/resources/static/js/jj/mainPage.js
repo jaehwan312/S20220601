@@ -5,10 +5,6 @@ $(document).ready(function() {
 				onLeave: function(origin, destination, direction){
 					var leavingSection = this;
 
-					//구역 1를 떠난 후
-					if(origin.index == 0 && direction =='down'){
-						alert("이벤트발생");
-					}
 				}
 			});
 		});

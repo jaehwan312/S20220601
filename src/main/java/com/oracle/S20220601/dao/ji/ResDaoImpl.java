@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
+import com.oracle.S20220601.model.ji.ResRoom;
 @Repository
 public class ResDaoImpl implements ResDao {
 	@Autowired
@@ -84,5 +86,34 @@ public class ResDaoImpl implements ResDao {
 		}
 		
 		return res1;
+	}
+
+	@Override
+//	예약페이지 예약한 객실 정보 가져오기
+	public ResRoom resRoom(Res res) {
+		ResRoom room1 = null;
+		System.out.println("ResDaoImpl resRoom Start....");
+		try {
+			room1 = session.selectOne("jiResRoom",res);
+			
+		} catch (Exception e) {
+			System.out.println("ResDaoImpl resRoom Exception -> "+e.getMessage());
+		}
+		
+		return room1;
+	}
+
+	@Override
+	public Profile profile(int mem_num) {
+		Profile prof = null;
+		System.out.println("ResDaoImpl profile Start....");
+		try {
+			prof = session.selectOne("jiProfile",mem_num);
+			
+		} catch (Exception e) {
+			System.out.println("ResDaoImpl profile Exception -> "+e.getMessage());
+		}
+		
+		return prof;
 	}
 }

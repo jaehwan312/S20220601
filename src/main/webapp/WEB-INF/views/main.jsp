@@ -86,7 +86,7 @@
 				<p class="title">맛집? 숙소?</p>
 				<h1 class="title">검색하러 감수광!</h1>
 			</div>
-			<form id="main_search_area" action="getSearchResult" method="post" autocomplete="off">
+			<form id="main_search_area" action="getSearchResult" autocomplete="off">
         	<div class="input-group input-group-lg" id="main_search">
         			<div class="input-group input-group-lg">
 				  		<input id="searchBar" name="keyword" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onkeyup="mainEnter()">
