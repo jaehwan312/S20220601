@@ -11,3 +11,20 @@ input[type="checkbox"] {
 .form-check-label {
 
 }
+.room-info{
+  float: right;
+  background-color: lightyellow;}
+  
+.info p strong, .total_price strong{
+    display: block !important;
+    position: relative;
+    margin-bottom: 6px;
+    font-size: 18px !important;
+    line-height: 1;
+    
+}
+.total_price li{
+	list-style-type: none;
+}
+
+}

@@ -86,4 +86,18 @@
 	AND res.res_num = #{res_num}
 	
 	</select>
+	<select id="jiResRoom" parameterType="Res" resultType="ResRoom">
+	select h.host_name, s.checkin, s.checkout, r.*
+	FROM host h
+	INNER JOIN stay s ON h.host_num = s.host_num
+	INNER JOIN room r ON s.host_num = r.host_num
+	where r.room_num = #{room_num}
+
+	</select>
+	
+	<select id="jiProfile" parameterType="int" resultType="Profile">
+	select name,phone,mem_num
+	from profile
+	where mem_num=#{mem_num}
+	</select>
 </mapper>

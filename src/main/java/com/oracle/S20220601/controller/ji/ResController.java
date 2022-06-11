@@ -1,5 +1,7 @@
 package com.oracle.S20220601.controller.ji;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -8,9 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
+import com.oracle.S20220601.model.ji.ResRoom;
 import com.oracle.S20220601.service.ji.ResService;
 
 
@@ -32,13 +37,56 @@ public class ResController {
 		return "ji/res";
 	}
 	//예약하기 화면
-	@RequestMapping("resContent")
-	public String resContent() {
+	@PostMapping("resContent")
+	public String resContent(Res res, Model model) {
+		/*res --> stayRead에서 받아온 정보 */
+		//프로필
+		Profile prof = rs.profile(mem_num);
+		//선택한 객실 정보
+		ResRoom room1 = rs.resRoom(res);
+		String start = res.getRes_start();
+		String end = res.getRes_end();
+		//숙박일 계산
+		long nday = 0;
+		try {
+			nday = diffOfDate(start,end);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		//날짜 형식 변환 함수
+		String checkin  ="";
+		String checkout  ="";
+		try {
+			checkin= diffOfDate2(start);
+			checkout = diffOfDate2(end);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		System.out.println("checkin -> "+checkin);
+		System.out.println("checkout -> "+checkout);
+		model.addAttribute("checkin",checkin);
+		model.addAttribute("checkout",checkout);
+		model.addAttribute("res",res);
+		model.addAttribute("nday",nday);	//숙박일
+		model.addAttribute("room1",room1);	//선택한 객실 정보
+		model.addAttribute("prof",prof);	//프로필
 		System.out.println("resContent Start...");
 		return "ji/resContent";
 	}
+	
+	
 	@RequestMapping("resContent2")
 	public String resContent2() {
+		String ret ="";
+		try {
+			ret = diffOfDate2("2022-06-08");//테스트
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		System.out.println("ret2 -> "+ret);
 		System.out.println("resContent2 Start...");
 		return "ji/resContent2";
 	}
@@ -83,5 +131,36 @@ public class ResController {
 		
 		return "ji/resList";
 	}
-	
+	//숙박일 구하기 몇박인지 String을 date로 변환  ex) 2박
+	public static long diffOfDate(String start, String end) throws Exception {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        
+        Date stDt = format.parse(start);
+        Date edDt = format.parse(end);
+        
+        long diff = edDt.getTime() - stDt.getTime();
+        long diffDays = diff / (24 * 60 * 60 * 1000);
+        
+        return diffDays;
+    }
+	//체크인 체크아웃 형식 변환	 ex) 2022-02-02 -> 02.02 월
+	public static String diffOfDate2(String date) throws Exception {
+		String strNewDtFormat="";
+		try {
+			String strDate = date;
+			SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat newDtFormat = new SimpleDateFormat("MM.dd E");
+			// String 타입을 Date 타입으로 변환
+			Date formatDate = dtFormat.parse(strDate);
+			// Date타입의 변수를 새롭게 지정한 포맷으로 변환
+			strNewDtFormat = newDtFormat.format(formatDate);
+			System.out.println("포맷 전 : " + strDate);
+			System.out.println("포맷 후 : " + strNewDtFormat);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return strNewDtFormat;
+	}
+
 }
