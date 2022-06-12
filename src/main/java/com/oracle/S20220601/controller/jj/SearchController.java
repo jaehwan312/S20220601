@@ -41,7 +41,7 @@ public class SearchController {
 		return "jj/searchList";
 	}
 	
-	@GetMapping(value = "ajaxStoreList")
+	@PostMapping(value = "ajaxStoreList")
 	@ResponseBody
 	public List<HostStorejj> ajaxStoreList(String keyword, Model model) {
 		Search search = new Search();
@@ -49,6 +49,17 @@ public class SearchController {
 		List<HostStorejj> store = ss.getHostStoreList(search);
 		
 		return store;
+		
+	}
+	
+	@PostMapping(value = "ajaxStayList")
+	@ResponseBody
+	public List<HostStayjj> ajaxStayList(String keyword, Model model) {
+		Search search = new Search();
+		search.setKeyword(keyword);
+		List<HostStayjj> stay = ss.getHostStayList(search);
+		
+		return stay;
 		
 	}
 }

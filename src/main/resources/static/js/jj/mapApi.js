@@ -6,6 +6,7 @@ $(function(){
 	$.ajax({
 		url: "/ajaxStoreList",
 		data: {'keyword': value},
+		type: 'post',
 		dataType: 'json',
 		success: function(data){
 			
@@ -72,6 +73,7 @@ $(function(){
 	$.ajax({
 		url: "/ajaxStayList",
 		data: {'keyword': value},
+		type: 'post',
 		dataType: 'json',
 		success: function(data){
 			
@@ -89,10 +91,10 @@ $(function(){
                  +"<br>"+item.type_name+"&ensp;찜한수 : "+item.like_count+"&ensp;리뷰 : "+item.rev_count
                  +"</p></div><div class='row'><div class='col-12'><div id='staymap"+index+"' style='width:100%;height:350px;'>"
                  +"</div></div></div></div>";
-       --부터          $('#storeSection').append(store);
+                 $('#staySection').append(stay);
                   
                   // 카카오 map API
-				   var mapContainer = document.getElementById('storemap'+index), // 지도를 표시할 div 
+				   var mapContainer = document.getElementById('staymap'+index), // 지도를 표시할 div 
 				       mapOption = {
 				           center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 				           level: 3 // 지도의 확대 레벨

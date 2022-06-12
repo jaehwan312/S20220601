@@ -45,8 +45,17 @@ section h2.section-heading, .section-heading {
 }
 
 
-/* FOOD MENU */
 .host-item {
     margin-bottom: 15px;
 }
 
+#details {
+	margin: 20px auto;
+	
+}
+
+#details_font {
+	text-align: left;
+	margin-top: 30px;
+	
+}
