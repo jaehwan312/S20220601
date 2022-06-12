@@ -72,7 +72,9 @@ public class StoreRevController {
 		return storeRevPointAvg.getHost_avg();
 	}
 	
-	@ResponseBody
+	
+	
+	@ResponseBody //식당리뷰 작성
 	@PostMapping(value = "storeRevInsert" )
 	public int storeRevInsert(StoreReview review, HttpServletRequest request, 
 							  MultipartHttpServletRequest  filelist,
@@ -83,6 +85,7 @@ public class StoreRevController {
 		
 		System.out.println(review.getHost_num());
 		System.out.println(review.getMem_num());
+		System.out.println(review.getRev_num());
 		System.out.println(review.getRev_content());
 		
 //		리뷰저장
@@ -90,27 +93,34 @@ public class StoreRevController {
 		
 		
 //		리뷰 사진 등록
-		Map<Integer, String> storePhotoInsert        = new HashMap<Integer, String>();
-		List<StoreReview>    storeRevPhotoInsertList = new ArrayList<StoreReview>();
-		Iterator<String>     iter				     = filelist.getFileNames(); 
-		MultipartFile    	 revFileName		     = null; 
-		String 				 fieldName               = "";
-		String 			  	 uploadPath  		     = request.getSession().getServletContext().getRealPath("/images/ih/");
+		Map<Integer,MultipartFile> RevPhotoInsert     = new HashMap<Integer, MultipartFile>();
+		List<StoreReview>    	   RevPhotoInsertList = new ArrayList<StoreReview>();
+		Iterator<String>           iter				  = filelist.getFileNames(); 
+		MultipartFile    	       revFileName		  = null; 
+		String 				 	   fieldName          = "";
+		String 			  	 	   uploadPath  		  = request.getSession().getServletContext().getRealPath("/images/ih/");
 	    int i = 0;
 	    while (iter.hasNext()) { 
 	        fieldName   = (String) iter.next(); //파일이름
 	        revFileName = filelist.getFile(fieldName);  //저장된 파일 객체
-	        storePhotoInsert.put(i, revFileName.getOriginalFilename());
+	        RevPhotoInsert.put(i, revFileName);
 			System.out.println("revFileName --> " + revFileName.getOriginalFilename());
+			++i;
 	    }
 		
+	  //업로드한 사진 갯수 확인 및 Null값 입력 방지
+  		for (int j = 0; j < RevPhotoInsert.size(); j++) {
+  			if (RevPhotoInsert.get(j).getSize() != 0) {
+  				RevPhotoInsertList.add(j,review);
+  				uploadFile(RevPhotoInsert.get(j).getOriginalFilename(), RevPhotoInsert.get(j).getBytes(), uploadPath);
+  			}
+  		}
+	    
 		//사진 이름 DB저장
-		System.out.println("업로드할 사진 갯수 --> " + storeRevPhotoInsertList.size());
+		System.out.println("업로드할 사진 갯수 --> " + RevPhotoInsertList.size());
 		int uploadPhoto = 0;
-		for (int j = 0; j < storeRevPhotoInsertList.length; j++) {
-			if (storeRevPhotoInsertList.size() != 0) {
-				uploadPhoto = reviewService.storeRevPhotoInsert(storeRevPhotoInsertList);
-			}
+		if (RevPhotoInsertList.size() != 0) {
+			uploadPhoto = reviewService.storeRevPhotoInsert(RevPhotoInsertList,RevPhotoInsert);
 		}
 		
 		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
@@ -118,7 +128,7 @@ public class StoreRevController {
 		return storeRevInsert;
 		}
 
-	 private String uploadFile(String originalName, byte[] fileData , String uploadPath) 
+		private String uploadFile(String originalName, byte[] fileData , String uploadPath) 
 			  throws Exception {
 		 // universally unique identifier 
 	     UUID uid = UUID.randomUUID();
@@ -131,13 +141,33 @@ public class StoreRevController {
 			System.out.println("업로드용 폴더 생성 : " + uploadPath);
 		}
 	
-//	    String savedName = uid.toString() + "_" + originalName;
+		//String savedName = uid.toString() + "_" + originalName;
 		String savedName = originalName;
 	    logger.info("savedName: " + savedName);
 	    File target = new File(uploadPath, savedName);
-	//	    File target = new File(requestPath, savedName);
+	    //File target = new File(requestPath, savedName);
 	    FileCopyUtils.copy(fileData, target);   // org.springframework.util.FileCopyUtils
 	    // Service ---> DAO 연결 
 	    return savedName;
 	  }	
+
+
+		
+		@ResponseBody //식당리뷰 답글 작성
+		@PostMapping(value = "hostRevInsert" )
+		public int hostRevInsert(@RequestBody Review review) {
+			
+			System.out.println("StoreRevController hostRevInsert Start...");
+			
+			System.out.println(review.getHost_num());
+			System.out.println(review.getMem_num());
+			System.out.println(review.getRev_num());
+			System.out.println(review.getRev_content());
+			
+//			리뷰저장
+			int hostRevInsert = reviewService.hostRevInsert(review);
+			
+			
+			return hostRevInsert;
+			}
 }

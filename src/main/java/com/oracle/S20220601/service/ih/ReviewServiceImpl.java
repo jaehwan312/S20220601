@@ -1,6 +1,7 @@
 package com.oracle.S20220601.service.ih;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,11 +63,18 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override//식당 리뷰 사진 등록
-	public int storeRevPhotoInsert(StoreReview[] storeRevPhotoInsertList) {
+	public int storeRevPhotoInsert(List<StoreReview> RevPhotoInsertList,Map<Integer, MultipartFile> RevPhotoInsert) {
 		
 		System.out.println("ReviewServiceImpl storeRevPhotoInsert Start...");
 		
-		return reviewDao.storeRevPhotoInsert(storeRevPhotoInsertList);
+		return reviewDao.storeRevPhotoInsert(RevPhotoInsertList,RevPhotoInsert);
+	}
+
+	@Override
+	public int hostRevInsert(Review review) {
+		System.out.println("ReviewServiceImpl hostRevInsert Start...");
+		
+		return reviewDao.hostRevInsert(review);
 	}
 
 }

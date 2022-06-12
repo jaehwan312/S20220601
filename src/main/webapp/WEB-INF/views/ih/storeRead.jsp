@@ -28,7 +28,7 @@
 	    <div  style="margin-top: 100px;">
 	    	<input type="hidden" value="${store.host_num}" id="HostNum">
 	    	<input type="hidden" value="${store.host_code}">
-	    	<input type="hidden" value="${store.mem_num}">
+	    	<input type="hidden" value="${store.mem_num}"  id="Mem_mem">
 	    	<div>
 				<input type="checkbox" style="float: right;" id="checkbox">
 	    	</div><br/><br/>
@@ -179,76 +179,73 @@
 					</div>
 				<br/><br/><br/>
 				<div>현재 리뷰<b  id="StoreRevCount">${store.rev_count }</b>개</div>
-				<c:forEach items="${revList }" var="user_rev" varStatus="u">
-				<h6 hidden=""><%=count = 0 %></h6>
-					<c:if test="${user_rev.re_step == 0 }">
-						<div id="storeRevList${user_rev.rev_num}">
-							<hr/>
-							<br/>
-							<div>
-								<div style="float: left;">
-									<img alt="업체사진" src="images/ih/스시호시카이.jpg"
-										 style="float: right; border-radius: 50%;" width="100px;" height="100px;" ><br/>
-									<b>작성자: ${user_rev.mem_num }</b>
-								</div>
-								<div>
-									<div>
-										<label ><b>${user_rev.rev_content }</b></label><br/>
-									</div>
-									<div>
-										<c:forEach items="${revPhotos }" var="photo">
-											<c:if test="${user_rev.rev_num == photo.rev_num }">
-											<label><img alt="" src="images/ih/${photo.rev_photo }" 
-													 style="float: left; margin-top: 80px;" width="100px;" height="100px;"></label>
-													<input type="image" value="images/ih/${photo.rev_photo }" hidden="" id="storeRevPhotoNum">
-											</c:if>
-										</c:forEach>
-									</div>
-								</div>
+				<div id="review">
+					<c:forEach items="${revList }" var="user_rev" varStatus="u">
+					<h6 hidden=""><%=count = 0 %></h6>
+						<c:if test="${user_rev.re_step == 0 }">
+							<div id="storeRevList${user_rev.rev_num}">
+								<hr/>
 								<br/>
 								<div>
-									<input type="hidden"  value="${user_rev.mem_num }" 
-										   id="userRevMemNum${user_rev.rev_num }"></input>
-									<input type="hidden"  value="${user_rev.rev_num }"
-										   id="userRevNum${user_rev.rev_num }"></input>
-									<button onclick="userRevPhotoUpdate(${user_rev.rev_num});" 
-											style="float: right;  " class="btn btn-primary" >리뷰사진수정</button>
-									<button onclick="userRevDelete(${user_rev.rev_num});" 
-											style="float: right;" class="btn btn-primary">리뷰사진삭제</button>
-									<button onclick="userRevUpdate(${user_rev.rev_num});" 
-											style="float: right; " class="btn btn-primary" >리뷰수정</button>
-									<button onclick="userRevDelete(${user_rev.rev_num});" 
-											style="float: right;" class="btn btn-primary">리뷰삭제</button>
-								</div>
-								<br/>
-			   				</div>
-			   				<div>
-								<c:forEach items="${revList }" var="step_rev" varStatus="h">
-										<c:if test="${user_rev.rev_num == step_rev.ref && step_rev.re_step == 1}">
-											<h6 hidden=""><%=count = 1 %></h6>
-											<br/>
-											<div style="margin-top: 50px;">
-												<label style="float: right; ">[답변] : ${step_rev.rev_content }</label>
-												<br/>
-												<button onclick="hostRevUpdate(${step_rev.rev_num});" style="float: right;" class="btn btn-primary">답변수정</button>
-												<button onclick="hostRevDelete(${step_rev.rev_num});" style="float: right;" class="btn btn-primary">답변삭제</button>
-											</div>
-										</c:if>
-								</c:forEach>
-								<c:if test="<%=count == 0 %>">
+									<div style="float: left;">
+										<img alt="업체사진" src="images/ih/스시호시카이.jpg"
+											 style="float: right; border-radius: 50%;" width="100px;" height="100px;" ><br/>
+										<b>작성자: ${user_rev.mem_num }</b>
+									</div>
+									<div>
+										<div>
+											<label ><b>${user_rev.rev_content }</b></label><br/>
+										</div>
+										<div>
+											<c:forEach items="${revPhotos }" var="photo">
+												<c:if test="${user_rev.rev_num == photo.rev_num }">
+												<label><img alt="" src="images/ih/${photo.rev_photo }" 
+														 style="float: left; margin-top: 80px;" width="100px;" height="100px;"></label>
+														<input type="image" value="images/ih/${photo.rev_photo }" hidden="" id="storeRevPhotoNum">
+												</c:if>
+											</c:forEach>
+										</div>
+									</div>
 									<br/>
-									<label>
-										<textarea rows="4px;" cols="155px;" style="float: right;"></textarea>
-									</label>
-									<button onclick="" style="float: right;" class="btn btn-primary">답변등록</button>
-								</c:if>
+									<div>
+										<input type="hidden"  value="${user_rev.mem_num }" 
+											   id="userRevMemNum${user_rev.rev_num }"></input>
+										<input type="hidden"  value="${user_rev.rev_num }"
+											   id="userRevNum${user_rev.rev_num }"></input>
+										<button onclick="userRevUpdate(${user_rev.rev_num});" 
+												style="float: right; " class="btn btn-primary" >리뷰수정</button>
+										<button onclick="userRevDelete(${user_rev.rev_num});" 
+												style="float: right;" class="btn btn-primary">리뷰삭제</button>
+									</div>
+									<br/>
+				   				</div>
+				   				<div>
+									<c:forEach items="${revList }" var="step_rev" varStatus="h">
+											<c:if test="${user_rev.rev_num == step_rev.ref && step_rev.re_step == 1}">
+												<h6 hidden=""><%=count = 1 %></h6>
+												<br/>
+												<div style="margin-top: 50px;">
+													<label style="float: right; ">[답변] : ${step_rev.rev_content }</label>
+													<br/>
+													<button onclick="hostRevUpdate(${step_rev.rev_num});" style="float: right;" class="btn btn-primary">답변수정</button>
+													<button onclick="hostRevDelete(${step_rev.rev_num});" style="float: right;" class="btn btn-primary">답변삭제</button>
+												</div>
+											</c:if>
+									</c:forEach>
+									<c:if test="<%=count == 0 %>">
+										<br/>
+										<label>
+											<textarea rows="4px;" cols="155px;" style="float: right;" id="host_rev_content" name="host_rev_content"></textarea>
+										</label>
+										<button onclick="hostRevInsert(${user_rev.rev_num})" style="float: right;" class="btn btn-primary">답변등록</button>
+									</c:if>
+								</div>
 							</div>
-						</div>
-						<br/>
-					</c:if>
-				</c:forEach>
+							<br/>
+						</c:if>
+					</c:forEach>
 	   		</div><!-- 리뷰 끝  -->
-    </div>
+	   	</div>
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>

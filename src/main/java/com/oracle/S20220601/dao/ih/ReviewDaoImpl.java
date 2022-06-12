@@ -1,10 +1,12 @@
 package com.oracle.S20220601.dao.ih;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.S20220601.model.RevPhoto;
 import com.oracle.S20220601.model.Review;
@@ -106,20 +108,36 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override//식당 리뷰 사진 등록
-	public int storeRevPhotoInsert(StoreReview[] photoList) {
+	public int storeRevPhotoInsert(List<StoreReview> RevPhotoInsertList,Map<Integer, MultipartFile> RevPhotoInsert) {
 		System.out.println("ReviewDaoImpl storeUserRevInsert Start...");
-		
 		int storeRevPhotoInsert = 0;
-		
+		int i = 0;
 		try {
-			for (StoreReview photo : photoList) {
+			for (StoreReview photo : RevPhotoInsertList) {
+				photo.setRev_photo(RevPhotoInsert.get(i).getOriginalFilename());
 				System.out.println(photo.getHost_num());
 				System.out.println(photo.getRev_photo());
 				storeRevPhotoInsert += session.insert("storeRevPhotoInsert",photo);
+				++i;
 			}
 		} catch (Exception e) {
 			System.out.println("ReviewDaoImpl storeRevPhotoInsert ErrorMessage --> " + e.getMessage());
 		}
-		return storeRevPhotoInsert;	}
+		return storeRevPhotoInsert;	
+		}
+
+	@Override
+	public int hostRevInsert(Review review) {
+		System.out.println("ReviewDaoImpl hostRevInsert Start...");
+		
+		int hostRevInsert = 0;
+		
+		try {
+			hostRevInsert = session.insert("hostRevInsert",review);
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl hostRevInsert ErrorMessage --> " + e.getMessage());
+		}
+		return hostRevInsert;
+	}
 
 }

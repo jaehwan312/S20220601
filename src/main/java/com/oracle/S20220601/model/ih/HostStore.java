@@ -8,9 +8,9 @@ import lombok.Setter;
 public class HostStore {
 	
 	// 공통
-	private int host_num;		// 업체 번호
+	private int    host_num;		// 업체 번호
 	//Host
-	private int mem_num;		// 회원 번호
+	private int    mem_num;		// 회원 번호
 	private String host_name;	// 업체명
 	private String host_addr;	// 업체 주소
 	private String host_info;	// 업체 소개

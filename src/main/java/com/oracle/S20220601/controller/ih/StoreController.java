@@ -101,10 +101,11 @@ public class StoreController {
 							  MultipartFile host_photo0,     MultipartFile host_photo1,       
 							  MultipartFile host_photo2,     MultipartFile host_photo3,      
 							  MultipartFile host_photo4,     HttpServletRequest request) throws Exception {
+		
 		System.out.println("StoreController storeInsert Start..");
 		
 		//식당정보 등록(DB저장)
-		int storeInsert = storeService.storeInsert(hostStore);
+		int storeInsert  = storeService.storeInsert(hostStore);
 		
 		//등록할 메뉴 List 변환
 		List<Menu> menus = new ArrayList<Menu>();
@@ -119,22 +120,23 @@ public class StoreController {
 		System.out.println("추가한 메뉴 갯수 --> " + menuInsert);
 		
 		//저장할 사진 Map저장 및 리스트 변환 및 업로드
-		Map<Integer, MultipartFile> storePhotoInsert     = new HashMap<Integer, MultipartFile>();
-		List<MultipartFile>			storePhotoInsertList = new ArrayList<MultipartFile>();
+		Map<Integer, MultipartFile> fileName     = new HashMap<Integer, MultipartFile>();
+		List<HostPhoto>			    storePhotoInsertList = new ArrayList<HostPhoto>();
+		HostPhoto                   hostPhoto            = new HostPhoto();
 		String uploadPath = request.getSession().getServletContext().getRealPath("/images/ih/");
 	    
 	    //사진 이름 put
-		storePhotoInsert.put(0, host_photo0);
-		storePhotoInsert.put(1, host_photo1);
-		storePhotoInsert.put(2, host_photo2);
-		storePhotoInsert.put(3, host_photo3);
-		storePhotoInsert.put(4, host_photo4);
-		
+		fileName.put(0, host_photo0);
+		fileName.put(1, host_photo1);
+		fileName.put(2, host_photo2);
+		fileName.put(3, host_photo3);
+		fileName.put(4, host_photo4);
+		System.out.println(hostStore.getHost_num());
 		//업로드한 사진 갯수 확인 및 Null값 입력 방지
-		for (int i = 0; i < storePhotoInsert.size(); i++) {
-			if (storePhotoInsert.get(i).getSize() != 0) {
-				storePhotoInsertList.add(storePhotoInsert.get(i));
-				uploadFile(storePhotoInsert.get(i).getOriginalFilename(), storePhotoInsert.get(i).getBytes(), uploadPath);
+		for (int i = 0; i < fileName.size(); i++) {
+			if (fileName.get(i).getSize() != 0) {
+				storePhotoInsertList.add(i, hostPhoto);
+				uploadFile(fileName.get(i).getOriginalFilename(), fileName.get(i).getBytes(), uploadPath);
 			}
 		}
 		
@@ -142,7 +144,7 @@ public class StoreController {
 		System.out.println("업로드할 사진 갯수 --> " + storePhotoInsertList.size());
 		int uploadPhoto = 0;
 		if (storePhotoInsertList.size() != 0) {
-			uploadPhoto = storePhotoService.storePhotoInsert(storePhotoInsertList);
+			uploadPhoto = storePhotoService.storePhotoInsert(storePhotoInsertList,fileName);
 		}
 		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
 		
