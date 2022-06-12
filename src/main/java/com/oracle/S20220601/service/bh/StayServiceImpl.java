@@ -89,9 +89,9 @@ public class StayServiceImpl implements StayService {
 	}
 
 	@Override
-	public int stayPhotoInsert(List<MultipartFile> file) {
+	public HostPhoto stayPhotoInsert(List<MultipartFile> file) {
 		System.out.println("StayServiceImpl stayPhotoInsert start...");
-		int stayPhotoInsert = sd.stayPhotoInsert(file);
+		HostPhoto stayPhotoInsert = sd.stayPhotoInsert(file);
 		return stayPhotoInsert;
 	}
 
@@ -100,6 +100,13 @@ public class StayServiceImpl implements StayService {
 		System.out.println("StayServiceImpl roomInsert start...");
 		int roomInsert = sd.roomInsert(room);
 		return roomInsert;
+	}
+
+	@Override
+	public int roomPhotoInsert(List<MultipartFile> roomfile) {
+		System.out.println("StayServiceImpl roomPhotoInsert start...");
+		int roomPhotoInsert = sd.roomPhotoInsert(roomfile);
+		return roomPhotoInsert;
 	}
 
 

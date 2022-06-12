@@ -24,8 +24,9 @@ public interface StayService {
 	Host 				hostreview(int host_num);
 	List<Code> 			codeList(int bcd_code);
 	int 				stayInsert(HostStay hostStay);
-	int 				stayPhotoInsert(List<MultipartFile> stayPhotoInsertList);
+	HostPhoto 				stayPhotoInsert(List<MultipartFile> stayPhotoInsertList);
 	int 				roomInsert(Room room);
+	int 				roomPhotoInsert(List<MultipartFile> roomPhotoInsertList);
 	
 }
 

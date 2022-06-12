@@ -24,7 +24,8 @@ public interface StayDao {
 	Host 				hostreview(int host_num);
 	List<Code> 			codeList(int bcd_code);
 	int 				stayInsert(HostStay hostStay);
-	int 				stayPhotoInsert(List<MultipartFile> file);
+	HostPhoto 				stayPhotoInsert(List<MultipartFile> file);
 	int 				roomInsert(Room room);
+	int 				roomPhotoInsert(List<MultipartFile> roomfile);
 	
 }
