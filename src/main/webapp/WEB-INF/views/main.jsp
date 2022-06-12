@@ -86,7 +86,7 @@
 				<p class="title">맛집? 숙소?</p>
 				<h1 class="title">검색하러 감수광!</h1>
 			</div>
-			<form id="main_search_area" action="getSearchResult" method="post" autocomplete="off">
+			<form id="main_search_area" action="getSearchResult" autocomplete="off">
         	<div class="input-group input-group-lg" id="main_search">
         			<div class="input-group input-group-lg">
 				  		<input id="searchBar" name="keyword" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onkeyup="mainEnter()">
@@ -209,7 +209,7 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 	<script src="js/jj/jquery.counterup.min.js"></script>
 	<script src="js/main.js" defer></script>
-    <script type="text/javascript" src="js/jj/mainPage.js"></script>
+    <script type="text/javascript" src="js/jj/mainPage.js" defer></script>
     <script type="text/javascript" src="js/jj/jquery.fullPage.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>

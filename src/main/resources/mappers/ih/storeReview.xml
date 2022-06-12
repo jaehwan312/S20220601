@@ -28,4 +28,15 @@
 	  	<update id="storeRevPointAvg" parameterType="int">
 	  		UPDATE host SET host_avg = (SELECT (round(NVL(sum(rev_point)/COUNT(*),0),1)) FROM review WHERE host_num = #{host_num} AND re_step = 0) WHERE host_num = #{host_num}
 	  	</update>
+	  	
+	  	<!-- 리뷰 작성  -->
+	  	<insert id="storeUserRevInsert" parameterType="StoreReview">
+	  		INSERT INTO review VALUES(#{host_num},SEQ_REV_NUM.nextval,#{mem_num},#{rev_content},sysdate,5,SEQ_REV_NUM.nextval,0)
+	  	</insert>
+	  	
+	  	<!-- 리뷰 사진 등록  -->
+	  	<insert id="storeRevPhotoInsert" parameterType="StoreReview">
+	  		INSERT INTO revphoto VALUES(#{host_num},SEQ_REV_NUM.CURRVAL,SEQ_HOST_PHOTO_NUM.nextval,#{rev_photo})
+	  	</insert>
+	  	
    </mapper>

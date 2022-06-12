@@ -65,7 +65,15 @@
 							${room.room_name }<p />
 							${room.dayfee }원<p />
 							${room.room_info }<p />
-							<button>예약</button>
+							<!-- 예약페이지에 가져갈 값 *날짜는 임의설정 , * 가격도 수정 해야함-->
+								<form action="resContent" method="post">
+									<input type="hidden" name="host_num" value="${room.host_num }">
+									<input type="hidden" name="room_num" value="${room.room_num }">
+									<input type="hidden" name="res_start" value="2022-06-26">
+									<input type="hidden" name="res_end" value="2022-06-30">
+									<input type="hidden" name="sale_price" value=${room.dayfee }>
+									<button type="submit">예약</button>
+								</form>
 				</div>
 				</div>
 				</div>

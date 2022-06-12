@@ -48,7 +48,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		return storeRevPhoto;
 	}
 
-	@Override
+	@Override//리뷰삭제
 	public int storeUserRevDel(StoreReview review) {
 		System.out.println("ReviewDaoImpl storeUserRevDel Start...");
 		int storeUserRevDel = 0;
@@ -62,7 +62,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		return storeUserRevDel;
 	}
 
-	@Override
+	@Override//리뷰카운트 업데이트
 	public int storeRevcount(int host_num) {
 		System.out.println("ReviewDaoImpl storeRevcount Start...");
 		
@@ -76,7 +76,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		return storeRevcount;
 	}
 
-	@Override
+	@Override//식당 평점  업데이트
 	public float storeRevPointAvg(int host_num) {
 		System.out.println("ReviewDaoImpl storeRevPointAvg Start...");
 		
@@ -89,5 +89,37 @@ public class ReviewDaoImpl implements ReviewDao {
 		}
 		return storeRevPointAvg;
 	}
+
+	@Override //식당 리뷰  작성
+	public int storeUserRevInsert(StoreReview review) {
+		
+		System.out.println("ReviewDaoImpl storeUserRevInsert Start...");
+		
+		int storeUserRevInsert = 0;
+		
+		try {
+			storeUserRevInsert = session.insert("storeUserRevInsert",review);
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl storeUserRevInsert ErrorMessage --> " + e.getMessage());
+		}
+		return storeUserRevInsert;
+	}
+
+	@Override//식당 리뷰 사진 등록
+	public int storeRevPhotoInsert(StoreReview[] photoList) {
+		System.out.println("ReviewDaoImpl storeUserRevInsert Start...");
+		
+		int storeRevPhotoInsert = 0;
+		
+		try {
+			for (StoreReview photo : photoList) {
+				System.out.println(photo.getHost_num());
+				System.out.println(photo.getRev_photo());
+				storeRevPhotoInsert += session.insert("storeRevPhotoInsert",photo);
+			}
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl storeRevPhotoInsert ErrorMessage --> " + e.getMessage());
+		}
+		return storeRevPhotoInsert;	}
 
 }

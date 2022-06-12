@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.S20220601.dao.ji.ResDao;
+import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
+import com.oracle.S20220601.model.ji.ResRoom;
 
 @Service
 public class ResServiceImpl implements ResService {
@@ -48,6 +50,20 @@ public class ResServiceImpl implements ResService {
 		System.out.println("ResServiceImpl resDetail Start...");
 		Res res1 = rd.resDetail(res_num);
 		return res1;
+	}
+
+	@Override
+	public ResRoom resRoom(Res res) {
+		System.out.println("ResServiceImpl resRoom Start...");
+		ResRoom room1 = rd.resRoom(res);
+		return room1;
+	}
+
+	@Override
+	public Profile profile(int mem_num) {
+		System.out.println("ResServiceImpl  profile Start...");
+		Profile prof = rd.profile(mem_num);
+		return prof;
 	}
 
 }

@@ -1,57 +1,65 @@
 function storeReviewInsert(e){
 	console.log(e)
-	var formData = new FormData();
+	
 	var host_num     = document.getElementById('HostNum').value;
 	var mem_num		 = e;
 	var rev_content  = document.getElementById('rev_content').value;
+	var formData 	 = new FormData();
 	
-	var inputInfo0  = document.getElementById('inputInfo0').value;
-	var inputInfo1  = document.getElementById('inputInfo1').value;
-	var inputInfo2  = document.getElementById('inputInfo2').value;
-	var inputInfo3  = document.getElementById('inputInfo3').value;
-	var inputInfo4  = document.getElementById('inputInfo4').value;
-	console.log("inputInfo0 	 --> " + inputInfo0);
+	//for(var i = 0; i < 5; i++){
+	//	formData.append("inputinfo" + i,('#inputInfo' + i)[0].files[0]);
+	//}
+	formData.append("inputinfo0",document.querySelector('input[type=file]#inputInfo0').files[0]);
+	formData.append("inputinfo1",document.querySelector('input[type=file]#inputInfo1').files[0]);
+	formData.append("inputinfo2",document.querySelector('input[type=file]#inputInfo2').files[0]);
+	formData.append("inputinfo3",document.querySelector('input[type=file]#inputInfo3').files[0]);
+	formData.append("inputinfo4",document.querySelector('input[type=file]#inputInfo4').files[0]);
 	
-	/*
-	var host_photo   = $('.host_photo');
+	formData.append("host_num",host_num);
+	formData.append("mem_num",mem_num);
+	formData.append("rev_content",rev_content);
 	
-	for(var i = 0; i < host_photo.length; i++){
-		if(host_photo[i].files.lenght > 0){
-			for(var j = 0; host_photo[i].files[j].length; j++){
-				console.log("host_photo[i].files[j] --> " + host_photo[i].files[j]);
-				formData.append('file',$('.host_photo')[i].files[j]);
-			}
-		}
-	}
-	*/
+	
+	
 	
 	console.log("mem_num 	 --> " + mem_num);
 	console.log("host_num	 --> " + host_num);
 	console.log("rev_content --> " + rev_content);
-	
-	var insert = {"host_num": host_num, "mem_num" : mem_num, "rev_content" : rev_content,"inputInfo0":inputInfo0}
-	
+	console.log("formData --> " + formData);
+	var insert = {"host_num": host_num,
+				  "mem_num" : mem_num, 
+				  "rev_content" : rev_content, 
+				  "formData":formData}
 	console.log(insert);
 	
-	
+	/*
+	console.log(formData.getAll('rev_content'));
+	console.log(formData.getAll('mem_num'));
+	console.log(formData.getAll('host_num'));
+	console.log(formData.getAll('inputinfo0'));
+	console.log(formData.getAll('inputinfo1'));
+	console.log(formData.getAll('inputinfo2'));
+	console.log(formData.getAll('inputinfo3'));
+	console.log(formData.getAll('inputinfo4'));
+	*/
 	$.ajax({
 		type:'post',
 		url: "/storeRevInsert",
-		data : JSON.stringify(insert),
-		contentType : 'application/json; charset=UTF-8',
-		dataType : 'json',
+		data : formData,
+		processData: false,
+		contentType: false,
 		success: function(data){
 				if(data > 0) {
 				//	$('#storeRevList' + e).add();
-					//StoreRevCount(HostNum);
-					//StoreAvgUpdate(HostNum);
+					StoreRevCount(host_num);
+					StoreAvgUpdate(host_num);
 				}	
 					
 		}
 	});
 	
 }
-/*
+
 //식당 평점 업데이트
 function StoreAvgUpdate(e){
 	var StoreAvg = document.getElementById('StoreAvg').innerText;
@@ -93,7 +101,7 @@ function StoreRevCount(e){
 	
 	
 }
-*/
+
 /*
 function userRevUpdate(e){
 	console.log('userRevUpdate' + e);

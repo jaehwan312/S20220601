@@ -1,14 +1,12 @@
 
+
+
 // fullpage 준비
 $(document).ready(function() {
 			$('#fullpage').fullpage({
 				onLeave: function(origin, destination, direction){
 					var leavingSection = this;
 
-					//구역 1를 떠난 후
-					if(origin.index == 0 && direction =='down'){
-						alert("이벤트발생");
-					}
 				}
 			});
 		});
@@ -34,7 +32,7 @@ $(function(){
 
 // 추천, 인기검색어 관련 함수(메인)
 function keyword_rel_main(e){
-	for(var i=0; i<keywords.length; i++){
+	for(var i=0; i<keywords_main.length; i++){
 		keywords_main.item(i).style.color="black";
 		keywords_main.item(i).style.borderBottom="none";
 	}

@@ -53,16 +53,20 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewDao.storeRevPointAvg(host_num);
 	}
 
-	@Override
+	@Override//식당 리뷰 작성
 	public int storeUserRevInsert(StoreReview review) {
-		// TODO 자동 생성된 메소드 스텁
-		return 0;
+		
+		System.out.println("ReviewServiceImpl storeUserRevInsert Start...");
+		
+		return reviewDao.storeUserRevInsert(review);
 	}
 
-	@Override
-	public int storeRevPhotoInsert(List<MultipartFile> storeRevPhotoInsertList) {
-		// TODO 자동 생성된 메소드 스텁
-		return 0;
+	@Override//식당 리뷰 사진 등록
+	public int storeRevPhotoInsert(StoreReview[] storeRevPhotoInsertList) {
+		
+		System.out.println("ReviewServiceImpl storeRevPhotoInsert Start...");
+		
+		return reviewDao.storeRevPhotoInsert(storeRevPhotoInsertList);
 	}
 
 }
