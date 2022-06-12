@@ -11,6 +11,7 @@ function previewFiles(e){
 			
 			reader.addEventListener("load", function () {
 				var image = new Image();
+				image.width = 200;
 		        image.height = 100;
 		        image.title = file.name;
 		        image.src = this.result;
@@ -28,28 +29,4 @@ function previewFiles(e){
 	
 	$('#labelInfo' + e).hide();
 	$('#labelInfo' + (e+1)).show();
-	$('#labelInfo' + e).remove();
 }
-
-$(function() {
-    $("#stay_checkin").timepicker({
-        timeFormat: 'HH:mm p',
-        interval: 60,
-        startTime: '00:00',
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true        
-    });
-});
-
-$(function() {
-    $("#stay_checkout").timepicker({
-        timeFormat: 'HH:mm p',
-        interval: 60,
-        startTime: '00:00',
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true        
-    });
-});
-

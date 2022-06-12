@@ -5,9 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-<link rel="stylesheet" href="css/template.css">
-<link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
 <link href="css/jj/searchList.css" rel="stylesheet">    
 
 <title>제주 감수광</title>
@@ -23,12 +20,154 @@
                   <div class="col-lg-12 text-center mb100">
                       <h2 class="section-heading">숙박<span class="theme-accent-color">&</span>맛집</h2>
                       <hr class="thin-hr">
-                      <h3 class="section-subheading secondary-font">'${keyword }'에 대한 검색 결과</h3>
+                      <h3 class="section-subheading secondary-font" style="margin-bottom: 30px;">'${keyword }'에 대한 검색 결과</h3>
+			      	  <button type="button" class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">상세 검색</button>
+						<div style="min-height: 120px;">
+						  <div class="collapse collapse-horizontal" id="collapseWidthExample">
+						    
+						    <div class="col-md-8" id="details"> 
+								
+								<div class="container" id="details_font">
+								  <div class="row">
+							  	   <div class="col-md-3">
+							  	   		<span>지역별</span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" value="" checked="">
+									      <span>
+									        모슬포/화순
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" value="" checked="">
+									      <span>
+									        서귀포시내
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" value="" checked="">
+									      <span>
+									        성산/우도
+									      </span>
+								    </div>
+								  </div>
+								  <div class="row">
+								  	<div class="col-md-3 offset-md-3">
+								  		<input class="form-check-input flex-shrink-0" type="checkbox" value="" checked="">
+									      <span>
+									        제주 시내
+									      </span>
+								  	</div>
+								  	<div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" value="" checked="">
+									      <span>
+									        중문단지
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" value="" checked="">
+									      <span>
+									        표선/성읍
+									      </span>
+								    </div>
+								  </div>
+								  <div class="row">
+								  	<div class="col-md-3 offset-md-3">
+								  		<input class="form-check-input flex-shrink-0" type="checkbox" value="" checked="">
+									      <span>
+									        한림/애월
+									      </span>
+								  	</div>
+								  	<div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" value="" checked="">
+									      <span>
+									        함덕/김녕
+									      </span>
+								    </div>
+								  </div>
+								</div>
+								
+								<div class="container" id="details_font">
+								  <div class="row">
+							  	   <div class="col-md-3">
+							  	   		<span>숙소가격</span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="">
+									      <span>
+									        만원 미만
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="">
+									      <span>
+									       1만 ~ 3만 미만
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="">
+									      <span>
+									        3만 ~ 5만 미만
+									      </span>
+								    </div>
+								  </div>
+								  <div class="row">
+								  	<div class="col-md-3 offset-md-3">
+								  		<input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="">
+									      <span>
+									        5만 이상
+									      </span>
+								  	</div>
+								</div>
+						    </div>
+						    
+						    
+						    <div class="container" id="details_font">
+								  <div class="row">
+							  	   <div class="col-md-3">
+							  	   		<span>맛집가격</span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="">
+									      <span>
+									        만원 미만
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="">
+									      <span>
+									       1만 ~ 3만 미만
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="">
+									      <span>
+									        3만 ~ 5만 미만
+									      </span>
+								    </div>
+								  </div>
+								  <div class="row">
+								  	<div class="col-md-3 offset-md-3">
+								  		<input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="">
+									      <span>
+									        5만 이상
+									      </span>
+								  	</div>
+								</div>
+						    </div>
+						    
+						    
+						    
+						    
+						  </div>
+						</div>
+					
+					
+						                      
                   </div>
               </div>
           </div>
-
-			
+		
 			          
            <div class="container">
 
@@ -60,9 +199,9 @@
                       </c:forEach> --%>
                   </div>
 
-                   <div class="col-md-6">
+                   <div class="col-md-6" id="staySection">
                       <h2 class="mb50"><span class="heading-font text-uppercase">숙박</span>${stayList.size() }건</h2>
-						<c:forEach var="stay" items="${stayList }">
+						<%-- <c:forEach var="stay" items="${stayList }">
                       	<div class="host-item">
                           <div class="row">
                               <div class="col-5">
@@ -84,7 +223,7 @@
 			               </div>
 			             </div>
 			            </div>
-                      </c:forEach>
+                      </c:forEach> --%>
                   </div>
               </div>
           </div>
@@ -92,7 +231,6 @@
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e16bda872939904d33c13e42c58e211b&libraries=services"></script>
 	<script type="text/javascript" src="js/jj/mapApi.js"></script>
 </body>

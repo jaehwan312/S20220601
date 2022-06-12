@@ -1,4 +1,6 @@
 
+
+
 // fullpage 준비
 $(document).ready(function() {
 			$('#fullpage').fullpage({
@@ -30,7 +32,7 @@ $(function(){
 
 // 추천, 인기검색어 관련 함수(메인)
 function keyword_rel_main(e){
-	for(var i=0; i<keywords.length; i++){
+	for(var i=0; i<keywords_main.length; i++){
 		keywords_main.item(i).style.color="black";
 		keywords_main.item(i).style.borderBottom="none";
 	}

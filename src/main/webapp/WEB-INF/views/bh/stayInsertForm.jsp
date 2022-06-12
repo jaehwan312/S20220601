@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link rel="stylesheet" href="css/main.css">
-<script type="text/javascript" src="js/ih/storePhoto.js"></script>
+<script type="text/javascript" src="js/bh/StayPhoto.js"></script>
    
    <style type="text/css">
    div img{
@@ -40,19 +40,20 @@
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
     	<div style="text-align: center; margin-top: 100px;">
+    	
     	<form action="stayInsert" method="post" style="text-align: center;" enctype="multipart/form-data">
 			<div>
 				<label>
 					숙소명 :
 				</label>
 				<label>
-					<input type="text" name="host_name" required="required">
+					<input type="text" name="host_name" required="required" placeholder="제주 NEW 호텔">
 				</label><p/><p/>
 				<label>
 					업체주소 :
 				</label>
 				<label>
-					<input type="text" name="host_addr" required="required">
+					<input type="text" name="host_addr" required="required" placeholder="도로명주소">
 				</label><p/>
 
 			<div>
@@ -87,31 +88,31 @@
 					업체소개 :
 				</label>
 				<label>
-					<input type="text" name="host_info" required="required">
+					<input type="text" name="host_info" required="required" placeholder="업체에대한 간략한소개 및 사장님 한마디">
 				</label><p/>
 				<label>
 					편의시설 :
 				</label>
 				<label>
-					<input type="text" name="convenient" required="required">
+					<input type="text" name="convenient" required="required" placeholder="ex)헬스장,바베큐장">
 				</label><p/>
 				<label>
 					오시는길 :
 				</label>
 				<label>
-					<input type="text" name="way" required="required">
+					<input type="text" name="way" required="required" placeholder="ex)공항에서 차로 10분 거리,버스 30번 이용후 xx정류장하차">
 				</label><p/>
 				<label>
 					체크인 가능시간 :
 				</label>
 				<label>
-					 <input autocomplete="off" type="time" class="form-control" name="checkin" id="stay_checkin"  >
+					 <input  type="time" class="form-control" name="checkin" id="stay_checkin" autocomplete="off" >
 				</label><p/>
 				<label>
 					체크아웃 완료시간 :
 				</label>
 				<label>
-					<input type="time" step="60" class="form-control" name="checkout" id="stay_checkout" autocomplete="off">
+					<input type="time"  class="form-control" name="checkout" id="stay_checkout" autocomplete="off">
 				</label><p/>
 			
 			
