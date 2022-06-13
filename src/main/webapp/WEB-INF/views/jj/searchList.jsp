@@ -14,7 +14,10 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-		 <input type="hidden" name="callKeyword" value="${keyword }" id="callKeyword">
+    	 <form action="" id="orderAjax">
+		 	<input type="hidden" name="keyword" value="${keyword }" id="callKeyword">
+		 	<input type="hidden" name="order" id="callOrder">
+		 </form>
           <div class="container">
               <div class="row">
                   <div class="col-lg-12 text-center mb100">
@@ -202,7 +205,7 @@
 
               <div class="row">
                   <div class="col-md-6" id="storeSection">
-                      <h2 class="mb50">맛집 ${storeList.size() }건</h2>
+                      <h2 class="mb50"></h2>
                       
                      <%--  <c:forEach var="store" items="${storeList }" varStatus="i">
                       	<div class="host-item">
@@ -236,7 +239,7 @@
                   </div>
 
                    <div class="col-md-6" id="staySection">
-                      <h2 class="mb50">숙박 ${stayList.size() }건</h2>
+                      <h2 class="mb50"></h2>
 						<%-- <c:forEach var="stay" items="${stayList }">
                       	<div class="host-item">
                           <div class="row">

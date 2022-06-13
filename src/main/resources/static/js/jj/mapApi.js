@@ -1,13 +1,14 @@
 
 // List 검색결과 로딩되면 맛집, 숙소에 대한 검색결과 리스트로 보여줌
 $(function(){
-	const url = new URL(window.location.href);
-	const urlParams = url.searchParams;
-	var value = urlParams.get('keyword'); 
+	//const url = new URL(window.location.href);
+	//const urlParams = url.searchParams;
+	//var value = urlParams.get('keyword'); 
+	var value = $('#orderAjax').serialize();
 	
 	$.ajax({
 		url: "/ajaxStoreList",
-		data: {'keyword': value},
+		data: value,
 		type: 'post',
 		dataType: 'json',
 		success: function(data){
@@ -74,6 +75,14 @@ $(function(){
                   
 			});
 			
+			// 맛집 건수 갱신
+			let storelength_first = $('#storeSection').find('.host-item:visible').length;
+			$('#storeSection').find('h2').text('맛집 '+storelength_first+'건');
+				
+			if(storelength_first==0){
+				$('#storeSection').hide();
+			}
+			
 			
 		}
 	});
@@ -81,7 +90,7 @@ $(function(){
 	
 	$.ajax({
 		url: "/ajaxStayList",
-		data: {'keyword': value},
+		data: value,
 		type: 'post',
 		dataType: 'json',
 		success: function(data){
@@ -142,9 +151,18 @@ $(function(){
                   
 			});
 			
+			// 숙소 건수 갱신
+			let staylength_first = $('#staySection').find('.host-item:visible').length;
+			$('#staySection').find('h2').text('숙소 '+staylength_first+'건');
+			
+			if(staylength_first==0){
+				$('#staySection').hide();
+			}
+			
 			
 		}
 	});
+	
 });
 
 

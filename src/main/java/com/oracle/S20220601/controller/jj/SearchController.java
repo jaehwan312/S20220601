@@ -24,39 +24,36 @@ public class SearchController {
 	
 	@GetMapping(value = "getSearchResult")
 	public String getSearchResult(Search search, Model model) {
-		System.out.println("@@@@@ search.getKeyword()-->"+search.getKeyword());
 		
 		// DB에 search Keyword 입력
 		ss.keywordInsert(search.getKeyword());
-		// 맛집 정보 조회
-		List<HostStorejj> store = ss.getHostStoreList(search);
-		// 숙소 정보 조회
-		List<HostStayjj> stay = ss.getHostStayList(search);
+//		// 맛집 정보 조회
+//		List<HostStorejj> store = ss.getHostStoreList(search);
+//		// 숙소 정보 조회
+//		List<HostStayjj> stay = ss.getHostStayList(search);
 		
 		
 		model.addAttribute("keyword", search.getKeyword());
-		model.addAttribute("storeList", store);
-		model.addAttribute("stayList", stay);
+//		model.addAttribute("storeList", store);
+//		model.addAttribute("stayList", stay);
 		
 		return "jj/searchList";
 	}
 	
+	//ajax용 맛집리스트 객체 리턴
 	@PostMapping(value = "ajaxStoreList")
 	@ResponseBody
-	public List<HostStorejj> ajaxStoreList(String keyword, Model model) {
-		Search search = new Search();
-		search.setKeyword(keyword);
+	public List<HostStorejj> ajaxStoreList(Search search, Model model) {
 		List<HostStorejj> store = ss.getHostStoreList(search);
 		
 		return store;
 		
 	}
 	
+	//ajax용 숙소리스트 객체 리턴
 	@PostMapping(value = "ajaxStayList")
 	@ResponseBody
-	public List<HostStayjj> ajaxStayList(String keyword, Model model) {
-		Search search = new Search();
-		search.setKeyword(keyword);
+	public List<HostStayjj> ajaxStayList(Search search, Model model) {
 		List<HostStayjj> stay = ss.getHostStayList(search);
 		
 		return stay;
