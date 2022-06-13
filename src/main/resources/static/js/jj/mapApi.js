@@ -1,3 +1,5 @@
+
+// List 검색결과 로딩되면 맛집, 숙소에 대한 검색결과 리스트로 보여줌
 $(function(){
 	const url = new URL(window.location.href);
 	const urlParams = url.searchParams;
@@ -17,8 +19,15 @@ $(function(){
 				store = 
 				"<div class='host-item'><div class='row'><div class='col-5'><div class='img-wrapper'>"
                  +"<img src='images/jj/"+item.host_photo+"' class='img-responsive'></div></div>"
-                 +"<div class='col-7'><h3>"+item.host_name+" <span class='theme-accent-color'> "
-                 +item.host_avg+"</span><button>지도</button></h3>"
+                 +"<div class='col-7'><h3>"+item.host_name+"</h3>"
+                 +"<div class='product__details__rating'>"
+			                            +"<i class='fa fa-star'></i>"
+			                            +"<i class='fa fa-star'></i>"
+			                            +"<i class='fa fa-star'></i>"
+			                            +"<i class='fa fa-star'></i>"
+			                            +"<i class='fa fa-star-half-o'></i>"
+			                           +"<span>"+item.host_avg+"</span>"
+			                       +"</div>"
                  +"<p>"+item.host_addr+"<br>가격대 : "+item.min_price+"~"+item.max_price
                  +"<br>"+item.type_name+"&ensp;찜한수 : "+item.like_count+"&ensp;리뷰 : "+item.rev_count
                  +"</p></div><div class='row'><div class='col-12'><div id='storemap"+index+"' style='width:100%;height:350px;'>"
@@ -87,7 +96,7 @@ $(function(){
                  +"<div class='col-7'><h3>"+item.host_name+" <span class='theme-accent-color'> "
                  +item.host_avg+"</span><button>지도</button></h3>"
                  +"<p>"+item.host_addr+"<br>평일비용 : "+item.min_dayfee+" ~ "+item.max_dayfee
-                 +"<br>주말비용 : "+item.min_weekfee+" ~ "+stay.max_weekfee
+                 +"<br>주말비용 : "+item.min_weekfee+" ~ "+item.max_weekfee
                  +"<br>"+item.type_name+"&ensp;찜한수 : "+item.like_count+"&ensp;리뷰 : "+item.rev_count
                  +"</p></div><div class='row'><div class='col-12'><div id='staymap"+index+"' style='width:100%;height:350px;'>"
                  +"</div></div></div></div>";
@@ -139,7 +148,53 @@ $(function(){
 });
 
 
-
+// 상세검색 체크박스로 검색조건 필터링
+function regioncheck(){
+	$('#storeSection').show();
+	$('#staySection').show();
+	$('.host-item').show();
+	
+	if(!document.getElementById('region0').checked){
+		$('.host-item').each(function(index, item){
+			if($(item).find('p').text().includes('모슬포')||$(item).find('p').text().includes('화순')){
+				$(item).hide();
+			}
+		});
+		
+	}
+	if(!document.getElementById('region1').checked){
+		$('.host-item').each(function(index, item){
+			if($(item).find('p').text().includes('서귀포')){
+				$(item).hide();
+			}
+		});
+		
+	}
+	if(!document.getElementById('region2').checked){
+		$('.host-item').each(function(index, item){
+			if($(item).find('p').text().includes('성산')||$(item).find('p').text().includes('우도')){
+				$(item).hide();
+			}
+		});
+		
+	}
+	
+	// 맛집 건수 갱신
+	var storelength = $('#storeSection').find('.host-item:visible').length;
+	$('#storeSection').find('h2').text('맛집 '+storelength+'건');
+	
+	// 숙소 건수 갱신
+	var staylength = $('#staySection').find('.host-item:visible').length;
+	$('#staySection').find('h2').text('숙소 '+staylength+'건');
+	
+	if(storelength==0){
+		$('#storeSection').hide();
+	}
+	
+	if(staylength==0){
+		$('#staySection').hide();
+	}
+}
 
 
 
