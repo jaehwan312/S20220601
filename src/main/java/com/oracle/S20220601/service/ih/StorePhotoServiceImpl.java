@@ -1,6 +1,7 @@
 package com.oracle.S20220601.service.ih;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,9 +26,9 @@ public class StorePhotoServiceImpl implements StorePhotoService{
 	}
 	
 	@Override//식당 사진 등록
-	public int storePhotoInsert(List<MultipartFile> filename) {
+	public int storePhotoInsert(List<HostPhoto> storePhotoInsertList, Map<Integer, MultipartFile> fileName) {
 		System.out.println("StorePhotoServiceImpl storePhotoInsert Start....");
-		int storePhotoInsert = storePhotoDao.storePhotoInsert(filename);
+		int storePhotoInsert = storePhotoDao.storePhotoInsert(storePhotoInsertList,fileName);
 		return storePhotoInsert;
 	}
 }

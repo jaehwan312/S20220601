@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
+import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
 import com.oracle.S20220601.model.bh.Review1;
@@ -23,7 +24,9 @@ public interface StayService {
 	Host 				hostreview(int host_num);
 	List<Code> 			codeList(int bcd_code);
 	int 				stayInsert(HostStay hostStay);
-	int 				stayPhotoInsert(List<MultipartFile> stayPhotoInsertList);
+	HostPhoto 				stayPhotoInsert(List<MultipartFile> stayPhotoInsertList);
+	int 				roomInsert(Room room);
+	int 				roomPhotoInsert(List<MultipartFile> roomPhotoInsertList);
 	
 }
 

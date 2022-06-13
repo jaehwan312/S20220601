@@ -8,13 +8,26 @@
     margin-bottom: 100px;
 }
 
-.img-responsive,
-.thumbnail>img,
-.thumbnail a>img,
-.carousel-inner>.item>img,
-.carousel-inner>.item>a>img {
-    width: 100%
+
+.img-wrapper {
+	position: relative;
+	width: 100%;
+	padding-bottom: 100%;
+	overflow: hidden;
 }
+
+.img-responsive {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(50, 50);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+    
+}
+
 
 
 .theme-accent-color, .navbar-default.navbar-shrink #navbar-social a:hover, .navbar-default .nav li a:hover, .navbar-default .nav li a:focus {
@@ -32,7 +45,17 @@ section h2.section-heading, .section-heading {
 }
 
 
-/* FOOD MENU */
 .host-item {
     margin-bottom: 15px;
+}
+
+#details {
+	margin: 20px auto;
+	
+}
+
+#details_font {
+	text-align: left;
+	margin-top: 30px;
+	
 }

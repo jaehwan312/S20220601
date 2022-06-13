@@ -11,6 +11,7 @@ import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.RevPhoto;
+import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.RoomPhoto;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
@@ -128,7 +129,7 @@ public class StayDaoImpl implements StayDao {
 		List<Code> codeList = null;
 		try {
 			codeList = session.selectList("bhcodeList", bcd_code);
-			System.out.println("StoreDaoImpl codeList codeList.size() --> " + codeList.size());
+			System.out.println("StayDaoImpl codeList codeList.size() --> " + codeList.size());
 		} catch (Exception e) {
 			System.out.println("StayDaoImpl codeList Exception->"+e.getMessage());
 		}
@@ -138,6 +139,7 @@ public class StayDaoImpl implements StayDao {
 	@Override
 	public int stayInsert(HostStay hostStay) {
 		System.out.println("StayDaoImpl stayInsert start...");
+		
 		int stayInsert =0;
 		hostStay.setMem_num(4);
 		
@@ -158,9 +160,11 @@ public class StayDaoImpl implements StayDao {
 //		System.out.println("hostStore.getCheckin() --> " + hostStay.getCheckin());
 //		System.out.println("hostStore.getCheckout() --> " + hostStay.getCheckout());
 //		System.out.println("hostStore.getStay_type() --> " + hostStay.getStay_type());
+		
 		try {
-			stayInsert =session.insert("stayInsert", hostStay);
-			stayInsert=1;
+			int result =session.insert("stayInsert", hostStay);
+			stayInsert = session.selectOne("bhgetHost_num",hostStay);
+			System.out.println("현재 host_num --> " + stayInsert);
 		} catch (Exception e) {
 			System.out.println("StayDaoImpl stayInsert Exception->"+e.getMessage());
 		}
@@ -168,17 +172,19 @@ public class StayDaoImpl implements StayDao {
 	}
 
 	@Override
-	public int stayPhotoInsert(List<MultipartFile> file) {
+	public HostPhoto stayPhotoInsert(List<MultipartFile> file) {
 		System.out.println("StayDaoImpl stayPhotoInsert start...");
-		int stayPhotoInsert =0;
-		
+		HostPhoto stayPhotoInsert =null;
+		int result = 0;
 		try {
 			for(MultipartFile multipartFile : file) {
 				if(multipartFile.getOriginalFilename() != null) {
-					stayPhotoInsert += session.insert("stayPhotoInsert",multipartFile.getOriginalFilename());
+					stayPhotoInsert = new HostPhoto();
+					stayPhotoInsert.setHost_photo(multipartFile.getOriginalFilename());
+					int host_num = session.selectOne("bhgetHost_num");
+					stayPhotoInsert.setHost_num(host_num);
+					result += session.insert("stayPhotoInsert", stayPhotoInsert);
 					System.out.println(multipartFile.getOriginalFilename());
-				}else {
-					return stayPhotoInsert;
 				}
 			}
 		} catch (Exception e) {
@@ -186,6 +192,45 @@ public class StayDaoImpl implements StayDao {
 		}
 		
 		return stayPhotoInsert;
+	}
+
+	@Override
+	public int roomInsert(Room room) {
+		System.out.println("StayDaoImpl roomInsert start...");
+		int roomInsert =0;
+		System.out.println(room.getHost_num());
+		try {
+			roomInsert =session.insert("roomInsert", room);
+			roomInsert=1;
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl roomInsert Exception->"+e.getMessage());
+		}
+		return roomInsert;
+	}
+
+	@Override
+	public int roomPhotoInsert(List<MultipartFile> roomfile) {
+		System.out.println("StayDaoImpl roomPhotoInsert start...");
+			int result = 0;
+			RoomPhoto roomPhoto = null;
+		try {
+			for(MultipartFile multipartFile : roomfile) {
+				if(multipartFile.getOriginalFilename() != null) {
+					roomPhoto = new RoomPhoto();
+					int host_num = session.selectOne("bhgetHost_num");
+					int room_num = session.selectOne("bhgetRoom_num");
+					roomPhoto.setHost_num(host_num);
+					roomPhoto.setRoom_num(room_num);
+					roomPhoto.setRoom_photo(multipartFile.getOriginalFilename());
+					result += session.insert("roomPhotoInsert", roomPhoto);
+					System.out.println(multipartFile.getOriginalFilename());
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl roomPhotoInsert Exception->"+e.getMessage());
+		}
+		
+		return result;
 	}
 
 

@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.S20220601.model.Search;
 import com.oracle.S20220601.model.jj.HostStayjj;
@@ -19,7 +22,7 @@ public class SearchController {
 	private SearchService ss;
 	
 	
-	@PostMapping(value = "getSearchResult")
+	@GetMapping(value = "getSearchResult")
 	public String getSearchResult(Search search, Model model) {
 		System.out.println("@@@@@ search.getKeyword()-->"+search.getKeyword());
 		
@@ -36,5 +39,27 @@ public class SearchController {
 		model.addAttribute("stayList", stay);
 		
 		return "jj/searchList";
+	}
+	
+	@PostMapping(value = "ajaxStoreList")
+	@ResponseBody
+	public List<HostStorejj> ajaxStoreList(String keyword, Model model) {
+		Search search = new Search();
+		search.setKeyword(keyword);
+		List<HostStorejj> store = ss.getHostStoreList(search);
+		
+		return store;
+		
+	}
+	
+	@PostMapping(value = "ajaxStayList")
+	@ResponseBody
+	public List<HostStayjj> ajaxStayList(String keyword, Model model) {
+		Search search = new Search();
+		search.setKeyword(keyword);
+		List<HostStayjj> stay = ss.getHostStayList(search);
+		
+		return stay;
+		
 	}
 }

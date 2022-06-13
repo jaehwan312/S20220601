@@ -10,5 +10,19 @@
   	<select id="idCheck" parameterType="String" resultType="int">
   		SELECT COUNT(id) FROM PROFILE WHERE id = #{id}
   	</select>
-  
+  	<select id="getSeq" parameterType="Profile" resultType="int">
+		SELECT SEQ_MEM_NUM.NEXTVAL FROM DUAL
+	</select>
+  	<insert id="insertProfile" parameterType="Profile">
+  		INSERT INTO PROFILE(mem_num, id, pw, name, gender, email, phone, birth, agree , join_date,photo, grade)
+					VALUES (#{mem_num}, #{id}, #{pw}, #{name},#{gender},#{email},#{phone},#{birth},#{agree},sysdate,#{photo},1)
+  	</insert>
+  	<select id="searchId" resultType="String">
+		SELECT id from PROFILE 
+        WHERE name = #{name} and phone = #{phone}
+	</select>
+	<select id="selectProfile" resultType="Profile">
+		SELECT * from PROFILE 
+        WHERE mem_num = #{mem_num}
+	</select>
   </mapper>	

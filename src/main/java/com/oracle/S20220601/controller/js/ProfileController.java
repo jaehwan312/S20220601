@@ -1,6 +1,8 @@
 package com.oracle.S20220601.controller.js;
 
+import java.io.File;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oracle.S20220601.model.Profile;
@@ -45,16 +48,15 @@ public class ProfileController {
 	// 로그인 눌렀을때 처리
 	@RequestMapping(value = "loginCheck")
 	public ModelAndView loginCheck(@ModelAttribute Profile profile, HttpSession session, HttpServletRequest request) {
-		System.out.println("----------- ProfileController Start -----------");
+		System.out.println("----------- ProfileController loginCheck Start -----------");
 		profile = ps.loginCheck(profile, session);
 		ModelAndView mav = new ModelAndView();
 		if (profile != null) { // 로그인 성공
 			session = request.getSession();
-			int mem_num = (int)session.getAttribute("mem_num");
-			String grade = (String) session.getAttribute("grade");
+			session.setAttribute("mem_num", session.getAttribute("mem_num"));
+			session.setAttribute("grade",  session.getAttribute("grade"));
 			mav.setViewName("redirect:main");
-			mav.addObject("mem_num", mem_num);
-			mav.addObject("grade", grade);
+			
 		} else {	        // 로그인 실패
 			mav.setViewName("js/loginPage");
 			mav.addObject("message", "error");
@@ -68,7 +70,7 @@ public class ProfileController {
 	public ModelAndView	logout(HttpSession session, ModelAndView mav) {
 		System.out.println("----------- logout Start -----------");
 		ps.logout(session);
-		mav.setViewName("js/loginPage");	// 로그아웃 적용된 메인페이지로 이동이 좋아보임
+		mav.setViewName("redirect:loginPage");	// 로그아웃 적용된 메인페이지로 이동이 좋아보임
 		mav.addObject("message", "logout");
 		return mav;
 	}
@@ -91,13 +93,56 @@ public class ProfileController {
 		return "js/signUpPage";
 	}
 	
-	//회원가입
-	@RequestMapping(value = "signUp")	
-	public String signUp() {
-		System.out.println("----------- signUp Start -----------");
-		return "main";
+	
+	//회원가입 로직 처리
+	@PostMapping(value = "signUp")
+	public String signUp(Profile profile, HttpServletRequest request, MultipartFile profilePhoto) throws Exception {
+		System.out.println("-------------signUp Start-------------	");
+		System.out.println(profilePhoto.getOriginalFilename());
+		
+		String uploadPath = request.getSession().getServletContext().getRealPath("/images/js/");
+		
+		logger.info("originalName: " + profilePhoto.getOriginalFilename());
+	    logger.info("size: " + profilePhoto.getSize());
+	    logger.info("contentType: " + profilePhoto.getContentType());
+	    logger.info("uploadPath: " + uploadPath);	    String savedName = uploadFile(profilePhoto.getOriginalFilename(), profilePhoto.getBytes(), uploadPath);
+        logger.info("savedName: " + savedName);
+	    
+        profile.setPhoto(savedName);
+	    
+		int result =  ps.signUp(profile);
+		
+		System.out.println(result);
+		if(result > 0) {
+			return "redirect:loginPage";
+		}else {
+			return "redirect:signUpPage";
+		}
+		
 	}
 	
+	  private String uploadFile(String originalName, byte[] fileData , String uploadPath) 
+			  throws Exception {
+		 // universally unique identifier 
+	     UUID uid = UUID.randomUUID();
+	   // requestPath = requestPath + "/resources/image";
+	    System.out.println("uploadPath->"+uploadPath);
+	    // Directory 생성 
+		File fileDirectory = new File(uploadPath);
+		if (!fileDirectory.exists()) {
+			fileDirectory.mkdirs();
+			System.out.println("업로드용 폴더 생성 : " + uploadPath);
+		}
+
+	    String savedName = uid.toString() + "_" + originalName;
+	    logger.info("savedName: " + savedName);
+	    File target = new File(uploadPath, savedName);
+//	    File target = new File(requestPath, savedName);
+	    FileCopyUtils.copy(fileData, target);   // org.springframework.util.FileCopyUtils
+	    // Service ---> DAO 연결 
+	    
+	    return savedName;
+	  }	
 	
 	@ResponseBody
 	@RequestMapping(value = "/emailAuth", method = RequestMethod.POST)
@@ -139,6 +184,25 @@ public class ProfileController {
 	public String checkPage() {
 		System.out.println("----------- signUpCheckPage Start -----------");
 		return "js/signUpCheckPage";
+	}
+	
+	// 아이디/비밀번호 찾기 페이지
+	@RequestMapping(value = "userSearch")
+	public String userSearch() {
+		System.out.println("----------------- userSearch Start --------------");
+		return "js/userSearch";
+		
+	}
+
+	// 아이디 찾기
+	@RequestMapping(value = "SearchId", method = RequestMethod.POST)
+	@ResponseBody
+	public String SearchId(@RequestParam("name") String name, @RequestParam String phone ) {
+		System.out.println("----------------- Controller SearchId Start --------------");
+		String result = ps.searchId(name, phone);
+		
+		return result;
+		
 	}
 	
 }
