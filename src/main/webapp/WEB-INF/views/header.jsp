@@ -102,7 +102,7 @@
         </a>
         
     </nav>
-    <%@ include file="jh/chatWindow.jsp" %>
+   	<%@ include file="jh/newRoom.jsp" %>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </body>
 </html>

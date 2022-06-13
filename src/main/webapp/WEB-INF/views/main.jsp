@@ -75,7 +75,7 @@
         <a href="#" class="hamburger">
             <i class="fa-solid fa-bars"></i>
         </a>
-        <%@ include file="jh/chatWindow.jsp" %>
+        <%@ include file="jh/newRoom.jsp" %>
     </nav>
 	<div id="fullpage">
 	<div class="section">

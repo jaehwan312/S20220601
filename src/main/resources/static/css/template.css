@@ -260,6 +260,7 @@ footer li {
   position: fixed;
   bottom: 75px;
   right: 75px;
+  z-index: 200;
 }
 
 #msg_icon {
@@ -271,60 +272,12 @@ footer li {
 
 .chat_window {
 	width: 259px;
-	height: 476px;
 	border-radius: 10px;
 	position: fixed;
 	bottom: 75px;
     right: 75px;
     overflow: hidden;
-    box-shadow: 1px 1px 40px 10px gray;
     display: none;
-}
-
-.chatAd_window {
-	width: 259px;
-	height: 476px;
-	border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 1px 1px 40px 10px gray;
-    margin: auto;
-}
-
-.chat_header {
-	height: 45px;
-	background-color: #4234f5;
-	object-fit: cover;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-}
-
-#chat_hide {
-	cursor: pointer;
-}
-
-#chat_out {
-	cursor: pointer;
-}
-
-.chatting {
-	height: 386px;
-	background-color: white;
-}
-
-.chat_input {
-	height: 45px;
-	background-color: #ebebeb;
-	object-fit: cover;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-}
-
-#sendBtn {
-	border: none;
-    outline: none;
-    background-color: #ebebeb;
 }
 
 /* ----- jh ----- */
