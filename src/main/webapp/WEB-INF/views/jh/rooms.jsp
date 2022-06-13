@@ -14,9 +14,28 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-		<button onclick="location.href='chatList'" style="cursor: pointer">
-			관리자 채팅리스트로 연결
-		</button>
+		    <table class = "table table-striped">
+		        <thead>
+		        <tr>
+		            <th>번호</th>
+		            <th>방 이름</th>
+		            <th>
+		            	${rooms }
+		            </th>
+		        </tr>
+		        </thead>
+		        <tbody>
+		        <c:forEach var="room" items="${rooms }">
+		        <tr>
+		            <td>${room.roomId}</td>
+		            <td>${room.mem_num }</td>
+		            <td>
+		                <a class = "btn btn-primary pull-right" href="/rooms/${room.roomId}" >입장</a>
+		            </td>
+		        </tr>
+		        </c:forEach>
+		        </tbody>
+		    </table>
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>
