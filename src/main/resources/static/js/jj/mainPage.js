@@ -232,9 +232,19 @@ function mainEnter(){
 
 //검색바에 입력한 값으로 검색 실행
 function inputSearch(){
-	document.getElementById('main_search_area').submit();
+	
+	var text = $('#searchBar').val();
+	var empty = /\s/g; 
+	if(text.replace(empty, "")==""){
+		alert('검색어를 입력해주세요');
+		$('#searchBar').val("");
+		$('#searchBar').focus();
+	}else{
+		document.getElementById('main_search_area').submit();
+	}
 	
 }
+
 
 // 추천,인기검색어 클릭할 경우 해당 값으로 검색 실행(메인)
 function selectSearch_main(id){
@@ -242,3 +252,4 @@ function selectSearch_main(id){
 	$('#searchBar').val(selectedKeyword);
 	document.getElementById('main_search_area').submit();
 }
+
