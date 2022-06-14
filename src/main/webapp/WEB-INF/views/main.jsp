@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="css/jj/jquery.fullPage.css" />
 <title>제주 감수광</title>
 <script src="https://kit.fontawesome.com/a42e829aa0.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 	<nav class="navbar">
@@ -25,8 +26,8 @@
         <div class="header_background"></div>
         <div class="navbar_search_alter"></div>
         <ul class="navbar_menu">
-            <li><a href="">숙박</a></li>
-            <li><a href="">맛집</a></li>
+            <li><a href="stayList">숙박</a></li>
+            <li><a href="storeList">맛집</a></li>
             <li class="dropdown">
                 <a href="" class="dropdown_button">고객센터</a>
                 <div class="dropdown_content" id="csc">
@@ -86,7 +87,7 @@
 				<p class="title">맛집? 숙소?</p>
 				<h1 class="title">검색하러 감수광!</h1>
 			</div>
-			<form id="main_search_area" action="getSearchResult" autocomplete="off">
+			<form id="main_search_area"  action="getSearchResult" autocomplete="off"  onsubmit="return checkIt()">
         	<div class="input-group input-group-lg" id="main_search">
         			<div class="input-group input-group-lg">
 				  		<input id="searchBar" name="keyword" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onkeyup="mainEnter()">
@@ -206,6 +207,12 @@
 	</div>
 	</div>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
+    <script>
+	
+
+	</script>
+    
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 	<script src="js/jj/jquery.counterup.min.js"></script>
 	<script src="js/main.js" defer></script>

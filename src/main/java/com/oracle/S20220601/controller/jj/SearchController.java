@@ -34,10 +34,30 @@ public class SearchController {
 		
 		
 		model.addAttribute("keyword", search.getKeyword());
+		// selection -> 0: 검색결과 리스트 둘다 포함, 1: 숙소만 포함, 2: 맛집만 포함
+		model.addAttribute("selection", "0");
 //		model.addAttribute("storeList", store);
 //		model.addAttribute("stayList", stay);
 		
 		return "jj/searchList";
+	}
+	
+	@GetMapping(value = "stayList")
+	public String stayList(Model model) {
+		// selection -> 0: 검색결과 리스트 둘다 포함, 1: 숙소만 포함, 2: 맛집만 포함
+		model.addAttribute("selection", "1");
+		
+		return "jj/searchList";
+		
+	}
+	
+	@GetMapping(value = "storeList")
+	public String storeList(Model model) {
+		// selection -> 0: 검색결과 리스트 둘다 포함, 1: 숙소만 포함, 2: 맛집만 포함
+		model.addAttribute("selection", "2");
+		
+		return "jj/searchList";
+		
 	}
 	
 	//ajax용 맛집리스트 객체 리턴
@@ -59,4 +79,5 @@ public class SearchController {
 		return stay;
 		
 	}
+	
 }
