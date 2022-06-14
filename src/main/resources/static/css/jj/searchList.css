@@ -60,6 +60,10 @@ section h2.section-heading, .section-heading {
 	
 }
 
-#storeSection, #staySection {
+#storeSection, #staySection, #emptySection {
 	margin: 0 auto;	
+}
+
+#emptySection {
+	display: none;
 }

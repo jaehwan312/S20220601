@@ -265,6 +265,9 @@
 			            </div>
                       </c:forEach> --%>
                   </div>
+                  <div class="col-md-6" id="emptySection">
+                      <h2 class="mb50">검색 결과가 없습니다</h2>
+                  </div>
               </div>
           </div>
           </div>

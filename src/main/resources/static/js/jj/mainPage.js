@@ -4,18 +4,29 @@
 // fullpage 준비
 $(document).ready(function() {
 			$('#fullpage').fullpage({
-				onLeave: function(origin, destination, direction){
-					var leavingSection = this;
-
+				'afterLoad': function (anchorLink, index) {
+					if (index == 2){
+						$('.counter').show();
+						$('.substitute').hide();
+						$('.counter').counterUp({
+						    delay: 10,
+						    time: 2000
+						});	
+					}
+				},	
+		
+				// 페이지 이동할 때
+				'onLeave' : function (index, nextIndex, direction){
+					if (index == 2 && direction == 'down'){
+						$('.counter').attr('class','counte');
+					} else if (index == 2 && direction == 'up'){
+						$('.counter').attr('class','counte');
+					}
 				}
 			});
 		});
 
-// 메인화면 숫자 카운팅효과
- $('.counter').counterUp({
-    delay: 10,
-    time: 2000
-});		
+
 
 // 메인페이지에서 검색바 헤더에서 숨기기
 $(function(){

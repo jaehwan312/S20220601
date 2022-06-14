@@ -123,6 +123,7 @@
                     <div class="fact-item bg-light rounded text-center h-100 p-5">
                         <i class="fa fa-utensils fa-4x text-primary mb-4"></i>
                         <p class="mb-2">등록된 맛집</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="substitute">0</span></h1>
                         <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">50</span></h1>
                     </div>
                 </div>
@@ -130,6 +131,7 @@
                     <div class="fact-item bg-light rounded text-center h-100 p-5">
                         <i class="fa fa-hotel fa-4x text-primary mb-4"></i>
                         <p class="mb-2">등록된 숙소</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="substitute">0</span></h1>
                         <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">175</span></h1>
                     </div>
                 </div>
@@ -137,6 +139,7 @@
                     <div class="fact-item bg-light rounded text-center h-100 p-5">
                         <i class="fa fa-clock fa-4x text-primary mb-4"></i>
                         <p class="mb-2">진행된 예약</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="substitute">0</span></h1>
                         <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">135</span></h1>
                     </div>
                 </div>
@@ -144,6 +147,7 @@
                     <div class="fact-item bg-light rounded text-center h-100 p-5">
                     	<i class="fa fa-file-pen fa-4x text-primary mb-4"></i>
                         <p class="mb-2">작성된 리뷰 수</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="substitute">0</span></h1>
                         <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">9375</span></h1>
                     </div>
                 </div>

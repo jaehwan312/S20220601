@@ -215,6 +215,9 @@ a {
 	cursor: pointer;
 }
 
+.counter {
+	display: none;
+}
 
 @media screen and (max-width: 768px) {
     .navbar {
