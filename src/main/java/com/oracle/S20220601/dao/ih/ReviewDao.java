@@ -17,5 +17,6 @@ public interface ReviewDao {
 	float           storeRevPointAvg(int host_num);			     //식당 평점  업데이트
 	int             storeUserRevInsert(StoreReview review);      //식당 리뷰  작성
 	int             storeRevPhotoInsert(List<StoreReview> RevPhotoInsertList, Map<Integer, MultipartFile> RevPhotoInsert); //식당 리뷰 사진 등록
-	int             hostRevInsert(Review review);			 //식당 리뷰 답변 작성
+	int             hostRevInsert(Review review);				 //식당 리뷰 답변 작성
+	int 			hostRevDelete(Review review); 				 //식당 리뷰 답변 삭제
 }

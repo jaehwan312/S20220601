@@ -59,3 +59,7 @@ section h2.section-heading, .section-heading {
 	margin-top: 30px;
 	
 }
+
+#storeSection, #staySection {
+	margin: 0 auto;	
+}

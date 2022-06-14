@@ -39,19 +39,11 @@ public class StoreController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(StoreController.class);
 	
-	@Autowired
-	private StoreService      storeService;
-	@Autowired
-	private CodeService       codeService;
-	@Autowired
-	private StorePhotoService storePhotoService;
-	@Autowired
-	private MenuSeivice 	  menuSeivice;
-	@Autowired
-	private ReviewService     reviewService;
-	@Autowired
-	private ProfileService    profileService;
+	@Autowired	private StoreService      storeService;      @Autowired	private CodeService       codeService;
+	@Autowired	private StorePhotoService storePhotoService; @Autowired	private MenuSeivice 	  menuSeivice;
+	@Autowired	private ReviewService     reviewService;	 @Autowired	private ProfileService    profileService;
 	
+//====================================식당정보 불러오기==================================================	  
 	@GetMapping(value = "storeRead")//식당상세정보
 	public String storeRead(int host_num, Model model, HttpSession session, HttpServletRequest request) {
 		logger.info("StoreController storeRead Start..");
@@ -76,6 +68,7 @@ public class StoreController {
 		model.addAttribute("menuList",menuList);
 		model.addAttribute("foodcode",foodcode);
 		model.addAttribute("revList", revList);
+		model.addAttribute("storeRevcount", storeRevcount);
 		model.addAttribute("name", profile.getName());
 		model.addAttribute("mem_num", profile.getMem_num());
 		return "ih/storeRead";
@@ -95,7 +88,7 @@ public class StoreController {
 		return "ih/storeInsertForm";
 	}
 	
-	
+//====================================식당정보 등록==================================================	  
 	@PostMapping(value = "storeInsert")//식당정보 insert
 	public String storeInsert(HostStore     hostStore,       Menu menu ,   Model model,
 							  MultipartFile host_photo0,     MultipartFile host_photo1,       
@@ -158,7 +151,8 @@ public class StoreController {
 		
 		return "ih/test"; //현재 리스트가 존재 하지 않으 므로 test으로 이동
 	}
-	
+
+//====================================파일 업로드==================================================	  
 	  private String uploadFile(String originalName, byte[] fileData , String uploadPath) 
 			  throws Exception {
 		 // universally unique identifier 
@@ -180,5 +174,35 @@ public class StoreController {
 	    FileCopyUtils.copy(fileData, target);   // org.springframework.util.FileCopyUtils
 	    // Service ---> DAO 연결 
 	    return savedName;
-	  }	
+	  }
+
+	  
+//====================================식당정보 업데이트==================================================	  
+	@GetMapping(value = "storeUpdateForm")
+	public String storeUpdateForm(int host_num, Model model) {
+		
+		System.out.println("StoreController storeUpdateForm Start...");
+		HostStore       storeRead  	   = storeService.storeRead(host_num);      //식당정보
+		List<HostPhoto> storePhoto 	   = storePhotoService.storePhoto(host_num);//식당사진
+		List<Menu>      menuList   	   = menuSeivice.menuList(host_num);        //메뉴정보
+		List<Code> 	    foodcodeList = codeService.foodcodeList(storeRead.getBcd_code());
+		
+		for (int i = 0; i < storePhoto.size(); i++) {
+			System.out.println(storePhoto.get(i).getHost_photo());
+		}
+		
+		
+		model.addAttribute("store",storeRead);
+		model.addAttribute("storePhoto",storePhoto);
+		model.addAttribute("menuList",menuList);
+		model.addAttribute("foodcode",foodcodeList);
+		
+		return "ih/storeUpdateForm";
+	}
+	
+	@GetMapping(value = "storeUpdate")
+	public String storeUpdate() {
+		
+		return "ih/test";
+	}
 }

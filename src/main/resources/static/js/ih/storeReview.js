@@ -1,34 +1,36 @@
 //답글 삭제
 function hostRevDelete(e){
-		var userRevNum    = $('#userRevNum'+e).val();
-	var host_num      = document.getElementById('HostNum').value;
-	var userRevMemNum = $('#userRevMemNum'+e).val();
 	
-	console.log('userRevDelete' + e);
-	console.log("userRevNum --> " + userRevNum);
+	var host_num     = document.getElementById('HostNum').value;
+	var rev_num      = e;
+	var rev_content  = document.getElementById('host_rev_content').value;
+	var mem_num      = document.getElementById('Mem_mem').value;
+	var host_rev_insert      = document.getElementById('host_rev_insert').innerHTML;
+	
+	
+	console.log("rev_num --> " + rev_num);
 	console.log("host_num --> " + host_num);
-	console.log("userRevMemNum --> " + userRevMemNum);
+	console.log("mem_num --> " + mem_num);
 	
-	var del = {"rev_num" : userRevNum, "host_num": host_num, "mem_num" : userRevMemNum}
+	var del = {"rev_num" : rev_num, "host_num": host_num, "rev_content" : rev_content,"mem_num":mem_num}
 	
 	console.log(del);
 	
-
 	$.ajax({
-		url : "/storeUserRevDel",
+		url : "/hostRevDelete",
 		type : 'post',
 		data : JSON.stringify(del),
 		contentType : 'application/json; charset=UTF-8',
 		dataType : 'json',
 		success: function(data){
 				if(data > 0) {
-					$('#storeRevList' + e).remove();
+					$('#host_rev_select').remove();
 					StoreRevCount(host_num);
 					StoreAvgUpdate(host_num);
 				}	
 					
 			}
-		});	
+		});
 }
 
 
@@ -91,8 +93,9 @@ function storeReviewInsert(e){
 		data : formData,				//전송 data formData
 		processData: false,				
 		contentType: false,
-		dataType   : 'json',			//데이터 리턴 방식 json
+	//	dataType   : 'json',			//데이터 리턴 방식 json
 		success: function(data){		//연결 성공시 실행
+			$('#rev_content').val("");
 			StoreRevCount(host_num);
 			StoreAvgUpdate(host_num);
 		}
