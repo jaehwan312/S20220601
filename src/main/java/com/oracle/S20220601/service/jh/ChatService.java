@@ -1,6 +1,6 @@
 package com.oracle.S20220601.service.jh;
 
-import com.oracle.S20220601.model.Chat;
+import com.oracle.S20220601.model.jh.Chat;
 
 public interface ChatService {
 

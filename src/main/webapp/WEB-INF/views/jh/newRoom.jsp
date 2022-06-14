@@ -13,7 +13,7 @@
     	<img id="msg_icon" alt="msg_icon" src="images/jh/msg_icon.png" onclick="chatOpen(${mem_num})">
     </div>
     <div class="chat_window">
-
+    
     </div>
 	<script type="text/javascript">
 		function chatOpen(mem_num) {
@@ -30,6 +30,17 @@
 						}
 
 					});
+			$.ajax(
+					{
+						url:"/getUserName",
+						data:{mem_num : mem_num},
+						
+						dataType:'text',
+						success:function(data){
+							$('#userName').html(data);
+						}
+					}
+			);
 		}
 	</script>
 </body>

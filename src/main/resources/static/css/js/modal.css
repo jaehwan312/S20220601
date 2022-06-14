@@ -1,0 +1,27 @@
+@charset "UTF-8";
+	.background_modal{
+   	  background-color:rgba(0,0,0,.3); 
+	  justify-content:center; 
+	  align-items:center;     
+	  position:fixed;         
+	  top:0;
+	  left:0;
+	  right:0;
+	  bottom:0;               
+	  display:none; 
+	  padding:15px; 
+		}
+
+	.modal_contents{
+	  position: absolute;
+	  width: 300px;
+	  height: 250px;
+	  top: calc(50vh - 250px); left: calc(50vw - 200px);        
+	  border-radius:10px;       
+	  overflow:hidden;          
+	  background-color:#FFFFFF; 
+	  box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3); 
+	  margin: auto;
+	}
+	
+	

@@ -73,8 +73,13 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public int hostRevInsert(Review review) {
 		System.out.println("ReviewServiceImpl hostRevInsert Start...");
-		
 		return reviewDao.hostRevInsert(review);
+	}
+
+	@Override
+	public int hostRevDelete(Review review) {
+		System.out.println("ReviewServiceImpl hostRevDelete Start...");
+		return reviewDao.hostRevDelete(review);
 	}
 
 }
