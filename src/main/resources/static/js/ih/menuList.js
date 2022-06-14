@@ -11,8 +11,10 @@ function menuPlus(e){
 	console.log('#menuInfoInsert' + e);
 	$('#labelmenuInfo' + e).append(plus);
 	
+	
 	$('#menuInfoInsert'+ e).hide();
 	$('#menuInfoDel'+ e).hide();
+	
 }
 //메뉴등록 삭제
 function menuDel(e){

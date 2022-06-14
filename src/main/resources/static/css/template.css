@@ -271,13 +271,14 @@ footer li {
 }
 
 .chat_window {
-	width: 259px;
+	width: 400px;
 	border-radius: 10px;
 	position: fixed;
 	bottom: 75px;
     right: 75px;
     overflow: hidden;
     display: none;
+    z-index: 200;
 }
 
 /* ----- jh ----- */

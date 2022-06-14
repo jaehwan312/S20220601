@@ -76,8 +76,8 @@
         <a href="#" class="hamburger">
             <i class="fa-solid fa-bars"></i>
         </a>
-        <%@ include file="jh/newRoom.jsp" %>
     </nav>
+    <%@ include file="jh/newRoom.jsp" %>
 	<div id="fullpage">
 	<div class="section">
 	<div class="main_background"></div>
