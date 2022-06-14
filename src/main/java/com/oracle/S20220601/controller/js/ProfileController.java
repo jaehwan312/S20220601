@@ -15,6 +15,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -197,12 +198,71 @@ public class ProfileController {
 	// 아이디 찾기
 	@RequestMapping(value = "SearchId", method = RequestMethod.POST)
 	@ResponseBody
-	public String SearchId(@RequestParam("name") String name, @RequestParam String phone ) {
+	public String SearchId(Profile profile, @RequestParam("name") String name, @RequestParam("phone") String phone ) {
 		System.out.println("----------------- Controller SearchId Start --------------");
-		String result = ps.searchId(name, phone);
+		String result = ps.searchId(profile);
 		
 		return result;
 		
 	}
+	
+	
+	// 비밀번호 찾기
+	@RequestMapping(value = "SearchPw", method = RequestMethod.POST)
+	@ResponseBody
+	public int SearchPw(Profile profile, @RequestParam("id")String id, @RequestParam("email")String email) {
+		System.out.println("----------------- Controller SearchPw Start --------------");
+		int cnt = ps.emailCheck(profile);
+
+		if (cnt == 1) {
+			int leftLimit = 48; // numeral '0'
+			int rightLimit = 122; // letter 'z'
+			int targetStringLength = 10;
+			Random random = new Random();
+
+			String generatedString = random.ints(leftLimit,rightLimit + 1)
+			  .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+			  .limit(targetStringLength)
+			  .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+			  .toString();
+
+			profile.setPw(generatedString);
+			// 임시비밀번호 DB 저장
+			ps.pwSave(profile);
+
+			/* 이메일 보내기 */
+	        String setFrom = "kjs9502@gmail.com";
+	        String toMail = email;
+	        String title = "제주 감수광 비밀번호찾기 이메일 입니다.";
+	        String content = 
+	                "홈페이지를 방문해주셔서 감사합니다." +
+	                "<br><br>" +
+	                id+"님의"+
+	                "<br>" + 
+	                "임시 비밀번호는 " + generatedString + " 입니다." + 
+	                "<br>" + 
+	                "로그인후 비밀번호를 변경 해주세요."+
+	                "<br>" +
+	                "<a href='http://localhost:8908/loginPage'>로그인 페이지</a>";
+	        
+	        try {
+	            
+	            MimeMessage message = mailSender.createMimeMessage();
+	            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+	            helper.setFrom(setFrom);
+	            helper.setTo(toMail);
+	            helper.setSubject(title);
+	            helper.setText(content,true);
+	            mailSender.send(message);
+	            
+	        }catch(Exception e) {
+	            e.printStackTrace();
+	        }
+		}
+		
+		return cnt;
+	}
+	
+	
 	
 }

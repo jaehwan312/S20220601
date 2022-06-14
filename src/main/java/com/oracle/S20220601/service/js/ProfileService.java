@@ -18,7 +18,11 @@ public interface ProfileService {
 
 	int    signUp(Profile profile);
 
-	String searchId(String name, String phone);
+	String searchId(Profile profile);
+
+	int    emailCheck(Profile profile);
+
+	void   pwSave(Profile profile);
 
 
 

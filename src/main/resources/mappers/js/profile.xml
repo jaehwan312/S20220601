@@ -21,4 +21,10 @@
 		SELECT id from PROFILE 
         WHERE name = #{name} and phone = #{phone}
 	</select>
+	<select id="emailCheck" parameterType="Profile" resultType="int">
+		SELECT COUNT(id) FROM PROFILE WHERE id = #{id} AND email = #{email} 
+	</select>
+	<update id="pwSave" parameterType="Profile" >
+		UPDATE PROFILE SET pw = #{pw} WHERE id = #{id} and email = #{email}
+	</update>
   </mapper>	

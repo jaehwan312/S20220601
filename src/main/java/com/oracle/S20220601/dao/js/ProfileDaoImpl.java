@@ -44,9 +44,25 @@ public class ProfileDaoImpl implements ProfileDao {
 
 
 	@Override
-	public String searchId(String name, String phone) {
-		System.out.println("----------------- Dao SearchId Start --------------");			
-		return session.selectOne("searchId", name);
+	public String searchId(Profile profile) {
+		System.out.println("----------------- Dao SearchId Start --------------");	
+		String result = session.selectOne("searchId", profile);
+		return result;
+		
+	}
+
+
+	@Override
+	public int emailCheck(Profile profile) {
+		System.out.println("----------------- DAO emailCheck Start --------------");
+		int cnt = session.selectOne("emailCheck", profile);
+		return cnt;
+	}
+
+
+	@Override
+	public void pwSave(Profile profile) {
+		session.update("pwSave", profile);
 	}
 
 

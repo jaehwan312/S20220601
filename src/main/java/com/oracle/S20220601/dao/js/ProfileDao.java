@@ -16,7 +16,11 @@ public interface ProfileDao {
 
 	int    getMem_numSeq();
 
-	String searchId(@Param("name") String name,@Param("phone") String phone);
+	String searchId(Profile profile);
+
+	int    emailCheck(Profile profile);
+
+	void   pwSave(Profile profile);
 
 
 
