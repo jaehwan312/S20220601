@@ -8,7 +8,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link rel="stylesheet" href="css/main.css">
 <script type="text/javascript" src="js/bh/StayPhoto.js"></script>
-   
+<script type="text/javascript" src="js/bh/roomList.js"></script>
    <style type="text/css">
    div img{
 	width: 100px;
@@ -41,8 +41,8 @@
     <!-- 여기 밑으로 ============================================================ -->
     	<div style="text-align: center; margin-top: 100px;">
     	<form action="roomInsert" method="post" style="text-align: center;" enctype="multipart/form-data">
-			<div class="insert" id="insert0" >
-				<input type="button" onclick="" value="+객실" class="roombutton">
+		<input type="button" onclick="roomAdd(e)" value="+객실" class="roombutton" >
+			<div class="insert" id="insert" >
 				<input type="hidden" value="${host_num }" name="host_num">
 				<label>
 					객실명 :

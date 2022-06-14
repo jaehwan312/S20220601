@@ -144,20 +144,11 @@ $('#search_area').keydown(function(event){
 
 
 
-// 추천,인기검색어 클릭할 경우 해당 값으로 검색 실행
+// 추천,인기검색어 클릭할 경우 해당 값으로 검색 실행(메인)
 function selectSearch(id){
 	var selectedKeyword = $(id).children('span').text();
-	alert(selectedKeyword);
-	$.ajax({
-		url: "/getSearchResult",
-		data:{keyword:selectedKeyword},
-		contentType:"application/x-www-form-urlencoded; charset=UTF-8",
-		type: 'post',
-		dataType: 'text',
-		success: function(data){
-			
-		}
-	});
+	$('#search_area').val(selectedKeyword);
+	document.getElementById('search_form').submit();
 }
 
 
