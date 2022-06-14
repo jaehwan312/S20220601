@@ -54,7 +54,7 @@ public class StayController {	//숙소 Controller
 		Stay       	stayinfo  		= ss.stayinfo(host_num);
 		model.addAttribute("stay", stayinfo);
 		
-		return "bh/roomInfo";
+		return "bh/stayInfo";
 	}
 	
 	@RequestMapping(value = "reviewList")
