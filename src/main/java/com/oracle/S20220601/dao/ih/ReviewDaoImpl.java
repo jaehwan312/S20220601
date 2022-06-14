@@ -140,4 +140,19 @@ public class ReviewDaoImpl implements ReviewDao {
 		return hostRevInsert;
 	}
 
+	@Override
+	public int hostRevDelete(Review review) {
+		System.out.println("ReviewDaoImpl hostRevDelete Start...");
+		
+		int hostRevDelete = 0;
+		
+		try {
+			hostRevDelete = session.delete("hostRevDelete", review);
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl hostRevDelete ErrorMessage --> " + e.getMessage());
+		}
+		return hostRevDelete;
+	}
+	
+	
 }

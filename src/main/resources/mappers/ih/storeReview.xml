@@ -39,8 +39,15 @@
 	  		INSERT INTO revphoto VALUES(#{host_num},SEQ_REV_NUM.CURRVAL,SEQ_HOST_PHOTO_NUM.nextval,#{rev_photo})
 	  	</insert>
 	  	
+	  	<!-- 리뷰 답변 등록  -->
 	  	<insert id="hostRevInsert" parameterType="Review">
 	  		INSERT INTO review VALUES(#{host_num},SEQ_REV_NUM.nextval,#{mem_num},#{rev_content},sysdate,5,#{rev_num},1)
 	  	</insert>
 	  	
+	  	<!-- 리뷰 답변 삭제  -->
+	  	<delete id="hostRevDelete" parameterType="Review">
+	  			DELETE FROM review   WHERE rev_num        = #{rev_num} 
+				  						   AND   host_num = #{host_num}
+				  						   AND   mem_num  = #{mem_num}
+	  	</delete>
    </mapper>

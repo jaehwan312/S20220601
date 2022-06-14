@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	var msg = "${msg}";
 	alert(msg);
-	location.href="storeInsertForm";
+	location.href="main";
 </script>
 <title>제주 감수광</title>
 </head>

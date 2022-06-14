@@ -153,21 +153,40 @@ public class StoreRevController {
 
 
 		
-		@ResponseBody //식당리뷰 답글 작성
-		@PostMapping(value = "hostRevInsert" )
-		public int hostRevInsert(@RequestBody Review review) {
-			
-			System.out.println("StoreRevController hostRevInsert Start...");
-			
-			System.out.println(review.getHost_num());
-			System.out.println(review.getMem_num());
-			System.out.println(review.getRev_num());
-			System.out.println(review.getRev_content());
-			
-//			리뷰저장
-			int hostRevInsert = reviewService.hostRevInsert(review);
-			
-			
-			return hostRevInsert;
-			}
+	@ResponseBody //식당리뷰 답글 작성
+	@PostMapping(value = "hostRevInsert" )
+	public int hostRevInsert(@RequestBody Review review) {
+		
+		System.out.println("StoreRevController hostRevInsert Start...");
+		
+		System.out.println(review.getHost_num());
+		System.out.println(review.getMem_num());
+		System.out.println(review.getRev_num());
+		System.out.println(review.getRev_content());
+		
+//			답변등록
+		int hostRevInsert = reviewService.hostRevInsert(review);
+		
+		
+		return hostRevInsert;
+	}
+	
+	
+	@ResponseBody //식당리뷰 답글 작성
+	@PostMapping(value = "hostRevDelete" )
+	public int hostRevDelete(@RequestBody Review review) {
+		
+		System.out.println("StoreRevController hostRevDelete Start...");
+		
+		System.out.println(review.getHost_num());
+		System.out.println(review.getMem_num());
+		System.out.println(review.getRev_num());
+		System.out.println(review.getRev_content());
+		
+//			답변 삭제
+		int hostRevDelete = reviewService.hostRevDelete(review);
+		
+		
+		return hostRevDelete;
+	}
 }
