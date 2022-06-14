@@ -1,6 +1,6 @@
 package com.oracle.S20220601.dao.jh;
 
-import com.oracle.S20220601.model.Chat;
+import com.oracle.S20220601.model.jh.Chat;
 
 public interface ChatDao {
 
