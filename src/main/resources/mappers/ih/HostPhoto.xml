@@ -9,7 +9,10 @@
 	  		SELECT host_photo FROM hostphoto WHERE host_num = #{host_num}
 	  	</select>
 	  	<!-- 식당사진등록 -->
-	  	<insert id="storePhotoInsert" parameterType="String">
-	  		INSERT INTO hostphoto VALUES(1,SEQ_HOST_PHOTO_NUM.nextval,#{host_photo})
+	  	<insert id="storePhotoInsert" parameterType="HostPhoto">
+	  		INSERT INTO hostphoto VALUES(#{host_num},SEQ_HOST_PHOTO_NUM.nextval,#{host_photo})
 	  	</insert>
+	  	<select id="selectHostMem_num" resultType="int">
+	  		SELECT SEQ_HOST_NUM.CURRVAL FROM dual
+	  	</select>
    </mapper>

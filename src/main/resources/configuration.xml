@@ -16,6 +16,7 @@
 		<typeAlias alias="StoreReview"  	type="com.oracle.S20220601.model.ih.StoreReview"/>
 		<!-- ji -->
 		<typeAlias alias="Res"     			type="com.oracle.S20220601.model.Res"/>
+		<typeAlias alias="ResRoom"     		type="com.oracle.S20220601.model.ji.ResRoom"/>
 		
 		<!-- bh -->
 		<typeAlias alias="HostStay"      	type="com.oracle.S20220601.model.bh.HostStay"/>

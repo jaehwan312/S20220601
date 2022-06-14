@@ -1,7 +1,5 @@
 package com.oracle.S20220601.dao.js;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.ibatis.annotations.Param;
 
 import com.oracle.S20220601.model.Profile;
@@ -21,6 +19,8 @@ public interface ProfileDao {
 	int    emailCheck(Profile profile);
 
 	void   pwSave(Profile profile);
+
+	Profile selectProfile(int mem_num);//로그인한 회원 정보 가져오기
 
 
 

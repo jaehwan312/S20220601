@@ -27,4 +27,8 @@
 	<update id="pwSave" parameterType="Profile" >
 		UPDATE PROFILE SET pw = #{pw} WHERE id = #{id} and email = #{email}
 	</update>
+	<select id="selectProfile" resultType="Profile">
+		SELECT * from PROFILE 
+        WHERE mem_num = #{mem_num}
+	</select>
   </mapper>	

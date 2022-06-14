@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/template.css">
 <link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
 <title>제주 감수광</title>
 </head>
@@ -14,7 +14,28 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-    
+		    <table class = "table table-striped">
+		        <thead>
+		        <tr>
+		            <th>번호</th>
+		            <th>방 이름</th>
+		            <th>
+		            	${rooms }
+		            </th>
+		        </tr>
+		        </thead>
+		        <tbody>
+		        <c:forEach var="room" items="${rooms }">
+		        <tr>
+		            <td>${room.roomId}</td>
+		            <td>${room.mem_num }</td>
+		            <td>
+		                <a class = "btn btn-primary pull-right" href="/rooms/${room.roomId}" >입장</a>
+		            </td>
+		        </tr>
+		        </c:forEach>
+		        </tbody>
+		    </table>
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>

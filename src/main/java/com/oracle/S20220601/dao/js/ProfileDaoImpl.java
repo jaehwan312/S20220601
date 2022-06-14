@@ -65,6 +65,22 @@ public class ProfileDaoImpl implements ProfileDao {
 		session.update("pwSave", profile);
 	}
 
+	//로그인한 회원 정보 가져오기
+	@Override
+	public Profile selectProfile(int mem_num) {
+		System.out.println("----------------- Dao selectProfile Start --------------");
+		
+		Profile selectProfile = null;
+		
+		try {
+			selectProfile = session.selectOne("selectProfile",mem_num);
+		} catch (Exception e) {
+			System.out.println("selectProfile ErrorMessage --> " + e.getMessage());
+		}
+		
+		return selectProfile;
+	}
+	//로그인한 회원 정보 가져오기
 
 	
 

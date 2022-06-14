@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	var msg = "${msg}";
 	alert(msg);
-	location.href="storeInsertForm";
+	location.href="main";
 </script>
 <title>제주 감수광</title>
 </head>
@@ -18,8 +18,6 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-    	
-    	
     	
     <!-- 여기 위로오 ============================================================ -->   
     </div>

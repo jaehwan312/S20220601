@@ -34,7 +34,7 @@
         </div>
         <div class="header_background"></div>
         <div class="navbar_search">
-            <form action="getSearchResult" class="search_form" method="post">
+            <form action="getSearchResult" class="search_form" id="search_form">
                 <input type="text" id="search_area" name="keyword" class="search_bar" placeholder="Typing..." autocomplete="off" onkeyup="headerEnter()">                
                 <button class="search_btn" type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -102,8 +102,7 @@
         </a>
         
     </nav>
-    <%@ include file="jh/chatWindow.jsp" %>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+   	<%@ include file="jh/newRoom.jsp" %>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </body>
 </html>

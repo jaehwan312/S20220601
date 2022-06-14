@@ -1,14 +1,12 @@
 
+
+
 // fullpage 준비
 $(document).ready(function() {
 			$('#fullpage').fullpage({
 				onLeave: function(origin, destination, direction){
 					var leavingSection = this;
 
-					//구역 1를 떠난 후
-					if(origin.index == 0 && direction =='down'){
-						alert("이벤트발생");
-					}
 				}
 			});
 		});
@@ -34,7 +32,7 @@ $(function(){
 
 // 추천, 인기검색어 관련 함수(메인)
 function keyword_rel_main(e){
-	for(var i=0; i<keywords.length; i++){
+	for(var i=0; i<keywords_main.length; i++){
 		keywords_main.item(i).style.color="black";
 		keywords_main.item(i).style.borderBottom="none";
 	}
@@ -51,7 +49,7 @@ function keyword_rel_main(e){
 	 		dataType:'json',
 	 		success:function(data){
 				$(data).each(function(){
-					rec2 = "<div class='item_main' onclick='selectSearch(this)'>"
+					rec2 = "<div class='item_main' onclick='selectSearch_main(this)'>"
 				          +"<i class='fa-solid fa-magnifying-glass fa-sm'></i>"
 				          +"<span class='name'>"+this+"</span>"
 				          +"</div>";
@@ -71,7 +69,7 @@ function keyword_rel_main(e){
 	 		dataType:'json',
 	 		success:function(data){
 				$(data).each(function(){
-					pop2 = "<div class='item_main' onclick='selectSearch(this)'>"
+					pop2 = "<div class='item_main' onclick='selectSearch_main(this)'>"
 				          +"<i class='fa-solid fa-magnifying-glass fa-sm'></i>"
 				          +"<span class='name'>"+this+"</span>"
 				          +"</div>";
@@ -132,7 +130,7 @@ $('#searchBar').keyup(function(){
 		var str="";
         s_result.forEach(function(arg){
             if(arg.indexOf(txt) > -1 ){
-            	str = "<div class='item_main' onclick='selectSearch(this)'>"
+            	str = "<div class='item_main' onclick='selectSearch_main(this)'>"
 			          +"<i class='fa-solid fa-magnifying-glass fa-sm'></i>"
 			          +"<span class='name'>"+arg+"</span>"
 			          +"</div>";
@@ -234,8 +232,24 @@ function mainEnter(){
 
 //검색바에 입력한 값으로 검색 실행
 function inputSearch(){
-	document.getElementById('main_search_area').submit();
+	
+	var text = $('#searchBar').val();
+	var empty = /\s/g; 
+	if(text.replace(empty, "")==""){
+		alert('검색어를 입력해주세요');
+		$('#searchBar').val("");
+		$('#searchBar').focus();
+	}else{
+		document.getElementById('main_search_area').submit();
+	}
 	
 }
 
+
+// 추천,인기검색어 클릭할 경우 해당 값으로 검색 실행(메인)
+function selectSearch_main(id){
+	var selectedKeyword = $(id).children('span').text();
+	$('#searchBar').val(selectedKeyword);
+	document.getElementById('main_search_area').submit();
+}
 

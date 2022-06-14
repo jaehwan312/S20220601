@@ -86,6 +86,18 @@ public class ProfileServiceImpl implements ProfileService {
 		pd.pwSave(profile);
 	}
 	
+	
+//	로그인한 회원 정보 가져오기 by 김인헌
+	@Override
+	public Profile selectProfile(int mem_num) {
+		
+		System.out.println("----------- ProfileServiceImpl selectProfile Start -----------");
+		
+		Profile selectProfile = pd.selectProfile(mem_num);
+		
+		return selectProfile;
+	}
+//	로그인한 회원 정보 가져오기	
 
 
 

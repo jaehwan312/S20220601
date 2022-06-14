@@ -7,13 +7,14 @@ function menuPlus(e){
 			  "가격 : <input type='number' name='menu_list["+(e+1)+"].menu_price' id='menuinputInfo"+(e+1)+"'> " +
 			  "<input type='button' onclick='menuPlus("+(e+1)+")' id='menuInfoInsert"+(e+1)+"' value='+' class='btn btn-primary'> " +
 			  "<input type='button' onclick='menuDel("+(e+1)+")' id='menuInfoDel"+(e+1)+"' value='-' class='btn btn-primary'></label>";
-				    	
 	console.log(plus);
 	console.log('#menuInfoInsert' + e);
 	$('#labelmenuInfo' + e).append(plus);
 	
+	
 	$('#menuInfoInsert'+ e).hide();
 	$('#menuInfoDel'+ e).hide();
+	
 }
 //메뉴등록 삭제
 function menuDel(e){

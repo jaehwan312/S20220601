@@ -47,10 +47,20 @@
   		)
   	}
   	</insert>
+  	<!-- HOST_NUM SEQ -->
+  	<select id="bhgetHost_num" resultType="int">
+  		SELECT SEQ_HOST_NUM.CURRVAL FROM DUAL
+  	</select>
+  	
+  	<!-- HOST_NUM + ROOM_NUM SEQ -->
+  	<select id="bhgetRoom_num" resultType="int">
+  		SELECT seq_room_num.currval FROM DUAL
+  	</select>
+  	
+  	
   	
   	<!-- 숙박사진등록 -->
-  	<insert id="storePhotoInsert" parameterType="String">
-  	INSERT INTO hostphoto VALUES(9,SEQ_STAY_PHOTO_NUM.nextval,#{host_photo})
-  	
+  	<insert id="stayPhotoInsert" parameterType="HostPhoto">
+  	INSERT INTO hostphoto VALUES(#{host_num},SEQ_STAY_PHOTO_NUM.nextval,#{host_photo})
   	</insert>
   </mapper>

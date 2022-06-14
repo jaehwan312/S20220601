@@ -10,6 +10,7 @@ import com.oracle.S20220601.dao.bh.StayDao;
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
+import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
 import com.oracle.S20220601.model.bh.Review1;
@@ -88,10 +89,24 @@ public class StayServiceImpl implements StayService {
 	}
 
 	@Override
-	public int stayPhotoInsert(List<MultipartFile> file) {
+	public HostPhoto stayPhotoInsert(List<MultipartFile> file) {
 		System.out.println("StayServiceImpl stayPhotoInsert start...");
-		int stayPhotoInsert = sd.stayPhotoInsert(file);
+		HostPhoto stayPhotoInsert = sd.stayPhotoInsert(file);
 		return stayPhotoInsert;
+	}
+
+	@Override
+	public int roomInsert(Room room) {
+		System.out.println("StayServiceImpl roomInsert start...");
+		int roomInsert = sd.roomInsert(room);
+		return roomInsert;
+	}
+
+	@Override
+	public int roomPhotoInsert(List<MultipartFile> roomfile) {
+		System.out.println("StayServiceImpl roomPhotoInsert start...");
+		int roomPhotoInsert = sd.roomPhotoInsert(roomfile);
+		return roomPhotoInsert;
 	}
 
 

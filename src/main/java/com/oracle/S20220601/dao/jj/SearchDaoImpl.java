@@ -39,16 +39,17 @@ public class SearchDaoImpl implements SearchDao {
 		searchStr.setKeyword(search.getKeyword());
 		
 		// keyword 조건 문자열 변환
-		if(search.getKeyword()!=null) {
-			searchStr.setKeyword(" and host_addr like '%"+search.getKeyword()+"%'");
+		if(search.getKeyword()!=null&&search.getKeyword()!="") {
+			searchStr.setKeyword(" and (host_name like '%"+search.getKeyword()+"%' or host_addr like '%"+search.getKeyword()
+			+"%' or (select c.name from code c where c.bcd=200 and c.mcd=s.food_type) like '%"+search.getKeyword()+"%')");
 		}else {
 			searchStr.setKeyword("");
 		}
 		System.out.println("@"+searchStr.getKeyword());
 		
 		// 가격대 조건 문자열 변환
-		if(search.getMin_price()!=null) {
-			searchStr.setMin_price(" and min_price between 0 and 9999");
+		if(search.getMin_price()!=null&&search.getMin_price()!="") {
+			searchStr.setMin_price(" and min_price >="+search.getMin_price());
 		}else {
 			searchStr.setMin_price("");
 		}
@@ -71,7 +72,7 @@ public class SearchDaoImpl implements SearchDao {
 		System.out.println("@"+searchStr.getTotal_food_type());
 		
 		// 정렬 조건 문자열 변환
-		if(search.getOrder()!=null) {
+		if(search.getOrder()!=null&&search.getOrder()!="") {
 			searchStr.setOrder(" order by "+search.getOrder());
 		}else {
 			searchStr.setOrder("");
@@ -90,15 +91,16 @@ public class SearchDaoImpl implements SearchDao {
 		searchStr.setKeyword(search.getKeyword());
 		
 		// keyword 조건 문자열 변환
-		if(search.getKeyword()!=null) {
-			searchStr.setKeyword(" and host_addr like '%"+search.getKeyword()+"%'");
+		if(search.getKeyword()!=null&&search.getKeyword()!="") {
+			searchStr.setKeyword(" and (host_name like '%"+search.getKeyword()+"%' or host_addr like '%"+search.getKeyword()+
+					"%' or (select c.name from code c where c.bcd=300 and c.mcd=s.stay_type) like '%"+search.getKeyword()+"%')");
 		}else {
 			searchStr.setKeyword("");
 		}
 		System.out.println("@@@"+searchStr.getKeyword());
 		// 가격대 조건 문자열 변환
-		if(search.getMin_price()!=null) {
-			searchStr.setMin_price(" and min_dayfee between 0 and 9999");
+		if(search.getMin_price()!=null&&search.getMin_price()!="") {
+			searchStr.setMin_price(" and min_dayfee >="+search.getMin_price());
 		}else {
 			searchStr.setMin_price("");
 		}
@@ -119,7 +121,7 @@ public class SearchDaoImpl implements SearchDao {
 		}
 		System.out.println("@@@"+searchStr.getTotal_stay_type());
 		// 정렬 조건 문자열 변환
-		if(search.getOrder()!=null) {
+		if(search.getOrder()!=null&&search.getOrder()!="") {
 			searchStr.setOrder(" order by "+search.getOrder());
 		}else {
 			searchStr.setOrder("");
