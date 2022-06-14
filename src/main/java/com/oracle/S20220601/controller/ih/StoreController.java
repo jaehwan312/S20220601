@@ -186,6 +186,12 @@ public class StoreController {
 		List<HostPhoto> storePhoto 	   = storePhotoService.storePhoto(host_num);//식당사진
 		List<Menu>      menuList   	   = menuSeivice.menuList(host_num);        //메뉴정보
 		List<Code> 	    foodcodeList = codeService.foodcodeList(storeRead.getBcd_code());
+		
+		for (int i = 0; i < storePhoto.size(); i++) {
+			System.out.println(storePhoto.get(i).getHost_photo());
+		}
+		
+		
 		model.addAttribute("store",storeRead);
 		model.addAttribute("storePhoto",storePhoto);
 		model.addAttribute("menuList",menuList);

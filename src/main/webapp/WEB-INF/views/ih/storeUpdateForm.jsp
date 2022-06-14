@@ -26,12 +26,16 @@
 					
 					<div>
 						<div class="insertPhoto" >
-							<c:forEach begin="0" end="4" varStatus="i">
+							<c:forEach items="${storePhoto }" var="storePhoto" end="4" varStatus="i">
 			                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
 			                       	 👉 CLICK HERE!👈 
 									<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
-										onchange="previewFiles(${i.index })" accept="images/ih/*">
+										onchange="previewFiles(${i.index })" accept="image/*" value="${storePhoto.host_photo }" 
+										src="images/ih/${storePhoto.host_photo }">
 			                    </label>
+			                    <c:if test="${i.last }">
+									<input type="hidden" id="photoEndIndex" value="${i.index }"></input>
+								</c:if>
 			                </c:forEach>
 	      				</div>
 					</div>
@@ -84,19 +88,31 @@
 		    				</c:forEach>
 		    			</select>
 		    		</label><p/>
+		    		<div>
 		    		<label style="float: left;  margin-right: 25px; width: 100px;">
 		    			<b>메뉴</b>
 		    		</label>
+		    		</div>
+		    		
 		    			<c:forEach items="${menuList }" var="menuList" varStatus="i">
-		   					<label class="labelmenuInfo" id="labelmenuInfo${i.index}" for="menuinputInfo${i.index}">
-			    				메뉴명 : <input type="text" name="menu_list[${i.index}].menu_name" id="menuinputInfo${i.index}" value="${menuList.menu_name}" required="required">
-						    	가격    : <input type="number" name="menu_list[${i.index}].menu_price" id="menuinputInfo${i.index}" value="${menuList.menu_price}" required="required">
-				    			  <input type="button" onclick="menuPlus(${i.index})" id="menuInfoInsert${i.index}" value="+" class="btn btn-primary">
-			    				  <input type="button" onclick="menuDel(${i.index})" id="menuInfoDel${i.index}" value="-" class="btn btn-primary">
-				    		</label><p/>
+		    				<div>
+			   					<label class="labelmenuInfo" id="labelmenuInfo${i.index}" for="menuinputInfo${i.index}">
+				    				메뉴명 : <input type="text" name="menu_list[${i.index}].menu_name" id="menuinputInfo${i.index}" value="${menuList.menu_name}" required="required">
+							    	가격    : <input type="number" name="menu_list[${i.index}].menu_price" id="menuinputInfo${i.index}" value="${menuList.menu_price}" required="required">
+					    			  <input type="button" onclick="menuPlus(${i.index})" id="menuInfoInsert${i.index}" value="+" class="btn btn-primary">
+				    				  <c:if test="${i.index != 0 }">
+				    				 	 <input type="button" onclick="menuDel(${i.index})" id="menuInfoDel${i.index}" value="-" class="btn btn-primary">
+					    			  </c:if>	
+					    		</label><p/>
+					    		<c:if test="${i.last }">
+									<input type="hidden" id="menuEndIndex" value="${i.index }"></input>
+								</c:if>
+							</div>
 			    		</c:forEach>
+			    	
 			    	<p/>
 		    		<label style="float: left;  margin-right: 25px; width: 100px;">
+		    		
 		    			<b>업체소개</b>
 		    		</label>
 		    		<label>
