@@ -17,13 +17,14 @@
     	 <form action="" id="orderAjax">
 		 	<input type="hidden" name="keyword" value="${keyword }" id="callKeyword">
 		 	<input type="hidden" name="order" id="callOrder">
+		 	<input type="hidden" name="selection" value="${selection }" id="selectionId">
 		 </form>
           <div class="container">
               <div class="row">
                   <div class="col-lg-12 text-center mb100">
-                      <h2 class="section-heading">숙박<span class="theme-accent-color">&</span>맛집</h2>
+                      <h2 class="section-heading" id="section_heading">숙박<span class="theme-accent-color">&</span>맛집</h2>
                       <hr class="thin-hr">
-                      <h3 class="section-subheading secondary-font" style="margin-bottom: 30px;">'${keyword }'에 대한 검색 결과</h3>
+                      <h3 class="section-subheading secondary-font" style="margin-bottom: 30px;" id="section_heading_sub">'${keyword }'에 대한 검색 결과</h3>
 			      	  <button type="button" class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">상세 검색</button>
 						<div style="min-height: 120px;">
 						  <div class="collapse collapse-horizontal" id="collapseWidthExample">
@@ -263,6 +264,9 @@
 			             </div>
 			            </div>
                       </c:forEach> --%>
+                  </div>
+                  <div class="col-md-6" id="emptySection">
+                      <h2 class="mb50">검색 결과가 없습니다</h2>
                   </div>
               </div>
           </div>

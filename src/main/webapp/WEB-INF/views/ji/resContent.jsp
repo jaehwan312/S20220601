@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/ji/resContent.css">
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -18,6 +19,7 @@
 	src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <title>제주 감수광</title>
 <script type="text/javascript">
+
 	$(document).ready(function() {
 		$("#cbx_chkAll").click(function() {
 			if ($("#cbx_chkAll").is(":checked"))
@@ -37,6 +39,7 @@
 	});
 	function checkName() {
 		var name = $("input[name=name]").val(); //id값이 "id"인 입력란의 값을 저장
+		var storyLength = $("input[name=name]").val().length;
 
 		if (name == "")
 			$('.name_ok').css("display", "inline-block");
@@ -56,37 +59,24 @@
 		}
 
 	};
- //check2 클릭
-	$("#check2").click(function iamport(){
-		alert("d야아아아");
-		//가맹점 식별코드
-		IMP.init('imp52482779');
-		IMP.request_pay({
-		    pg : 'kakaopay',
-		    pay_method : 'card',
-		    merchant_uid : 'merchant_' + new Date().getTime(),
-		    name : '상품1' , //결제창에서 보여질 이름
-		    amount : 100, //실제 결제되는 가격
-		    buyer_email : 'iamport@siot.do',
-		    buyer_name : '구매자이름',
-		    buyer_tel : '010-1234-5678',
-		    buyer_addr : '서울 강남구 도곡동',
-		    buyer_postcode : '123-456'
-		}, function(rsp) {
-			console.log(rsp);
-		    if ( rsp.success ) {
-		    	var msg = '결제가 완료되었습니다.';
-		        msg += '고유ID : ' + rsp.imp_uid;
-		        msg += '상점 거래ID : ' + rsp.merchant_uid;
-		        msg += '결제 금액 : ' + rsp.paid_amount;
-		        msg += '카드 승인번호 : ' + rsp.apply_num;
-		    } else {
-		    	 var msg = '결제에 실패하였습니다.';
-		         msg += '에러내용 : ' + rsp.error_msg;
-		    }
-		    alert(msg);
-		});
-	});
+
+	function resCheck() {
+
+		if ($("input[name=name]").val() == "") {
+			alert("예약자  이름을 입력해주세요.");
+			$('#staticBackdrop').modal('hide')
+		} else if ($('#phone').val() == "") {
+			alert("휴대폰번호를 입력해주세요.");
+			$('#staticBackdrop').modal('hide')
+		} else if (!$("#cbx_chkAll").is(":checked")) {
+			alert("필수 이용 동의 항목에 동의(체크)해주세요.");
+			document.getElementById("cbx_chkAll").focus();
+			$('#staticBackdrop').modal('hide')
+		} else {
+			$('#staticBackdrop').modal('show')
+		}
+
+	};
 </script>
 </head>
 <body>
@@ -100,22 +90,22 @@
 				<div>
 					<h3>예약자 정보</h3>
 					<p>예약자 이름</p>
-					<input type="text" name="name" placeholder="체크인시 필요한 정보입니다."
+					<input type="text" id="res_name" name="name" placeholder="체크인시 필요한 정보입니다."
 						maxlength="30" value="${prof.name }" required
 						oninput="checkName()"> <span class="name_ok"
 						style="display: none">예약자 이름을 확인해주세요.</span>
+
 					<p>휴대폰 번호</p>
-					<input type="text" name="phone" placeholder="체크인시 필요한 정보입니다."
-						maxlength="30" value="${prof.phone }" id="phone"
-						oninput="checkPhone()"> <span class="phone_ok"
-						style="display: none">휴대폰 번호를 확인해주세요.</span>
+					<input type="tel" name="phone" placeholder="체크인시 필요한 정보입니다." value="${prof.phone }" 
+					id="phone"oninput="checkPhone()" pattern="[0-9]{11}" maxlength="11"> 
+						<span class="phone_ok" style="display: none">휴대폰 번호를 확인해주세요.</span>
 
 				</div>
 				<br> <br>
 				<div>
 					<h3>결제수단 선택</h3>
 					<select id="payment-select" class="select_type_1">
-						<option data-minprice="0" selected="selected" value="KAKAO"
+						<option data-minprice="0" selected="selected" value="kakaopay"
 							data-v-f785cca6="">카카오페이</option>
 						<option data-minprice="0" value="CARD">신용/체크카드</option>
 						<option data-minprice="0" value="AT_QUICK">간편계좌이체</option>
@@ -171,10 +161,16 @@
 							<p>
 								<strong>체크아웃</strong>${checkout } ${room1.checkout }
 							</p>
+							<p>
+								<strong>주중금액</strong> ${room1.dayfee }
+							</p>
+							<p>
+								<strong>주말금액</strong> ${room1.weekfee }
+							</p>
 						</section>
 						<section class="total_price">
 							<p>
-								<strong><b>총 결제 금액</b>(VAT포함)</strong><span class="in_price">84,500원</span>
+								<strong><b>총 결제 금액</b>(VAT포함)</strong><span class="in_price">1원</span>
 							</p>
 
 							<p>
@@ -185,7 +181,8 @@
 
 						</section>
 						<button type="button" class="btn btn-primary m-5"
-							data-bs-toggle="modal" data-bs-target="#staticBackdrop">결제하기</button>
+							data-bs-toggle="modal" onclick="resCheck()">결제하기</button>
+						<button type="button" id="check1" onclick="payment()">테스트버튼</button>
 
 
 					</div>
@@ -204,6 +201,7 @@
 							aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
+						<p></p>
 						<p>${room1.host_name }</p>
 						<p>${room1.room_name }/${nday }박</p>
 						<p>
@@ -223,7 +221,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-bs-dismiss="modal">취소</button>
-						<button type="button" class="btn btn-primary" id="check2">동의 후 결제</button>
+						<button type="button" class="btn btn-primary" onclick="pay()">동의 후 결제</button>
 					</div>
 				</div>
 			</div>
@@ -232,7 +230,8 @@
 		<!-- 여기 위로오 ============================================================ -->
 	</div>
 	<%@ include file="../footer.jsp"%>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<script type="text/javascript" src="js/ji/payment.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"

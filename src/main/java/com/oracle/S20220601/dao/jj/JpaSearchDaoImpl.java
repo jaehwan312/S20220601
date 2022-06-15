@@ -46,7 +46,7 @@ public class JpaSearchDaoImpl implements JpaSearchDao {
 	public List<Search1> getPopList() {
 		List<Search1> search1 = null;
 		try {
-			search1 = em.createQuery("select s from Search1 s where s.search_code=:code").setParameter("code", "2").getResultList();
+			search1 = em.createQuery("select s from Search1 s where s.search_code=:code order by s.search_count desc").setParameter("code", "2").getResultList();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

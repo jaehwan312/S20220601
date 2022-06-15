@@ -59,12 +59,12 @@ public class ProfileServiceImpl implements ProfileService {
 
 
 	@Override
-	public String searchId(String name, String phone) {
+	public String searchId(Profile profile) {
 		System.out.println("----------------- Service SearchId Start --------------");
 		String result = "";
 		
 		try {
-			result = pd.searchId(name, phone);
+			result = pd.searchId(profile);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,6 +72,19 @@ public class ProfileServiceImpl implements ProfileService {
 		return result;
 	}
 
+
+	@Override
+	public int emailCheck(Profile profile) {
+		System.out.println("----------------- Service emailCheck Start --------------");
+		int cnt = pd.emailCheck(profile);
+		return cnt;
+	}
+
+
+	@Override
+	public void pwSave(Profile profile) {
+		pd.pwSave(profile);
+	}
 	
 	
 //	로그인한 회원 정보 가져오기 by 김인헌

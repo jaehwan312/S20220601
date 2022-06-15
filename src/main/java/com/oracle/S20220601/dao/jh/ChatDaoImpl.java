@@ -4,7 +4,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.oracle.S20220601.model.Chat;
+import com.oracle.S20220601.model.jh.Chat;
+
 
 @Repository
 public class ChatDaoImpl implements ChatDao {
@@ -17,7 +18,6 @@ public class ChatDaoImpl implements ChatDao {
 		String resultStr="";
 		try {
 			resultStr = session.selectOne("jhUserName", mem_num);
-			System.out.println("ChatDaoImpl userName resultStr"+resultStr);
 		} catch (Exception e) {
 			System.out.println("ChatDaoImpl userName Exception->"+e.getMessage());
 		}

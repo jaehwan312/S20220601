@@ -64,6 +64,9 @@ public class ResController {
 			
 			e.printStackTrace();
 		}
+		
+		// 총금액 계산
+		
 		System.out.println("checkin -> "+checkin);
 		System.out.println("checkout -> "+checkout);
 		model.addAttribute("checkin",checkin);

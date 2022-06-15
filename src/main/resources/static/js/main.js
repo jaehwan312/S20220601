@@ -159,4 +159,15 @@ function headerEnter(){
 	}
 }
 
+// 검색 유효성 검사 (헤더)
+function checkIt2(){
+		var searchBarValue = $('#search_area').val();
+
+		if (searchBarValue.replace(/\s|　/gi, '')==""){	  // 자바스크립트 : 빈문자열 -> false 반환
+			alert("검색어를 입력해주세요");
+			$('#search_area').val("");
+			$('#search_area').focus();
+			return false;
+		}
+	}
 

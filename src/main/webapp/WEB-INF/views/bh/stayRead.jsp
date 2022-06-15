@@ -80,11 +80,11 @@
                 <div class="col-lg-12">
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
+                            <li class="nav-item" >
                                 <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
                                     aria-selected="true">객실안내/예약</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" id="stay">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
                                     aria-selected="false">숙소 정보</a>
                             </li>
