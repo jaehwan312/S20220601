@@ -1,9 +1,5 @@
-$.ajax({
-    url : "/stayInfo",
-    dataType : "text",
-    type : "get"
-    data : sendData,  
-    success : function(data){
-        $("#stay").html(data);
-    }
-});
+function stay(){
+	var host_num = 9;
+	console.log(host_num);
+	$("#stayinfo").load("stayinfo", {"host_num" : host_num});
+}

@@ -13,15 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Room;
-import com.oracle.S20220601.model.RoomPhoto;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
 import com.oracle.S20220601.model.bh.Review1;
@@ -42,30 +44,37 @@ public class StayController {	//숙소 Controller
 		HostStay       		stayRead  			= ss.stayRead(roomPhotoList.getHost_num());
 		List<HostPhoto> 	stayPhoto 			= ss.stayPhoto(roomPhotoList.getHost_num());
 		List<RoomPhotoList>	roomPhoto			= ss.roomPhoto(roomPhotoList);
+		Stay       	stayinfo  		= ss.stayinfo(roomPhotoList.getHost_num());
+		List<Review1> reviewList = ss.reviewList(roomPhotoList.getHost_num());
+		Host hostreview	=ss.hostreview(roomPhotoList.getHost_num());
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("hostreview", hostreview);
+		model.addAttribute("stayinfo", stayinfo);
 		model.addAttribute("stay", stayRead);
 		model.addAttribute("stayPhoto", stayPhoto);
 		model.addAttribute("roomPhoto", roomPhoto);
 		return "bh/stayRead";
 	}
 	
-	@RequestMapping(value = "stayInfo")
-	public String stayinfo(int host_num, Model model) {//업소 기본정보
-		logger.info("StayController stayinfo Start");
-		Stay       	stayinfo  		= ss.stayinfo(host_num);
-		model.addAttribute("stay", stayinfo);
-		
-		return "bh/stayInfo";
-	}
+//	@PostMapping(value = "stayinfo")
+//	public String stayinfo(@RequestParam int host_num, Model model) {//업소 기본정보
+//		logger.info("StayController stayinfo Start");
+//		System.out.println("host_num --> " + host_num);
+//		Stay       	stayinfo  		= ss.stayinfo(host_num);
+//		model.addAttribute("stayinfo", stayinfo);
+//		
+//		return "bh/stayRead";
+//	}
 	
-	@RequestMapping(value = "reviewList")
-	public String reviewList(Review1 review, Model model) {// 숙소 리뷰
-		logger.info("StayController reviwList Start");
-		List<Review1> reviewList = ss.reviewList(review.getHost_num());
-		Host hostreview	=ss.hostreview(review.getHost_num());
-		model.addAttribute("reviewList", reviewList);
-		model.addAttribute("hostreview", hostreview);
-		return "bh/reviewList";
-	}
+//	@RequestMapping(value = "reviewList")
+//	public String reviewList(Review1 review, Model model) {// 숙소 리뷰
+//		logger.info("StayController reviwList Start");
+//		List<Review1> reviewList = ss.reviewList(review.getHost_num());
+//		Host hostreview	=ss.hostreview(review.getHost_num());
+//		model.addAttribute("reviewList", reviewList);
+//		model.addAttribute("hostreview", hostreview);
+//		return "bh/stayRead";
+//	}
 	
 	
 	@GetMapping(value = "stayInsertForm") //숙소 등록페이지
