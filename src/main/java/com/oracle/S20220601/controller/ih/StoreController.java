@@ -1,6 +1,7 @@
 package com.oracle.S20220601.controller.ih;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -185,12 +186,11 @@ public class StoreController {
 		HostStore       storeRead  	   = storeService.storeRead(host_num);      //식당정보
 		List<HostPhoto> storePhoto 	   = storePhotoService.storePhoto(host_num);//식당사진
 		List<Menu>      menuList   	   = menuSeivice.menuList(host_num);        //메뉴정보
-		List<Code> 	    foodcodeList = codeService.foodcodeList(storeRead.getBcd_code());
+		List<Code> 	    foodcodeList   = codeService.foodcodeList(storeRead.getBcd_code());
 		
 		for (int i = 0; i < storePhoto.size(); i++) {
 			System.out.println(storePhoto.get(i).getHost_photo());
 		}
-		
 		
 		model.addAttribute("store",storeRead);
 		model.addAttribute("storePhoto",storePhoto);
@@ -200,9 +200,74 @@ public class StoreController {
 		return "ih/storeUpdateForm";
 	}
 	
-	@GetMapping(value = "storeUpdate")
-	public String storeUpdate() {
+	@PostMapping(value = "storeUpdate")
+	public String storeUpdate(HostStore     hostStore,       Menu menu ,   Model model,
+							  MultipartFile host_photo0,     MultipartFile host_photo1,       
+							  MultipartFile host_photo2,     MultipartFile host_photo3,      
+							  MultipartFile host_photo4,     HttpServletRequest request) throws Exception {
 		
+		System.out.println("StoreController storeUpdate Start..");
+		
+	
+		System.out.println(host_photo0.getOriginalFilename());
+		System.out.println(host_photo1.getOriginalFilename());
+		System.out.println(host_photo2.getOriginalFilename());
+		System.out.println(host_photo3.getOriginalFilename());
+		System.out.println(host_photo4.getOriginalFilename());
+		/*
+		//식당정보 등록(DB저장)
+//		int storeInsert  = storeService.storeInsert(hostStore);
+		
+		//등록할 메뉴 List 변환
+		List<Menu> menus = new ArrayList<Menu>();
+		for (int i = 0; i < menu.getMenu_list().size(); i++) {
+//			System.out.println("menu_name --> " + menu.getMenu_list().get(i).getMenu_name());	
+//			System.out.println("menu_price --> " + menu.getMenu_list().get(i).getMenu_price());
+			menus.add(menu.getMenu_list().get(i));
+		}
+		
+		//메뉴 등록(DB저장)
+		int menuInsert = menuSeivice.menuInsertList(menus);
+		System.out.println("추가한 메뉴 갯수 --> " + menuInsert);
+		
+		//저장할 사진 Map저장 및 리스트 변환 및 업로드
+		Map<Integer, MultipartFile> fileName     = new HashMap<Integer, MultipartFile>();
+		List<HostPhoto>			    storePhotoInsertList = new ArrayList<HostPhoto>();
+		HostPhoto                   hostPhoto            = new HostPhoto();
+		String uploadPath = request.getSession().getServletContext().getRealPath("/images/ih/");
+	    
+	    //사진 이름 put
+		fileName.put(0, host_photo0);
+		fileName.put(1, host_photo1);
+		fileName.put(2, host_photo2);
+		fileName.put(3, host_photo3);
+		fileName.put(4, host_photo4);
+		System.out.println(hostStore.getHost_num());
+		//업로드한 사진 갯수 확인 및 Null값 입력 방지
+		for (int i = 0; i < fileName.size(); i++) {
+			if (fileName.get(i).getSize() != 0) {
+				storePhotoInsertList.add(i, hostPhoto);
+				uploadFile(fileName.get(i).getOriginalFilename(), fileName.get(i).getBytes(), uploadPath);
+			}
+		}
+		
+		//사진 이름 DB저장
+		System.out.println("업로드할 사진 갯수 --> " + storePhotoInsertList.size());
+		int uploadPhoto = 0;
+		if (storePhotoInsertList.size() != 0) {
+			uploadPhoto = storePhotoService.storePhotoInsert(storePhotoInsertList,fileName);
+		}
+		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
+		
+		
+		//식당정보 등록 요청 확인 msg 보냄
+		if (storeInsert > 0 && menuInsert > 0) {
+			model.addAttribute("msg", "등록 요청 성공");
+		}else {
+			model.addAttribute("msg", "등록 요청 실패");
+		}
+		*/
+		model.addAttribute("msg", "등록 요청 test");
 		return "ih/test";
 	}
 }

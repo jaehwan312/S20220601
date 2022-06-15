@@ -20,6 +20,9 @@ public class Search {
 	private String total_food_type;
 	private List<String> stay_type;
 	private String total_stay_type;
+	
+	//페이지 디폴트값설정
 	private String order;
+	private String selection;
 	
 }

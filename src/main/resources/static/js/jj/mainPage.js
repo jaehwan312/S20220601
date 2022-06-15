@@ -273,4 +273,3 @@ function selectSearch_main(id){
 	$('#searchBar').val(selectedKeyword);
 	document.getElementById('main_search_area').submit();
 }
-
