@@ -14,9 +14,9 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-    	 <form action="" id="orderAjax">
+    	 <form action="getSearchResult" id="orderAjax">
 		 	<input type="hidden" name="keyword" value="${keyword }" id="callKeyword">
-		 	<input type="hidden" name="order" id="callOrder">
+		 	<input type="hidden" name="order" value="${order }" id="callOrder">
 		 	<input type="hidden" name="selection" value="${selection }" id="selectionId">
 		 </form>
           <div class="container">
@@ -25,9 +25,22 @@
                       <h2 class="section-heading" id="section_heading">숙박<span class="theme-accent-color">&</span>맛집</h2>
                       <hr class="thin-hr">
                       <h3 class="section-subheading secondary-font" style="margin-bottom: 30px;" id="section_heading_sub">'${keyword }'에 대한 검색 결과</h3>
-			      	  <button type="button" class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">상세 검색</button>
+			      	  <c:if test="${order!=null }">
+			      	  	<button type="button" class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="true" aria-controls="collapseWidthExample">상세 검색</button>
+			      	  </c:if>
+			      	  <c:if test="${order==null }">
+				      	  <button type="button" class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">상세 검색</button>
+			      	  </c:if>
+			      	  
+			      	  
+			      	  
 						<div style="min-height: 120px;">
-						  <div class="collapse collapse-horizontal" id="collapseWidthExample">
+						<c:if test="${order==null }">
+						  	<div class="collapse-horizontal collapse" id="collapseWidthExample">
+						  </c:if>
+						  <c:if test="${order!=null }">
+						  <div class="collapse-horizontal collapse show" id="collapseWidthExample">
+						  </c:if>
 						    
 						    <div class="col-md-8" id="details"> 
 								
@@ -38,19 +51,19 @@
 							  	   		<span>검색순서</span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="searchorder" value="">
+								      	<input class="form-check-input flex-shrink-0" type="radio" name="searchorder" onclick="listorder(0);">
 									      <span>
 									        평점순
 									      </span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="searchorder" value="">
+								      	<input class="form-check-input flex-shrink-0" type="radio" name="searchorder" onclick="listorder(1);">
 									      <span>
 									       인기순
 									      </span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="searchorder" value="">
+									      <input class="form-check-input flex-shrink-0" type="radio" name="searchorder" onclick="listorder(2);">
 									      <span>
 									       가격순
 									      </span>
