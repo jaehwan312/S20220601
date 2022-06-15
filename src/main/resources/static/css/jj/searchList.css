@@ -67,3 +67,10 @@ section h2.section-heading, .section-heading {
 #emptySection {
 	display: none;
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .collapse-horizontal {
+        transition-property: height, visibility;
+        transition-duration: .35s;
+    }
+}

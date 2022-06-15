@@ -26,7 +26,7 @@ public class SearchController {
 	public String getSearchResult(Search search, Model model) {
 		
 		// DB에 search Keyword 입력
-		if(search.getOrder()==null&&search.getSelection()==null) {
+		if(search.getKeyword()!=null && search.getKeyword()!="") {
 			ss.keywordInsert(search.getKeyword());
 		}
 //		// 맛집 정보 조회
@@ -36,7 +36,6 @@ public class SearchController {
 		
 		
 		model.addAttribute("keyword", search.getKeyword());
-		model.addAttribute("order", search.getOrder());
 		// selection -> 0: 검색결과 리스트 둘다 포함, 1: 숙소만 포함, 2: 맛집만 포함
 		if(search.getSelection()!=null) {
 			model.addAttribute("selection", search.getSelection());
@@ -44,8 +43,6 @@ public class SearchController {
 			model.addAttribute("selection", "0");
 		}
 		
-//		model.addAttribute("storeList", store);
-//		model.addAttribute("stayList", stay);
 		
 		return "jj/searchList";
 	}
@@ -73,7 +70,9 @@ public class SearchController {
 	@ResponseBody
 	public List<HostStorejj> ajaxStoreList(Search search, Model model) {
 		List<HostStorejj> store = ss.getHostStoreList(search);
-		System.out.println("$$$$$store"+search.getOrder());
+		System.out.println("$$$$$store.order-->"+search.getOrder());
+		System.out.println("$$$$$store.regionsize-->"+search.getRegion().size());
+		System.out.println("$$$$$store.storeprice-->"+search.getStoreprice());
 		
 		return store;
 		
@@ -84,7 +83,10 @@ public class SearchController {
 	@ResponseBody
 	public List<HostStayjj> ajaxStayList(Search search, Model model) {
 		List<HostStayjj> stay = ss.getHostStayList(search);
-		System.out.println("$$$$$stay"+search.getOrder());
+		System.out.println("$$$$$stay.order-->"+search.getOrder());
+		System.out.println("$$$$$stay.regionsize-->"+search.getRegion().size());
+		System.out.println("$$$$$stay.stayprice-->"+search.getStayprice());
+		
 		return stay;
 		
 	}
