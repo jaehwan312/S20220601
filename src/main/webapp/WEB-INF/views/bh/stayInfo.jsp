@@ -6,10 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
-<title>제주 감수광</title>
 </head>
 <body>
-	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
     <div style="text-align: center;">
@@ -23,6 +21,5 @@
     </div>
     <!-- 여기 위로오 ============================================================ -->   
     </div>
-	<%@ include file="../footer.jsp" %>
 </body>
 </html>

@@ -8,6 +8,11 @@
 	<insert id="roomInsert" parameterType="Room">
 		INSERT INTO room VALUES(#{host_num},SEQ_ROOM_NUM.nextval,#{room_name},#{allow},#{room_info},#{dayfee},#{weekfee})
 	</insert>
+<!-- 	<update id="roomInsert" parameterType="Room">
+	<foreach collection="list" item="item" open="INSERT ALL" close="SELECT * FROM DUAL" separator=" ">
+		INTO WEB_MP_MENU VALUES (#{item.menuId}, #{item.groupId},'N','N','N', SYSDATE,'N')
+	</foreach>
+	</update> -->
 	<!-- 객실사진  -->
 	<insert id="roomPhotoInsert" parameterType="RoomPhoto">
 	INSERT INTO roomphoto VALUES(#{host_num},#{room_num},SEQ_ROOM_PHOTO_NUM.nextval,#{room_photo})
