@@ -56,7 +56,7 @@ public class StoreDaoImpl implements StoreDao {
 		return storeInsert;
 	}
 	
-	public void prn(HostStore hostStore) {
+	private void prn(HostStore hostStore) {
 		System.out.println("hostStore.getHost_num()   --> " + hostStore.getHost_num());
 		System.out.println("hostStore.getBcd_code()   --> " + hostStore.getBcd_code());
 		System.out.println("hostStore.getFood_type()  --> " + hostStore.getFood_type());
@@ -71,6 +71,32 @@ public class StoreDaoImpl implements StoreDao {
 		System.out.println("hostStore.getParking()    --> " + hostStore.getParking());
 		System.out.println("hostStore.getRev_count()  --> " + hostStore.getRev_count());
 		System.out.println("hostStore.getBreak_time() --> " + hostStore.getBreak_time());
+		System.out.println("hostStore.getHost_app() --> " + hostStore.getHost_app());
+	}
+
+	@Override
+	public int storeUpdate(HostStore hostStore) {
+		System.out.println("StoreDaoImpl storeUpdate Start....");
+		
+		int storeUpdate = 0;
+		
+		try {
+			hostStore.setOpen_time(hostStore.getStart_time() 
+								   + " ~ " + 
+								   hostStore.getEnd_time());
+			hostStore.setBreak_time(hostStore.getBreak_start_time() 
+									    + " ~ " + 
+									    hostStore.getBreak_end_time());
+			storeUpdate = session.update("storeUpdate", hostStore);
+			storeUpdate = 1;
+			prn(hostStore);
+		} catch (Exception e) {
+			storeUpdate = 0;
+			System.out.println("StoreDaoImpl storeInsert ErrorMessage --> " + e.getMessage());
+		}
+		
+		System.out.println("storeUpdate-----<> "+ storeUpdate);
+		return storeUpdate;
 	}
 	
 }

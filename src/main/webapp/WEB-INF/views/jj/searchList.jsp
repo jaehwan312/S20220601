@@ -14,35 +14,25 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-    	 <form action="getSearchResult" id="orderAjax">
-		 	<input type="hidden" name="keyword" value="${keyword }" id="callKeyword">
-		 	<input type="hidden" name="order" value="${order }" id="callOrder">
-		 	<input type="hidden" name="selection" value="${selection }" id="selectionId">
-		 </form>
+    	 
           <div class="container">
               <div class="row">
                   <div class="col-lg-12 text-center mb100">
                       <h2 class="section-heading" id="section_heading">숙박<span class="theme-accent-color">&</span>맛집</h2>
                       <hr class="thin-hr">
                       <h3 class="section-subheading secondary-font" style="margin-bottom: 30px;" id="section_heading_sub">'${keyword }'에 대한 검색 결과</h3>
-			      	  <c:if test="${order!=null }">
-			      	  	<button type="button" class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="true" aria-controls="collapseWidthExample">상세 검색</button>
-			      	  </c:if>
-			      	  <c:if test="${order==null }">
-				      	  <button type="button" class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">상세 검색</button>
-			      	  </c:if>
+			      	  <button type="button" class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">상세 검색</button>
 			      	  
 			      	  
 			      	  
 						<div style="min-height: 120px;">
-						<c:if test="${order==null }">
-						  	<div class="collapse-horizontal collapse" id="collapseWidthExample">
-						  </c:if>
-						  <c:if test="${order!=null }">
-						  <div class="collapse-horizontal collapse show" id="collapseWidthExample">
-						  </c:if>
+					  	<div class="collapse-horizontal collapse" id="collapseWidthExample">
 						    
 						    <div class="col-md-8" id="details"> 
+								
+								<form action="" id="orderAjax">
+								 	<input type="hidden" name="keyword" value="${keyword }" id="callKeyword">
+								 	<input type="hidden" name="selection" value="${selection }" id="selectionId">
 								
 								
 								<div class="container" id="details_font">
@@ -51,19 +41,19 @@
 							  	   		<span>검색순서</span>
 								    </div>
 								    <div class="col-md-3">
-								      	<input class="form-check-input flex-shrink-0" type="radio" name="searchorder" onclick="listorder(0);">
+								      	<input class="form-check-input flex-shrink-0" type="radio" name="order" value="0" onclick="ajaxList()">
 									      <span>
 									        평점순
 									      </span>
 								    </div>
 								    <div class="col-md-3">
-								      	<input class="form-check-input flex-shrink-0" type="radio" name="searchorder" onclick="listorder(1);">
+								      	<input class="form-check-input flex-shrink-0" type="radio" name="order" value="1" onclick="ajaxList()">
 									      <span>
 									       인기순
 									      </span>
 								    </div>
 								    <div class="col-md-3">
-									      <input class="form-check-input flex-shrink-0" type="radio" name="searchorder" onclick="listorder(2);">
+									      <input class="form-check-input flex-shrink-0" type="radio" name="order" value="2" onclick="ajaxList()">
 									      <span>
 									       가격순
 									      </span>
@@ -79,55 +69,55 @@
 							  	   		<span>지역별</span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" id="region0" checked="" onclick="regioncheck()">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="0" checked="" onclick="ajaxList()">
 									      <span>
-									        모슬포/화순
+									        대정읍/안덕면
 									      </span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" id="region1" checked="" onclick="regioncheck()">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="1" checked="" onclick="ajaxList()">
 									      <span>
-									        서귀포시내
+									        서귀동
 									      </span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" id="region2" checked="" onclick="regioncheck()">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="2" checked="" onclick="ajaxList()">
 									      <span>
-									        성산/우도
+									        성산읍/우도면
 									      </span>
 								    </div>
 								  </div>
 								  <div class="row">
 								  	<div class="col-md-3 offset-md-3">
-								  		<input class="form-check-input flex-shrink-0" type="checkbox" id="region3" checked="" onclick="regioncheck()">
+								  		<input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="3" checked="" onclick="ajaxList()">
 									      <span>
-									        제주 시내
+									        노형동
 									      </span>
 								  	</div>
 								  	<div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" id="region4" checked="" onclick="regioncheck()">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="4" checked="" onclick="ajaxList()">
 									      <span>
-									        중문단지
+									        중문동
 									      </span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" id="region5" checked="" onclick="regioncheck()">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="5" checked="" onclick="ajaxList()">
 									      <span>
-									        표선/성읍
+									        표선면
 									      </span>
 								    </div>
 								  </div>
 								  <div class="row">
 								  	<div class="col-md-3 offset-md-3">
-								  		<input class="form-check-input flex-shrink-0" type="checkbox" id="region6" checked="" onclick="regioncheck()">
+								  		<input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="6" checked="" onclick="ajaxList()">
 									      <span>
-									        한림/애월
+									        한림읍/애월읍
 									      </span>
 								  	</div>
 								  	<div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" id="region7" checked="" onclick="regioncheck()">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="7" checked="" onclick="ajaxList()">
 									      <span>
-									        함덕/김녕
+									        조천읍/구좌읍
 									      </span>
 								    </div>
 								  </div>
@@ -139,19 +129,19 @@
 							  	   		<span>숙소가격</span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="0" onclick="ajaxList()">
 									      <span>
 									        만원 미만
 									      </span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="1" onclick="ajaxList()">
 									      <span>
 									       1만 ~ 3만 미만
 									      </span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="2" onclick="ajaxList()">
 									      <span>
 									        3만 ~ 5만 미만
 									      </span>
@@ -159,7 +149,7 @@
 								  </div>
 								  <div class="row">
 								  	<div class="col-md-3 offset-md-3">
-								  		<input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="">
+								  		<input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="3" onclick="ajaxList()">
 									      <span>
 									        5만 이상
 									      </span>
@@ -174,19 +164,19 @@
 							  	   		<span>맛집가격</span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="0" onclick="ajaxList()">
 									      <span>
 									        만원 미만
 									      </span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="1" onclick="ajaxList()">
 									      <span>
 									       1만 ~ 3만 미만
 									      </span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="2" onclick="ajaxList()">
 									      <span>
 									        3만 ~ 5만 미만
 									      </span>
@@ -194,7 +184,7 @@
 								  </div>
 								  <div class="row">
 								  	<div class="col-md-3 offset-md-3">
-								  		<input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="">
+								  		<input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="3" onclick="ajaxList()">
 									      <span>
 									        5만 이상
 									      </span>
@@ -202,7 +192,7 @@
 								</div>
 						    </div>
 						    
-						    
+						     </form>
 						    
 						    
 						  </div>

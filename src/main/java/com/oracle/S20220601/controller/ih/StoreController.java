@@ -97,9 +97,10 @@ public class StoreController {
 							  MultipartFile host_photo4,     HttpServletRequest request) throws Exception {
 		
 		System.out.println("StoreController storeInsert Start..");
-		
 		//식당정보 등록(DB저장)
 		int storeInsert  = storeService.storeInsert(hostStore);
+		
+		System.out.println("storeInsert --> " + storeInsert);
 		
 		//등록할 메뉴 List 변환
 		List<Menu> menus = new ArrayList<Menu>();
@@ -207,17 +208,12 @@ public class StoreController {
 							  MultipartFile host_photo4,     HttpServletRequest request) throws Exception {
 		
 		System.out.println("StoreController storeUpdate Start..");
-		
 	
-		System.out.println(host_photo0.getOriginalFilename());
-		System.out.println(host_photo1.getOriginalFilename());
-		System.out.println(host_photo2.getOriginalFilename());
-		System.out.println(host_photo3.getOriginalFilename());
-		System.out.println(host_photo4.getOriginalFilename());
-		/*
-		//식당정보 등록(DB저장)
-//		int storeInsert  = storeService.storeInsert(hostStore);
 		
+		//식당정보 등록(DB저장)
+		int storeUpdate  = storeService.storeUpdate(hostStore);
+		System.out.println("storeUpdate --> " + storeUpdate);
+		/*
 		//등록할 메뉴 List 변환
 		List<Menu> menus = new ArrayList<Menu>();
 		for (int i = 0; i < menu.getMenu_list().size(); i++) {
@@ -230,19 +226,31 @@ public class StoreController {
 		int menuInsert = menuSeivice.menuInsertList(menus);
 		System.out.println("추가한 메뉴 갯수 --> " + menuInsert);
 		
+		*/
+		
+		/*
+		//현재 등록 되어 있는 사진
+		List<HostPhoto>     storePhoto 	   = storePhotoService.storePhoto(hostStore.getHost_num());//식당사진
+		for (int i = 0; i < storePhoto.size(); i++) {
+			System.out.println(storePhoto.get(i).getHost_photo());
+		}
+		
 		//저장할 사진 Map저장 및 리스트 변환 및 업로드
 		Map<Integer, MultipartFile> fileName     = new HashMap<Integer, MultipartFile>();
 		List<HostPhoto>			    storePhotoInsertList = new ArrayList<HostPhoto>();
 		HostPhoto                   hostPhoto            = new HostPhoto();
 		String uploadPath = request.getSession().getServletContext().getRealPath("/images/ih/");
 	    
-	    //사진 이름 put
-		fileName.put(0, host_photo0);
-		fileName.put(1, host_photo1);
-		fileName.put(2, host_photo2);
-		fileName.put(3, host_photo3);
-		fileName.put(4, host_photo4);
-		System.out.println(hostStore.getHost_num());
+		
+		//사진 이름 put
+		int x = 0;
+		if (host_photo0.getSize() != 0) {fileName.put(x, host_photo0); x += 1;}
+		if (host_photo1.getSize() != 0) {fileName.put(x, host_photo1); x += 1;}
+		if (host_photo2.getSize() != 0) {fileName.put(x, host_photo2); x += 1;}
+		if (host_photo3.getSize() != 0) {fileName.put(x, host_photo3); x += 1;}
+		if (host_photo4.getSize() != 0) {fileName.put(x, host_photo4); x += 1;}
+		System.out.println("x --> " + x);
+		
 		//업로드한 사진 갯수 확인 및 Null값 입력 방지
 		for (int i = 0; i < fileName.size(); i++) {
 			if (fileName.get(i).getSize() != 0) {
@@ -250,24 +258,28 @@ public class StoreController {
 				uploadFile(fileName.get(i).getOriginalFilename(), fileName.get(i).getBytes(), uploadPath);
 			}
 		}
+		System.out.println("fileName.size() --> " + fileName.size());
+		for (int i = 0; i < fileName.size(); i++) {
+			System.out.println(fileName.get(i).getSize());
+		}
 		
 		//사진 이름 DB저장
-		System.out.println("업로드할 사진 갯수 --> " + storePhotoInsertList.size());
-		int uploadPhoto = 0;
-		if (storePhotoInsertList.size() != 0) {
-			uploadPhoto = storePhotoService.storePhotoInsert(storePhotoInsertList,fileName);
-		}
-		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
-		
+		  System.out.println("업로드할 사진 갯수 --> " + storePhotoInsertList.size());
+		  int uploadPhoto = 0; 
+		  if (storePhotoInsertList.size() != 0) {uploadPhoto =  storePhotoService.storePhotoUpdate(storePhotoInsertList,fileName,hostStore.getHost_num());}
+		  System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
+		  
+		  if(storePhoto.size() != 0){    }
+		*/
 		
 		//식당정보 등록 요청 확인 msg 보냄
-		if (storeInsert > 0 && menuInsert > 0) {
+		if (storeUpdate > 0) {
 			model.addAttribute("msg", "등록 요청 성공");
 		}else {
 			model.addAttribute("msg", "등록 요청 실패");
 		}
-		*/
-		model.addAttribute("msg", "등록 요청 test");
+		
+		
 		return "ih/test";
 	}
 }

@@ -176,7 +176,7 @@ $(function(){
 					$('#staySection').show();
 				}
 				
-				if(staylength==0){
+				if(storelength==0 && staylength==0){
 					$('#emptySection').show();
 				}else{
 					$('#emptySection').hide();
@@ -265,15 +265,12 @@ $(function(){
 				
 				if(staylength==0){
 					$('#staySection').hide();
-				}else{
-					$('#staySection').show();
-				}
-				
-				if(storelength==0 && staylength==0){
 					$('#emptySection').show();
 				}else{
+					$('#staySection').show();
 					$('#emptySection').hide();
 				}
+				
 				
 			}
 		});
@@ -363,13 +360,9 @@ $(function(){
 				
 				if(storelength==0){
 					$('#storeSection').hide();
-				}else{
-					$('#storeSection').show();
-				}
-				
-				if(storelength==0){
 					$('#emptySection').show();
 				}else{
+					$('#storeSection').show();
 					$('#emptySection').hide();
 				}
 				
@@ -451,17 +444,8 @@ function resulthide(){
 
 
 
-// 검색 순서 누를경우 해당순서로 아작스 리턴
-function listorder(e){
-	if(e==0){
-		$('#callOrder').val('host_avg desc');
-	}else if(e==1) {
-		$('#callOrder').val('like_count desc');
-	}else if(e==2) {
-		$('#callOrder').val('1');
-	}
-	
-	//$('#orderAjax').submit();
+// 상세검색 조건 누르면 아작스로 리스트 리턴
+function ajaxList(){
 	
 	var value = $('#orderAjax').serialize();
 	var section = $('#selectionId').val();
@@ -636,7 +620,7 @@ function listorder(e){
 					$('#staySection').show();
 				}
 				
-				if(staylength==0){
+				if(storelength==0 && staylength==0){
 					$('#emptySection').show();
 				}else{
 					$('#emptySection').hide();
@@ -725,13 +709,9 @@ function listorder(e){
 				
 				if(staylength==0){
 					$('#staySection').hide();
-				}else{
-					$('#staySection').show();
-				}
-				
-				if(storelength==0 && staylength==0){
 					$('#emptySection').show();
 				}else{
+					$('#staySection').show();
 					$('#emptySection').hide();
 				}
 				
@@ -823,13 +803,9 @@ function listorder(e){
 				
 				if(storelength==0){
 					$('#storeSection').hide();
-				}else{
-					$('#storeSection').show();
-				}
-				
-				if(storelength==0){
 					$('#emptySection').show();
 				}else{
+					$('#storeSection').show();
 					$('#emptySection').hide();
 				}
 				
