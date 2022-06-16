@@ -90,6 +90,7 @@ public class StayController {	//숙소 Controller
 	public String stayInsert(HostStay hostStay,Model model,MultipartFile host_photo0,
 										  MultipartFile host_photo1,MultipartFile host_photo2,
 										  MultipartFile host_photo3,MultipartFile host_photo4) {
+		
 		int stayInsert = ss.stayInsert(hostStay);
 		
 		System.out.println(host_photo0.getOriginalFilename());
@@ -128,13 +129,12 @@ public class StayController {	//숙소 Controller
 		}
 		System.out.println("업로드된 사진 --> " + roomPhoto);
 		System.out.println("host->"+stayInsert);
-		System.out.println("room->");
 		
 		if (stayInsert != 0) {
-			model.addAttribute("msg", "성공");
+			model.addAttribute("msg", "숙소 등록 성공");
 			model.addAttribute("host_num", stayInsert);
 		}else {
-			model.addAttribute("msg", "실패");
+			model.addAttribute("msg", "숙소 등록 실패");
 		}
 		
 		
@@ -180,13 +180,14 @@ public class StayController {	//숙소 Controller
 		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
 		System.out.println("host->"+roomInsert);
 		
+		model.addAttribute("roomInsert", roomInsert);
 		
 		if (roomInsert > 0) {
-			model.addAttribute("msg", "성공");
+			model.addAttribute("msg", "객실 등록 성공");
 		}else {
-			model.addAttribute("msg", "실패");
+			model.addAttribute("msg", "객실 등록 실패");
 		}
-		return "bh/test1";
+		return "bh/roomInsertForm";
 		
 	}
 }
