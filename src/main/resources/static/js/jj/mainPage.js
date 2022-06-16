@@ -5,6 +5,7 @@
 $(document).ready(function() {
 			$('#fullpage').fullpage({
 				'afterLoad': function (anchorLink, index) {
+					// 2페이지에서 카운트업 시작
 					if (index == 2){
 						$('.counter').show();
 						$('.substitute').hide();
@@ -17,6 +18,7 @@ $(document).ready(function() {
 		
 				// 페이지 이동할 때
 				'onLeave' : function (index, nextIndex, direction){
+					// 다시 2번페이지로 올경우 카운터 재시작되는것을 방지하기 위함
 					if (index == 2 && direction == 'down'){
 						$('.counter').attr('class','counte');
 					} else if (index == 2 && direction == 'up'){

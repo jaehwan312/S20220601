@@ -39,7 +39,7 @@
 							host_addr like '%성산%' or host_addr like '%우도%' 
 						</when>
 						<when test='item=="3"'>
-							host_addr like '%노형%'
+							host_addr like '%노형%' or host_addr like '%제주시%'
 						</when>
 						<when test='item=="4"'>
 							host_addr like '%중문%'
@@ -110,7 +110,7 @@
 							host_addr like '%성산%' or host_addr like '%우도%' 
 						</when>
 						<when test='item=="3"'>
-							host_addr like '%노형%'
+							host_addr like '%노형%' or host_addr like '%제주시%'
 						</when>
 						<when test='item=="4"'>
 							host_addr like '%중문%'
