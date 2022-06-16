@@ -1,33 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="css/main.css">
-   <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bh/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/bh/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/bh/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/bh/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/bh/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/bh/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/bh/slicknav.min.css" type="text/css">
+<link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
+  <!-- Css Styles -->
+
     <link rel="stylesheet" href="css/bh/style.css" type="text/css">
-    <link rel="stylesheet" href="css/bh/stayRead.css" type="text/css">
 <title>제주 감수광</title>
 </head>
 <body>
-	<%@ include file="../header.jsp"%>
-	<div class="container">
-		<!-- 여기 밑으로 ============================================================ -->
-		<div>
+	<%@ include file="../header.jsp" %>
+    <div class="container">
+    <!-- 여기 밑으로 ============================================================ -->
+    <div>
 		
 			<!-- test st -->
 			<section class="product-details spad">
@@ -36,8 +24,8 @@
 	                <div class="col-lg-6 col-md-6">
 	                    <div class="product__details__pic">
 	                    <!-- 사진 -->
-			                <div style="width: 50%; float: left;">
-			                  <div id="carouselExampleControls${j.index }" class="carousel slide" data-bs-ride="carousel" style="width: 100%;">
+			                <div style="width: 500px; height:300px; overflow-x: hidden; float: left; margin: 0px; padding: 0px;">
+			                  <div id="carouselExampleControls1" class="carousel slide" data-bs-ride="carousel" style="width: 100%;">
 			                    <div class="carousel-inner">
 			                    <c:forEach items="${stayPhoto }" var="getPhoto" varStatus="i">
 			                       <c:if test="${i.index==0 }">
@@ -52,11 +40,11 @@
 			                       </c:if>
 			                  </c:forEach>
 			                    </div>
-			                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls${j.index }" data-bs-slide="prev">
+			                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls1${i.index }" data-bs-slide="prev">
 			                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			                      <span class="visually-hidden">Previous</span>
 			                    </button>
-			                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls${j.index }" data-bs-slide="next">
+			                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls1${i.index }" data-bs-slide="next">
 			                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
 			                      <span class="visually-hidden">Next</span>
 			                    </button>
@@ -112,16 +100,11 @@
 		<div id="onRoom0">
 		<!-- room -->
 		<div >
-				<c:forEach items="${roomPhoto }" var="room" varStatus="j">
 					<p>
-					<div style="text-align: left; width: 100%; float: left; height: 200px; margin-top: 50px;">
-						<div style="border: 1px solid black; margin-bottom: 20px;">
-						<%-- <c:forEach items="${room.roomPhotos }" var="photo">
-							<img alt="객실사진" src="images/bh/${photo.room_photo}" width="200px;"
-							height="200px;">
-						</c:forEach> --%>
-						
-							 <div id="carouselExampleControls${j.index }" class="carousel slide" data-bs-ride="carousel" style="width: 400px;">
+					
+								<c:forEach items="${roomPhoto }" var="room" varStatus="j">
+						<div style="background-color: purple;   ">
+							 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="width: 400px; float: left; margin: 0px; padding: 0px;">
 				                    <div class="carousel-inner">
 					                    <c:forEach items="${room.roomPhotos  }" var="getPhoto" varStatus="i">
 					                       <c:if test="${i.index==0 }">
@@ -160,23 +143,44 @@
 									<button type="submit">예약</button>
 								</form>
 							</li>
-			    	</div>
-				</c:forEach>
+							</c:forEach>
 			</div>		
 			</div>
-		<div id="onRoom1">
-		 	<!-- stayinfo -->
-			 <div style="text-align: center;">
-		    <h1>기본정보</h1>
-		    	오는길 : ${stayinfo.way}
-		    	체크인 : ${stayinfo.checkin } 
-		    	체크아웃 : ${stayinfo.checkout }
-		    	
-		    <h1>편의 시설</h1>
-		    ${stayinfo.convenient}
-		    </div>
+		<div id="onRoom1" style="margin-bottom: 100px;">
+		 	
+			
+			<!--  -->
+			<div class="accordion" id="accordionPanelsStayOpenExample">
+			  <div class="accordion-item">
+			    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+			      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+			       	 기본정보
+			      </button>
+			    </h2>
+			    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+			      <div class="accordion-body">
+			        <strong><br>오는길 : ${stayinfo.way}<br><br>
+				        		체크인 : ${stayinfo.checkin }<br><br>
+			    				체크아웃 : ${stayinfo.checkout }</strong> 
+			    </div>
+			  </div>
+			  <div class="accordion-item">
+			    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+			      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+			        	편의 시설
+			      </button>
+			    </h2>
+			    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+			      <div class="accordion-body">
+			        <strong>${stayinfo.convenient}</strong> 
+			      </div>
+			    </div>
+			  </div>
 			<!--  -->
 		</div>
+		</div>
+		</div>
+		
 		<div id="onRoom2">
 			<!-- review -->
 				 <div style="text-align: center; margin-top: 100px;">
@@ -197,7 +201,7 @@
 	                <div style="width: 40%; text-align: left; padding-left: 60px; padding-bottom: 30px; padding-top: 30px;">
 	                  ${getList.rev_content}</div>
 	               <div style="width: 100%; height: 200px; text-align: left; padding-left: 60px; margin-bottom: 30px; ">
-	                  <div id="carouselExampleControls${j.index }" class="carousel slide" data-bs-ride="carousel" style="width: 400px;">
+	                  <div id="carouselExampleControls3${j.index }" class="carousel slide" data-bs-ride="carousel" style="width: 400px;">
 	                    <div class="carousel-inner">
 	                    <c:forEach items="${getList.revPhoto }" var="getPhoto" varStatus="r">
 	                       <c:if test="${r.index==0 }">
@@ -212,11 +216,11 @@
 	                       </c:if>
 	                  </c:forEach>
 	                    </div>
-	                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls${l.index }" data-bs-slide="prev">
+	                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls3${l.index }" data-bs-slide="prev">
 	                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 	                      <span class="visually-hidden">Previous</span>
 	                    </button>
-	                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls${l.index }" data-bs-slide="next">
+	                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls3${l.index }" data-bs-slide="next">
 	                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
 	                      <span class="visually-hidden">Next</span>
 	                    </button>
@@ -228,19 +232,10 @@
 				<!--end  -->
 			</div>
 		</div>
-			
-			
-			
-			
-		
-		<!-- 여기 위로오 ============================================================ -->
-	</div>
-	<%@ include file="../footer.jsp"%>
+    <!-- 여기 위로오 ============================================================ -->   
+    </div>
+	<%@ include file="../footer.jsp" %>
 	<script type="text/javascript" src="js/bh/stayinfo.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-		crossorigin="anonymous"></script>
-		<script type="text/javascript" src="js/bh/reviewRead.js"></script>
+	<script type="text/javascript" src="js/bh/reviewRead.js"></script>
 </body>
 </html>
