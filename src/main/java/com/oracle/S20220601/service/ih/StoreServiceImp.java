@@ -37,4 +37,13 @@ public class StoreServiceImp implements StoreService{
 		return storeInsert;
 	}
 
+	@Override
+	public int storeUpdate(HostStore hostStore) {
+		System.out.println("StoreServiceImp storeUpdate Start....");
+		
+		int storeUpdate = storeDao.storeUpdate(hostStore);
+		
+		return storeUpdate;
+	}
+
 }

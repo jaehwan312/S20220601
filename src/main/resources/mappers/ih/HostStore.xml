@@ -34,4 +34,26 @@
   			}
   		</insert>
   		
+  		<update id="storeUpdate" parameterType="HostStore" statementType="CALLABLE" >
+  			{
+  				call HOST_STORE_UPDATE(
+	  			    #{in_host_num   , mode=IN   , jdbcType=INTEGER}
+	   			   ,#{in_mem_num    , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{in_host_name  , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{in_host_addr  , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{in_host_info  , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{in_host_code  , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{in_rev_count  , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{in_host_avg   , mode=IN   , jdbcType=FLOAT}
+	  			   ,#{in_like_count , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{in_host_app   , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{in_parking    , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{in_food_type  , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{in_open_time  , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{in_break_time , mode=IN   , jdbcType=VARCHAR}
+
+	  			)
+  			}
+  		</update>
+  		
    </mapper>

@@ -11,6 +11,7 @@ public interface StorePhotoDao {
 	
 	List<HostPhoto> storePhoto(int host_num);						//등록된사진확인	
 	int             storePhotoInsert(List<HostPhoto> storePhotoInsertList, Map<Integer, MultipartFile> fileName); //식당사진 등록
+	int             storePhotoUpdate(List<HostPhoto> storePhotoInsertList, Map<Integer, MultipartFile> fileName, int host_num);//식당사진 업데이트 
 
 
 }
