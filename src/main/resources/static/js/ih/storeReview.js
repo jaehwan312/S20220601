@@ -3,7 +3,6 @@ function hostRevDelete(e){
 	
 	var host_num     = document.getElementById('HostNum').value;
 	var rev_num      = e;
-	var rev_content  = document.getElementById('host_rev_content').value;
 	var mem_num      = document.getElementById('Mem_mem').value;
 	var host_rev_insert      = document.getElementById('host_rev_insert').innerHTML;
 	
@@ -12,7 +11,7 @@ function hostRevDelete(e){
 	console.log("host_num --> " + host_num);
 	console.log("mem_num --> " + mem_num);
 	
-	var del = {"rev_num" : rev_num, "host_num": host_num, "rev_content" : rev_content,"mem_num":mem_num}
+	var del = {"rev_num" : rev_num, "host_num": host_num,"mem_num":mem_num}
 	
 	console.log(del);
 	
@@ -59,6 +58,8 @@ function hostRevInsert(e){
 		dataType : 'json',
 		success: function(data){
 				if(data > 0) {
+					$('#host_rev_select').remove();
+					//$('#host_rev').load(#host_rev_insert);
 					StoreRevCount(host_num);
 					StoreAvgUpdate(host_num);
 				}	

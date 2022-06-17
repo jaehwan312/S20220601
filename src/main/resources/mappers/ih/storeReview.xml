@@ -6,7 +6,7 @@
    <mapper namespace="com.oracle.S20220601.StoreRevMapper">
 	 	<!-- 식당 리뷰  -->
 	  	<select id="storeRevList" parameterType="int" resultType="review">
-	  		SELECT * FROM review WHERE host_num = 1 ORDER BY rev_num DESC
+	  		SELECT * FROM review WHERE host_num = #{host_num} ORDER BY rev_num DESC
 	  	</select>
 	  	<!-- 식당 리뷰 사진 -->
 	  	<select id="storeRevPhoto" parameterType="Review" resultType="RevPhoto">
