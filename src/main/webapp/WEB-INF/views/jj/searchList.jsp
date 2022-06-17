@@ -34,7 +34,7 @@
 								 	<input type="hidden" name="selection" value="${selection }" id="selectionId">
 								
 								
-								<div class="container" id="details_font">
+								<div class="container" id="detail_order">
 								  <div class="row">
 							  	   <div class="col-md-3">
 							  	   		<span>검색순서</span>
@@ -62,7 +62,7 @@
 						    </div>
 								
 								
-								<div class="container" id="details_font">
+								<div class="container" id="detail_region">
 								  <div class="row">
 							  	   <div class="col-md-3">
 							  	   		<span>지역별</span>
@@ -121,75 +121,6 @@
 								    </div>
 								  </div>
 								</div>
-								
-								<div class="container" id="details_font">
-								  <div class="row">
-							  	   <div class="col-md-3">
-							  	   		<span>숙소가격</span>
-								    </div>
-								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="0" onclick="ajaxList()">
-									      <span>
-									        만원 미만
-									      </span>
-								    </div>
-								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="1" onclick="ajaxList()">
-									      <span>
-									       1만 ~ 3만 미만
-									      </span>
-								    </div>
-								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="2" onclick="ajaxList()">
-									      <span>
-									        3만 ~ 5만 미만
-									      </span>
-								    </div>
-								  </div>
-								  <div class="row">
-								  	<div class="col-md-3 offset-md-3">
-								  		<input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="3" onclick="ajaxList()">
-									      <span>
-									        5만 이상
-									      </span>
-								  	</div>
-								  </div>
-
-						    </div>
-						    
-						    <div class="container" id="details_font">
-								  <div class="row">
-							  	   <div class="col-md-3">
-							  	   		<span>맛집가격</span>
-								    </div>
-								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="0" onclick="ajaxList()">
-									      <span>
-									        만원 미만
-									      </span>
-								    </div>
-								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="1" onclick="ajaxList()">
-									      <span>
-									       1만 ~ 3만 미만
-									      </span>
-								    </div>
-								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="2" onclick="ajaxList()">
-									      <span>
-									        3만 ~ 5만 미만
-									      </span>
-								    </div>
-								  </div>
-								  <div class="row">
-								  	<div class="col-md-3 offset-md-3">
-								  		<input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="3" onclick="ajaxList()">
-									      <span>
-									        5만 이상
-									      </span>
-								  	</div>
-								</div>
-						    </div>
 						    
 						     </form>
 						    
@@ -208,6 +139,91 @@
               <div class="row">
                   <div class="col-md-6" id="storeSection">
                       <h2 class="mb50"></h2>
+                      <div id="storedetails">
+                      <form action="" id="storeTypeAjax">
+                      <div class="container" id="detail_storetype">
+								  <div class="row">
+							  	   <div class="col-md-3">
+							  	   		<span>종류별</span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" name="food_type" value="0" checked="" onclick="ajaxList()">
+									      <span>
+									        한식
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" name="food_type" value="1" checked="" onclick="ajaxList()">
+									      <span>
+									        일식
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" name="food_type" value="2" checked="" onclick="ajaxList()">
+									      <span>
+									        중식
+									      </span>
+								    </div>
+								  </div>
+								  <div class="row">
+								  	<div class="col-md-3 offset-md-3">
+								  		<input class="form-check-input flex-shrink-0" type="checkbox" name="food_type" value="3" checked="" onclick="ajaxList()">
+									      <span>
+									        양식
+									      </span>
+								  	</div>
+								  	<div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" name="food_type" value="4" checked="" onclick="ajaxList()">
+									      <span>
+									        카페
+									      </span>
+								    </div>
+								  </div>
+								  </div>
+							<div class="container" id="detail_storeprice">
+								  <div class="row">
+							  	   <div class="col-md-3">
+							  	   		<span>가격별</span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="0" checked="checked" onclick="ajaxList()">
+									      <span>
+									        전체
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="1" onclick="ajaxList()">
+									      <span>
+									        만원 미만
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="2" onclick="ajaxList()">
+									      <span>
+									       1만 ~ 3만
+									      </span>
+								    </div>
+								    
+								  </div>
+								  <div class="row">
+								    <div class="col-md-3 offset-md-3">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="3" onclick="ajaxList()">
+									      <span>
+									        3만 ~ 5만
+									      </span>
+								    </div>
+								  	<div class="col-md-3">
+								  		<input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="4" onclick="ajaxList()">
+									      <span>
+									        5만 이상
+									      </span>
+								  	</div>
+								</div>
+						    </div>	  
+								  
+							</form>
+                      </div>
+                      
                       
                      <%--  <c:forEach var="store" items="${storeList }" varStatus="i">
                       	<div class="host-item">
@@ -242,6 +258,84 @@
 
                    <div class="col-md-6" id="staySection">
                       <h2 class="mb50"></h2>
+                      <div id="staydetails">
+                      <form action="" id="stayTypeAjax">
+                      <div class="container" id="detail_staytype">
+								  <div class="row">
+							  	   <div class="col-md-3">
+							  	   		<span>종류별</span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" name="stay_type" value="0" checked="" onclick="ajaxList()">
+									      <span>
+									        모텔
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" name="stay_type" value="1" checked="" onclick="ajaxList()">
+									      <span>
+									        호텔
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="checkbox" name="stay_type" value="2" checked="" onclick="ajaxList()">
+									      <span>
+									        펜션
+									      </span>
+								    </div>
+								  </div>
+								  <div class="row">
+								  	<div class="col-md-3 offset-md-3">
+								  		<input class="form-check-input flex-shrink-0" type="checkbox" name="stay_type" value="3" checked="" onclick="ajaxList()">
+									      <span>
+									        게스트하우스
+									      </span>
+								  	</div>
+								  </div>
+								  </div>
+							<div class="container" id="detail_stayprice">	  
+								  <div class="row">
+							  	   <div class="col-md-3">
+							  	   		<span>가격별</span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" checked="checked" value="0" onclick="ajaxList()">
+									      <span>
+									        전체
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="1" onclick="ajaxList()">
+									      <span>
+									        만원 미만
+									      </span>
+								    </div>
+								    <div class="col-md-3">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="2" onclick="ajaxList()">
+									      <span>
+									       1만 ~ 3만
+									      </span>
+								    </div>
+								  </div>
+								  <div class="row">
+								  	<div class="col-md-3 offset-md-3">
+								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="3" onclick="ajaxList()">
+									      <span>
+									        3만 ~ 5만
+									      </span>
+								    </div>
+								  	<div class="col-md-3">
+								  		<input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="4" onclick="ajaxList()">
+									      <span>
+									        5만 이상
+									      </span>
+								  	</div>
+								  </div>
+								  
+								</div>
+								  
+							</form>
+                      </div>
 						<%-- <c:forEach var="stay" items="${stayList }">
                       	<div class="host-item">
                           <div class="row">
@@ -267,6 +361,7 @@
                       </c:forEach> --%>
                   </div>
                   <div class="col-md-6" id="emptySection">
+                  	   <img alt="" src="images/jj/X.jpg">
                       <h2 class="mb50">검색 결과가 없습니다</h2>
                   </div>
               </div>

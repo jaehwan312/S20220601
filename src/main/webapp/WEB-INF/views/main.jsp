@@ -159,7 +159,7 @@
 		<div class="container-xxl py-5" id="registry">
 	            <div class="row justify-content-center g-4">
 	                <div class="col-lg-4 col-sm-6" style="cursor: pointer;"
-	                onclick="location.href='#'">
+	                onclick="location.href='storeInsertForm'">
 	                    <div class="service-item text-center pt-3">
 	                        <div class="p-4">
 	                            <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
@@ -169,7 +169,7 @@
 	                    </div>
 	                </div>
 	                <div class="col-lg-4 col-sm-6" style="cursor: pointer;"
-	                onclick="location.href='#'">
+	                onclick="location.href='stayInsertForm'">
 	                    <div class="service-item text-center pt-3">
 	                        <div class="p-4">
 	                            <i class="fa fa-3x fa-hotel text-primary mb-4"></i>
