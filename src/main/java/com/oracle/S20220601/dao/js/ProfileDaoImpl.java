@@ -44,9 +44,25 @@ public class ProfileDaoImpl implements ProfileDao {
 
 
 	@Override
-	public String searchId(String name, String phone) {
-		System.out.println("----------------- Dao SearchId Start --------------");			
-		return session.selectOne("searchId", name);
+	public String searchId(Profile profile) {
+		System.out.println("----------------- Dao SearchId Start --------------");	
+		String result = session.selectOne("searchId", profile);
+		return result;
+		
+	}
+
+
+	@Override
+	public int emailCheck(Profile profile) {
+		System.out.println("----------------- DAO emailCheck Start --------------");
+		int cnt = session.selectOne("emailCheck", profile);
+		return cnt;
+	}
+
+
+	@Override
+	public void pwSave(Profile profile) {
+		session.update("pwSave", profile);
 	}
 
 	//로그인한 회원 정보 가져오기
@@ -64,7 +80,51 @@ public class ProfileDaoImpl implements ProfileDao {
 		
 		return selectProfile;
 	}
-	//로그인한 회원 정보 가져오기
+
+
+	@Override
+	public int updateInfo(Profile profile) {
+		System.out.println("------------ Dao updateInfo -------------");
+		int result = session.update("updateInfo", profile);
+		return result;
+	}
+
+
+	@Override
+	public int updatePhoto(Profile profile) {
+		int result = session.update("updatePhoto", profile);
+		return result;
+	}
+
+
+	@Override
+	public String pwCheck(Profile profile) {
+		String result = session.selectOne("pwCheck", profile);
+
+			return result;
+	}
+
+
+	@Override
+	public int userSleepUpdate(Profile profile) {
+		int result = session.update("userSleepUpdate", profile);
+		return result;
+	}
+
+
+	@Override
+	public String gradeCheck(Profile profile) {
+		String grade = session.selectOne("userGrade", profile);
+		System.out.println("------------ Dao gradeCheck -------------");
+		System.out.println("grade-@@@@@@@@@@@@@@@@-->"+ grade);
+		return grade;
+	}
+
+
+
+
+
+
 
 	
 

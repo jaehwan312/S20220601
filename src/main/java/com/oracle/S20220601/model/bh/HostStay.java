@@ -24,7 +24,12 @@ public class HostStay {
 	private String checkin;		// 체크인 시간
 	private String checkout;	// 체크아웃 시간
 	private String stay_type;	// 숙소코드
-	
+	//room
+	private String room_name;	// 객실이름
+	private String	 allow;			// 가용인원
+	private String room_info;	// 객실소개글
+	private String dayfee;			// 평일요금
+	private String weekfee;		// 주말요금
 	//코드
 	private int	   bcd_code = 300;	// bcd코드
 }

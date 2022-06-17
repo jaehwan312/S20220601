@@ -11,8 +11,8 @@ function previewFiles(e){
 			
 			reader.addEventListener("load", function () {
 				var image = new Image();
-				image.width = 200;
-		        image.height = 100;
+				image.width = 50;
+		        image.height = 50;
 		        image.title = file.name;
 		        image.src = this.result;
 		        preview.appendChild( image );
@@ -26,6 +26,7 @@ function previewFiles(e){
 	if(files){
 			[].forEach.call(files, readAndPreview);
 	}
+	
 	
 	$('#labelInfo' + e).hide();
 	$('#labelInfo' + (e+1)).show();

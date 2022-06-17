@@ -33,4 +33,22 @@ public class MenuServiceImpl implements MenuSeivice {
 		return menuInsert;
 	}
 
+	@Override
+	public int menuUpdate(List<Menu> menus) {
+		System.out.println("MenuServiceImpl menuUpdate Start....");
+		
+		int menuUpdate = menuDao.menuUpdate(menus);
+		
+		return menuUpdate;
+	}
+
+	@Override
+	public int menuDelete(int menu_num) {
+		System.out.println("MenuServiceImpl menuDelete Start....");
+		
+		int menuDelete = menuDao.menuDelete(menu_num);
+		
+		return menuDelete;
+	}
+
 }

@@ -9,10 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.oracle.S20220601.dao.jj.JpaSearchDao;
 import com.oracle.S20220601.domain.jj.Host1;
-import com.oracle.S20220601.domain.jj.Menu1;
 import com.oracle.S20220601.domain.jj.Search1;
-import com.oracle.S20220601.domain.jj.Stay1;
-import com.oracle.S20220601.domain.jj.Store1;
 
 @Service
 @Transactional

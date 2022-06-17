@@ -7,16 +7,19 @@ import com.oracle.S20220601.model.Profile;
 public interface ProfileDao {
 
 	Profile loginCheck(Profile profile);
-
-	int    idCheck(String id);
-
-	int    insert(Profile profile);
-
-	int    getMem_numSeq();
-
-	String searchId(@Param("name") String name,@Param("phone") String phone);
-
+	int    	idCheck(String id);
+	int    	insert(Profile profile);
+	int    	getMem_numSeq();
+	String 	searchId(Profile profile);
+	int    	emailCheck(Profile profile);
+	void   	pwSave(Profile profile);
 	Profile selectProfile(int mem_num);//로그인한 회원 정보 가져오기
+	int 	updateInfo(Profile profile);
+	int     updatePhoto(Profile profile);
+	String  pwCheck(Profile profile);
+	int     userSleepUpdate(Profile profile);
+	String gradeCheck(Profile profile);
+
 
 
 

@@ -31,4 +31,12 @@ public class StorePhotoServiceImpl implements StorePhotoService{
 		int storePhotoInsert = storePhotoDao.storePhotoInsert(storePhotoInsertList,fileName);
 		return storePhotoInsert;
 	}
+
+	@Override//식당 사진 업데이트
+	public int storePhotoUpdate(List<HostPhoto> storePhotoInsertList, Map<Integer, MultipartFile> fileName,
+			int host_num) {
+		System.out.println("StorePhotoServiceImpl storePhotoUpdate Start....");
+		int storePhotoUpdate = storePhotoDao.storePhotoUpdate(storePhotoInsertList,fileName,host_num);
+		return storePhotoUpdate;
+	}
 }

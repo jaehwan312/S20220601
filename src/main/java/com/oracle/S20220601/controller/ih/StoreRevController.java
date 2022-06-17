@@ -87,7 +87,7 @@ public class StoreRevController {
 		System.out.println(review.getMem_num());
 		System.out.println(review.getRev_num());
 		System.out.println(review.getRev_content());
-		
+		System.out.println(review.getRev_point());
 //		리뷰저장
 		int storeRevInsert = reviewService.storeUserRevInsert(review);
 		

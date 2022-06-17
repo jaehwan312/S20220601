@@ -18,38 +18,20 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
+	var preview1 = document.querySelector("#preview1");
+	
 	var photoEndIndex = document.getElementById('photoEndIndex').value;
-	console.log(photoEndIndex);
-	var preview = document.querySelector("#preview");
-	for(var i = 0; i < photoEndIndex; i++){
-		var files   = document.querySelector('input[type=file]#inputInfo'+i).files[0];
-	}
+	//var image =[];
 	
-	console.log(files);
-    
-	function readAndPreview(file) {
-		if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
-			
-			var reader = new FileReader();
-			
-			reader.addEventListener("load", function () {
-				var image = new Image();
-				image.width = 200;
-		        image.height = 100;
-		        image.title = file.name;
-		        image.src = this.result;
-		        preview.appendChild( image );
-			}, false);
-			
-			reader.readAsDataURL(file);
-		}
-	   
-	}
+	//for(var i = 0; i < photoEndIndex; i++){
+	//	image[i] =  document.querySelector('input[type=image]#select' + i).src;
+	//}
 	
-	if(files){
-			[].forEach.call(files, readAndPreview);
-	}
 	
+	//console.log(photoEndIndex);
+	//for(var i = 0; i < photoEndIndex; i++){
+	//	console.log(image[i]);
+	//}
 	for(var i = 0; i < photoEndIndex; i++){
 		$('#labelInfo' + i).hide();
 		$('#labelInfo' + (i+1)).show();
