@@ -253,3 +253,5 @@ function selectSearch_main(id){
 	document.getElementById('main_search_area').submit();
 }
 
+// 회원 수정시 alert 창 띄우는 용도
+

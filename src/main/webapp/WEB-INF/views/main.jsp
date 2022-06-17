@@ -16,8 +16,16 @@
 <link rel="stylesheet" type="text/css" href="css/jj/jquery.fullPage.css" />
 <title>제주 감수광</title>
 <script src="https://kit.fontawesome.com/a42e829aa0.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+	function message() {
+		var value2 = "${msg}";
+		if(value2 != ""){
+			alert(value2);
+		}
+	}
+</script>
 </head>
-<body>
+<body onload="message()">
 	<nav class="navbar">
         <div class="navbar_logo">
             <a href="main">제주 감수광</a>
@@ -40,7 +48,7 @@
         	<c:choose>
         		<c:when test="${grade=='2' }">
         			<li class="dropdown">
-		                <a href="" class="dropdown_button">마이페이지</a>
+		                <a href="myPage" class="dropdown_button">마이페이지</a>
 		                <div class="dropdown_content" id="mypage">
 		                    <a href="">나의 프로필</a>
 		                    <a href="">예약내역</a>
@@ -53,7 +61,7 @@
         		</c:when>
         		<c:when test="${grade=='1' }">
         			<li class="dropdown">
-		                <a href="" class="dropdown_button">마이페이지</a>
+		                <a href="myPage" class="dropdown_button">마이페이지</a>
 		                <div class="dropdown_content" id="mypage">
 		                    <a href="">나의 프로필</a>
 		                    <a href="">예약내역</a>

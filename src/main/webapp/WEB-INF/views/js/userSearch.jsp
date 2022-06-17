@@ -5,70 +5,6 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-<script type="text/javascript">
-		function search_check(num) {
-			if (num == '1') {
-				document.getElementById("searchPw").style.display = "none";
-				document.getElementById("searchId").style.display = "";	
-			} else {
-				document.getElementById("searchId").style.display = "none";
-				document.getElementById("searchPw").style.display = "";
-			}
-		}
-		
-		// 아이디 & 스토어 값 저장하기 위한 변수
-		var idV = "";
-		// 아이디 값 받고 출력하는 ajax
-		var idSearch_click = function(){
-			$.ajax({
-				type:"POST",
-				url:"${pageContext.request.contextPath}/SearchId?name="+$('#name').val()+"&phone="+$('#phone').val(),
-				success:function(data){
-					if(data == 0){
-						$('#id_value').text("회원 정보를 확인해주세요!");	
-					} else {
-						$('#id_value').text(data);
-						// 아이디값 별도로 저장
-						idV = data;
-					}
-				}
-			});
-		}
-		
-		var pwSearch_click = function(){
-			$.ajax({
-				type:"POST",
-				url:"${pageContext.request.contextPath}/SearchPw?id="+$('#id').val()+"&email="+$('#email').val(),
-				success:function(cnt){
-					if(cnt == 0){
-						alert("아이디 또는 이메일을 확인해주세요.");
-					} else {
-						alert("메일로 임시비밀번호가 전송 되었습니다.");
-					}
-				}
-			});
-		}
-		
-		
-		
-		$(document).ready(function() {
-			// 1. 모달창 히든 불러오기
-			$('#searchBtn').click(function() {
-				$('#background_modal').show();
-			});
-			// 2. 모달창 닫기 버튼
-			$('.close').on('click', function() {
-				$('#background_modal').hide();
-			});
-			// 3. 모달창 윈도우 클릭 시 닫기
-			$(window).on('click', function() {
-				if (event.target == $('#background_modal').get(0)) {
-		            $('#background_modal').hide();
-		         }
-			});
-		});
-
-</script>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link rel="stylesheet" href="css/template.css">
@@ -139,6 +75,7 @@
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>
+	<script type="text/javascript" src="js/js/userSearch/js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

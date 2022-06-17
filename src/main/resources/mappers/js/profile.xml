@@ -14,8 +14,8 @@
 		SELECT SEQ_MEM_NUM.NEXTVAL FROM DUAL
 	</select>
   	<insert id="insertProfile" parameterType="Profile">
-  		INSERT INTO PROFILE(mem_num, id, pw, name, gender, email, phone, birth, agree , join_date,photo, grade)
-					VALUES (#{mem_num}, #{id}, #{pw}, #{name},#{gender},#{email},#{phone},#{birth},#{agree},sysdate,#{photo},1)
+  		INSERT INTO PROFILE(mem_num, id, pw, name, gender, email, phone, birth, agree , join_date , photo, grade)
+					VALUES (#{mem_num}, #{id}, #{pw}, #{name},#{gender},#{email},#{phone},#{birth},#{agree}, TO_CHAR(SYSDATE, 'YYYY/MM/DD') ,#{photo},2)
   	</insert>
   	<select id="searchId" resultType="String">
 		SELECT id from PROFILE 
@@ -30,5 +30,26 @@
 	<select id="selectProfile" resultType="Profile">
 		SELECT * from PROFILE 
         WHERE mem_num = #{mem_num}
+	</select>
+	<update id="updateInfo" parameterType="Profile">
+		UPDATE PROFILE SET 	pw      	= #{pw},
+							name    	= #{name},
+							gender  	= #{gender},
+							email   	= #{email},
+							phone   	= #{phone},
+							birth   	= #{birth}
+							WHERE mem_num = #{mem_num}	
+	</update>
+	<update id="updatePhoto" parameterType="Profile">
+		UPDATE PROFILE SET photo = #{photo} WHERE mem_num = #{mem_num}	
+	</update>
+	<select id="pwCheck" parameterType="Profile" resultType="String">
+		SELECT * FROM PROFILE WHERE pw = #{pw} AND mem_num = #{mem_num}
+	</select>
+	<update id="userSleepUpdate" parameterType="Profile">
+		UPDATE PROFILE SET grade = 3 WHERE mem_num = #{mem_num}
+	</update>
+	<select id="userGrade" parameterType="Profile" resultType="String">
+		SELECT GRADE FROM PROFILE WHERE ID = #{id}
 	</select>
   </mapper>	
