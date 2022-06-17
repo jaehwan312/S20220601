@@ -58,19 +58,40 @@
 			</if>
 			<if test='storeprice!=null'>
 				<choose>
-					<when test='storeprice=="0"'>
+					<when test='storeprice=="1"'>
 					<![CDATA[	and min_price < 10000  ]]>
 					</when>
-					<when test='storeprice=="1"'>
+					<when test='storeprice=="2"'>
 						and min_price between 10000 and 29999
 					</when>
-					<when test='storeprice=="2"'>
+					<when test='storeprice=="3"'>
 						and min_price between 30000 and 49999
 					</when>
-					<when test='storeprice=="3"'>
+					<when test='storeprice=="4"'>
 						and min_price >= 50000
 					</when>
 				</choose>
+			</if>
+			<if test='food_type!=null'>
+				<foreach collection="food_type" item="item" open="and (" separator=" or " close=")">
+					<choose>
+						<when test='item=="0"'>
+							s.food_type = 1
+						</when>
+						<when test='item=="1"'>
+							s.food_type = 2
+						</when>
+						<when test='item=="2"'>
+							s.food_type = 3
+						</when>
+						<when test='item=="3"'>
+							s.food_type = 4
+						</when>
+						<when test='item=="4"'>
+							s.food_type = 5
+						</when>
+					</choose>
+				</foreach>
 			</if>
 			<if test='order!=null'>
 				<choose>
@@ -87,7 +108,7 @@
 			</if>
 			<!-- ${total_food_type} -->
 	  	</select>
-	  	<!-- 맛집 검색 결과 조회 -->
+	  	<!-- 숙소 검색 결과 조회 -->
 	  	<select id="jjHostStayList" parameterType="Search" resultType="HostStayjj">
 	  		select r.min_dayfee, r.max_dayfee, r.min_weekfee, r.max_weekfee, h.*, s.*, (select c.name from code c where c.bcd=300 and c.mcd=s.stay_type) type_name,
 	  		(select host_photo from hostphoto p where p.host_num = h.host_num and rownum=1) host_photo  
@@ -129,19 +150,37 @@
 			</if>
 			<if test='stayprice!=null'>
 				<choose>
-					<when test='stayprice=="0"'>
+					<when test='stayprice=="1"'>
 					<![CDATA[	and min_dayfee < 10000 ]]>
 					</when>
-					<when test='stayprice=="1"'>
+					<when test='stayprice=="2"'>
 						and min_dayfee between 10000 and 29999
 					</when>
-					<when test='stayprice=="2"'>
+					<when test='stayprice=="3"'>
 						and min_dayfee between 30000 and 49999
 					</when>
-					<when test='stayprice=="3"'>
+					<when test='stayprice=="4"'>
 						and min_dayfee >= 50000
 					</when>
 				</choose>
+			</if>
+			<if test='stay_type!=null'>
+				<foreach collection="stay_type" item="item" open="and (" separator=" or " close=")">
+					<choose>
+						<when test='item=="0"'>
+							s.stay_type = 1
+						</when>
+						<when test='item=="1"'>
+							s.stay_type = 2
+						</when>
+						<when test='item=="2"'>
+							s.stay_type = 3
+						</when>
+						<when test='item=="3"'>
+							s.stay_type = 4
+						</when>
+					</choose>
+				</foreach>
 			</if>
 			<if test='order!=null'>
 				<choose>
