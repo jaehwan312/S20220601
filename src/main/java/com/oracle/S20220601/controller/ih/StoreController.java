@@ -51,12 +51,8 @@ public class StoreController {
 		logger.info("StoreController storeRead Start..");
 		
 		session     = request.getSession();
-		session.setAttribute("mem_num", 0);
-		int mem_num = 0; //로그인전 회원번호 값
 		
-		if (session.getAttribute("mem_num") != null) {
-			mem_num = (int) session.getAttribute("mem_num"); //로그이 성공시 회원번호 값
-		}
+		int	mem_num = (int) session.getAttribute("mem_num"); //로그이 성공시 회원번호 값
 		
 		System.out.println("현재 로그인한 mem_num --> " + mem_num);
 		

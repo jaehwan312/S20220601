@@ -16,7 +16,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/ih/storeReview.css">
-<link rel="stylesheet" href="css/ih/style.css">
+<link rel="stylesheet" href="css/ih/style.css"><!--평점 css -->
 <link rel="stylesheet" href="css/ih/storePhoto.css">
 <script type="text/javascript" src="js/ih/storePhoto.js"></script>
 <script type="text/javascript" src="js/ih/storeReview.js"></script>
@@ -169,7 +169,7 @@
 					</div>
 					<section class="section">
                               <div class="card-body">
-                                  <div id="step" class="star-rating" style="width: 160px; height: 32px; background-size: 32px;" title="0/5"></div>
+                                  <div id="step" class="star-rating" style="width: 160px; height: 32px; background-size: 32px;" title="1/5"></div>
 	                    	  </div>
                		</section>	
 					<!-- 사진  시작-->
@@ -192,7 +192,7 @@
 				<div>현재 리뷰<b  id="StoreRevCount">${store.rev_count }</b>개</div>
 				<div id="review">
 					<c:forEach items="${revList }" var="user_rev" varStatus="u">
-					<h6 hidden="" id="count"><%=count = 0 %></h6>
+					<h6 hidden="" id="count">${count = 0}</h6>
 						<c:if test="${user_rev.re_step == 0 }">
 							<div id="storeRevList${user_rev.rev_num}">
 								<hr/>
@@ -235,24 +235,30 @@
 				   					<div id="host_rev_select">
 										<c:forEach items="${revList }" var="step_rev" varStatus="h">
 												<c:if test="${user_rev.rev_num == step_rev.ref && step_rev.re_step == 1}">
-													<h6 hidden="" ><%=count = 1 %></h6>
+													<h6 hidden="" id="count">${count = 1}</h6>
 													<br/>
 													<div style="margin-top: 50px;">
 														<label style="float: right;">[답변] : ${step_rev.rev_content }</label>
 														<br/>
 														<button onclick="hostRevUpdate(${step_rev.rev_num});" style="float: right;" class="btn btn-primary">답변수정</button>
 														<button onclick="hostRevDelete(${step_rev.rev_num});" style="float: right;" class="btn btn-primary">답변삭제</button>
+														<input type="hidden" value="${user_rev.rev_num }" id="user_rev.rev_num">
 													</div>
 												</c:if>
 										</c:forEach>
 									</div>
 									<div  id="host_rev_insert">
-										<c:if test="<%=count == 0 %>">
-											
+										<c:if test="${count == 0 }">
 												<label>
 													<textarea rows="4px;" cols="155px;" style="float: right;" id="host_rev_content" name="host_rev_content"></textarea>
 												</label>
 												<button onclick="hostRevInsert(${user_rev.rev_num})" style="float: right;" class="btn btn-primary">답변등록</button>
+										</c:if>
+										<c:if test="${count != 0 }">
+												<label hidden="">
+													<textarea rows="4px;" cols="155px;" style="float: right;" id="host_rev_content" name="host_rev_content"></textarea>
+												</label>
+												<button hidden="" onclick="hostRevInsert(${user_rev.rev_num})" style="float: right;" class="btn btn-primary">답변등록</button>
 										</c:if>
 									</div>
 								</div>

@@ -2,8 +2,6 @@ package com.oracle.S20220601.dao.ih;
 
 import java.util.List;
 
-import javax.mail.Session;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
