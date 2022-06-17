@@ -16,6 +16,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/ih/storeReview.css">
+<link rel="stylesheet" href="css/ih/style.css">
 <link rel="stylesheet" href="css/ih/storePhoto.css">
 <script type="text/javascript" src="js/ih/storePhoto.js"></script>
 <script type="text/javascript" src="js/ih/storeReview.js"></script>
@@ -166,6 +167,11 @@
 					<div>
 						<div class="" id="preview"></div>
 					</div>
+					<section class="section">
+                              <div class="card-body">
+                                  <div id="step" class="star-rating" style="width: 160px; height: 32px; background-size: 32px;" title="0/5"></div>
+	                    	  </div>
+               		</section>	
 					<!-- 사진  시작-->
 					<div>
 						<div class="insertPhoto">
@@ -260,6 +266,8 @@
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>
+	<script src="js/ih/rater-js.js"></script>
+	<script src="js/ih/rater-js2.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

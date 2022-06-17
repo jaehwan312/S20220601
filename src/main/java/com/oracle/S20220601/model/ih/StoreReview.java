@@ -12,7 +12,7 @@ public class StoreReview {
 	private int mem_num;			// 회원번호
 	private String rev_content;		// 리뷰내용
 	private String rev_date;		// 리뷰 등록일자
-	private int rev_point;			// 평점
+	private float rev_point;			// 평점
 	private int ref;				// ref
 	private int re_step;			// re_step
 	
