@@ -274,11 +274,4 @@ function selectSearch_main(id){
 	var selectedKeyword = $(id).children('span').text();
 	$('#searchBar').val(selectedKeyword);
 	document.getElementById('main_search_area').submit();
-<<<<<<< HEAD
 }
-
-// 회원 수정시 alert 창 띄우는 용도
-
-=======
-}
->>>>>>> branch 'master' of https://github.com/jaehwan312/S20220601.git
