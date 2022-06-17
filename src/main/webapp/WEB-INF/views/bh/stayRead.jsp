@@ -25,7 +25,7 @@
 	                    <div class="product__details__pic">
 	                    <!-- 사진 -->
 			                <div style="width: 500px; height:300px; overflow-x: hidden; float: left; margin: 0px; padding: 0px;">
-			                  <div id="carouselExampleControls1" class="carousel slide" data-bs-ride="carousel" style="width: 100%;">
+			                  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 			                    <div class="carousel-inner">
 			                    <c:forEach items="${stayPhoto }" var="getPhoto" varStatus="i">
 			                       <c:if test="${i.index==0 }">
@@ -40,11 +40,11 @@
 			                       </c:if>
 			                  </c:forEach>
 			                    </div>
-			                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls1${i.index }" data-bs-slide="prev">
+			                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls${i.index }" data-bs-slide="prev">
 			                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			                      <span class="visually-hidden">Previous</span>
 			                    </button>
-			                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls1${i.index }" data-bs-slide="next">
+			                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls${i.index }" data-bs-slide="next">
 			                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
 			                      <span class="visually-hidden">Next</span>
 			                    </button>
@@ -99,10 +99,11 @@
 	    </div>
 		<div id="onRoom0">
 		<!-- room -->
-		<div >
+		<%-- <div >
 					<p>
 					
 								<c:forEach items="${roomPhoto }" var="room" varStatus="j">
+								<div>
 						<div style="background-color: purple;   ">
 							 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="width: 400px; float: left; margin: 0px; padding: 0px;">
 				                    <div class="carousel-inner">
@@ -143,9 +144,63 @@
 									<button type="submit">예약</button>
 								</form>
 							</li>
+							</div>
 							</c:forEach>
-			</div>		
+			</div>		 --%>
+				<!-- jj -->
+					<div class="host-item">
+						<div class="row">
+						<c:forEach items="${roomPhoto }" var="room" varStatus="j">
+							<div class="col-5">
+								<div id="carouselExampleControls${j.index }" class="carousel slide" data-bs-ride="carousel" style="width: 400px; float: left; margin: 0px; padding: 0px;">
+				                    <div class="carousel-inner">
+							<c:forEach items="${room.roomPhotos }" var="getroom" varStatus="i">
+								<div class="img-wrapper">
+			                       <c:if test="${i.index==0 }">
+			                          <div class="carousel-item active">
+			                           <img src="images/bh/${getroom.room_photo}" class="d-block w-100" alt="숙소사진" style="height: 250px;">
+			                         </div>
+			                       </c:if>
+			                       <c:if test="${i.index!=0 }">
+			                          <div class="carousel-item">
+			                           <img src="images/bh/${getroom.room_photo}" class="d-block w-100" alt="숙소사진" style="height: 250px;">
+			                         </div>
+			                       </c:if>
+								</div>
+			             	 	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls${j.index }" data-bs-slide="prev">
+			                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			                      <span class="visually-hidden">Previous</span>
+			                    </button>
+			                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls${j.index }" data-bs-slide="next">
+			                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			                      <span class="visually-hidden">Next</span>
+			                    </button>
+			             	</c:forEach>
+			                    </div></div>
+							</div>
+						<div class="col-7">
+							<div style="float: right; width: 30%; height: 200px;">
+								${room.room_name }<p/>
+								${room.dayfee }원<p/>
+								${room.room_info }<p/>
+								<form action="resContent" method="post">
+									<input type="hidden" name="host_num" value="${room.host_num }">
+									<input type="hidden" name="room_num" value="${room.room_num }">
+									<input type="hidden" name="res_start" value="2022-06-26">
+									<input type="hidden" name="res_end" value="2022-06-30">
+									<input type="hidden" name="sale_price" value=${room.dayfee }>
+									<button type="submit">예약</button>
+								</form>
+							</div>
+							
+						</div>
+						</c:forEach>
+						</div>
+					</div>
+				<!--  -->
 			</div>
+			
+			
 		<div id="onRoom1" style="margin-bottom: 100px;">
 		 	
 			
@@ -180,7 +235,7 @@
 		</div>
 		</div>
 		</div>
-		
+	
 		<div id="onRoom2">
 			<!-- review -->
 				 <div style="text-align: center; margin-top: 100px;">
@@ -195,13 +250,13 @@
 				<div style="padding: 80px; border: 1px solid black;">
 	            <c:forEach items="${reviewList }" var="getList" varStatus="l">
 	            <div style="border: 1px solid black; margin-top: 20px;">
-	               <div style="text-align: left; padding-left: 70px; padding-top:30px;  " >
+	               <div style="text-align: left; padding-left: 70px; padding-top:30px; " >
 	                      ${getList.room_name }
 	                </div>
 	                <div style="width: 40%; text-align: left; padding-left: 60px; padding-bottom: 30px; padding-top: 30px;">
 	                  ${getList.rev_content}</div>
 	               <div style="width: 100%; height: 200px; text-align: left; padding-left: 60px; margin-bottom: 30px; ">
-	                  <div id="carouselExampleControls3${j.index }" class="carousel slide" data-bs-ride="carousel" style="width: 400px;">
+	                  <div id="carouselExampleControls3${l.index }" class="carousel slide" data-bs-ride="carousel" style="width: 400px;">
 	                    <div class="carousel-inner">
 	                    <c:forEach items="${getList.revPhoto }" var="getPhoto" varStatus="r">
 	                       <c:if test="${r.index==0 }">

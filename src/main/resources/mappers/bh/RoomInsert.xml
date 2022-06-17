@@ -15,7 +15,10 @@
 	
 	</insert>
 
-
+	<!-- 객실 정보  -->
+	<select id="roomList" parameterType="Room" resultType="Room">
+		select * from room where host_num=#{host_num}
+	</select>
 
 
 

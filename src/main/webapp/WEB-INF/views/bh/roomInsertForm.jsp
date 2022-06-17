@@ -90,16 +90,32 @@
 			</div>
 			<input type="submit" value="등록요청">
     	</form>
+    	
+    	
+	    	<table border="1" >
+	    		
+		    		<c:if test="${roomList != null}">
+		    			<th>객실명</th>
+		    			<th>인원수</th>
+		    			<th>객실 소개글</th>
+		    			<th>평일요금</th>
+		    			<th>주말요금</th>
+		    		</c:if>
+		    	 	<c:if test="${roomList != null}">
+			    		<c:forEach items="${roomList}" var="room">
+				    		<tr>
+				    			<td>${room.room_name}</td>
+				    			<td>${room.allow}</td>
+				    			<td>${room.room_info}</td>
+				    			<td>${room.dayfee}</td>
+				    			<td>${room.weekfee}</td>
+				    		</tr>
+			    		</c:forEach>
+		    		</c:if>
+	    	</table>
     	</div>
     	
-    	<table>
-    		<c:forEach items="${roomInsert} " var="room">
-	    		<tr>
-	    			<td>${room.room_name}</td>
-	    		</tr>
-    		</c:forEach>
-    	</table>
-    <!-- 여기 위로오 ============================================================ -->   
+     <!-- 여기 위로오 ============================================================ -->   
    <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>
