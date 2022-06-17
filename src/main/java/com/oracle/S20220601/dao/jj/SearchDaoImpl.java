@@ -34,10 +34,6 @@ public class SearchDaoImpl implements SearchDao {
 
 	@Override
 	public List<HostStorejj> getHostStoreList(Search search) {
-		System.out.println("getHostStoreList search.keyword->"+search.getKeyword());
-		System.out.println("getHostStoreList search.region->"+search.getRegion());
-		System.out.println("getHostStoreList search.stayprice->"+search.getStayprice());
-		System.out.println("getHostStoreList search.order->"+search.getOrder());
 		List<HostStorejj> stores = session.selectList("jjHostStoreList", search);
 		return stores;
 	}
@@ -45,10 +41,6 @@ public class SearchDaoImpl implements SearchDao {
 	
 	@Override
 	public List<HostStayjj> getHostStayList(Search search) {
-		System.out.println("getHostStayList search.keyword->"+search.getKeyword());
-		System.out.println("getHostStayList search.region->"+search.getRegion());
-		System.out.println("getHostStayList search.storeprice->"+search.getStoreprice());
-		System.out.println("getHostStayList search.order->"+search.getOrder());
 		List<HostStayjj> stays = session.selectList("jjHostStayList", search);
 		return stays;
 	}

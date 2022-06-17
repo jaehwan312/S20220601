@@ -18,8 +18,15 @@
 		select rev_count,host_avg from host where host_num=#{rev_num}
 	</select>
 	
+	<!-- REV_NUM SEQ -->
+  	<select id="bhgetRoom_num" resultType="int">
+  		SELECT seq_rev_num.currval FROM DUAL
+  	</select>
 	
-
+	<!-- 리뷰등록 -->
+	<insert id="roomInsert" parameterType="Review">
+		INSERT INTO review VALUES(#{host_num},seq_rev_num.nextval,#{mem_num},#{rev_content},sysdate,#{rec_point},ref,ref_step)
+	</insert>
 
 
 

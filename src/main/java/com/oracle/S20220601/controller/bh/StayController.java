@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
+import com.oracle.S20220601.model.Review;
 import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
@@ -139,8 +140,7 @@ public class StayController {	//숙소 Controller
 	}
 	
 	
-	
-	
+
 	
 	
 	@PostMapping(value = "roomInsert")
@@ -184,7 +184,67 @@ public class StayController {	//숙소 Controller
 		}else {
 			model.addAttribute("msg", "객실 등록 실패");
 		}
-		return "bh/roomInsertForm";
+		List<Room> roomList = ss.roomList(room);
 		
+		if(roomList.size() != 0) {
+			System.out.println("roomList->"+roomList);
+			for(Room aa:roomList) {
+				System.out.println("@@ "+aa.getRoom_name());
+			}
+			System.out.println("host_num---->>>"+room.getHost_num());
+			model.addAttribute("roomList", roomList);
+		}
+		model.addAttribute("host_num", room.getHost_num());
+		
+		return "bh/roomInsertForm";
 	}
+	
+	
+	@RequestMapping(value = "reviewForm")
+	public String revInsert(Review review,Model model,MultipartFile rev_Photo0,
+										  MultipartFile rev_Photo1,MultipartFile rev_Photo2,
+										  MultipartFile rev_Photo3,MultipartFile rev_Photo4) {
+		int revInsert = ss.revInsert(review);
+		
+		
+		Map<Integer, MultipartFile> revPhotoInsert     = new HashMap<Integer, MultipartFile>();
+		List<MultipartFile>			revPhotoInsertList = new ArrayList<MultipartFile>();
+	
+		
+		revPhotoInsert.put(0, rev_Photo0);
+		revPhotoInsert.put(1, rev_Photo1);
+		revPhotoInsert.put(2, rev_Photo2);
+		revPhotoInsert.put(3, rev_Photo3);
+		revPhotoInsert.put(4, rev_Photo4);
+		
+		
+		for (int i = 0; i < revPhotoInsert.size(); i++) {
+			System.out.println("start  roomPhotoInsert.size()->"+i);
+			if (revPhotoInsert.get(i).getSize() != 0) {
+				revPhotoInsertList.add(revPhotoInsert.get(i));
+			}
+			System.out.println("end  roomPhotoInsert.size()->"+i);
+		}
+		
+		
+		int uploadPhoto = 0;
+		System.out.println("업로드할 사진 갯수 --> " + revPhotoInsertList.size());
+		if (revPhotoInsertList.size() != 0) {
+			uploadPhoto = ss.revPhotoInsert(revPhotoInsertList);
+		}
+		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
+		System.out.println("host->"+revInsert);
+		
+		model.addAttribute("revInsert", revInsert);
+		if (revInsert > 0) {
+			model.addAttribute("msg", "객실 등록 성공");
+		}else {
+			model.addAttribute("msg", "객실 등록 실패");
+		}
+		
+		
+		return "bh/reviewInsertForm";
+	}
+	
+	
 }

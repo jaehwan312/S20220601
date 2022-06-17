@@ -1,7 +1,10 @@
 
 .mb50 {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     display: block;
+    text-align: center;
+    font-size: 27px;
+    font-weight: bold;
 }
 
 .mb100 {
@@ -46,7 +49,7 @@ section h2.section-heading, .section-heading {
 
 
 .host-item {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 .detail {
@@ -58,10 +61,22 @@ section h2.section-heading, .section-heading {
 	
 }
 
-#details_font {
+#detail_order, #detail_region {
 	text-align: left;
 	margin-top: 30px;
 	
+}
+
+#storedetails, #staydetails {
+	background-color: lightgray;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-bottom: 50px;
+	border-radius: 20px;
+}
+
+#detail_storetype, #detail_staytype {
+	margin-bottom: 20px;
 }
 
 #storeSection, #staySection, #emptySection {
@@ -122,3 +137,4 @@ section h2.section-heading, .section-heading {
 .maps {
 	display: none;	
 }
+
