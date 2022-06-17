@@ -10,7 +10,7 @@ function hostRevDelete(e){
 	console.log("rev_num --> " + rev_num);
 	console.log("host_num --> " + host_num);
 	console.log("mem_num --> " + mem_num);
-	
+	console.log(host_rev_insert);
 	var del = {"rev_num" : rev_num, "host_num": host_num,"mem_num":mem_num}
 	
 	console.log(del);
@@ -24,6 +24,7 @@ function hostRevDelete(e){
 		success: function(data){
 				if(data > 0) {
 					$('#host_rev_select').remove();
+					$('#host_rev').html(host_rev_insert);
 					StoreRevCount(host_num);
 					StoreAvgUpdate(host_num);
 				}	

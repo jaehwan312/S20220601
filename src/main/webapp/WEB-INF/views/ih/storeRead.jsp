@@ -35,9 +35,9 @@
 	    	<input type="hidden" value="${store.host_num}" id="HostNum">
 	    	<input type="hidden" value="${store.host_code}">
 	    	<input type="hidden" value="${store.mem_num}"  id="Mem_mem">
-	    	<div>
-				<input type="checkbox" style="float: right;" id="checkbox">
-	    	</div>
+	    	<label style="margin-bottom: 10px;">
+				<input type="checkbox" style="float: right;" id="checkbox" size="5px;">
+	    	</label>
 			
 	
 	    	
@@ -186,7 +186,7 @@
 				<div>현재 리뷰<b  id="StoreRevCount">${store.rev_count }</b>개</div>
 				<div id="review">
 					<c:forEach items="${revList }" var="user_rev" varStatus="u">
-					<h6 hidden=""><%=count = 0 %></h6>
+					<h6 hidden="" id="count"><%=count = 0 %></h6>
 						<c:if test="${user_rev.re_step == 0 }">
 							<div id="storeRevList${user_rev.rev_num}">
 								<hr/>
@@ -229,7 +229,7 @@
 				   					<div id="host_rev_select">
 										<c:forEach items="${revList }" var="step_rev" varStatus="h">
 												<c:if test="${user_rev.rev_num == step_rev.ref && step_rev.re_step == 1}">
-													<h6 hidden=""><%=count = 1 %></h6>
+													<h6 hidden="" ><%=count = 1 %></h6>
 													<br/>
 													<div style="margin-top: 50px;">
 														<label style="float: right;">[답변] : ${step_rev.rev_content }</label>
@@ -242,11 +242,11 @@
 									</div>
 									<div  id="host_rev_insert">
 										<c:if test="<%=count == 0 %>">
-											<br/>
-											<label>
-												<textarea rows="4px;" cols="155px;" style="float: right;" id="host_rev_content" name="host_rev_content"></textarea>
-											</label>
-											<button onclick="hostRevInsert(${user_rev.rev_num})" style="float: right;" class="btn btn-primary">답변등록</button>
+											
+												<label>
+													<textarea rows="4px;" cols="155px;" style="float: right;" id="host_rev_content" name="host_rev_content"></textarea>
+												</label>
+												<button onclick="hostRevInsert(${user_rev.rev_num})" style="float: right;" class="btn btn-primary">답변등록</button>
 										</c:if>
 									</div>
 								</div>
