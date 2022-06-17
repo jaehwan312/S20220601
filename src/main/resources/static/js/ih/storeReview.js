@@ -10,7 +10,7 @@ function hostRevDelete(e){
 	console.log("rev_num --> " + rev_num);
 	console.log("host_num --> " + host_num);
 	console.log("mem_num --> " + mem_num);
-	
+	console.log(host_rev_insert);
 	var del = {"rev_num" : rev_num, "host_num": host_num,"mem_num":mem_num}
 	
 	console.log(del);
@@ -24,6 +24,7 @@ function hostRevDelete(e){
 		success: function(data){
 				if(data > 0) {
 					$('#host_rev_select').remove();
+					$('#host_rev').html(host_rev_insert);
 					StoreRevCount(host_num);
 					StoreAvgUpdate(host_num);
 				}	
@@ -76,6 +77,7 @@ function storeReviewInsert(e){
 	var mem_num		 = e;
 	var rev_content  = document.getElementById('rev_content').value;
 	var formData 	 = new FormData();
+	var rev_point     = $('#step').data('rating');
 	
 	for(var i = 0; i < 5; i++){
 		formData.append("inputinfo" + i,document.querySelector('input[type=file]#inputInfo' + i).files[0]);
@@ -84,9 +86,11 @@ function storeReviewInsert(e){
 	formData.append("host_num",host_num);
 	formData.append("mem_num",mem_num);
 	formData.append("rev_content",rev_content);
+	formData.append("rev_point", rev_point);
 	
 	console.log("======리뷰 등록==========");
 	console.log("등록정보 --> " + formData);
+	console.log("rev_point --> " + rev_point);
 	
 	$.ajax({
 		type:'post',                    //전송방식 POST
