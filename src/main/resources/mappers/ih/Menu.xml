@@ -12,4 +12,19 @@
   	<insert id="menuInsert" parameterType="Object">
   		INSERT INTO menu VALUES(1,SEQ_MENU_NUM.nextval,#{menu_name},#{menu_price})
   	</insert>
+  	<!-- 메뉴 등록 -->
+  	<update id="menuUpdate" parameterType="Menu" statementType="CALLABLE">
+  		{
+  				call MENU_UPDATE(
+	  			    #{in_host_num    , mode=IN   , jdbcType=INTEGER}
+	   			   ,#{in_menu_num    , mode=IN   , jdbcType=INTEGER}
+	  			   ,#{in_menu_name   , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{in_menu_price  , mode=IN   , jdbcType=VARCHAR}
+
+	  			)
+  			}
+  	</update>
+  	<delete id="menuDelete" parameterType="int">
+  		DELETE FROM menu WHERE menu_num = #{menu_num}
+  	</delete>
   </mapper>

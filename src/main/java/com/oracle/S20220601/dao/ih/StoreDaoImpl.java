@@ -41,10 +41,10 @@ public class StoreDaoImpl implements StoreDao {
 		try {
 			hostStore.setMem_num(1);
 			hostStore.setOpen_time(hostStore.getStart_time() 
-								   + " ~ " + 
+								   + "~" + 
 								   hostStore.getEnd_time());
 			hostStore.setBreak_time(hostStore.getBreak_start_time() 
-									    + " ~ " + 
+									    + "~" + 
 									    hostStore.getBreak_end_time());
 //			prn(hostStore);
 			storeInsert = session.insert("storeInsert", hostStore);
@@ -55,7 +55,31 @@ public class StoreDaoImpl implements StoreDao {
 		}
 		return storeInsert;
 	}
+
+
+	@Override
+	public int storeUpdate(HostStore hostStore) {
+		System.out.println("StoreDaoImpl storeUpdate Start....");
+		
+		int storeUpdate = 0;
+		try {
+			hostStore.setIn_open_time(hostStore.getIn_start_time() + "~" + hostStore.getIn_end_time());
+			hostStore.setIn_break_time(hostStore.getIn_break_start_time() + "~" + hostStore.getIn_break_end_time());
+			storeUpdate = session.update("storeUpdate", hostStore);
+			storeUpdate = 1;
+//			in_prn(hostStore);
+		} catch (Exception e) {
+			storeUpdate = 0;
+			System.out.println("StoreDaoImpl storeInsert ErrorMessage --> " + e.getMessage());
+		}
+		
+		System.out.println("storeUpdate-----<> "+ storeUpdate);
+		return storeUpdate;
+	}
 	
+	
+	
+	/*
 	private void prn(HostStore hostStore) {
 		System.out.println("hostStore.getHost_num()   --> " + hostStore.getHost_num());
 		System.out.println("hostStore.getBcd_code()   --> " + hostStore.getBcd_code());
@@ -73,30 +97,28 @@ public class StoreDaoImpl implements StoreDao {
 		System.out.println("hostStore.getBreak_time() --> " + hostStore.getBreak_time());
 		System.out.println("hostStore.getHost_app() --> " + hostStore.getHost_app());
 	}
-
-	@Override
-	public int storeUpdate(HostStore hostStore) {
-		System.out.println("StoreDaoImpl storeUpdate Start....");
-		
-		int storeUpdate = 0;
-		
-		try {
-			hostStore.setOpen_time(hostStore.getStart_time() 
-								   + " ~ " + 
-								   hostStore.getEnd_time());
-			hostStore.setBreak_time(hostStore.getBreak_start_time() 
-									    + " ~ " + 
-									    hostStore.getBreak_end_time());
-			storeUpdate = session.update("storeUpdate", hostStore);
-			storeUpdate = 1;
-			prn(hostStore);
-		} catch (Exception e) {
-			storeUpdate = 0;
-			System.out.println("StoreDaoImpl storeInsert ErrorMessage --> " + e.getMessage());
-		}
-		
-		System.out.println("storeUpdate-----<> "+ storeUpdate);
-		return storeUpdate;
+	*/
+	/*
+	private void in_prn(HostStore hostStore) {
+		System.out.println("hostStore.getHost_num()   --> " + hostStore.getIn_host_num());
+		System.out.println("hostStore.getBcd_code()   --> " + hostStore.getIn_bcd_code());
+		System.out.println("hostStore.getFood_type()  --> " + hostStore.getIn_food_type());
+		System.out.println("hostStore.getHost_addr()  --> " + hostStore.getIn_host_addr());
+		System.out.println("hostStore.getHost_avg()   --> " + hostStore.getIn_host_avg());
+		System.out.println("hostStore.getHost_code()  --> " + hostStore.getIn_host_code());
+		System.out.println("hostStore.getHost_info()  --> " + hostStore.getIn_host_info());
+		System.out.println("hostStore.getHost_name()  --> " + hostStore.getIn_host_name());
+		System.out.println("hostStore.getLike_count() --> " + hostStore.getIn_like_count());
+		System.out.println("hostStore.getMem_num()    --> " + hostStore.getIn_mem_num());
+		System.out.println("hostStore.getOpen_time()  --> " + hostStore.getIn_open_time());
+		System.out.println("hostStore.getParking()    --> " + hostStore.getIn_parking());
+		System.out.println("hostStore.getRev_count()  --> " + hostStore.getIn_rev_count());
+		System.out.println("hostStore.getBreak_time() --> " + hostStore.getIn_break_time());
+		System.out.println("hostStore.getHost_app()   --> " + hostStore.getIn_host_app());
+		System.out.println("hostStore.getParking()    --> " + hostStore.getIn_start_time());
+		System.out.println("hostStore.getRev_count()  --> " + hostStore.getIn_end_time());
+		System.out.println("hostStore.getBreak_time() --> " + hostStore.getIn_break_start_time());
+		System.out.println("hostStore.getHost_app()   --> " + hostStore.getIn_break_end_time());
 	}
-	
+	*/
 }

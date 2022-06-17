@@ -47,4 +47,36 @@ public class MenuDaoImpl implements MenuDao {
 		}
 		return menuInsert;
 	}
+
+	@Override
+	public int menuUpdate(List<Menu> menus) {
+		
+		System.out.println("MenuDaoImpl menuUpdate Start....");
+		
+		int  menuUpdate = 0;
+		
+		try {
+			for (int i = 0; i < menus.size(); i++) {
+				menuUpdate += session.update("menuUpdate", menus.get(i));
+			}
+		} catch (Exception e) {
+			System.out.println("MenuDaoImpl menuUpdate ErrorMessage --> " + e.getMessage());
+		}
+		return menuUpdate;
+	}
+
+	@Override
+	public int menuDelete(int menu_num) {
+		
+		System.out.println("MenuDaoImpl menuDelete Start....");
+		
+		int  menuDelete = 0;
+		
+		try {
+				menuDelete += session.delete("menuDelete",menu_num);
+		} catch (Exception e) {
+			System.out.println("MenuDaoImpl menuDelete ErrorMessage --> " + e.getMessage());
+		}
+		return menuDelete;
+	}
 }

@@ -24,6 +24,7 @@
 	    		<input type="hidden" name="host_app" value="${store.host_app }">
 	    		<input type="hidden" name="host_avg" value="${store.host_avg }">
 	    		<input type="hidden" name="like_count" value="${store.like_count }">
+	    		<input type="hidden" name="rev_count" value="${store.rev_count}">
 				<div>
 					<div style="display: inline;">
 						<div id="preview1" style="display: inline;"><!-- read photo  -->
@@ -105,6 +106,8 @@
 		    			<c:forEach items="${menuList }" var="menuList" varStatus="i">
 		    				<div>
 			   					<label class="labelmenuInfo" id="labelmenuInfo${i.index}" for="menuinputInfo${i.index}">
+			   								<input type="hidden" name="menu_list[${i.index}].menu_num" id="menuinputInfo${i.index}" value="${menuList.menu_num}">
+			   								<input type="hidden" name="menu_list[${i.index}].host_num" id="menuinputInfo${i.index}" value="${menuList.host_num}">
 				    				메뉴명 : <input type="text" name="menu_list[${i.index}].menu_name" id="menuinputInfo${i.index}" value="${menuList.menu_name}" required="required">
 							    	가격    : <input type="number" name="menu_list[${i.index}].menu_price" id="menuinputInfo${i.index}" value="${menuList.menu_price}" required="required">
 					    			  <input type="button" onclick="menuPlus(${i.index})" id="menuInfoInsert${i.index}" value="+" class="btn btn-primary">

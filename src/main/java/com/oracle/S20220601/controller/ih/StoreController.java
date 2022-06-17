@@ -44,37 +44,54 @@ public class StoreController {
 	@Autowired	private StorePhotoService storePhotoService; @Autowired	private MenuSeivice 	  menuSeivice;
 	@Autowired	private ReviewService     reviewService;	 @Autowired	private ProfileService    profileService;
 	
-//====================================식당정보 불러오기==================================================	  
+//====================================식당정보 불러오기================================================================  
 	@GetMapping(value = "storeRead")//식당상세정보
 	public String storeRead(int host_num, Model model, HttpSession session, HttpServletRequest request) {
+		
 		logger.info("StoreController storeRead Start..");
-//		session = request.getSession();
-//		int mem_num = (int) session.getAttribute("mem_num");
-//		System.out.println("현재 로그인한 mem_num --> " + mem_num);
+		
+		session     = request.getSession();
+		session.setAttribute("mem_num", 0);
+		int mem_num = 0; //로그인전 회원번호 값
+		
+		if (session.getAttribute("mem_num") != null) {
+			mem_num = (int) session.getAttribute("mem_num"); //로그이 성공시 회원번호 값
+		}
+		
+		System.out.println("현재 로그인한 mem_num --> " + mem_num);
+		
+		//DB에서 받아올 정보들
 		HostStore       storeRead  	   = storeService.storeRead(host_num);      //식당정보
 		List<HostPhoto> storePhoto 	   = storePhotoService.storePhoto(host_num);//식당사진
 		List<Menu>      menuList   	   = menuSeivice.menuList(host_num);        //메뉴정보
 		Code      		foodcode   	   = codeService.foodcode(storeRead);	 	//음식종류
 		List<Review>    revList   	   = reviewService.revList(host_num);		//리뷰
 		HostStore 		storeRevcount  = storeService.storeRead(host_num);		//리뷰갯수
-//		Profile         profile        = profileService.selectProfile((int)session.getAttribute("mem_num"));
-		Profile         profile        = profileService.selectProfile(1);
+		if (mem_num != 0) {
+			Profile     profile        = profileService.selectProfile(mem_num); //회원정보 불러오기
+			model.addAttribute("name", profile.getName());
+			model.addAttribute("mem_num", profile.getMem_num());
+		}
+		
 		if (revList.size() != 0) {
 			List<RevPhoto>	revPhotos  = reviewService.storeRevPhoto(revList);  //리뷰 사진
 			model.addAttribute("revPhotos", revPhotos);
 		}
-		System.out.println();
+		
+		//view로 보여질 정보들
 		model.addAttribute("store",storeRead);
 		model.addAttribute("storePhoto",storePhoto);
 		model.addAttribute("menuList",menuList);
 		model.addAttribute("foodcode",foodcode);
 		model.addAttribute("revList", revList);
 		model.addAttribute("storeRevcount", storeRevcount);
-		model.addAttribute("name", profile.getName());
-		model.addAttribute("mem_num", profile.getMem_num());
+		
+		
 		return "ih/storeRead";
 	}
 	
+	
+//==========================식당 등록 페이지로 이동=============================================	
 	@GetMapping(value = "storeInsertForm")//insertForm 이동
 	public String storeInsertForm(Model model, HttpServletRequest request) {
 		
@@ -88,6 +105,9 @@ public class StoreController {
 		
 		return "ih/storeInsertForm";
 	}
+	
+	
+	
 	
 //====================================식당정보 등록==================================================	  
 	@PostMapping(value = "storeInsert")//식당정보 insert
@@ -209,26 +229,44 @@ public class StoreController {
 		
 		System.out.println("StoreController storeUpdate Start..");
 	
-		
 		//식당정보 등록(DB저장)
 		int storeUpdate  = storeService.storeUpdate(hostStore);
-		System.out.println("storeUpdate --> " + storeUpdate);
-		/*
+		
+		
+
+		List<Menu>      menuList   	   = menuSeivice.menuList(hostStore.getHost_num()); 
 		//등록할 메뉴 List 변환
 		List<Menu> menus = new ArrayList<Menu>();
+		int menuDelete = 0;
 		for (int i = 0; i < menu.getMenu_list().size(); i++) {
-//			System.out.println("menu_name --> " + menu.getMenu_list().get(i).getMenu_name());	
-//			System.out.println("menu_price --> " + menu.getMenu_list().get(i).getMenu_price());
+			menu.getMenu_list().get(i).setHost_num(hostStore.getHost_num());
+			System.out.println("menu_num --> " + menu.getMenu_list().get(i).getIn_menu_num());
+			System.out.println("host_num --> " + menu.getMenu_list().get(i).getIn_host_num());
+			System.out.println("menu_name --> " + menu.getMenu_list().get(i).getIn_menu_name());	
+			System.out.println("menu_price --> " + menu.getMenu_list().get(i).getIn_menu_price());
 			menus.add(menu.getMenu_list().get(i));
 		}
 		
+		//메뉴 삭제
+		for (int i = 0; i < menuList.size(); i++) {
+			System.out.println("업데이트전" + i + "번째 메뉴 번호" + menuList.get(i).getMenu_num());
+			if(menu.getMenu_list().size() <= i){
+				System.out.println(i + "번째 메뉴 삭제");
+				menuDelete = menuSeivice.menuDelete(menuList.get(i).getMenu_num());
+			}else if(menu.getMenu_list().size() >= i) {
+				if (menuList.get(i).getMenu_num() != menu.getMenu_list().get(i).getIn_menu_num()) {
+					menuDelete = menuSeivice.menuDelete(menuList.get(i).getMenu_num());
+				}
+			}
+		}
+		
+		
+		
 		//메뉴 등록(DB저장)
-		int menuInsert = menuSeivice.menuInsertList(menus);
-		System.out.println("추가한 메뉴 갯수 --> " + menuInsert);
+		int menuUpdate = menuSeivice.menuUpdate(menus);		
 		
-		*/
+
 		
-		/*
 		//현재 등록 되어 있는 사진
 		List<HostPhoto>     storePhoto 	   = storePhotoService.storePhoto(hostStore.getHost_num());//식당사진
 		for (int i = 0; i < storePhoto.size(); i++) {
@@ -270,7 +308,7 @@ public class StoreController {
 		  System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
 		  
 		  if(storePhoto.size() != 0){    }
-		*/
+		
 		
 		//식당정보 등록 요청 확인 msg 보냄
 		if (storeUpdate > 0) {

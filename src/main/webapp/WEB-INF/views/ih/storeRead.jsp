@@ -154,7 +154,7 @@
 	    	<!-- 리뷰 시작  -->
 	    	<div>
 	    		<!-- 리뷰 등록 시작 -->
-	    		<c:if test="${mem_num != null }">
+	    		<c:if test="${mem_num != 0 || mem_num != null }">
 			   		<label>
 							<img alt="업체사진" src="images/ih/스시호시카이.jpg"
 								 style="float: right; border-radius: 50%;" width="100px;" height="100px;"><br/>
@@ -224,6 +224,7 @@
 									</div>
 									<br/>
 				   				</div>
+				   				<!--답글  Start -->
 				   				<div id="host_rev">
 				   					<div id="host_rev_select">
 										<c:forEach items="${revList }" var="step_rev" varStatus="h">
@@ -231,7 +232,7 @@
 													<h6 hidden=""><%=count = 1 %></h6>
 													<br/>
 													<div style="margin-top: 50px;">
-														<label style="float: right; ">[답변] : ${step_rev.rev_content }</label>
+														<label style="float: right;">[답변] : ${step_rev.rev_content }</label>
 														<br/>
 														<button onclick="hostRevUpdate(${step_rev.rev_num});" style="float: right;" class="btn btn-primary">답변수정</button>
 														<button onclick="hostRevDelete(${step_rev.rev_num});" style="float: right;" class="btn btn-primary">답변삭제</button>
@@ -249,6 +250,7 @@
 										</c:if>
 									</div>
 								</div>
+								<!--답글 End -->
 							</div>
 							<br/>
 						</c:if>
