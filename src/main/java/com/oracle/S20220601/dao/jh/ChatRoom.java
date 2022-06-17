@@ -29,6 +29,7 @@ public class ChatRoom {
                               ObjectMapper objectMapper) throws IOException {
         if(chatMessage.getType() == MessageType.ENTER){
             sessions.add(session);
+            System.out.println("handleMessage chatMessage.getWriter()->"+chatMessage.getWriter());
             chatMessage.setMessage(chatMessage.getWriter() + "님이 입장하셨습니다.");
         }
         else if(chatMessage.getType() == MessageType.LEAVE){

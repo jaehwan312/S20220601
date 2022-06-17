@@ -102,7 +102,11 @@
         </a>
         
     </nav>
-   	<%@ include file="jh/newRoom.jsp" %>
+   	   <c:choose>
+    	<c:when test="${grade=='2' }">
+    		<%@ include file="jh/newRoom.jsp" %>
+    	</c:when>
+    </c:choose>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </body>
 </html>

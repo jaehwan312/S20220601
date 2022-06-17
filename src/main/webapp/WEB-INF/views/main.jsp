@@ -76,7 +76,11 @@
             <i class="fa-solid fa-bars"></i>
         </a>
     </nav>
-    <%@ include file="jh/newRoom.jsp" %>
+    <c:choose>
+    	<c:when test="${grade=='2' }">
+    		<%@ include file="jh/newRoom.jsp" %>
+    	</c:when>
+    </c:choose>
 	<div id="fullpage">
 	<div class="section">
 	<div class="main_background"></div>
