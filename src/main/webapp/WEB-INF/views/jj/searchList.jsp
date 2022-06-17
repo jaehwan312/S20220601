@@ -18,15 +18,14 @@
           <div class="container">
               <div class="row">
                   <div class="col-lg-12 text-center mb100">
-                      <h2 class="section-heading" id="section_heading">숙박<span class="theme-accent-color">&</span>맛집</h2>
+                      <h2 class="section-heading" id="section_heading"></h2>
                       <hr class="thin-hr">
                       <h3 class="section-subheading secondary-font" style="margin-bottom: 30px;" id="section_heading_sub">'${keyword }'에 대한 검색 결과</h3>
-			      	  <button type="button" class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">상세 검색</button>
+			      	  <button type="button" class="btn btn-success" onclick="collapse()">상세 검색</button>
 			      	  
 			      	  
 			      	  
-						<div style="min-height: 120px;">
-					  	<div class="collapse-horizontal collapse" id="collapseWidthExample">
+						<div class="detail"  style="min-height: 120px;">
 						    
 						    <div class="col-md-8" id="details"> 
 								
@@ -49,7 +48,7 @@
 								    <div class="col-md-3">
 								      	<input class="form-check-input flex-shrink-0" type="radio" name="order" value="1" onclick="ajaxList()">
 									      <span>
-									       인기순
+									       찜많은순
 									      </span>
 								    </div>
 								    <div class="col-md-3">
@@ -91,7 +90,7 @@
 								  	<div class="col-md-3 offset-md-3">
 								  		<input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="3" checked="" onclick="ajaxList()">
 									      <span>
-									        노형동
+									        제주시/노형동
 									      </span>
 								  	</div>
 								  	<div class="col-md-3">
@@ -196,7 +195,6 @@
 						    
 						    
 						  </div>
-						</div>
 					
 					
 						                      
