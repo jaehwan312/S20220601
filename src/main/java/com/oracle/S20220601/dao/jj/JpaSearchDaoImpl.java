@@ -7,13 +7,8 @@ import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.oracle.S20220601.domain.jj.Code1;
 import com.oracle.S20220601.domain.jj.Host1;
-import com.oracle.S20220601.domain.jj.Menu1;
 import com.oracle.S20220601.domain.jj.Search1;
-import com.oracle.S20220601.domain.jj.Stay1;
-import com.oracle.S20220601.domain.jj.Store1;
-import com.oracle.S20220601.model.Host;
 
 @Repository
 public class JpaSearchDaoImpl implements JpaSearchDao {
@@ -46,7 +41,7 @@ public class JpaSearchDaoImpl implements JpaSearchDao {
 	public List<Search1> getPopList() {
 		List<Search1> search1 = null;
 		try {
-			search1 = em.createQuery("select s from Search1 s where s.search_code=:code").setParameter("code", "2").getResultList();
+			search1 = em.createQuery("select s from Search1 s where s.search_code=:code order by s.search_count desc, s.search_num").setParameter("code", "2").getResultList();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

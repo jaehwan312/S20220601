@@ -27,7 +27,6 @@ public class RestSearchController {
 		for(Host1 ht : host1) {
 			searchList.add(ht.getHost_name());
 		}
-		System.out.println("@@@@@searchList.size()-->"+searchList.size());
 		
 		return searchList;
 		
@@ -40,7 +39,6 @@ public class RestSearchController {
 		for(Search1 sc : search1) {
 			recList.add(sc.getKeyword());
 		}
-		System.out.println("@@@@@recList.size()-->"+recList.size());
 		
 		return recList;
 	}
@@ -52,7 +50,6 @@ public class RestSearchController {
 		for(Search1 sc : search1) {
 			popList.add(sc.getKeyword());
 		}
-		System.out.println("@@@@@popList.size()-->"+popList.size());
 		
 		return popList;
 	}

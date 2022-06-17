@@ -1,0 +1,6 @@
+#onRoom0 {
+	display: block;
+}
+#onRoom1, #onRoom2 {
+	display: none;
+}

@@ -1,10 +1,11 @@
-//객실 추가
-function roomAdd(e){
 
-	console.log(e);
-	var Add = "<div class='insert' id='insert"+(e+1)+"' >"
+		
+  //삭제 버튼
+    $(document).on("click","button[id=delete]",function(){
+        
+        var trdelete = $(this).parent().parent();
+        
+        trdelete.remove(); //tr 테그 삭제
+        
+    });
 	
-	console.log(Add);
-	$('insert'+e).append(Add);
-
-}

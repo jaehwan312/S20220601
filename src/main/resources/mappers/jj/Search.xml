@@ -18,24 +18,185 @@
 	  	</insert>
 	  	<!-- 맛집 검색 결과 조회 -->
 	  	<select id="jjHostStoreList" parameterType="Search" resultType="HostStorejj">
-	  		select h.*, s.*, m.min_price, m.max_price, (select c.name from code c where c.bcd=200 and c.mcd=s.food_type) type_name,
+	  		select m.min_price, m.max_price, h.*, s.*, (select c.name from code c where c.bcd=200 and c.mcd=s.food_type) type_name,
 	  		(select host_photo from hostphoto p where p.host_num = h.host_num and rownum=1) host_photo  
 	  		from host h, store s, (select host_num, min(menu_price) min_price, max(menu_price) max_price from menu group by host_num) m
 			where h.host_num = s.host_num and s.host_num = m.host_num
-			${keyword}
-			${min_price}
-			${total_food_type}
-			${order}
+			<if test='keyword!=null'>
+				and (host_name like '%'||#{keyword}||'%' or host_addr like '%'||#{keyword}||'%' or
+				 (select c.name from code c where c.bcd=200 and c.mcd=s.food_type) like '%'||#{keyword}||'%')
+			</if>
+			<if test='region!=null'>
+				<foreach collection="region" item="item" open="and (" separator=" or " close=")">
+					<choose>
+						<when test='item=="0"'>
+							host_addr like '%대정%' or host_addr like '%안덕%'
+						</when>
+						<when test='item=="1"'>
+							host_addr like '%서귀동%'
+						</when>
+						<when test='item=="2"'>
+							host_addr like '%성산%' or host_addr like '%우도%' 
+						</when>
+						<when test='item=="3"'>
+							host_addr like '%노형%' or host_addr like '%제주시%'
+						</when>
+						<when test='item=="4"'>
+							host_addr like '%중문%'
+						</when>
+						<when test='item=="5"'>
+							host_addr like '%표선%'
+						</when>
+						<when test='item=="6"'>
+							host_addr like '%한림%' or host_addr like '%애월%' 
+						</when>
+						<when test='item=="7"'>
+							host_addr like '%조천%' or host_addr like '%구좌%'
+						</when>
+					</choose>
+				</foreach>
+			</if>
+			<if test='storeprice!=null'>
+				<choose>
+					<when test='storeprice=="1"'>
+					<![CDATA[	and min_price < 10000  ]]>
+					</when>
+					<when test='storeprice=="2"'>
+						and min_price between 10000 and 29999
+					</when>
+					<when test='storeprice=="3"'>
+						and min_price between 30000 and 49999
+					</when>
+					<when test='storeprice=="4"'>
+						and min_price >= 50000
+					</when>
+				</choose>
+			</if>
+			<if test='food_type!=null'>
+				<foreach collection="food_type" item="item" open="and (" separator=" or " close=")">
+					<choose>
+						<when test='item=="0"'>
+							s.food_type = 1
+						</when>
+						<when test='item=="1"'>
+							s.food_type = 2
+						</when>
+						<when test='item=="2"'>
+							s.food_type = 3
+						</when>
+						<when test='item=="3"'>
+							s.food_type = 4
+						</when>
+						<when test='item=="4"'>
+							s.food_type = 5
+						</when>
+					</choose>
+				</foreach>
+			</if>
+			<if test='order!=null'>
+				<choose>
+					<when test='order=="0"'>
+						order by host_avg desc
+					</when>
+					<when test='order=="1"'>
+						order by like_count desc
+					</when>
+					<when test='order=="2"'>
+						order by min_price
+					</when>
+				</choose>			
+			</if>
+			<!-- ${total_food_type} -->
 	  	</select>
-	  	<!-- 맛집 검색 결과 조회 -->
+	  	<!-- 숙소 검색 결과 조회 -->
 	  	<select id="jjHostStayList" parameterType="Search" resultType="HostStayjj">
-	  		select h.*, s.*, r.min_dayfee, r.max_dayfee, r.min_weekfee, r.max_weekfee, (select c.name from code c where c.bcd=300 and c.mcd=s.stay_type) type_name,
+	  		select r.min_dayfee, r.max_dayfee, r.min_weekfee, r.max_weekfee, h.*, s.*, (select c.name from code c where c.bcd=300 and c.mcd=s.stay_type) type_name,
 	  		(select host_photo from hostphoto p where p.host_num = h.host_num and rownum=1) host_photo  
 	  		from host h, stay s, (select host_num, min(dayfee) min_dayfee, max(dayfee) max_dayfee, min(weekfee) min_weekfee, max(weekfee) max_weekfee from room group by host_num) r
 			where h.host_num = s.host_num and s.host_num = r.host_num
-			${keyword}
-			${min_price}
-			${total_stay_type}
-			${order}
+			<if test='keyword!=null'>
+				and (host_name like '%'||#{keyword}||'%' or host_addr like '%'||#{keyword}||'%' or
+				 (select c.name from code c where c.bcd=300 and c.mcd=s.stay_type) like '%'||#{keyword}||'%')
+			</if>
+			<if test='region!=null'>
+				<foreach collection="region" item="item" open="and (" separator=" or " close=")">
+					<choose>
+						<when test='item=="0"'>
+							host_addr like '%대정%' or host_addr like '%안덕%'
+						</when>
+						<when test='item=="1"'>
+							host_addr like '%서귀동%'
+						</when>
+						<when test='item=="2"'>
+							host_addr like '%성산%' or host_addr like '%우도%' 
+						</when>
+						<when test='item=="3"'>
+							host_addr like '%노형%' or host_addr like '%제주시%'
+						</when>
+						<when test='item=="4"'>
+							host_addr like '%중문%'
+						</when>
+						<when test='item=="5"'>
+							host_addr like '%표선%'
+						</when>
+						<when test='item=="6"'>
+							host_addr like '%한림%' or host_addr like '%애월%' 
+						</when>
+						<when test='item=="7"'>
+							host_addr like '%조천%' or host_addr like '%구좌%'
+						</when>
+					</choose>
+				</foreach>
+			</if>
+			<if test='stayprice!=null'>
+				<choose>
+					<when test='stayprice=="1"'>
+					<![CDATA[	and min_dayfee < 10000 ]]>
+					</when>
+					<when test='stayprice=="2"'>
+						and min_dayfee between 10000 and 29999
+					</when>
+					<when test='stayprice=="3"'>
+						and min_dayfee between 30000 and 49999
+					</when>
+					<when test='stayprice=="4"'>
+						and min_dayfee >= 50000
+					</when>
+				</choose>
+			</if>
+			<if test='stay_type!=null'>
+				<foreach collection="stay_type" item="item" open="and (" separator=" or " close=")">
+					<choose>
+						<when test='item=="0"'>
+							s.stay_type = 1
+						</when>
+						<when test='item=="1"'>
+							s.stay_type = 2
+						</when>
+						<when test='item=="2"'>
+							s.stay_type = 3
+						</when>
+						<when test='item=="3"'>
+							s.stay_type = 4
+						</when>
+					</choose>
+				</foreach>
+			</if>
+			<if test='order!=null'>
+				<choose>
+					<when test='order=="0"'>
+						order by host_avg desc
+					</when>
+					<when test='order=="1"'>
+						order by like_count desc
+					</when>
+					<when test='order=="2"'>
+						order by min_dayfee
+					</when>
+				</choose>			
+			</if>
+			
+			<!-- ${total_stay_type} -->
+		
 	  	</select>
    </mapper>

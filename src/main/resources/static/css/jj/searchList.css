@@ -1,7 +1,10 @@
 
 .mb50 {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     display: block;
+    text-align: center;
+    font-size: 27px;
+    font-weight: bold;
 }
 
 .mb100 {
@@ -46,7 +49,11 @@ section h2.section-heading, .section-heading {
 
 
 .host-item {
-    margin-bottom: 15px;
+    margin-bottom: 50px;
+}
+
+.detail {
+	display: none;
 }
 
 #details {
@@ -54,12 +61,80 @@ section h2.section-heading, .section-heading {
 	
 }
 
-#details_font {
+#detail_order, #detail_region {
 	text-align: left;
 	margin-top: 30px;
 	
 }
 
-#storeSection, #staySection {
+#storedetails, #staydetails {
+	background-color: lightgray;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-bottom: 50px;
+	border-radius: 20px;
+}
+
+#detail_storetype, #detail_staytype {
+	margin-bottom: 20px;
+}
+
+#storeSection, #staySection, #emptySection {
 	margin: 0 auto;	
 }
+
+#emptySection {
+	display: none;
+}
+
+.information {
+	margin-right:20px;
+	color: gray;
+	
+}
+
+.product_details_rating {
+	display: inline-block;
+	margin-right: 100px;
+}
+
+.limitbox {
+	display: inline-block;
+	margin-bottom: 20px;
+	width: 100px;
+	height: 24px;
+}
+
+.star-inner {
+	color: gray;
+	position: absolute; 
+	z-index: 1;
+}
+
+.star-outer{
+	color: red;
+	position: relative; 
+	z-index: 2;
+	overflow: hidden;
+	height: 24px;
+	width: 100px;
+}
+
+.ratingnumber {
+	color: red;
+	font-size: 16px;
+	margin-left: 10px;
+	vertical-align: bottom;
+}
+
+.mapButton {
+	display: inline-block;
+	float: right;
+	margin-right: 10px;
+	margin-bottom: 5px;
+}
+
+.maps {
+	display: none;	
+}
+

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.S20220601.model.Search;
@@ -26,7 +25,9 @@ public class SearchController {
 	public String getSearchResult(Search search, Model model) {
 		
 		// DB에 search Keyword 입력
-		ss.keywordInsert(search.getKeyword());
+		if(search.getKeyword()!=null && search.getKeyword()!="") {
+			ss.keywordInsert(search.getKeyword());
+		}
 //		// 맛집 정보 조회
 //		List<HostStorejj> store = ss.getHostStoreList(search);
 //		// 숙소 정보 조회
@@ -34,10 +35,33 @@ public class SearchController {
 		
 		
 		model.addAttribute("keyword", search.getKeyword());
-//		model.addAttribute("storeList", store);
-//		model.addAttribute("stayList", stay);
+		// selection -> 0: 검색결과 리스트 둘다 포함, 1: 숙소만 포함, 2: 맛집만 포함
+		if(search.getSelection()!=null) {
+			model.addAttribute("selection", search.getSelection());
+		}else {
+			model.addAttribute("selection", "0");
+		}
+		
 		
 		return "jj/searchList";
+	}
+	
+	@GetMapping(value = "stayList")
+	public String stayList(Model model) {
+		// selection -> 0: 검색결과 리스트 둘다 포함, 1: 숙소만 포함, 2: 맛집만 포함
+		model.addAttribute("selection", "1");
+		
+		return "jj/searchList";
+		
+	}
+	
+	@GetMapping(value = "storeList")
+	public String storeList(Model model) {
+		// selection -> 0: 검색결과 리스트 둘다 포함, 1: 숙소만 포함, 2: 맛집만 포함
+		model.addAttribute("selection", "2");
+		
+		return "jj/searchList";
+		
 	}
 	
 	//ajax용 맛집리스트 객체 리턴
@@ -45,6 +69,9 @@ public class SearchController {
 	@ResponseBody
 	public List<HostStorejj> ajaxStoreList(Search search, Model model) {
 		List<HostStorejj> store = ss.getHostStoreList(search);
+		System.out.println("$$$$$store.order-->"+search.getOrder());
+		System.out.println("$$$$$store.regionsize-->"+search.getRegion().size());
+		System.out.println("$$$$$store.storeprice-->"+search.getStoreprice());
 		
 		return store;
 		
@@ -55,8 +82,12 @@ public class SearchController {
 	@ResponseBody
 	public List<HostStayjj> ajaxStayList(Search search, Model model) {
 		List<HostStayjj> stay = ss.getHostStayList(search);
+		System.out.println("$$$$$stay.order-->"+search.getOrder());
+		System.out.println("$$$$$stay.regionsize-->"+search.getRegion().size());
+		System.out.println("$$$$$stay.stayprice-->"+search.getStayprice());
 		
 		return stay;
 		
 	}
+	
 }

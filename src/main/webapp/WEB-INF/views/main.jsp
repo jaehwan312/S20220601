@@ -16,6 +16,7 @@
 <link rel="stylesheet" type="text/css" href="css/jj/jquery.fullPage.css" />
 <title>제주 감수광</title>
 <script src="https://kit.fontawesome.com/a42e829aa0.js" crossorigin="anonymous"></script>
+<<<<<<< HEAD
 <script type="text/javascript">
 	function message() {
 		var value2 = "${msg}";
@@ -24,6 +25,9 @@
 		}
 	}
 </script>
+=======
+
+>>>>>>> branch 'master' of https://github.com/jaehwan312/S20220601.git
 </head>
 <body onload="message()">
 	<nav class="navbar">
@@ -33,8 +37,8 @@
         <div class="header_background"></div>
         <div class="navbar_search_alter"></div>
         <ul class="navbar_menu">
-            <li><a href="">숙박</a></li>
-            <li><a href="">맛집</a></li>
+            <li><a href="stayList">숙박</a></li>
+            <li><a href="storeList">맛집</a></li>
             <li class="dropdown">
                 <a href="" class="dropdown_button">고객센터</a>
                 <div class="dropdown_content" id="csc">
@@ -94,7 +98,7 @@
 				<p class="title">맛집? 숙소?</p>
 				<h1 class="title">검색하러 감수광!</h1>
 			</div>
-			<form id="main_search_area" action="getSearchResult" autocomplete="off">
+			<form id="main_search_area"  action="getSearchResult" autocomplete="off"  onsubmit="return checkIt()">
         	<div class="input-group input-group-lg" id="main_search">
         			<div class="input-group input-group-lg">
 				  		<input id="searchBar" name="keyword" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" onkeyup="mainEnter()">
@@ -130,6 +134,7 @@
                     <div class="fact-item bg-light rounded text-center h-100 p-5">
                         <i class="fa fa-utensils fa-4x text-primary mb-4"></i>
                         <p class="mb-2">등록된 맛집</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="substitute">0</span></h1>
                         <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">50</span></h1>
                     </div>
                 </div>
@@ -137,6 +142,7 @@
                     <div class="fact-item bg-light rounded text-center h-100 p-5">
                         <i class="fa fa-hotel fa-4x text-primary mb-4"></i>
                         <p class="mb-2">등록된 숙소</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="substitute">0</span></h1>
                         <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">175</span></h1>
                     </div>
                 </div>
@@ -144,6 +150,7 @@
                     <div class="fact-item bg-light rounded text-center h-100 p-5">
                         <i class="fa fa-clock fa-4x text-primary mb-4"></i>
                         <p class="mb-2">진행된 예약</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="substitute">0</span></h1>
                         <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">135</span></h1>
                     </div>
                 </div>
@@ -151,6 +158,7 @@
                     <div class="fact-item bg-light rounded text-center h-100 p-5">
                     	<i class="fa fa-file-pen fa-4x text-primary mb-4"></i>
                         <p class="mb-2">작성된 리뷰 수</p>
+                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="substitute">0</span></h1>
                         <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">9375</span></h1>
                     </div>
                 </div>
@@ -162,7 +170,7 @@
 		<div class="container-xxl py-5" id="registry">
 	            <div class="row justify-content-center g-4">
 	                <div class="col-lg-4 col-sm-6" style="cursor: pointer;"
-	                onclick="location.href='#'">
+	                onclick="location.href='storeInsertForm'">
 	                    <div class="service-item text-center pt-3">
 	                        <div class="p-4">
 	                            <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
@@ -172,7 +180,7 @@
 	                    </div>
 	                </div>
 	                <div class="col-lg-4 col-sm-6" style="cursor: pointer;"
-	                onclick="location.href='#'">
+	                onclick="location.href='stayInsertForm'">
 	                    <div class="service-item text-center pt-3">
 	                        <div class="p-4">
 	                            <i class="fa fa-3x fa-hotel text-primary mb-4"></i>
@@ -214,6 +222,12 @@
 	</div>
 	</div>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
+    <script>
+	
+
+	</script>
+    
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 	<script src="js/jj/jquery.counterup.min.js"></script>
 	<script src="js/main.js" defer></script>

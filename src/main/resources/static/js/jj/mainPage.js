@@ -4,18 +4,31 @@
 // fullpage 준비
 $(document).ready(function() {
 			$('#fullpage').fullpage({
-				onLeave: function(origin, destination, direction){
-					var leavingSection = this;
-
+				'afterLoad': function (anchorLink, index) {
+					// 2페이지에서 카운트업 시작
+					if (index == 2){
+						$('.counter').show();
+						$('.substitute').hide();
+						$('.counter').counterUp({
+						    delay: 10,
+						    time: 2000
+						});	
+					}
+				},	
+		
+				// 페이지 이동할 때
+				'onLeave' : function (index, nextIndex, direction){
+					// 다시 2번페이지로 올경우 카운터 재시작되는것을 방지하기 위함
+					if (index == 2 && direction == 'down'){
+						$('.counter').attr('class','counte');
+					} else if (index == 2 && direction == 'up'){
+						$('.counter').attr('class','counte');
+					}
 				}
 			});
 		});
 
-// 메인화면 숫자 카운팅효과
- $('.counter').counterUp({
-    delay: 10,
-    time: 2000
-});		
+
 
 // 메인페이지에서 검색바 헤더에서 숨기기
 $(function(){
@@ -230,12 +243,22 @@ function mainEnter(){
 	}
 }
 
+// 검색 유효성 검사(메인)
+function checkIt(){
+		var searchBarValue = $('#searchBar').val();
+
+		if (searchBarValue.replace(/\s|　/gi, '')==""){	  // 자바스크립트 : 빈문자열 -> false 반환
+			$('#searchBar').val("");
+			$('#searchBar').focus();
+			return false;
+		}
+	}
+
 //검색바에 입력한 값으로 검색 실행
 function inputSearch(){
 	
-	var text = $('#searchBar').val();
-	var empty = /\s/g; 
-	if(text.replace(empty, "")==""){
+	var text = document.getElementById("searchBar").value; 
+	if(text.replace(/\s|　/gi, '')==""){
 		alert('검색어를 입력해주세요');
 		$('#searchBar').val("");
 		$('#searchBar').focus();
@@ -251,7 +274,11 @@ function selectSearch_main(id){
 	var selectedKeyword = $(id).children('span').text();
 	$('#searchBar').val(selectedKeyword);
 	document.getElementById('main_search_area').submit();
+<<<<<<< HEAD
 }
 
 // 회원 수정시 alert 창 띄우는 용도
 
+=======
+}
+>>>>>>> branch 'master' of https://github.com/jaehwan312/S20220601.git
