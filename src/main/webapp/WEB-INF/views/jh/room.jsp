@@ -14,6 +14,7 @@
 		border-radius: 5px;
 		width: 70%;
 		overflow: auto;
+		word-wrap: break-word; 
 	}
 	.user_msg {
 		background-color: #33a9fa;
@@ -21,6 +22,7 @@
 		border-radius: 5px;
 		width: 70%;
 		overflow: auto;
+		word-wrap: break-word; 
 	}
 </style>
 <title>제주 감수광</title>
@@ -133,6 +135,7 @@
 	    
 	    function chatOut(mem_num) {
 			if (confirm("채팅창을 나가시면 채팅 내용이 전부 삭제됩니다. 채팅창을 나가시겠습니까?")){
+				disconnect()
 				$.ajax(
 						{
 							url:"/deleteChat",
