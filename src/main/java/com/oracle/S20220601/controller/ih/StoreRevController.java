@@ -166,8 +166,7 @@ public class StoreRevController {
 		
 //			답변등록
 		int hostRevInsert = reviewService.hostRevInsert(review);
-		
-		
+		System.out.println("답글의 rev_num ==> " + hostRevInsert);
 		return hostRevInsert;
 	}
 	
