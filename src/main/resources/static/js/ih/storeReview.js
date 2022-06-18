@@ -13,31 +13,20 @@ function hostRevDelete(e){
 	//답변 관련 코드
 	var host_rev        = document.getElementById('host_rev');
 	
+	var host_rev_select = document.getElementById('host_rev_select');
 	//답변을 inset 하는 코드
-	//var host_rev_insert = "<div  id='host_rev_insert'><label><textarea rows='4px;' cols='155px;' style='float: right;' id='host_rev_content' name='host_rev_content'></textarea>"
-	//				    + "</label><button onclick='hostRevInsert("+user_rev_num+")' style='float: right;' class='btn btn-primary'>답변등록</button></div>"
-	
-	var host_rev_insert = "<c:if test='${mem_num == store.mem_num }'>"
+	var host_rev_insert = "<div id='host_rev'>"
+						+ "<c:if test='${mem_num == store.mem_num }'>"
 						+		"<div  id='host_rev_insert'>"
 						+			"<c:if test='${count == 0 }'>"
 						+				"<label>"
 						+					"<textarea rows='4px;' cols='155px;' style='float: right;' id='host_rev_content' name='host_rev_content'></textarea>"
 						+				"</label>"
 						+				"<button onclick='hostRevInsert("+user_rev_num+")' style='float: right;' class='btn btn-primary'>답변등록</button>"
-						+ "</c:if></div></c:if>"
-	
-	
-	//var host_rev_insert = document.getElementById('host_rev_insert').innerHTML;
+						+ "</c:if></div></c:if>></div>"
 	
 	//삭제를 위해 넘겨줄 정보
 	var del = {"rev_num" : rev_num, "host_num": host_num,"mem_num":mem_num};
-	/*
-	console.log("rev_num --> " + rev_num);
-	console.log("host_num --> " + host_num);
-	console.log("mem_num --> " + mem_num);
-	console.log(host_rev);
-	console.log(del);
-	*/
 	
 	console.log(host_rev_insert);
 	$.ajax({
@@ -49,6 +38,7 @@ function hostRevDelete(e){
 		success: function(data){
 				if(data > 0) {
 					//답변 내용 삭제
+					
 					$('#host_rev_select').remove();
 					//삭제된 부분을 inset하는 코드로 변경
 					host_rev.outerHTML = host_rev_insert;
@@ -66,20 +56,12 @@ function hostRevInsert(e){
 	var rev_num         = e;
 	var rev_content     = document.getElementById('host_rev_content').value;
 	var mem_num         = document.getElementById('Mem_mem').value;
-	//var step_rev      = document.getElementById('step_rev.rev_num').value;
+	
 	//답변 관련 코드
 	var host_rev        = document.getElementById('host_rev');
 	
-	
-		console.log("======리뷰 답글 등록==========");
-		console.log("업체번호         --> " + host_num);
-		console.log("답글을 달 리뷰번호 --> " + rev_num);
-		console.log("답글자 회원번호  --> " + mem_num);
-		console.log("답글내용         --> " + rev_content);
-	
 	var insert = {"host_num" : host_num, "mem_num": mem_num, "rev_content" : rev_content,"rev_num" : rev_num}
 	
-	console.log(insert);
 	
 	$.ajax({
 		url : "/hostRevInsert",
@@ -90,8 +72,10 @@ function hostRevInsert(e){
 		success: function(data){
 					//insert 코드 삭제
 					$('#host_rev_insert').remove();
+					//답글 리뷰 번호 확인
 					var step_rev = data;
 					
+					//리뷰에 작성된 답글 
 					var host_rev_select = "<div id='host_rev_select'>" 
 						+ "<c:forEach items='${revList }' var='step_rev' varStatus='h'>"
 						+ "<c:if test='${user_rev.rev_num == step_rev.ref && step_rev.re_step == 1}'>"
@@ -104,9 +88,10 @@ function hostRevInsert(e){
 						+ "		<button onclick='hostRevDelete("+step_rev+")' style='float: right;' class='btn btn-primary'>답변삭제</button>"
 						+ "     <input type='hidden' value='"+step_rev+"' id='step_rev.rev_num'>"	
 						+ "  	<input type='hidden' value='"+rev_num+"' id='user_rev.rev_num'>"
-						+ "	</div></c:if></c:forEach></div>";
-					console.log(host_rev_select);
-					host_rev.innerHTML	 = host_rev_select;  
+						+ "	</div></c:if></c:forEach>";
+					
+					//답글을 view 딴에 보여줌 
+					host_rev.innerHTML 	= host_rev_select;  
 			      
 					
 			}
@@ -124,13 +109,14 @@ function storeReviewInsert(e){
 	var mem_num		 = e;
 	var rev_content  = document.getElementById('rev_content').value;
 	var formData 	 = new FormData();
+	
 	if( $('#step').data('rating') != null){
 		var rev_point     = $('#step').data('rating');
 	}else{
 		var rev_point     = 0
 	}
 	
-	
+	elFileForm = document.querySelector('input[type=file]#inputInfo0')
 	for(var i = 0; i < 5; i++){
 		formData.append("inputinfo" + i,document.querySelector('input[type=file]#inputInfo' + i).files[0]);
 	}
@@ -140,19 +126,20 @@ function storeReviewInsert(e){
 	formData.append("rev_content",rev_content);
 	formData.append("rev_point", rev_point);
 	
-	console.log("======리뷰 등록==========");
-	console.log("등록정보 --> " + formData);
-	console.log("rev_point --> " + rev_point);
-	
 	$.ajax({
 		type:'post',                    //전송방식 POST
 		url: "/storeRevInsert",         //storeRevInsert로 이동
 		data : formData,				//전송 data formData
 		processData: false,				
 		contentType: false,
-	//	dataType   : 'json',			//데이터 리턴 방식 json
+		dataType   : 'json',			//데이터 리턴 방식 json
 		success: function(data){		//연결 성공시 실행
 			$('#rev_content').val("");
+			//$('.insertPhoto').remove();
+			//$('#preview').remove();
+			//$('.section').remove();
+			elFileForm.value ='';
+			console.log(data);
 			StoreRevCount(host_num);
 			StoreAvgUpdate(host_num);
 		}
@@ -201,17 +188,6 @@ function StoreRevCount(e){
 		});	
 }
 
-/*
-function userRevUpdate(e){
-	console.log('userRevUpdate' + e);
-}
-
-function hostRevUpdate(e){
-	console.log('hostRevUpdate' + e);
-}
-
-*/
-
 
 //리뷰삭제
 function userRevDelete(e){
@@ -248,3 +224,16 @@ function userRevDelete(e){
 
 	
 }
+
+
+
+/*
+function userRevUpdate(e){
+	console.log('userRevUpdate' + e);
+}
+
+function hostRevUpdate(e){
+	console.log('hostRevUpdate' + e);
+}
+
+*/

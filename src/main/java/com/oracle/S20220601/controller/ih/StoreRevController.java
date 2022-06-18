@@ -76,7 +76,7 @@ public class StoreRevController {
 	
 	@ResponseBody //식당리뷰 작성
 	@PostMapping(value = "storeRevInsert" )
-	public int storeRevInsert(StoreReview review, HttpServletRequest request, 
+	public StoreReview storeRevInsert(StoreReview review, HttpServletRequest request, 
 							  MultipartHttpServletRequest  filelist,
 							  @RequestParam HashMap<Object, Object> param
 							 ) throws Exception {
@@ -125,8 +125,14 @@ public class StoreRevController {
 		
 		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
 		
-		return storeRevInsert;
-		}
+		
+		StoreReview reviewSelect = reviewService.reviewSelect(storeRevInsert);
+		
+		//System.out.println(" reviewSelect --> " + reviewSelect.getRev_content());
+		
+		
+		return reviewSelect;
+	}
 
 		private String uploadFile(String originalName, byte[] fileData , String uploadPath) 
 			  throws Exception {
