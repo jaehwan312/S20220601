@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="css/ih/storePhoto.css">
 <script type="text/javascript" src="js/ih/storePhoto.js"></script>
 <script type="text/javascript" src="js/ih/storeReview.js"></script>
+<script type="text/javascript" src="js/ih/pick.js"></script>
 <style type="text/css">
 	hr {
 		margin-bottom: 10px;
@@ -37,7 +38,7 @@
 	    	<input type="hidden" value="${store.host_code}">
 	    	<input type="hidden" value="${store.mem_num}"  id="Mem_mem">
 	    	<label style="margin-bottom: 10px;">
-				<input type="checkbox" style="float: right;" id="checkbox" size="5px;">
+				<input type="checkbox" style="float: right;" id="checkbox" size="5px;" onclick="pick(${store.host_num})" value="${0 }">
 	    	</label>
 			
 	
@@ -153,7 +154,7 @@
 	    	</div>
 	    	<hr/>
 	    	<!-- 리뷰 시작  -->
-	    	<div>
+	    	<div id="user_rev_insert">
 	    		<!-- 리뷰 등록 시작 -->
 	    		<c:if test="${mem_num != 0}">
 	    			<c:if test="${mem_num != store.mem_num }">
@@ -162,32 +163,34 @@
 									 style="float: right; border-radius: 50%;" width="100px;" height="100px;"><br/>
 								<b>작성자:${name }</b>
 				   		</label>
-				   		<label>
-				   			<textarea rows="4px;" cols="135px;" style="float: right;" id="rev_content" name="rev_content"></textarea>
-				   		</label>
-						<div>
-							<div class="" id="preview"></div>
+					   		<label>
+					   			<textarea rows="4px;" cols="135px;" style="float: right;" id="rev_content" name="rev_content"></textarea>
+					   		</label>
+					   	<div id="photo_point">	
+							<div>
+								<div class="" id="preview"></div>
+							</div>
+							<section class="section">
+		                              <div class="card-body">
+		                                  <div id="step" class="star-rating" style="width: 160px; height: 32px; background-size: 32px;" title="1/5"></div>
+			                    	  </div>
+		               		</section>	
+							<!-- 사진  시작-->
+							<div>
+								<div class="insertPhoto">
+									<c:forEach begin="0" end="4" varStatus="i">
+					                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
+					                       	 👉 CLICK HERE!👈 
+											<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
+												onchange="previewFiles(${i.index })" accept="images/ih/*">
+					                    </label>
+					                </c:forEach>
+			      				</div>
+							</div>
+							<!-- 사진 끝 -->
+							<button type="submit" onclick="storeReviewInsert(${mem_num})" style="float: right;" class="btn btn-primary">리뷰등록</button>
+							<!-- 리뷰등록 끝 -->
 						</div>
-						<section class="section">
-	                              <div class="card-body">
-	                                  <div id="step" class="star-rating" style="width: 160px; height: 32px; background-size: 32px;" title="1/5"></div>
-		                    	  </div>
-	               		</section>	
-						<!-- 사진  시작-->
-						<div>
-							<div class="insertPhoto">
-								<c:forEach begin="0" end="4" varStatus="i">
-				                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
-				                       	 👉 CLICK HERE!👈 
-										<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
-											onchange="previewFiles(${i.index })" accept="images/ih/*">
-				                    </label>
-				                </c:forEach>
-		      				</div>
-						</div>
-						<!-- 사진 끝 -->
-						<button type="submit" onclick="storeReviewInsert(${mem_num})" style="float: right;" class="btn btn-primary">리뷰등록</button>
-						<!-- 리뷰등록 끝 -->
 					</c:if>
 				</c:if>
 				</div>
@@ -253,7 +256,7 @@
 																</div>
 														</c:if>
 												</c:forEach>
-											</div>
+										</div>
 										<c:if test="${mem_num == store.mem_num }">
 											<div  id="host_rev_insert">
 												<c:if test="${count == 0 }">

@@ -8,13 +8,21 @@
 <link rel="stylesheet" href="css/jh/chat.css">
 <style type="text/css">
 	.user_msg {
-		text-align: end;
+		margin-left: 30%;
 		background-color: #d9d9d9;
 		margin-top: 5px;
+		border-radius: 5px;
+		width: 70%;
+		overflow: auto;
+		word-wrap: break-word; 
 	}
 	.adm_msg {
 		background: #33a9fa;
 		margin-top: 5px;
+		border-radius: 5px;
+		width: 70%;
+		overflow: auto;
+		word-wrap: break-word; 
 	}
 </style>
 <title>제주 감수광</title>
@@ -106,9 +114,9 @@
 	        chatroom = document.getElementById("chatroom");
 	        // chatroom.innerHTML = chatroom.innerHTML + "<br>" + data;
 	        if(cls == '1'){
-	        	$("#chatroom").append("<div class='adm_msg'>" + msg + "</div>");
+	        	$("#chatroom").append("<div><p class='adm_msg'>" + msg + "</p></div>");
 	        } else {
-	        	$("#chatroom").append("<div class='user_msg'>" + msg + "</div>");
+	        	$("#chatroom").append("<div><p class='user_msg'>" + msg + "</p></div>");
 	        }
 	    }
 	    function onClose(){
@@ -126,6 +134,7 @@
 		
 	    function chatOut(mem_num) {
 			if (confirm("채팅창을 나가시면 채팅 내용이 전부 삭제됩니다. 채팅창을 나가시겠습니까?")){
+			    disconnect();
 				$.ajax(
 						{
 							url:"/deleteChat",

@@ -98,13 +98,14 @@ public class ReviewDaoImpl implements ReviewDao {
 		System.out.println("ReviewDaoImpl storeUserRevInsert Start...");
 		
 		int storeUserRevInsert = 0;
-		
+		int user_rev_num_select = 0;
 		try {
 			storeUserRevInsert = session.insert("storeUserRevInsert",review);
+			user_rev_num_select = session.selectOne("user_rev_num_select");
 		} catch (Exception e) {
 			System.out.println("ReviewDaoImpl storeUserRevInsert ErrorMessage --> " + e.getMessage());
 		}
-		return storeUserRevInsert;
+		return user_rev_num_select;
 	}
 
 	@Override//식당 리뷰 사진 등록
@@ -131,14 +132,14 @@ public class ReviewDaoImpl implements ReviewDao {
 		System.out.println("ReviewDaoImpl hostRevInsert Start...");
 		
 		int hostRevInsert = 0;
-		int rev_num_select = review.getRev_num();
+		int host_rev_num_select = review.getRev_num();
 		try {
 			hostRevInsert = session.insert("hostRevInsert",review);
-			rev_num_select = session.selectOne("rev_num_select", rev_num_select);
+			host_rev_num_select = session.selectOne("host_rev_num_select", host_rev_num_select);
 		} catch (Exception e) {
 			System.out.println("ReviewDaoImpl hostRevInsert ErrorMessage --> " + e.getMessage());
 		}
-		return rev_num_select;
+		return host_rev_num_select;
 	}
 
 	@Override //리뷰 답글 삭제
@@ -154,6 +155,21 @@ public class ReviewDaoImpl implements ReviewDao {
 			System.out.println("ReviewDaoImpl hostRevDelete ErrorMessage --> " + e.getMessage());
 		}
 		return hostRevDelete;
+	}
+
+	@Override//작성된 식당 리뷰 반환
+	public StoreReview reviewSelect(int rev_num) {
+		System.out.println("ReviewDaoImpl reviewSelect Start...");
+		
+		StoreReview reviewSelect = null;
+		
+		try {
+			reviewSelect  = session.selectOne("reviewSelect", rev_num);
+			
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl reviewSelect ErrorMessage --> " + e.getMessage());
+		}
+		return reviewSelect;
 	}
 	
 	

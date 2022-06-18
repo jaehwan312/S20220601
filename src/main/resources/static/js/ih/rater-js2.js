@@ -1,10 +1,9 @@
 window.raterJs({
-    element:document.querySelector("#step"),
+   element: document.querySelector("#step"), 
+    starSize: 32,
     rateCallback:function rateCallback(rating, done) {
         this.setRating(rating); 
         done(); 
-    },
-    starSize:32,
-    step:0.5
+    }
 })
 

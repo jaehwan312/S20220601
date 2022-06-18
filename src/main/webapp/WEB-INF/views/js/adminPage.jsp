@@ -27,25 +27,31 @@
         <div class="container">
             <div class="row g-3" style="justify-content: space-evenly">
                 <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
-                    <div class="fact-item bg-light rounded text-center h-100 p-5" onclick="">
-                        <i class="fa fa-user-large fa-4x text-primary mb-4" aria-hidden="true"></i>
-                        <p class="mb-2">회원관리</p>
-                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">20</span></h1>
-                    </div>
+	            	<a href="">       
+	                    <div class="fact-item bg-light rounded text-center h-100 p-5">
+	                        <i class="fa fa-user-large fa-4x text-primary mb-4" aria-hidden="true"></i>
+	                        <p class="mb-2">회원관리</p>
+	                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">20</span></h1>
+	                    </div>
+	                </a>
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
-                    <div class="fact-item bg-light rounded text-center h-100 p-5" onclick="">
-                        <i class="fa fa-user-xmark fa-4x text-primary mb-4" aria-hidden="true"></i>
-                        <p class="mb-2">휴면회원 관리</p>
-                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">5</span></h1>
-                    </div>
+               		<a href="">     	
+	                    <div class="fact-item bg-light rounded text-center h-100 p-5">
+	                        <i class="fa fa-user-xmark fa-4x text-primary mb-4" aria-hidden="true"></i>
+	                        <p class="mb-2">휴면회원 관리</p>
+	                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">5</span></h1>
+	                    </div>
+	                </a>
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeIn;">
-                    <div class="fact-item bg-light rounded text-center h-100 p-5" onclick="">
-                        <i class="fa fa-clock fa-4x text-primary mb-4" aria-hidden="true"></i>
-                        <p class="mb-2">추천검색어 관리</p>
-                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">10</span></h1>
-                    </div>
+	            	<a href="">        
+	                    <div class="fact-item bg-light rounded text-center h-100 p-5">
+	                        <i class="fa fa-clock fa-4x text-primary mb-4" aria-hidden="true"></i>
+	                        <p class="mb-2">추천검색어 관리</p>
+	                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">10</span></h1>
+	                    </div>
+	                </a>
                 </div>
             </div>
         </div>
@@ -54,26 +60,35 @@
         <div class="container">
             <div class="row g-3" style="justify-content: space-evenly">
                 <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
-                    <div class="fact-item bg-light rounded text-center h-100 p-5" onclick="">
-                        <i class="fa fa-hotel fa-4x text-primary mb-4" aria-hidden="true"></i>
-                        <p class="mb-2">숙소등록 관리</p>
-                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">20</span></h1>
-                    </div>
+	            	<a href="">
+	                    <div class="fact-item bg-light rounded text-center h-100 p-5">
+	                        <i class="fa fa-hotel fa-4x text-primary mb-4" aria-hidden="true"></i>
+	                        <p class="mb-2">숙소등록 관리</p>
+	                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">20</span></h1>
+	                    </div>
+	                </a>
                 </div>
+                
                 <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
-                    <div class="fact-item bg-light rounded text-center h-100 p-5" onclick="">
-                        <i class="fa fa-store fa-4x text-primary mb-4" aria-hidden="true"></i>
-                        <p class="mb-2">식당등록 관리</p>
-                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">17</span></h1>
-                    </div>
+                    <a href="">
+	                    <div class="fact-item bg-light rounded text-center h-100 p-5">
+	                        <i class="fa fa-store fa-4x text-primary mb-4" aria-hidden="true"></i>
+	                        <p class="mb-2">식당등록 관리</p>
+	                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">17</span></h1>
+	                    </div>
+                    </a>
                 </div>
+                
                 <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeIn;">
-                    <div class="fact-item bg-light rounded text-center h-100 p-5" onclick="">
-                        <i class="fa fa-comments fa-4x text-primary mb-4" aria-hidden="true"></i>
-                        <p class="mb-2">실시간채팅 관리</p>
-                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">8</span></h1>
-                    </div>
+                    <a href="chatList">
+	                    <div class="fact-item bg-light rounded text-center h-100 p-5">
+	                        <i class="fa fa-comments fa-4x text-primary mb-4" aria-hidden="true"></i>
+	                        <p class="mb-2">실시간채팅 관리</p>
+	                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">8</span></h1>
+	                    </div>
+                    </a>
                 </div>
+                
             </div>
         </div>
     </div>

@@ -308,11 +308,8 @@ public class StoreController {
 		  if (storePhotoInsertList.size() != 0) {uploadPhoto =  storePhotoService.storePhotoUpdate(storePhotoInsertList,fileName,hostStore.getHost_num());}
 		  System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
 		  
-		  if(storePhoto.size() != 0){    }
-		
-		
 		//식당정보 등록 요청 확인 msg 보냄
-		if (storeUpdate > 0) {
+		if (storeUpdate > 0 || menuUpdate > 0 || uploadPhoto > 0) {
 			model.addAttribute("msg", "등록 요청 성공");
 		}else {
 			model.addAttribute("msg", "등록 요청 실패");

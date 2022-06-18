@@ -52,7 +52,16 @@
 	  	</delete>
 	  	
 	  	<!-- 답변 리뷰 번호 확인 -->
-	  	<select id="rev_num_select" parameterType="int" resultType="int">
+	  	<select id="host_rev_num_select" parameterType="int" resultType="int">
 	  		SELECT rev_num FROM review WHERE ref = #{rev_num} AND re_step = 1
+	  	</select>
+	  	
+	  	<!-- 현재 리뷰 번호 확인 -->
+	  	<select id="user_rev_num_select" resultType="int">
+	  		SELECT seq_rev_num.currval FROM DUAL
+	  	</select>
+	  	
+	  	<select id="reviewSelect" parameterType="int" resultType="StoreReview">
+	  		SELECT * FROM review WHERE rev_num = #{rev_num} AND re_step = 0
 	  	</select>
    </mapper>
