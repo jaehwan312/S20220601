@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
+import com.oracle.S20220601.model.Res;
 import com.oracle.S20220601.model.Review;
 import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.Stay;
@@ -53,27 +54,6 @@ public class StayController {	//숙소 Controller
 		model.addAttribute("roomPhoto", roomPhoto);
 		return "bh/stayRead";
 	}
-	
-//	@PostMapping(value = "stayinfo")
-//	public String stayinfo(@RequestParam int host_num, Model model) {//업소 기본정보
-//		logger.info("StayController stayinfo Start");
-//		System.out.println("host_num --> " + host_num);
-//		Stay       	stayinfo  		= ss.stayinfo(host_num);
-//		model.addAttribute("stayinfo", stayinfo);
-//		
-//		return "bh/stayRead";
-//	}
-	
-//	@RequestMapping(value = "reviewList")
-//	public String reviewList(Review1 review, Model model) {// 숙소 리뷰
-//		logger.info("StayController reviwList Start");
-//		List<Review1> reviewList = ss.reviewList(review.getHost_num());
-//		Host hostreview	=ss.hostreview(review.getHost_num());
-//		model.addAttribute("reviewList", reviewList);
-//		model.addAttribute("hostreview", hostreview);
-//		return "bh/stayRead";
-//	}
-	
 	
 	@GetMapping(value = "stayInsertForm") //숙소 등록페이지
 	public String stayInsertForm(HttpServletRequest request,Model model) {
@@ -200,8 +180,11 @@ public class StayController {	//숙소 Controller
 	}
 	
 	@GetMapping(value = "reviewInsertForm")
-	public String reviewInsertForm(HttpServletRequest request,Model model) {
+	public String reviewInsertForm(HttpServletRequest request, Res res, Model model) {
 		logger.info("StayController reviewInsertForm Start");
+		int mem_num = (int)request.getSession().getAttribute("mem_num");
+		res.setMem_num(mem_num);
+		model.addAttribute("resInfo", res);
 		return "bh/reviewInsertForm";
 	}
 	
@@ -210,9 +193,10 @@ public class StayController {	//숙소 Controller
 										  MultipartFile rev_Photo1,MultipartFile rev_Photo2,
 										  MultipartFile rev_Photo3,MultipartFile rev_Photo4) {
 		
+		System.out.println("hostnum->"+review.getHost_num());
 		int revInsert = ss.revInsert(review);
 		
-		
+		System.out.println(rev_Photo0.getOriginalFilename());
 		Map<Integer, MultipartFile> revPhotoInsert     = new HashMap<Integer, MultipartFile>();
 		List<MultipartFile>			revPhotoInsertList = new ArrayList<MultipartFile>();
 	
@@ -224,6 +208,7 @@ public class StayController {	//숙소 Controller
 		revPhotoInsert.put(4, rev_Photo4);
 		
 		
+		
 		for (int i = 0; i < revPhotoInsert.size(); i++) {
 			System.out.println("start  roomPhotoInsert.size()->"+i);
 			if (revPhotoInsert.get(i).getSize() != 0) {
@@ -232,11 +217,14 @@ public class StayController {	//숙소 Controller
 			System.out.println("end  roomPhotoInsert.size()->"+i);
 		}
 		
+		Review1 review1 = new Review1();
+		review1.setHost_num(review.getHost_num());
+		review1.setRevPhotolist(revPhotoInsertList);
 		
 		int uploadPhoto = 0;
 		System.out.println("업로드할 사진 갯수 --> " + revPhotoInsertList.size());
 		if (revPhotoInsertList.size() != 0) {
-			uploadPhoto = ss.revPhotoInsert(revPhotoInsertList);
+			uploadPhoto = ss.revPhotoInsert(review1);
 		}
 		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
 		System.out.println("host->"+revInsert);

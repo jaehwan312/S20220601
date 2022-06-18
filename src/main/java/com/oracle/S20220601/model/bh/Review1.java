@@ -2,6 +2,8 @@ package com.oracle.S20220601.model.bh;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.oracle.S20220601.model.RevPhoto;
 
 import lombok.Getter;
@@ -23,5 +25,6 @@ public class Review1 {
 	private List<RevPhoto> revPhoto;  // 사진들 객체 
 	private int room_num;
 	private String room_name;   // 객실 이름 --> ROOM 테이블
+	private List<MultipartFile> revPhotolist;
 	
 }

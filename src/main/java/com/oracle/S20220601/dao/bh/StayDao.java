@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
+import com.oracle.S20220601.model.Res;
 import com.oracle.S20220601.model.Review;
 import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.Stay;
@@ -30,6 +31,7 @@ public interface StayDao {
 	int 				roomPhotoInsert(List<MultipartFile> roomfile);
 	List<Room> 			roomList(Room room);
 	int 				revInsert(Review review);
-	int 				revPhotoInsert(List<MultipartFile> revPhotoInsertList);
+	int 				revPhotoInsert(Review1 review1);
+	Res 				resInfo(Res res);
 	
 }
