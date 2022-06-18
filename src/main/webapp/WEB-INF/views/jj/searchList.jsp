@@ -89,22 +89,16 @@
 							  	   		<span>검색순서</span>
 								    </div>
 								    <div class="col-md-3">
-								      	<input class="form-check-input flex-shrink-0" type="radio" name="order" value="0" onclick="ajaxList()">
-									      <span>
-									        평점순
-									      </span>
+								    	<input type="radio" id="radioOne" value="0" name="order" onclick="ajaxList()">
+					    				<label for="radioOne" class="radiobtn">평점순</label>
 								    </div>
 								    <div class="col-md-3">
-								      	<input class="form-check-input flex-shrink-0" type="radio" name="order" value="1" onclick="ajaxList()">
-									      <span>
-									       찜많은순
-									      </span>
+								    	<input type="radio" id="radioTwo" value="1" name="order" onclick="ajaxList()">
+					    				<label for="radioTwo" class="radiobtn">찜많은순</label>
 								    </div>
 								    <div class="col-md-3">
-									      <input class="form-check-input flex-shrink-0" type="radio" name="order" value="2" onclick="ajaxList()">
-									      <span>
-									       가격순
-									      </span>
+								    	  <input type="radio" id="radioThree" value="2" name="order" onclick="ajaxList()">
+					    				  <label for="radioThree" class="radiobtn">가격순</label>
 								    </div>
 								  </div>
 
@@ -117,10 +111,8 @@
 							  	   		<span>지역별</span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="0" checked="" onclick="ajaxList()">
-									      <span>
-									        대정읍/안덕면
-									      </span>
+								      <input type="checkbox" id="checkboxOne" value="0" name="region" checked="" onclick="ajaxList()">
+					    			  <label for="checkboxOne" class="checkboxbtn">대정읍/안덕면</label>
 								    </div>
 								    <div class="col-md-3">
 								      <input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="1" checked="" onclick="ajaxList()">
