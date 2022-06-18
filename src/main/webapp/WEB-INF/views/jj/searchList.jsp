@@ -19,37 +19,57 @@
               <div class="row">
                   <div class="col-lg-12 text-center mb100">
 
-
-					<div class="travel-type-wrap">
-						<div class="item active">
+				<c:if test="${selectSection=='0' }">
+					<div class="travel-type-wrap" id="wrap_both">
+						<div class="item active" onclick="selectSection(0)">
 							<div class="group-icon">
 								<i class="fa-solid fa-utensils fa-lg"></i> 
 								<i class="fa-solid fa-hotel fa-lg"></i>
 							</div>
 							<span>맛집+숙박</span>
 						</div>
-						<div class="item">
+						<div class="item" onclick="selectSection(2)">
 							<div class="group-icon">
 								<i class="fa-solid fa-utensils fa-lg"></i>
 							</div>
 							<span>맛집</span>
 						</div>
-						<div class="item">
+						<div class="item" onclick="selectSection(1)">
 							<div class="group-icon">
 								<i class="fa-solid fa-hotel fa-lg"></i>
 							</div>
 							<span>숙박</span>
 						</div>
 					</div>
+				</c:if>
+				<c:if test="${selectSection=='1' }">
+					<div class="travel-type-wrap" id=wrap_stay>
+						<div class="item active">
+							<div class="group-icon">
+								<i class="fa-solid fa-hotel fa-2x"></i>
+							</div>
+							<span>숙박</span>
+						</div>
+					</div>
+				</c:if>
+				<c:if test="${selectSection=='2' }">
+					<div class="travel-type-wrap" id="wrap_food">
+						<div class="item active">
+							<div class="group-icon">
+								<i class="fa-solid fa-utensils fa-2x"></i>
+							</div>
+							<span>맛집</span>
+						</div>
+					</div>
+				</c:if>
+					
 
 
-
-
-
-
-					<h2 class="section-heading" id="section_heading"></h2>
                       <hr class="thin-hr">
-                      <h3 class="section-subheading secondary-font" style="margin-bottom: 30px;" id="section_heading_sub">'${keyword }'에 대한 검색 결과</h3>
+                      <c:if test="${selectSection=='0' }">
+                      	<h3 class="section-subheading secondary-font" style="margin-bottom: 30px;" id="section_heading_sub">'${keyword }'에 대한 검색 결과</h3>
+                      </c:if>
+                      
 			      	  <button type="button" class="btn btn-success" onclick="collapse()">상세 검색</button>
 			      	  
 			      	  
@@ -253,6 +273,11 @@
 							</form>
                       </div>
                       
+                      <div id="storeEmpty">
+	                  	   <img alt="" src="images/jj/돌하르방1.png" class="emptyImages">
+	                      <h2 class="mb50">검색 결과가 없습니다</h2>
+	                  </div>
+                      
                       
                      <%--  <c:forEach var="store" items="${storeList }" varStatus="i">
                       	<div class="host-item">
@@ -365,6 +390,10 @@
 								  
 							</form>
                       </div>
+                      <div id="stayEmpty">
+	                  	   <img alt="" src="images/jj/돌하르방1.png" class="emptyImages">
+	                      <h2 class="mb50">검색 결과가 없습니다</h2>
+	                  </div>
 						<%-- <c:forEach var="stay" items="${stayList }">
                       	<div class="host-item">
                           <div class="row">
@@ -389,8 +418,8 @@
 			            </div>
                       </c:forEach> --%>
                   </div>
-                  <div class="col-md-6" id="emptySection">
-                  	   <img alt="" src="images/jj/X.jpg">
+                  <div class="col-md-12" id="totalEmpty">
+                  	   <img alt="" src="images/jj/돌하르방1.png" class="emptyImages2">
                       <h2 class="mb50">검색 결과가 없습니다</h2>
                   </div>
               </div>

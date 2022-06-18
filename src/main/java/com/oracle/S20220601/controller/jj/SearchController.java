@@ -41,6 +41,7 @@ public class SearchController {
 		}else {
 			model.addAttribute("selection", "0");
 		}
+		model.addAttribute("selectSection", "0");
 		
 		
 		return "jj/searchList";
@@ -50,6 +51,7 @@ public class SearchController {
 	public String stayList(Model model) {
 		// selection -> 0: 검색결과 리스트 둘다 포함, 1: 숙소만 포함, 2: 맛집만 포함
 		model.addAttribute("selection", "1");
+		model.addAttribute("selectSection", "1");
 		
 		return "jj/searchList";
 		
@@ -59,6 +61,7 @@ public class SearchController {
 	public String storeList(Model model) {
 		// selection -> 0: 검색결과 리스트 둘다 포함, 1: 숙소만 포함, 2: 맛집만 포함
 		model.addAttribute("selection", "2");
+		model.addAttribute("selectSection", "2");
 		
 		return "jj/searchList";
 		
@@ -72,6 +75,7 @@ public class SearchController {
 		System.out.println("$$$$$store.order-->"+search.getOrder());
 		System.out.println("$$$$$store.regionsize-->"+search.getRegion().size());
 		System.out.println("$$$$$store.storeprice-->"+search.getStoreprice());
+		model.addAttribute("storeSize", store.size());
 		
 		return store;
 		
@@ -85,6 +89,7 @@ public class SearchController {
 		System.out.println("$$$$$stay.order-->"+search.getOrder());
 		System.out.println("$$$$$stay.regionsize-->"+search.getRegion().size());
 		System.out.println("$$$$$stay.stayprice-->"+search.getStayprice());
+		model.addAttribute("staySize", stay.size());
 		
 		return stay;
 		
