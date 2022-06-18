@@ -7,19 +7,27 @@ function hostRevDelete(e){
 	var rev_num         = e;
 	//삭제하는 답변의 회원번호										
 	var mem_num         = document.getElementById('Mem_mem').value;
-	//삭제하는 답변이 달린 리뷰(유저) 번호
+	//삭제하는 답변이 달린 리뷰번호
 	var user_rev_num    = document.getElementById('user_rev.rev_num').value;
 	
 	//답변 관련 코드
 	var host_rev        = document.getElementById('host_rev');
 	
 	//답변을 inset 하는 코드
-	/*
-		var host_rev_insert = "<div  id='host_rev_insert'><label><textarea rows='4px;' cols='155px;' style='float: right;' id='host_rev_content' name='host_rev_content'></textarea>"
-						+ "</label><button onclick='hostRevInsert("+user_rev_num+")' style='float: right;' class='btn btn-primary'>답변등록</button></div>"
-	*/
+	//var host_rev_insert = "<div  id='host_rev_insert'><label><textarea rows='4px;' cols='155px;' style='float: right;' id='host_rev_content' name='host_rev_content'></textarea>"
+	//				    + "</label><button onclick='hostRevInsert("+user_rev_num+")' style='float: right;' class='btn btn-primary'>답변등록</button></div>"
 	
-	var host_rev_insert = document.getElementById('host_rev_insert').innerHTML;
+	var host_rev_insert = "<c:if test='${mem_num == store.mem_num }'>"
+						+		"<div  id='host_rev_insert'>"
+						+			"<c:if test='${count == 0 }'>"
+						+				"<label>"
+						+					"<textarea rows='4px;' cols='155px;' style='float: right;' id='host_rev_content' name='host_rev_content'></textarea>"
+						+				"</label>"
+						+				"<button onclick='hostRevInsert("+user_rev_num+")' style='float: right;' class='btn btn-primary'>답변등록</button>"
+						+ "</c:if></div></c:if>"
+	
+	
+	//var host_rev_insert = document.getElementById('host_rev_insert').innerHTML;
 	
 	//삭제를 위해 넘겨줄 정보
 	var del = {"rev_num" : rev_num, "host_num": host_num,"mem_num":mem_num};
@@ -28,9 +36,9 @@ function hostRevDelete(e){
 	console.log("host_num --> " + host_num);
 	console.log("mem_num --> " + mem_num);
 	console.log(host_rev);
-	
 	console.log(del);
 	*/
+	
 	console.log(host_rev_insert);
 	$.ajax({
 		url : "/hostRevDelete",
@@ -43,7 +51,7 @@ function hostRevDelete(e){
 					//답변 내용 삭제
 					$('#host_rev_select').remove();
 					//삭제된 부분을 inset하는 코드로 변경
-					host_rev.innerHTML = host_rev_insert.innerHTML;
+					host_rev.outerHTML = host_rev_insert;
 				}	
 					
 			}
@@ -58,30 +66,17 @@ function hostRevInsert(e){
 	var rev_num         = e;
 	var rev_content     = document.getElementById('host_rev_content').value;
 	var mem_num         = document.getElementById('Mem_mem').value;
-	
+	//var step_rev      = document.getElementById('step_rev.rev_num').value;
 	//답변 관련 코드
 	var host_rev        = document.getElementById('host_rev');
-	/*
-	var host_rev_select = "<h6 hidden='' id='count'>${count = 1}</h6>"
-						+ "<br/>"
-						+ "	<div style='margin-top: 50px;'>"
-						+ "		<label style='float: right;'>[답변] : "+ rev_content +"</label>"
-						+ "		<br/>"
-						+ "		<button onclick='hostRevUpdate(${step_rev.rev_num});' style='float: right;' class='btn btn-primary'>답변수정</button>"
-						+ "		<button onclick='hostRevDelete(${step_rev.rev_num});' style='float: right;' class='btn btn-primary'>답변삭제</button>"
-						+ "  	<input type='hidden' value='${user_rev.rev_num }' id='user_rev.rev_num'>"
-						+ "	</div>"*/
 	
-		//var host_rev_select = document.getElementById('host_rev_select');
-		//console.log(host_rev_select);
 	
-	/*
 		console.log("======리뷰 답글 등록==========");
 		console.log("업체번호         --> " + host_num);
 		console.log("답글을 달 리뷰번호 --> " + rev_num);
 		console.log("답글자 회원번호  --> " + mem_num);
 		console.log("답글내용         --> " + rev_content);
-	*/
+	
 	var insert = {"host_num" : host_num, "mem_num": mem_num, "rev_content" : rev_content,"rev_num" : rev_num}
 	
 	console.log(insert);
@@ -93,13 +88,32 @@ function hostRevInsert(e){
 		contentType : 'application/json; charset=UTF-8',
 		dataType : 'json',
 		success: function(data){
-				if(data > 0) {
+					//insert 코드 삭제
 					$('#host_rev_insert').remove();
-				//	host_rev.innerHTML = host_rev_select;
-				}	
+					var step_rev = data;
+					
+					var host_rev_select = "<div id='host_rev_select'>" 
+						+ "<c:forEach items='${revList }' var='step_rev' varStatus='h'>"
+						+ "<c:if test='${user_rev.rev_num == step_rev.ref && step_rev.re_step == 1}'>"
+						+ "<h6 hidden='' id='count'>${count = 1}</h6>"
+						+ "<br/>"
+						+ "	<div style='margin-top: 50px;'>"
+						+ "		<label style='float: right;'>[답변] : "+ rev_content +"</label>"
+						+ "		<br/>"
+						+ "		<button onclick='hostRevUpdate("+step_rev+")' style='float: right;' class='btn btn-primary'>답변수정</button>"
+						+ "		<button onclick='hostRevDelete("+step_rev+")' style='float: right;' class='btn btn-primary'>답변삭제</button>"
+						+ "     <input type='hidden' value='"+step_rev+"' id='step_rev.rev_num'>"	
+						+ "  	<input type='hidden' value='"+rev_num+"' id='user_rev.rev_num'>"
+						+ "	</div></c:if></c:forEach></div>";
+					console.log(host_rev_select);
+					host_rev.innerHTML	 = host_rev_select;  
+			      
 					
 			}
-		});	
+		});
+		
+
+		
 }
 
 
