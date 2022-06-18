@@ -7,8 +7,38 @@
     font-weight: bold;
 }
 
+/* 검색결과 없음 메세지 */
+.emptyMsg {
+	margin-top: 30px;
+	margin-bottom: 30px;
+    display: block;
+    text-align: center;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+#stayEmpty, #storeEmpty, #totalEmpty {
+	position: sticky;
+	top: 20%;
+	display: none;
+	padding-bottom: 100px;
+	padding-top: 100px;
+}
+
+.innerEmpty {
+	margin: auto;
+	text-align: center;
+}
+
+
+
+/* 검색결과 없음 이미지 */
 .emptyImages {
-	width: 100px;
+	width: 200px;
+}
+
+.emptyImages2 {
+	width: 230px;
 }
 
 .mb100 {
@@ -16,6 +46,7 @@
 }
 
 
+/* 업체 사진 */
 .img-wrapper {
 	position: relative;
 	width: 100%;
@@ -35,6 +66,7 @@
     border-radius: 20px;
     
 }
+
 
 
 
@@ -97,7 +129,7 @@
 .limitbox {
 	display: inline-block;
 	margin-bottom: 20px;
-	width: 100px;
+	width: 90.05px;
 	height: 24px;
 }
 
@@ -112,6 +144,16 @@
 	position: relative; 
 	z-index: 2;
 	overflow: hidden;
+	height: 24px;
+	width: 100px;
+	display: inline-block;
+}
+
+.star-outer-half {
+	color: red;
+	position: absolute;
+	display: none; 
+	z-index: 2;
 	height: 24px;
 	width: 100px;
 }
@@ -132,6 +174,7 @@
 
 .maps {
 	display: none;	
+	margin-top: 30px;
 }
 
 

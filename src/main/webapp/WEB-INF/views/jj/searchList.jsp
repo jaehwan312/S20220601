@@ -274,8 +274,10 @@
                       </div>
                       
                       <div id="storeEmpty">
-	                  	   <img alt="" src="images/jj/돌하르방1.png" class="emptyImages">
-	                      <h2 class="mb50">검색 결과가 없습니다</h2>
+                      	<div class="innerEmpty">
+	                  	   <img alt="" src="images/jj/물음표1.png" class="emptyImages">
+	                      <h2 class="emptyMsg">검색 결과가 없습니다</h2>
+	                     </div>
 	                  </div>
                       
                       
@@ -391,8 +393,10 @@
 							</form>
                       </div>
                       <div id="stayEmpty">
-	                  	   <img alt="" src="images/jj/돌하르방1.png" class="emptyImages">
-	                      <h2 class="mb50">검색 결과가 없습니다</h2>
+                      	<div class="innerEmpty">
+	                  	   <img alt="" src="images/jj/물음표1.png" class="emptyImages">
+	                      <h2 class="emptyMsg">검색 결과가 없습니다</h2>
+	                     </div>
 	                  </div>
 						<%-- <c:forEach var="stay" items="${stayList }">
                       	<div class="host-item">
@@ -419,8 +423,10 @@
                       </c:forEach> --%>
                   </div>
                   <div class="col-md-12" id="totalEmpty">
-                  	   <img alt="" src="images/jj/돌하르방1.png" class="emptyImages2">
-                      <h2 class="mb50">검색 결과가 없습니다</h2>
+                  	<div class="innerEmpty">
+                  	   <img alt="" src="images/jj/물음표1.png" class="emptyImages2">
+                      <h2 class="emptyMsg">검색 결과가 없습니다</h2>
+                     </div>
                   </div>
               </div>
           </div>
