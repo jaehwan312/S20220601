@@ -36,7 +36,7 @@ public class ChatRoom {
             chatMessage.setMessage(chatMessage.getGrade()+chatMessage.getWriter()+"님이 퇴장하셨습니다.");
         }
         else{
-            chatMessage.setMessage(chatMessage.getGrade()+chatMessage.getWriter() + " : " + chatMessage.getMessage());
+            chatMessage.setMessage(chatMessage.getGrade()+chatMessage.getMessage());
         }
         send(chatMessage,objectMapper);
     }
