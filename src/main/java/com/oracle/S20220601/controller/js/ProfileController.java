@@ -2,6 +2,7 @@ package com.oracle.S20220601.controller.js;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -29,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oracle.S20220601.model.Profile;
+import com.oracle.S20220601.service.js.Paging;
 import com.oracle.S20220601.service.js.ProfileService;
 
 @Controller
@@ -44,9 +46,14 @@ public class ProfileController {
 	
 	// 로그인 페이지
 	@RequestMapping(value = "loginPage")	
-	public String loginPage(Model model, HttpServletRequest request) {
+	public String loginPage(Model model, HttpServletRequest request, String msg) {
 		System.out.println("loginPage Start...");
 		if (request.getSession().getAttribute("mem_num") == null) {
+			if(msg != null) {
+				if (msg.equals("1")) {
+					model.addAttribute("msg", "로그인이후 이용이 가능합니다.");
+				}
+			}
 			return "js/loginPage";
 		} else {
 			model.addAttribute("msg", "이미 로그인된 상태입니다. 메인화면으로 이동합니다.");
@@ -432,6 +439,46 @@ public class ProfileController {
 		return "exampleMyPage";
 	}
 	
-	
+//	@RequestMapping(value="list")
+//	public String list(Profile profile, String currentPage, Model model) {
+//		logger.info("EmpController Start list...");
+//
+//		int total = ps.total();   // Emp Count -> 19
+//	
+//		System.out.println("EmpController total=>" + total);
+//		Paging pg = new Paging(total, currentPage); 
+//		emp.setStart(pg.getStart());   // 시작시 1
+//		emp.setEnd(pg.getEnd());       // 시작시 10 
+//		List<Profile> listEmp = ps.listProfile(profile); 
+//		System.out.println("EmpController list listEmp.size()=>" + listProfile.size());
+//		model.addAttribute("listEmp",listProfile);
+//		model.addAttribute("pg",pg);
+//		model.addAttribute("total", total);
+//		return "list";
+//	}
+//    // keyword(조건) 조회
+//	@RequestMapping(value="listKeyword")
+//	public String listKeyword(Emp emp, String currentPage, Model model) {
+//		logger.info("EmpController Start listKeyword 조건 조회  ...");
+//
+//		// Keyword 맞는 Count 도출 
+//		int total = es.totalKeyword(emp);   // Emp Count -> 19
+//	
+//		System.out.println("EmpController total=>" + total);
+//		com.oracle.S20220601.service.js.Paging pg = new Paging(total, currentPage);
+//		emp.setStart(pg.getStart());   // 시작시 1
+//		emp.setEnd(pg.getEnd());       // 시작시 10 
+//		System.out.println("EmpController pg.getTotal=>" + pg.getTotal());
+//		System.out.println("EmpController pg.getStart()=>" + pg.getStart());
+//		List<Emp> listEmpKeyword = es.listEmpKeyword(emp); 
+//		System.out.println("EmpController list listEmpKeyword.size()=>" + listEmpKeyword.size());
+//		model.addAttribute("listEmp",listEmpKeyword);
+//		model.addAttribute("pg",pg);
+//		model.addAttribute("total", total);
+//		model.addAttribute("keyword", emp.getKeyword());
+//		
+//		return "listKeyword";
+//	}
+//	
 	
 }

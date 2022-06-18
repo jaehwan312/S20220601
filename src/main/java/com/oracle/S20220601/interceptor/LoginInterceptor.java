@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-public class AdminInterceptor implements HandlerInterceptor {
-	public AdminInterceptor() {
+public class LoginInterceptor implements HandlerInterceptor {
+	public LoginInterceptor() {
 	}
  	
 	@Override
@@ -20,14 +20,15 @@ public class AdminInterceptor implements HandlerInterceptor {
 	    System.out.println("pre handle..........................");
 	    HandlerMethod method = (HandlerMethod) handler;
 	    Method methodObj = method.getMethod();
-	    String grade =  request.getSession().getAttribute("grade").toString();
-	    if (grade.equals("1")) {
+//	    String mem_num =  request.getSession().getAttribute("mem_num").toString();
+	   
+	    if (request.getSession().getAttribute("mem_num") != null && request.getSession().getAttribute("mem_num").equals("1")) {
 	    	return true; 
 	    } else {
-	    	response.sendRedirect("main?msg=1");
+	    	response.sendRedirect("loginPage?msg=1");
 	    	return false;
 		}
-	   
+	    
 	}	
 	
 	
