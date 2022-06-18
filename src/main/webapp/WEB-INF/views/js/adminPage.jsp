@@ -51,7 +51,7 @@
 	                        <p class="mb-2">추천검색어 관리</p>
 	                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">10</span></h1>
 	                    </div>
-	                </a>S
+	                </a>
                 </div>
             </div>
         </div>
