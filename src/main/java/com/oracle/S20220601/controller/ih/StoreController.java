@@ -51,8 +51,14 @@ public class StoreController {
 		logger.info("StoreController storeRead Start..");
 		
 		session     = request.getSession();
+		int mem_num = 0;
+		if (session.getAttribute("mem_num") == null) {
+			mem_num = 0;
+		}else {
+			mem_num = (int) session.getAttribute("mem_num"); //로그이 성공시 회원번호 값
+		}
 		
-		int	mem_num = (int) session.getAttribute("mem_num"); //로그이 성공시 회원번호 값
+		
 		
 		System.out.println("현재 로그인한 mem_num --> " + mem_num);
 		
@@ -66,7 +72,6 @@ public class StoreController {
 		if (mem_num != 0) {
 			Profile     profile        = profileService.selectProfile(mem_num); //회원정보 불러오기
 			model.addAttribute("name", profile.getName());
-			model.addAttribute("mem_num", profile.getMem_num());
 		}
 		
 		if (revList.size() != 0) {
@@ -81,7 +86,7 @@ public class StoreController {
 		model.addAttribute("foodcode",foodcode);
 		model.addAttribute("revList", revList);
 		model.addAttribute("storeRevcount", storeRevcount);
-		
+		model.addAttribute("mem_num", mem_num);
 		
 		return "ih/storeRead";
 	}
