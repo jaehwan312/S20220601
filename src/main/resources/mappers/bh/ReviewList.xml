@@ -25,10 +25,12 @@
 	
 	<!-- 리뷰등록 -->
 	<insert id="roomInsert" parameterType="Review">
-		INSERT INTO review VALUES(#{host_num},seq_rev_num.nextval,#{mem_num},#{rev_content},sysdate,#{rec_point},ref,ref_step)
+		INSERT INTO review VALUES(#{host_num},seq_rev_num.nextval,#{mem_num},#{rev_content},sysdate,seq_rev_num.nextval,ref,0)
 	</insert>
-
-
+	<!-- 리뷰 사진 등록 -->
+	<insert id="storeRevPhotoInsert" parameterType="StoreReview">
+	  	INSERT INTO revphoto VALUES(#{host_num},SEQ_REV_NUM.CURRVAL,SEQ_HOST_PHOTO_NUM.nextval,#{rev_photo})
+	 </insert>
 
 
 </mapper>

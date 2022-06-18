@@ -8,14 +8,19 @@
 <link rel="stylesheet" href="css/jh/chat.css">
 <style type="text/css">
 	.adm_msg {
-		text-align: end;
+		margin-left: 30%;
 		background-color: #d9d9d9;
 		margin-top: 5px;
+		border-radius: 5px;
+		width: 70%;
+		overflow: auto;
 	}
 	.user_msg {
 		background-color: #33a9fa;
 		margin-top: 5px; 
-		width: 50px;
+		border-radius: 5px;
+		width: 70%;
+		overflow: auto;
 	}
 </style>
 <title>제주 감수광</title>
@@ -112,9 +117,9 @@
 	        chatroom = document.getElementById("chatroom");
 	        // chatroom.innerHTML = chatroom.innerHTML + "<br>" + data;
 	        if(cls == '1'){
-	        	$("#chatroom").append("<div class='adm_msg'>" + msg + "</div>");
+	        	$("#chatroom").append("<div><p class='adm_msg'>" + msg + "</p></div>");
 	        } else {
-	        	$("#chatroom").append("<div class='user_msg'>" + msg + "</div>");
+	        	$("#chatroom").append("<div><p class='user_msg'>" + msg + "</p></div>");
 	        }
 	    }
 	    function onClose(){
