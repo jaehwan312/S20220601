@@ -76,7 +76,7 @@
 	                        <p class="mb-2">식당등록 관리</p>
 	                        <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">17</span></h1>
 	                    </div>
-                    </a>>
+                    </a>
                 </div>
                 
                 <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeIn;">
