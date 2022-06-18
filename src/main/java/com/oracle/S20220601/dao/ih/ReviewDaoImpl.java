@@ -126,28 +126,30 @@ public class ReviewDaoImpl implements ReviewDao {
 		return storeRevPhotoInsert;	
 		}
 
-	@Override
+	@Override//리뷰 답글 작성
 	public int hostRevInsert(Review review) {
 		System.out.println("ReviewDaoImpl hostRevInsert Start...");
 		
 		int hostRevInsert = 0;
-		
+		int rev_num_select = review.getRev_num();
 		try {
 			hostRevInsert = session.insert("hostRevInsert",review);
+			rev_num_select = session.selectOne("rev_num_select", rev_num_select);
 		} catch (Exception e) {
 			System.out.println("ReviewDaoImpl hostRevInsert ErrorMessage --> " + e.getMessage());
 		}
-		return hostRevInsert;
+		return rev_num_select;
 	}
 
-	@Override
+	@Override //리뷰 답글 삭제
 	public int hostRevDelete(Review review) {
 		System.out.println("ReviewDaoImpl hostRevDelete Start...");
 		
 		int hostRevDelete = 0;
 		
 		try {
-			hostRevDelete = session.delete("hostRevDelete", review);
+			hostRevDelete  = session.delete("hostRevDelete", review);
+			
 		} catch (Exception e) {
 			System.out.println("ReviewDaoImpl hostRevDelete ErrorMessage --> " + e.getMessage());
 		}

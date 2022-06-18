@@ -85,7 +85,7 @@
 		                    <a href="">나의 픽(찜목록)</a>
 		                    <a href="">나의 식당정보</a>
 		                    <a href="">나의 숙소정보</a>
-		                    <a href="admMain">관리자 페이지</a>
+		                    <a href="adminPage">관리자 페이지</a>
 		                </div>
 		            </li>
 		            <li><a href="logout">로그아웃</a></li>

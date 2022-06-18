@@ -50,4 +50,9 @@
 				  						   AND   host_num = #{host_num}
 				  						   AND   mem_num  = #{mem_num}
 	  	</delete>
+	  	
+	  	<!-- 답변 리뷰 번호 확인 -->
+	  	<select id="rev_num_select" parameterType="int" resultType="int">
+	  		SELECT rev_num FROM review WHERE ref = #{rev_num} AND re_step = 1
+	  	</select>
    </mapper>
