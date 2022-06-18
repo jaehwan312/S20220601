@@ -274,4 +274,3 @@ function selectSearch_main(id){
 	var selectedKeyword = $(id).children('span').text();
 	$('#searchBar').val(selectedKeyword);
 	document.getElementById('main_search_area').submit();
-}
