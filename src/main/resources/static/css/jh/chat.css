@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+.icon_frame {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 75px;
+  right: 75px;
+  z-index: 200;
+}
+
+#msg_icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.chat_window {
+	width: 370px;
+	height: 680px;
+	border-radius: 15px;
+	position: fixed;
+	bottom: 75px;
+    right: 75px;
+    overflow: hidden;
+    display: none;
+    z-index: 200;
+}
+
+.chat_container {
+	width: 370px;
+	height: 680px;
+	border-radius: 15px;
+	overflow: hidden;
+	margin: 50px auto;
+}
+
+.chat_header {
+	height: 50px;
+	background-color: #34aaff;
+	object-fit: cover;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.chat_header i {
+	color: white;
+}
+
+.header_info {
+	width: 250px;
+	font-family: 'Gugi', cursive;
+	color: white;
+}
+
+.header_info label {
+	display: none;
+}
+
+#chatroom {
+	overflow: auto;
+	width: 370px;
+	height: 539px;
+	background-color : white;
+}
+
+.chat_input {
+	background-color : white;
+	padding: 15px 0;
+}
+
+.send_box {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	border: 3px solid #acd9f8;
+	border-radius: 5px;
+	margin: 0 15px;
+	padding: 15px 0;
+}
+
+.msg {
+	border: none;
+	outline: none;
+}
+
+#sendBtn {
+	border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+#sendBtn i {
+	color: #34aaff;
+}

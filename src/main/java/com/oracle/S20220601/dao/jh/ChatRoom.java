@@ -29,14 +29,14 @@ public class ChatRoom {
                               ObjectMapper objectMapper) throws IOException {
         if(chatMessage.getType() == MessageType.ENTER){
             sessions.add(session);
-            chatMessage.setMessage(chatMessage.getWriter() + "님이 입장하셨습니다.");
+            chatMessage.setMessage(chatMessage.getGrade()+chatMessage.getWriter()+"님이 입장하셨습니다.");
         }
         else if(chatMessage.getType() == MessageType.LEAVE){
             sessions.remove(session);
-            chatMessage.setMessage(chatMessage.getWriter() + "님임 퇴장하셨습니다.");
+            chatMessage.setMessage(chatMessage.getGrade()+chatMessage.getWriter()+"님이 퇴장하셨습니다.");
         }
         else{
-            chatMessage.setMessage(chatMessage.getWriter() + " : " + chatMessage.getMessage());
+            chatMessage.setMessage(chatMessage.getGrade()+chatMessage.getWriter() + " : " + chatMessage.getMessage());
         }
         send(chatMessage,objectMapper);
     }

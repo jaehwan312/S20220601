@@ -7,48 +7,42 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/jh/chat.css">
 <style type="text/css">
-	.adm_msg {
+	.user_msg {
 		text-align: end;
 		background-color: #d9d9d9;
 		margin-top: 5px;
 	}
-	.user_msg {
-		background-color: #33a9fa;
-		margin-top: 5px; 
-		width: 50px;
+	.adm_msg {
+		background: #33a9fa;
+		margin-top: 5px;
 	}
 </style>
 <title>제주 감수광</title>
 </head>
 <body>
-	<%@ include file="../header.jsp" %>
-    <div class="container" style="background-color: #e9e9e9">
     <!-- 여기 밑으로 ============================================================ -->
-    	<div class="chat_container">
-    		<div class="chat_header">
-		    	<div class="header_info">
-					<label id="roomId">${room.roomId }</label>
-					<label id="roomName">${room.mem_num }</label>
-					<label for="roomName">방 이름</label>
-					<div id="userName"></div>
-		    	</div>
-		    	<i class="fa-solid fa-xmark" id="chat_out" onclick="chatOut(${mem_num})"></i>
-		    </div>
-			<div id="chatroom" class="container">
-			
-			</div>
-			<div class="chat_input">
-				<label class="send_box">	
-					<input type = "text" class="msg" id="message" placeholder="내용을 입력하세요">
-					<button onclick="send(${mem_num},${grade })" id="sendBtn">
-						<i class="fa-solid fa-arrow-up"></i>
-					</button>
-				</label>
-			</div>
-    	</div>
+	    <div class="chat_header">
+	    	<i class="fa-solid fa-chevron-down" id="chat_hide" onclick="chatHide()"></i>
+	    	<div class="header_info">
+				<label id="roomId">${room.roomId }</label>
+				<input type="hidden" id="roomName" value="${room.mem_num }">
+				<div id="userName"></div>
+	    	</div>
+	    	<%-- <button onclick="chatOut(${mem_num})">나가기</button> --%>
+	    	<i class="fa-solid fa-xmark" id="chat_out" onclick="chatOut(${mem_num})"></i>
+	    </div>
+		<div id="chatroom" class="container"> 
+		
+		</div>
+		<div class="chat_input">
+			<label class="send_box">	
+				<input type = "text" class="msg" id="message" placeholder="내용을 입력하세요">
+				<button onclick="send(${mem_num},${grade })" id="sendBtn">
+					<i class="fa-solid fa-arrow-up"></i>
+				</button>
+			</label>
+		</div>
     <!-- 여기 위로오 ============================================================ -->   
-	 </div>
-	<%@ include file="../footer.jsp" %>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
 	    var webSocket;
@@ -58,6 +52,7 @@
 	    /* <![CDATA[*/
 	    
 	    /* ]]> */
+	    
 	    $(function(){
 	    	var mem_num = ${mem_num};
 	    	$.ajax(
@@ -65,11 +60,10 @@
 	    				url:"/getUserName",
 	    				data:{mem_num : mem_num},
 	    				
-	    				async:false,
 	    				dataType:'text',
 	    				success:function(data){
 	    					nickname = data;
-	    					$('#userName').text(nickname);
+	    					$('#userName').text(data);
 	    				}
 	    			}
 	    	);
@@ -82,14 +76,14 @@
 	    });
 	    
 	    function connect(){
-            webSocket = new WebSocket("ws://localhost:8908/chat");
+	        webSocket = new WebSocket("ws://localhost:8908/chat");
 	        webSocket.onopen = onOpen;
 	        webSocket.onclose = onClose;
 	        webSocket.onmessage = onMessage;
 	    }
 	    
 	    function onOpen(){
-	        webSocket.send(JSON.stringify({chatRoomId:roomId, type:'ENTER', writer:nickname, grade:grade}));
+	    	webSocket.send(JSON.stringify({chatRoomId:roomId, type:'ENTER', writer:nickname, grade:grade}));
 	    }
 	    
 	    function send(mem_num, grade){
@@ -106,9 +100,9 @@
 	    }
 
 	    function onMessage(e){
-	    	var data = e.data.toString();
-	    	var msg = data.substring(2, data.length-1);
-	    	cls = data.substring(1,2);
+	        var data = e.data.toString();
+	        var msg = data.substring(2, data.length-1);
+	        cls = data.substring(1,2);
 	        chatroom = document.getElementById("chatroom");
 	        // chatroom.innerHTML = chatroom.innerHTML + "<br>" + data;
 	        if(cls == '1'){
@@ -122,10 +116,14 @@
 	    }
 	    
 	    function disconnect(){
-	        webSocket.send(JSON.stringify({chatRoomId:roomId, type:'LEAVE', writer:nickname, grade:grade}));
+	    	webSocket.send(JSON.stringify({chatRoomId:roomId, type:'LEAVE', writer:nickname, grade:grade}));
 	        webSocket.close();
 	    }
 	    
+		function chatHide() {
+			$(".chat_window").css("display","none");
+		}
+		
 	    function chatOut(mem_num) {
 			if (confirm("채팅창을 나가시면 채팅 내용이 전부 삭제됩니다. 채팅창을 나가시겠습니까?")){
 				$.ajax(

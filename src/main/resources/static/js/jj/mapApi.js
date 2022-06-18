@@ -12,8 +12,8 @@ function ajaxList(){
 	
 	var value = $('#orderAjax').serialize()+'&'+$('#storeTypeAjax').serialize()+'&'+$('#stayTypeAjax').serialize();
 	var section = $('#selectionId').val();
-	
 	$('.host-item').remove();
+	$('#storeSection').attr('class','col-md-6');
 	
 	switch(section) {
 		// 검색결과 숙소+맛집 포함
@@ -22,13 +22,9 @@ function ajaxList(){
 			$('#storeSection').show();
 			$('#staySection').show();
 			$('#emptySection').hide();
-			$('#storeSection').attr('class','col-md-6');
+			$('#storeSection').attr('class','col-md-6 border-end');
 			
-			// section 헤더 이름 변경
-			$('#section_heading').text("숙박 & 맛집");
 			
-			// 'keyword'에 대한 검색결과
-			$('#section_heading_sub').show();
 			
 			$.ajax({
 			url: "/ajaxStoreList",
@@ -76,12 +72,7 @@ function ajaxList(){
 				
 				// 맛집 건수 갱신
 				var storelength = $('#storeSection').find('.host-item').length;
-				$('#storeSection').find('h2').text('맛집 검색결과 '+storelength+'건');
-				
-				
-				if(storelength==0){
-					$('#storeSection').hide();
-				}
+				$('#storeSection').find('h2:first-child').text('맛집 검색결과 '+storelength+'건');
 				
 				
 			}
@@ -134,25 +125,12 @@ function ajaxList(){
 				
 				// 숙소 건수 갱신
 				var staylength = $('#staySection').find('.host-item').length;
-				$('#staySection').find('h2').text('숙소 검색결과 '+staylength+'건');
-				
-				if(staylength==0){
-					$('#staySection').hide();
-				}
+				$('#staySection').find('h2:first-child').text('숙소 검색결과 '+staylength+'건');
 				
 			}
 		});
 		
-		var staylength = $('#staySection').find('.host-item').length;
-		var storelength = $('#storeSection').find('.host-item').length;
 		
-		if(staylength==0 && storelength==0){
-			$('#emptySection').show();
-		}
-		
-		if(staylength!=0 && storelength!=0){
-			$('#storeSection').attr('class','col-md-6 border-end');
-		}
 		
 		break;
 	
@@ -160,11 +138,10 @@ function ajaxList(){
 	case "1":
 		
 		// section 헤더 이름 변경
-		$('#section_heading').text("숙박");
-		$('#section_heading_sub').hide();
 		$('#storeSection').hide();
 		$('#staySection').show();
 		$('#emptySection').hide();
+		
 		
 		$.ajax({
 			url: "/ajaxStayList",
@@ -212,11 +189,10 @@ function ajaxList(){
 				
 				// 숙소 건수 갱신
 				var staylength = $('#staySection').find('.host-item:visible').length;
-				$('#staySection').find('h2').text('숙소 검색결과 '+staylength+'건');
+				$('#staySection').find('h2:first-child').text('숙소 검색결과 '+staylength+'건');
 				
 				
 				if(staylength==0){
-					$('#staySection').hide();
 					$('#emptySection').show();
 				}
 				
@@ -229,8 +205,6 @@ function ajaxList(){
 	// 검색 결과 맛집만 포함
 	case "2":
 		
-		$('#section_heading').text("맛집");
-		$('#section_heading_sub').hide();
 		$('#staySection').hide();
 		$('#storeSection').show();
 		$('#emptySection').hide();
@@ -280,10 +254,9 @@ function ajaxList(){
 				
 				// 맛집 건수 갱신
 				var storelength = $('#storeSection').find('.host-item:visible').length;
-				$('#storeSection').find('h2').text('맛집 검색결과 '+storelength+'건');
+				$('#storeSection').find('h2:first-child').text('맛집 검색결과 '+storelength+'건');
 				
 				if(storelength==0){
-					$('#storeSection').hide();
 					$('#emptySection').show();
 				}
 				
@@ -406,11 +379,19 @@ function staymap(e){
 	}
 }
 
-
+// 맛집 컨텐츠 이동
 function storecontent(e){
 	location.href="storeRead?host_num="+e;
 }
 
+// 숙소 컨텐츠 이동
 function staycontent(e){
 	location.href="stayRead?host_num="+e;
 }
+
+function selectSection(e){
+	$('#selectionId').val(e);
+	ajaxList();
+}
+
+
