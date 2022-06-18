@@ -14,12 +14,12 @@ function hostRevDelete(e){
 	var host_rev        = document.getElementById('host_rev');
 	
 	//답변을 inset 하는 코드
-	/*
-		var host_rev_insert = "<div  id='host_rev_insert'><label><textarea rows='4px;' cols='155px;' style='float: right;' id='host_rev_content' name='host_rev_content'></textarea>"
-						+ "</label><button onclick='hostRevInsert("+user_rev_num+")' style='float: right;' class='btn btn-primary'>답변등록</button></div>"
-	*/
 	
-	var host_rev_insert = document.getElementById('host_rev_insert').innerHTML;
+	var host_rev_insert = "<div  id='host_rev_insert'><label><textarea rows='4px;' cols='155px;' style='float: right;' id='host_rev_content' name='host_rev_content'></textarea>"
+					    + "</label><button onclick='hostRevInsert("+user_rev_num+")' style='float: right;' class='btn btn-primary'>답변등록</button></div>"
+	
+	
+	//var host_rev_insert = document.getElementById('host_rev_insert').innerHTML;
 	
 	//삭제를 위해 넘겨줄 정보
 	var del = {"rev_num" : rev_num, "host_num": host_num,"mem_num":mem_num};
@@ -43,7 +43,7 @@ function hostRevDelete(e){
 					//답변 내용 삭제
 					$('#host_rev_select').remove();
 					//삭제된 부분을 inset하는 코드로 변경
-					host_rev.innerHTML = host_rev_insert.innerHTML;
+					host_rev.innerHTML = host_rev_insert;
 				}	
 					
 			}
@@ -75,13 +75,13 @@ function hostRevInsert(e){
 		//var host_rev_select = document.getElementById('host_rev_select');
 		//console.log(host_rev_select);
 	
-	/*
+	
 		console.log("======리뷰 답글 등록==========");
 		console.log("업체번호         --> " + host_num);
 		console.log("답글을 달 리뷰번호 --> " + rev_num);
 		console.log("답글자 회원번호  --> " + mem_num);
 		console.log("답글내용         --> " + rev_content);
-	*/
+	
 	var insert = {"host_num" : host_num, "mem_num": mem_num, "rev_content" : rev_content,"rev_num" : rev_num}
 	
 	console.log(insert);

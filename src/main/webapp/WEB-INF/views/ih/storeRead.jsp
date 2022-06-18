@@ -155,7 +155,7 @@
 	    	<!-- 리뷰 시작  -->
 	    	<div>
 	    		<!-- 리뷰 등록 시작 -->
-	    		<c:if test="${mem_num != 0 || mem_num != null }">
+	    		<c:if test="${mem_num != 0}">
 			   		<label>
 							<img alt="업체사진" src="images/ih/스시호시카이.jpg"
 								 style="float: right; border-radius: 50%;" width="100px;" height="100px;"><br/>
@@ -187,7 +187,7 @@
 					<!-- 사진 끝 -->
 					<button type="submit" onclick="storeReviewInsert(${mem_num})" style="float: right;" class="btn btn-primary">리뷰등록</button>
 					<!-- 리뷰등록 끝 -->
-					</c:if>
+				</c:if>
 				</div>
 				<div>현재 리뷰<b  id="StoreRevCount">${store.rev_count }</b>개</div>
 				<div id="review">
@@ -249,16 +249,10 @@
 									</div>
 									<div  id="host_rev_insert">
 										<c:if test="${count == 0 }">
-												<label>
-													<textarea rows="4px;" cols="155px;" style="float: right;" id="host_rev_content" name="host_rev_content"></textarea>
-												</label>
-												<button onclick="hostRevInsert(${user_rev.rev_num})" style="float: right;" class="btn btn-primary">답변등록</button>
-										</c:if>
-										<c:if test="${count != 0 }">
-												<label hidden="">
-													<textarea rows="4px;" cols="155px;" style="float: right;" id="host_rev_content" name="host_rev_content"></textarea>
-												</label>
-												<button hidden="" onclick="hostRevInsert(${user_rev.rev_num})" style="float: right;" class="btn btn-primary">답변등록</button>
+											<label>
+												<textarea rows="4px;" cols="155px;" style="float: right;" id="host_rev_content" name="host_rev_content"></textarea>
+											</label>
+											<button onclick="hostRevInsert(${user_rev.rev_num})" style="float: right;" class="btn btn-primary">답변등록</button>
 										</c:if>
 									</div>
 								</div>

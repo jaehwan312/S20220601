@@ -138,3 +138,89 @@ section h2.section-heading, .section-heading {
 	display: none;	
 }
 
+
+
+
+/*아이콘 CSS*/
+
+
+.travel-type-wrap {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.travel-type-wrap .item {
+  color: #555;
+  border-radius: 3px;
+  background: #fff;
+  margin-right: 5px;
+  padding: 18px 20px;
+  transition: all .3s;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  height: 80px;
+  line-height: 10px;
+  width: 120px;
+}
+
+.travel-type-wrap .item:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #002c71;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: all .3s;
+}
+
+.travel-type-wrap .item .group-icon {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -ms-flex-pack: center;
+      justify-content: center;
+  margin-bottom: 10px;
+}
+
+.travel-type-wrap .item .group-icon i {
+  width: 20px;
+  height: 10px;
+  fill: #555;
+  margin: 0 7px;
+  margin-top: 10px;
+}
+
+.travel-type-wrap .item span {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.travel-type-wrap .item.active {
+  color: #fff;
+  background: #002c71;
+}
+
+.travel-type-wrap .item.active:after {
+  opacity: 1;
+}
+
+.travel-type-wrap .item.active i {
+  fill: #fff;
+}
+
+.travel-type-wrap .item:hover, .travel-type-wrap .item:focus {
+  background: #002c71;
+  color: #fff;
+}
+
+.travel-type-wrap .item:hover .group-icon i, .travel-type-wrap .item:focus .group-icon i {
+  fill: #fff;
+}
+
+

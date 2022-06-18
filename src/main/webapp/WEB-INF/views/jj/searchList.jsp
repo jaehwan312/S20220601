@@ -18,7 +18,36 @@
           <div class="container">
               <div class="row">
                   <div class="col-lg-12 text-center mb100">
-                      <h2 class="section-heading" id="section_heading"></h2>
+
+
+					<div class="travel-type-wrap">
+						<div class="item active">
+							<div class="group-icon">
+								<i class="fa-solid fa-utensils fa-lg"></i> 
+								<i class="fa-solid fa-hotel fa-lg"></i>
+							</div>
+							<span>맛집+숙박</span>
+						</div>
+						<div class="item">
+							<div class="group-icon">
+								<i class="fa-solid fa-utensils fa-lg"></i>
+							</div>
+							<span>맛집</span>
+						</div>
+						<div class="item">
+							<div class="group-icon">
+								<i class="fa-solid fa-hotel fa-lg"></i>
+							</div>
+							<span>숙박</span>
+						</div>
+					</div>
+
+
+
+
+
+
+					<h2 class="section-heading" id="section_heading"></h2>
                       <hr class="thin-hr">
                       <h3 class="section-subheading secondary-font" style="margin-bottom: 30px;" id="section_heading_sub">'${keyword }'에 대한 검색 결과</h3>
 			      	  <button type="button" class="btn btn-success" onclick="collapse()">상세 검색</button>
@@ -371,6 +400,26 @@
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>
+	<script src="js/jj/flatpickr.js"></script>
+    <script>
+      flatpickr(".datepicker",
+      {
+        dateFormat: "m/d/y"
+      });
+      var btnTypes = document.querySelectorAll('.travel-type-wrap .item')
+      for (let i = 0; i < btnTypes.length; i++)
+      {
+        btnTypes[i].addEventListener('click', function()
+        {
+          for (let i = 0; i < btnTypes.length; i++)
+          {
+            btnTypes[i].classList.remove('active')
+          }
+          btnTypes[i].classList.add('active')
+        })
+      }
+
+    </script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e16bda872939904d33c13e42c58e211b&libraries=services"></script>
 	<script type="text/javascript" src="js/jj/mapApi.js"></script>
 </body>
