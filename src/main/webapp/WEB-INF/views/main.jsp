@@ -16,7 +16,6 @@
 <link rel="stylesheet" type="text/css" href="css/jj/jquery.fullPage.css" />
 <title>제주 감수광</title>
 <script src="https://kit.fontawesome.com/a42e829aa0.js" crossorigin="anonymous"></script>
-<<<<<<< HEAD
 <script type="text/javascript">
 	function message() {
 		var value2 = "${msg}";
@@ -25,9 +24,6 @@
 		}
 	}
 </script>
-=======
-
->>>>>>> branch 'master' of https://github.com/jaehwan312/S20220601.git
 </head>
 <body onload="message()">
 	<nav class="navbar">
@@ -88,7 +84,11 @@
             <i class="fa-solid fa-bars"></i>
         </a>
     </nav>
-    <%@ include file="jh/newRoom.jsp" %>
+    <c:choose>
+    	<c:when test="${grade=='2' }">
+    		<%@ include file="jh/newRoom.jsp" %>
+    	</c:when>
+    </c:choose>
 	<div id="fullpage">
 	<div class="section">
 	<div class="main_background"></div>
@@ -222,12 +222,6 @@
 	</div>
 	</div>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    
-    <script>
-	
-
-	</script>
-    
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 	<script src="js/jj/jquery.counterup.min.js"></script>
 	<script src="js/main.js" defer></script>

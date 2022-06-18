@@ -44,9 +44,16 @@ public class ProfileController {
 	
 	// 로그인 페이지
 	@RequestMapping(value = "loginPage")	
-	public String loginPage() {
+	public String loginPage(Model model, HttpServletRequest request) {
 		System.out.println("loginPage Start...");
-		return "js/loginPage";
+		if (request.getSession().getAttribute("mem_num") == null) {
+			return "js/loginPage";
+		} else {
+			model.addAttribute("msg", "이미 로그인된 상태입니다. 메인화면으로 이동합니다.");
+			return "forward:main";
+		}
+		
+		
 	}
 	
 	// 로그인 눌렀을때 처리
@@ -414,4 +421,17 @@ public class ProfileController {
 		
 		return grade;
 	}
+	
+	
+	@RequestMapping(value = "exampleMyPage")
+	public String exampleMyPage(HttpSession session,HttpServletRequest request) {
+		System.out.println("exampleMyPage ---------------");
+		session = request.getSession();
+		
+		
+		return "exampleMyPage";
+	}
+	
+	
+	
 }

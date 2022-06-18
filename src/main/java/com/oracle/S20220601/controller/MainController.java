@@ -23,7 +23,7 @@ public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	@RequestMapping("main")
-	public String main(Model model) {
+	public String main(Model model, String msg) {
 		System.out.println("main Start...");
 		List<Search1> search1 = ss.getRecList();
 		int storeCount = ms.getStoreCount();
@@ -36,6 +36,12 @@ public class MainController {
 		model.addAttribute("stayCount", stayCount);
 		model.addAttribute("resCount", resCount);
 		model.addAttribute("reviewCount", reviewCount);
+		System.out.println("msg ----->" + msg);
+		if(msg != null) {
+			if (msg.equals("1")) {
+				model.addAttribute("msg", "관리자만 접근가능한 페이지입니다.");
+			}
+		}
 		
 		return "main";	
 	}
