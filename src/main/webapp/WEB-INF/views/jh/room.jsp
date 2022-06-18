@@ -14,7 +14,8 @@
 	}
 	.user_msg {
 		background-color: #33a9fa;
-		margin-top: 5px;
+		margin-top: 5px; 
+		width: 50px;
 	}
 </style>
 <title>제주 감수광</title>
