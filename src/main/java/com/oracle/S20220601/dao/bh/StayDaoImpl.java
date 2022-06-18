@@ -270,9 +270,7 @@ public class StayDaoImpl implements StayDao {
 			if(multipartFile.getOriginalFilename() != null) {
 				revPhoto = new RevPhoto();
 				int host_num = session.selectOne("bhgetHost_num");
-				int rev_num = session.selectOne("bhgetRev_num");
 				revPhoto.setHost_num(host_num);
-				revPhoto.setRev_num(rev_num);
 				revPhoto.setRev_photo(multipartFile.getOriginalFilename());
 				result += session.insert("revPhotoInsert", revPhoto);
 				System.out.println(multipartFile.getOriginalFilename());

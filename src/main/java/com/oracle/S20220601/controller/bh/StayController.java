@@ -199,11 +199,17 @@ public class StayController {	//숙소 Controller
 		return "bh/roomInsertForm";
 	}
 	
+	@GetMapping(value = "reviewInsertForm")
+	public String reviewInsertForm(HttpServletRequest request,Model model) {
+		logger.info("StayController reviewInsertForm Start");
+		return "bh/reviewInsertForm";
+	}
 	
-	@RequestMapping(value = "reviewForm")
+	@RequestMapping(value = "reviewInsert")
 	public String revInsert(Review review,Model model,MultipartFile rev_Photo0,
 										  MultipartFile rev_Photo1,MultipartFile rev_Photo2,
 										  MultipartFile rev_Photo3,MultipartFile rev_Photo4) {
+		
 		int revInsert = ss.revInsert(review);
 		
 		
