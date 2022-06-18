@@ -6,6 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/jh/chat.css">
+<style type="text/css">
+	.adm_msg {
+		text-align: end;
+		background-color: #d9d9d9;
+		margin-top: 5px;
+	}
+	.user_msg {
+		background-color: #33a9fa;
+		margin-top: 5px;
+	}
+</style>
 <title>제주 감수광</title>
 </head>
 <body>
@@ -42,6 +53,7 @@
 	    var webSocket;
 	    var nickname;
 	    var roomId = $('#roomId').text();
+	    var grade = ${grade};
 	    /* <![CDATA[*/
 	    
 	    /* ]]> */
@@ -52,6 +64,7 @@
 	    				url:"/getUserName",
 	    				data:{mem_num : mem_num},
 	    				
+	    				async:false,
 	    				dataType:'text',
 	    				success:function(data){
 	    					nickname = data;
@@ -60,6 +73,11 @@
 	    			}
 	    	);
 	    	connect();
+			document.addEventListener("keypress", function(e){
+				if(e.keyCode == 13){
+					send(mem_num, grade);
+				}
+			});
 	    });
 	    
 	    function connect(){
@@ -70,12 +88,12 @@
 	    }
 	    
 	    function onOpen(){
-	        webSocket.send(JSON.stringify({chatRoomId : roomId,type:'ENTER',writer:nickname}));
+	        webSocket.send(JSON.stringify({chatRoomId:roomId, type:'ENTER', writer:nickname, grade:grade}));
 	    }
 	    
 	    function send(mem_num, grade){
 	        msg = document.getElementById("message").value;
-	        webSocket.send(JSON.stringify({chatRoomId : roomId,type:'CHAT',writer:nickname,message : msg}));
+	        webSocket.send(JSON.stringify({chatRoomId:roomId, type:'CHAT', writer:nickname, message:msg, grade:grade}));
  	        $.ajax(
 					{
 						url:"/insertChat",
@@ -88,16 +106,22 @@
 
 	    function onMessage(e){
 	    	var data = e.data.toString();
-	    	data = data.substring(1, data.length-1);
+	    	var msg = data.substring(2, data.length-1);
+	    	cls = data.substring(1,2);
 	        chatroom = document.getElementById("chatroom");
-	        chatroom.innerHTML = chatroom.innerHTML + "<br>" + data;
+	        // chatroom.innerHTML = chatroom.innerHTML + "<br>" + data;
+	        if(cls == '1'){
+	        	$("#chatroom").append("<div class='adm_msg'>" + msg + "</div>");
+	        } else {
+	        	$("#chatroom").append("<div class='user_msg'>" + msg + "</div>");
+	        }
 	    }
 	    function onClose(){
 	        disconnect();
 	    }
 	    
 	    function disconnect(){
-	        webSocket.send(JSON.stringify({chatRoomId : roomId,type:'LEAVE',writer:nickname}));
+	        webSocket.send(JSON.stringify({chatRoomId:roomId, type:'LEAVE', writer:nickname, grade:grade}));
 	        webSocket.close();
 	    }
 	    
