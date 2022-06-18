@@ -274,8 +274,4 @@ function selectSearch_main(id){
 	var selectedKeyword = $(id).children('span').text();
 	$('#searchBar').val(selectedKeyword);
 	document.getElementById('main_search_area').submit();
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of https://github.com/jaehwan312/S20220601.git

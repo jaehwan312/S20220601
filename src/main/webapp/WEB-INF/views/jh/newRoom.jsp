@@ -9,8 +9,11 @@
 <title>제주 감수광</title>
 </head>
 <body>
-    <div class="icon_frame">
+    <div class="icon_frame" id="chatNew">
     	<img id="msg_icon" alt="msg_icon" src="images/jh/msg_icon.png" onclick="chatOpen(${mem_num})">
+    </div>
+    <div class="icon_frame" id="chatIng">
+    	<img id="msg_icon" alt="msg_icon" src="images/jh/msg_icon.png" onclick="chatActive()">
     </div>
     <div class="chat_window">
     

@@ -9,20 +9,23 @@
 <style type="text/css">
 	.adm_msg {
 		margin-left: 30%;
-		background-color: #d9d9d9;
+		background-color: #33a9fa;
 		margin-top: 5px;
-		border-radius: 5px;
+		border-radius: 10px;
 		width: 70%;
 		overflow: auto;
-		word-wrap: break-word; 
+		word-wrap: break-word;
+		padding: 10px;
+		color: white;
 	}
 	.user_msg {
-		background-color: #33a9fa;
+		background-color: #d9d9d9;
 		margin-top: 5px; 
-		border-radius: 5px;
+		border-radius: 10px;
 		width: 70%;
 		overflow: auto;
-		word-wrap: break-word; 
+		word-wrap: break-word;
+		padding: 10px;
 	}
 </style>
 <title>제주 감수광</title>

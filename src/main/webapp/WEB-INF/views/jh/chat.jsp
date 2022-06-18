@@ -9,20 +9,23 @@
 <style type="text/css">
 	.user_msg {
 		margin-left: 30%;
-		background-color: #d9d9d9;
+		background-color: #33a9fa;
 		margin-top: 5px;
-		border-radius: 5px;
+		border-radius: 10px;
 		width: 70%;
 		overflow: auto;
-		word-wrap: break-word; 
+		word-wrap: break-word;
+		padding: 10px;
+		color: white;
 	}
 	.adm_msg {
-		background: #33a9fa;
+		background: #d9d9d9;
 		margin-top: 5px;
-		border-radius: 5px;
+		border-radius: 10px;
 		width: 70%;
 		overflow: auto;
-		word-wrap: break-word; 
+		word-wrap: break-word;
+		padding: 10px;
 	}
 </style>
 <title>제주 감수광</title>
@@ -129,12 +132,14 @@
 	    }
 	    
 		function chatHide() {
-			$(".chat_window").css("display","none");
+			$(".chat_window").hide();
+			$("#chatIng").show();
 		}
 		
 	    function chatOut(mem_num) {
 			if (confirm("채팅창을 나가시면 채팅 내용이 전부 삭제됩니다. 채팅창을 나가시겠습니까?")){
 			    disconnect();
+			    	
 				$.ajax(
 						{
 							url:"/deleteChat",
@@ -142,9 +147,11 @@
 							
 							success:function(){
 								$(".chat_window").css("display","none");
+								
 							}
 						}
 				);
+				
 			} else {
 				return false;
 			}
