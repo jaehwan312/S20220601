@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
 import com.oracle.S20220601.model.ji.ResRoom;
+import com.oracle.S20220601.model.ji.RoomPay;
 @Repository
 public class ResDaoImpl implements ResDao {
 	@Autowired
@@ -116,4 +117,20 @@ public class ResDaoImpl implements ResDao {
 		
 		return prof;
 	}
+
+	@Override
+	public int totalFee(RoomPay rp) {
+		int totalFee = 0;
+		System.out.println("ResDaoImpl totalFee Start....");
+		try {
+			totalFee = session.selectOne("jiTotalFee",rp);
+			
+		} catch (Exception e) {
+			System.out.println("ResDaoImpl totalFee Exception -> "+e.getMessage());
+		}
+		
+		return totalFee;
+	}
+
+
 }

@@ -99,7 +99,7 @@
 					<input type="tel" name="phone" placeholder="체크인시 필요한 정보입니다." value="${prof.phone }" 
 					id="phone"oninput="checkPhone()" pattern="[0-9]{11}" maxlength="11"> 
 						<span class="phone_ok" style="display: none">휴대폰 번호를 확인해주세요.</span>
-
+	
 				</div>
 				<br> <br>
 				<div>
@@ -172,6 +172,9 @@
 							<p>
 								<strong><b>총 결제 금액</b>(VAT포함)</strong><span class="in_price">1원</span>
 							</p>
+							<p>
+								<strong><b>진짜 총 결제 금액</b>(VAT포함)</strong><span class="in_price">${totalfee }</span>
+							</p>
 
 							<p>
 								해당 객실가는 세금, 봉사료가 포함된 금액입니다<br> 결제완료 후 <span>예약자 이름</span>으로
@@ -182,7 +185,10 @@
 						</section>
 						<button type="button" class="btn btn-primary m-5"
 							data-bs-toggle="modal" onclick="resCheck()">결제하기</button>
-						<button type="button" id="check1" onclick="payment()">테스트버튼</button>
+						<form method="post" action="/kakaoPay">
+	
+							<button type="button" class="btn btn-primary" id="pay">동의후 결제</button>
+						</form>
 
 
 					</div>
@@ -209,7 +215,7 @@
 						</p>
 						<p>
 							<span>체크아웃</span>${checkout } ${room1.checkout }
-						</p> 
+						</p>
 						<p>
 							<span>----------------------------------------</span>
 						</p>
@@ -221,17 +227,29 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-bs-dismiss="modal">취소</button>
-						<button type="button" class="btn btn-primary" onclick="pay()">동의 후 결제</button>
+						<form method="post" action="/kakaoPay">
+							<input type="hidden" name="room_name"	value="${room1.room_name }">
+							<input type="hidden" name="host_num"	value="${room.host_num }">
+							<input type="hidden" name="room_num" 	value="${room.room_num }">
+							<input type="hidden" name="res_start" 	value="2022-06-23">
+							<input type="hidden" name="res_end" 	value="2022-06-27"> 
+							<input type="hidden" name="price" 	value="${totalfee }">
+							<input type="hidden" name="name" 	value="${prof.name }">
+							<input type="hidden" name="id" 	value="${prof.id }">
+							<input type="hidden" name="phone" 	value="${prof.phone }">
+							<input type="hidden" name="email" 	value="${prof.email }">
+							
+							<button type="submit" class="btn btn-primary">동의 후 결제</button>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<!-- 여기 위로오 ============================================================ -->
 	</div>
 	<%@ include file="../footer.jsp"%>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-	<script type="text/javascript" src="js/ji/payment.js"></script>
+	<script type="text/javascript" src="js/ji/kakao.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"

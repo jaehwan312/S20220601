@@ -5,6 +5,7 @@ import java.util.List;
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
 import com.oracle.S20220601.model.ji.ResRoom;
+import com.oracle.S20220601.model.ji.RoomPay;
 
 public interface ResService {
 
@@ -21,5 +22,11 @@ public interface ResService {
 	ResRoom resRoom(Res res);
 
 	Profile profile(int mem_num);
+
+	int totalFee(RoomPay rp);
+
+
+
+
 
 }

@@ -11,6 +11,36 @@
 <title>제주 감수광</title>
 </head>
 <body>
+<script type="text/javascript">
+
+
+function fnDateGetSatSun(d1, d2) {
+    var sDate=lcDateFormatDate(d1);
+    var eDate=lcDateFormatDate(d2);
+    alert(lcDateCountDay(sDate,eDate));
+
+ var count = 0;
+ 
+ count = lcDateCountDay(sDate,eDate);
+
+ return count;
+}
+function lcDateFormatDate(d) {
+    return new Date(d.substr(0,4),Number(d.substr(4,2))-1,Number(d.substr(6)));
+}
+function lcDateCountDay(d1,d2) {
+    var count=0;
+    var tmp;
+    for (var i=0; i <= (d2-d1)/1000/60/60/24; i++) {
+      tmp=new Date(d1);
+      tmp.setDate(tmp.getDate()+i);
+   //0(일요일), 5(금요일), 6(토요일)
+      if (tmp.getDay()==0 || tmp.getDay()==5 || tmp.getDay()==6) {
+        count++;
+      }
+    }
+    return count;
+}</script>
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
@@ -19,6 +49,7 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
   Launch demo modal
 </button>
+        <button type="button" class="btn btn-primary" onclick="fnDateGetSatSun('20220625','20220630')">Save changes</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -40,6 +71,7 @@
     </div>
   </div>
 </div>
+
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>

@@ -10,6 +10,7 @@ import com.oracle.S20220601.dao.ji.ResDao;
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
 import com.oracle.S20220601.model.ji.ResRoom;
+import com.oracle.S20220601.model.ji.RoomPay;
 
 @Service
 public class ResServiceImpl implements ResService {
@@ -65,5 +66,13 @@ public class ResServiceImpl implements ResService {
 		Profile prof = rd.profile(mem_num);
 		return prof;
 	}
+
+	@Override
+	public int totalFee(RoomPay rp) {
+		System.out.println("ResServiceImpl  profile Start...");
+		int total = rd.totalFee(rp);
+		return total;
+	}
+
 
 }

@@ -69,35 +69,42 @@
 		order by res_start
 	</select>
 	<select id="jiResDetail" parameterType="int" resultType="Res">
-	SELECT p.name, p.phone, h.host_name, r.room_name, res.*,
-			(TO_DATE(res.res_end) - TO_DATE(res.res_start)) nday,
-			TO_CHAR(TO_DATE(res.res_start),'YYYY.MM.DD') || ' ' || TO_CHAR(TO_DATE(res.res_start),'DY') sday,
-			TO_CHAR(TO_DATE(res.res_end),'YYYY.MM.DD') 	 || ' ' || TO_CHAR(TO_DATE(res.res_end),'DY') eday,
-			TO_CHAR(pay.price, '999,999,999,999,999,999') price,
-			s.checkin,s.checkout
-
-	FROM profile p
-		join res res on p.mem_num = res.mem_num
-		join host h on res.host_num = h.host_num
-		join stay s on s.host_num = h.host_num 
-		join room r on res.room_num = r.room_num
-		join pay pay on res.res_num = pay.res_num
-
-	AND res.res_num = #{res_num}
+		SELECT p.name, p.phone, h.host_name, r.room_name, res.*,
+				(TO_DATE(res.res_end) - TO_DATE(res.res_start)) nday,
+				TO_CHAR(TO_DATE(res.res_start),'YYYY.MM.DD') || ' ' || TO_CHAR(TO_DATE(res.res_start),'DY') sday,
+				TO_CHAR(TO_DATE(res.res_end),'YYYY.MM.DD') 	 || ' ' || TO_CHAR(TO_DATE(res.res_end),'DY') eday,
+				TO_CHAR(pay.price, '999,999,999,999,999,999') price,
+				s.checkin,s.checkout
+	
+		FROM profile p
+			join res res on p.mem_num = res.mem_num
+			join host h on res.host_num = h.host_num
+			join stay s on s.host_num = h.host_num 
+			join room r on res.room_num = r.room_num
+			join pay pay on res.res_num = pay.res_num
+	
+		AND res.res_num = #{res_num}
 	
 	</select>
 	<select id="jiResRoom" parameterType="Res" resultType="ResRoom">
-	select h.host_name, s.checkin, s.checkout, r.*
-	FROM host h
-	INNER JOIN stay s ON h.host_num = s.host_num
-	INNER JOIN room r ON s.host_num = r.host_num
-	where r.room_num = #{room_num}
+		SELECT h.host_name, s.checkin, s.checkout, r.*
+		FROM host h
+		INNER JOIN stay s ON h.host_num = s.host_num
+		INNER JOIN room r ON s.host_num = r.host_num
+		WHERE r.room_num = #{room_num}
 
 	</select>
 	
 	<select id="jiProfile" parameterType="int" resultType="Profile">
-	select name,phone,mem_num
-	from profile
-	where mem_num=#{mem_num}
+
+		SELECT name,phone,mem_num,email,id
+		FROM profile
+		WHERE mem_num=#{mem_num}
+	</select>
+	
+<!--  총결제금액 구하기  평일금액함수 + 주말금액함수 -->
+	<select id="jiTotalFee" parameterType="RoomPay" resultType="int">
+		SELECT WEEK_GUBUN1(#{res_start}, #{res_end}, #{dayfee}) + WEEK_GUBUN2(#{res_start},#{res_end},#{weekfee}) total
+		FROM dual
 	</select>
 </mapper>
