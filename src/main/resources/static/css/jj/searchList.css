@@ -282,6 +282,7 @@
   fill: #fff;
 }
 
+
 /* 체크박스, 라디오버튼 */
 
 label {
@@ -305,7 +306,11 @@ label {
 
 label.checkboxbtn {
   padding: 8px 12px;
-  cursor: pointer; }
+  cursor: pointer; 
+  width: 100%;
+  text-align: center;
+}
+
 label.checkboxbtn::before {
     display: inline-block;
     font-style: normal;
@@ -329,6 +334,7 @@ label.radiobtn {
   padding: 8px 12px;
   cursor: pointer;
   width: 100%;
+  text-align: center;
 }
 label.radiobtn::before {
     display: inline-block;
@@ -340,7 +346,7 @@ label.radiobtn::before {
     font-weight: 400;
     font-size: 12px;
     padding: 2px 6px 2px 2px;
-    content: "\f192";
+    content: "\f058";
     -webkit-transition: -webkit-transform .3s ease-in-out;
     transition: -webkit-transform .3s ease-in-out;
     -o-transition: transform .3s ease-in-out;

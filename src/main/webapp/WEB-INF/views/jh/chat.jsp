@@ -55,19 +55,19 @@
 			</label>
 		</div>
     <!-- 여기 위로오 ============================================================ -->   
-	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
+		
 	    var webSocket;
 	    var nickname;
-	    var roomId = $('#roomId').text();
+	    var roomId = jQuery('#roomId').text();
 	    var grade = ${grade};
 	    /* <![CDATA[*/
 	    
 	    /* ]]> */
 	    
-	    $(function(){
+	    jQuery(function(){
 	    	var mem_num = ${mem_num};
-	    	$.ajax(
+	    	jQuery.ajax(
 	    			{
 	    				url:"/getUserName",
 	    				data:{mem_num : mem_num},
@@ -75,7 +75,7 @@
 	    				dataType:'text',
 	    				success:function(data){
 	    					nickname = data;
-	    					$('#userName').text(data);
+	    					jQuery('#userName').text(data);
 	    				}
 	    			}
 	    	);
@@ -101,11 +101,11 @@
 	    function send(mem_num, grade){
 	        msg = document.getElementById("message").value;
 	        webSocket.send(JSON.stringify({chatRoomId:roomId, type:'CHAT', writer:nickname, message:msg, grade:grade}));
- 	        $.ajax(
+ 	        jQuery.ajax(
 					{
 						url:"/insertChat",
 						type:'post',
-						data:{mem_num : mem_num, grade : grade, msg : $("#message").val()}
+						data:{mem_num : mem_num, grade : grade, msg : jQuery("#message").val()}
 					}
 			);
 	        document.getElementById("message").value = "";
@@ -118,9 +118,9 @@
 	        chatroom = document.getElementById("chatroom");
 	        // chatroom.innerHTML = chatroom.innerHTML + "<br>" + data;
 	        if(cls == '1'){
-	        	$("#chatroom").append("<div><p class='adm_msg'>" + msg + "</p></div>");
+	        	jQuery("#chatroom").append("<div><p class='adm_msg'>" + msg + "</p></div>");
 	        } else {
-	        	$("#chatroom").append("<div><p class='user_msg'>" + msg + "</p></div>");
+	        	jQuery("#chatroom").append("<div><p class='user_msg'>" + msg + "</p></div>");
 	        }
 	    }
 	    function onClose(){
@@ -133,21 +133,21 @@
 	    }
 	    
 		function chatHide() {
-			$(".chat_window").hide();
-			$("#chatIng").show();
+			jQuery(".chat_window").hide();
+			jQuery("#chatIng").show();
 		}
 		
 	    function chatOut(mem_num) {
 			if (confirm("채팅창을 나가시면 채팅 내용이 전부 삭제됩니다. 채팅창을 나가시겠습니까?")){
 			    disconnect();
 			    	
-				$.ajax(
+				jQuery.ajax(
 						{
 							url:"/deleteChat",
 							data:{mem_num : mem_num},
 							
 							success:function(){
-								$(".chat_window").css("display","none");
+								jQuery(".chat_window").css("display","none");
 								
 							}
 						}

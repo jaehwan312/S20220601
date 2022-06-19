@@ -9,7 +9,7 @@ $(document).ready(function() {
 					if (index == 2){
 						$('.counter').show();
 						$('.substitute').hide();
-						$('.counter').counterUp({
+						jQuery('.counter').counterUp({
 						    delay: 10,
 						    time: 2000
 						});	

@@ -84,6 +84,7 @@
             <i class="fa-solid fa-bars"></i>
         </a>
     </nav>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <c:choose>
     	<c:when test="${grade=='2' }">
     		<%@ include file="jh/newRoom.jsp" %>
@@ -221,7 +222,7 @@
 		</footer>
 	</div>
 	</div>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
 	<script src="js/jj/jquery.counterup.min.js"></script>
 	<script src="js/main.js" defer></script>
