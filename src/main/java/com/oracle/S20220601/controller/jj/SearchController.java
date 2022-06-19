@@ -2,6 +2,8 @@ package com.oracle.S20220601.controller.jj;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.Search;
 import com.oracle.S20220601.model.jj.HostStayjj;
 import com.oracle.S20220601.model.jj.HostStorejj;
@@ -70,12 +73,14 @@ public class SearchController {
 	//ajax용 맛집리스트 객체 리턴
 	@PostMapping(value = "ajaxStoreList")
 	@ResponseBody
-	public List<HostStorejj> ajaxStoreList(Search search, Model model) {
+	public List<HostStorejj> ajaxStoreList(HttpServletRequest request, Search search, Model model) {
+		if(request.getSession().getAttribute("mem_num")!=null) {
+			int mem_num = (int)request.getSession().getAttribute("mem_num");
+			search.setMem_num(mem_num);
+		}
 		List<HostStorejj> store = ss.getHostStoreList(search);
 		System.out.println("$$$$$store.order-->"+search.getOrder());
-		System.out.println("$$$$$store.regionsize-->"+search.getRegion().size());
 		System.out.println("$$$$$store.storeprice-->"+search.getStoreprice());
-		model.addAttribute("storeSize", store.size());
 		
 		return store;
 		
@@ -84,15 +89,29 @@ public class SearchController {
 	//ajax용 숙소리스트 객체 리턴
 	@PostMapping(value = "ajaxStayList")
 	@ResponseBody
-	public List<HostStayjj> ajaxStayList(Search search, Model model) {
+	public List<HostStayjj> ajaxStayList(HttpServletRequest request, Search search, Model model) {
+		if(request.getSession().getAttribute("mem_num")!=null) {
+			int mem_num = (int)request.getSession().getAttribute("mem_num");
+			search.setMem_num(mem_num);
+		}
 		List<HostStayjj> stay = ss.getHostStayList(search);
 		System.out.println("$$$$$stay.order-->"+search.getOrder());
-		System.out.println("$$$$$stay.regionsize-->"+search.getRegion().size());
 		System.out.println("$$$$$stay.stayprice-->"+search.getStayprice());
-		model.addAttribute("staySize", stay.size());
 		
 		return stay;
 		
+	}
+	
+	@PostMapping(value = "ajaxLikeInOut")
+	@ResponseBody
+	public Host ajaxLikeInOut(HttpServletRequest request, Host host, Model model) {
+		if(request.getSession().getAttribute("mem_num")!=null) {
+			int mem_num = (int)request.getSession().getAttribute("mem_num");
+			host.setMem_num(mem_num);
+		}
+		Host result = ss.getLikeResult(host);
+		
+		return result;
 	}
 	
 }

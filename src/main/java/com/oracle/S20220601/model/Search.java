@@ -28,4 +28,7 @@ public class Search {
 	private String stayprice;
 	private String storeprice;
 	
+	//나의 찜하기 유무 호출을 위한 mem_num
+	private int mem_num;
+	
 }

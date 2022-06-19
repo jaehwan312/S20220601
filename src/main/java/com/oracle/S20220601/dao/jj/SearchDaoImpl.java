@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.Search;
 import com.oracle.S20220601.model.jj.HostStayjj;
 import com.oracle.S20220601.model.jj.HostStorejj;
@@ -43,6 +44,24 @@ public class SearchDaoImpl implements SearchDao {
 	public List<HostStayjj> getHostStayList(Search search) {
 		List<HostStayjj> stays = session.selectList("jjHostStayList", search);
 		return stays;
+	}
+
+	@Override
+	public Host getLikeResult(Host host) {
+		int exist = session.selectOne("jjSelectPick", host);
+		if(exist==0) {
+			//값이 존재하지 않으면 Insert
+			session.insert("jjInsertPick", host);
+			System.out.println("찜하기 값이 없음. INSERT완료");
+			session.update("jjHostPickUp", host);
+		}else if(exist==1) {
+			//값이 존재하면 Delete
+			session.delete("jjDeletePick", host);
+			System.out.println("찜하기 값이 존재. DELETE완료");
+			session.update("jjHostPickDown", host);
+		}
+		Host result = session.selectOne("jjHostPickCount", host);
+		return result;
 	}
 
 }

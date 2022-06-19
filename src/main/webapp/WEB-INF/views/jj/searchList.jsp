@@ -17,7 +17,7 @@
     	 
           <div class="container">
               <div class="row">
-                  <div class="col-lg-12 text-center mb100">
+                  <div class="col-lg-12 text-center mb100" id="mb100">
 
 				<c:if test="${selectSection=='0' }">
 					<div class="travel-type-wrap" id="wrap_both">
@@ -65,12 +65,12 @@
 					
 
 
-                      <hr class="thin-hr">
+                      <hr class="thin-hr" id="thinLine">
                       <c:if test="${selectSection=='0' }">
                       	<h3 class="section-subheading secondary-font" style="margin-bottom: 30px;" id="section_heading_sub">'${keyword }'에 대한 검색 결과</h3>
                       </c:if>
                       
-			      	  <button type="button" class="btn btn-success" onclick="collapse()">상세 검색</button>
+			      	  <button type="button" class="btn btn-secondary" onclick="collapse()">상세 검색</button>
 			      	  
 			      	  
 			      	  
@@ -85,8 +85,8 @@
 								
 								<div class="container" id="detail_order">
 								  <div class="row">
-							  	   <div class="col-md-3">
-							  	   		<span>검색순서</span>
+							  	   <div class="col-md-3 head">
+							  	   		<span class="division">검색순서</span>
 								    </div>
 								    <div class="col-md-3">
 								    	<input type="radio" id="radioOne" value="0" name="order" onclick="ajaxList()">
@@ -107,58 +107,44 @@
 								
 								<div class="container" id="detail_region">
 								  <div class="row">
-							  	   <div class="col-md-3">
-							  	   		<span>지역별</span>
+							  	   <div class="col-md-3 head">
+							  	   		<span class="division">지역별</span>
 								    </div>
 								    <div class="col-md-3">
-								      <input type="checkbox" id="checkboxOne" value="0" name="region" checked="" onclick="ajaxList()">
+								      <input type="checkbox" id="checkboxOne" value="0" name="region" onclick="ajaxList()">
 					    			  <label for="checkboxOne" class="checkboxbtn">대정읍/안덕면</label>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="1" checked="" onclick="ajaxList()">
-									      <span>
-									        서귀동
-									      </span>
+								      <input type="checkbox" id="checkboxTwo" value="1" name="region" onclick="ajaxList()">
+					    			  <label for="checkboxTwo" class="checkboxbtn">서귀동</label>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="2" checked="" onclick="ajaxList()">
-									      <span>
-									        성산읍/우도면
-									      </span>
+								      <input type="checkbox" id="checkboxThree" value="2" name="region" onclick="ajaxList()">
+					    			  <label for="checkboxThree" class="checkboxbtn">성산읍/우도면</label>
 								    </div>
 								  </div>
 								  <div class="row">
 								  	<div class="col-md-3 offset-md-3">
-								  		<input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="3" checked="" onclick="ajaxList()">
-									      <span>
-									        제주시/노형동
-									      </span>
+								  	    <input type="checkbox" id="checkboxFour" value="3" name="region" onclick="ajaxList()">
+					    			    <label for="checkboxFour" class="checkboxbtn">제주시/노형동</label>
 								  	</div>
 								  	<div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="4" checked="" onclick="ajaxList()">
-									      <span>
-									        중문동
-									      </span>
+								  		<input type="checkbox" id="checkboxFive" value="4" name="region" onclick="ajaxList()">
+					    			    <label for="checkboxFive" class="checkboxbtn">중문동</label>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="5" checked="" onclick="ajaxList()">
-									      <span>
-									        표선면
-									      </span>
+								    	<input type="checkbox" id="checkboxSix" value="5" name="region" onclick="ajaxList()">
+					    			    <label for="checkboxSix" class="checkboxbtn">표선면</label>
 								    </div>
 								  </div>
 								  <div class="row">
 								  	<div class="col-md-3 offset-md-3">
-								  		<input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="6" checked="" onclick="ajaxList()">
-									      <span>
-									        한림읍/애월읍
-									      </span>
+								  		<input type="checkbox" id="checkboxSeven" value="6" name="region" onclick="ajaxList()">
+					    			    <label for="checkboxSeven" class="checkboxbtn">한림읍/애월읍</label>
 								  	</div>
 								  	<div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" name="region" value="7" checked="" onclick="ajaxList()">
-									      <span>
-									        조천읍/구좌읍
-									      </span>
+								  		<input type="checkbox" id="checkboxEight" value="7" name="region" onclick="ajaxList()">
+					    			    <label for="checkboxEight" class="checkboxbtn">조천읍/구좌읍</label>
 								    </div>
 								  </div>
 								</div>
@@ -184,80 +170,60 @@
                       <form action="" id="storeTypeAjax">
                       <div class="container" id="detail_storetype">
 								  <div class="row">
-							  	   <div class="col-md-3">
-							  	   		<span>종류별</span>
+							  	   <div class="col-md-3 head">
+							  	   		<span class="division">종류별</span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" name="food_type" value="0" checked="" onclick="ajaxList()">
-									      <span>
-									        한식
-									      </span>
+								      <input type="checkbox" id="storeMenu1" value="0" name="food_type" onclick="ajaxList()">
+					    			  <label for="storeMenu1" class="checkboxbtn">한식</label>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" name="food_type" value="1" checked="" onclick="ajaxList()">
-									      <span>
-									        일식
-									      </span>
+								      <input type="checkbox" id="storeMenu2" value="1" name="food_type" onclick="ajaxList()">
+					    			  <label for="storeMenu2" class="checkboxbtn">일식</label>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" name="food_type" value="2" checked="" onclick="ajaxList()">
-									      <span>
-									        중식
-									      </span>
+								      <input type="checkbox" id="storeMenu3" value="2" name="food_type" onclick="ajaxList()">
+					    			  <label for="storeMenu3" class="checkboxbtn">중식</label>
 								    </div>
 								  </div>
 								  <div class="row">
 								  	<div class="col-md-3 offset-md-3">
-								  		<input class="form-check-input flex-shrink-0" type="checkbox" name="food_type" value="3" checked="" onclick="ajaxList()">
-									      <span>
-									        양식
-									      </span>
+								  	  <input type="checkbox" id="storeMenu4" value="3" name="food_type" onclick="ajaxList()">
+					    			  <label for="storeMenu4" class="checkboxbtn">양식</label>
 								  	</div>
 								  	<div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" name="food_type" value="4" checked="" onclick="ajaxList()">
-									      <span>
-									        카페
-									      </span>
+								  	  <input type="checkbox" id="storeMenu5" value="4" name="food_type" onclick="ajaxList()">
+					    			  <label for="storeMenu5" class="checkboxbtn">카페</label>
 								    </div>
 								  </div>
 								  </div>
 							<div class="container" id="detail_storeprice">
 								  <div class="row">
-							  	   <div class="col-md-3">
-							  	   		<span>가격별</span>
+							  	   <div class="col-md-3 head">
+							  	   		<span class="division">가격별</span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="0" checked="checked" onclick="ajaxList()">
-									      <span>
-									        전체
-									      </span>
+								    	<input type="radio" id="storePrice1" value="0" name="storeprice" onclick="ajaxList()" checked="checked">
+					    				<label for="storePrice1" class="radiobtn">전체</label>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="1" onclick="ajaxList()">
-									      <span>
-									        만원 미만
-									      </span>
+								    	<input type="radio" id="storePrice2" value="1" name="storeprice" onclick="ajaxList()">
+					    				<label for="storePrice2" class="radiobtn">1만 미만</label>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="2" onclick="ajaxList()">
-									      <span>
-									       1만 ~ 3만
-									      </span>
+								    	<input type="radio" id="storePrice3" value="2" name="storeprice" onclick="ajaxList()">
+					    				<label for="storePrice3" class="radiobtn">1만 ~ 3만</label>
 								    </div>
 								    
 								  </div>
 								  <div class="row">
 								    <div class="col-md-3 offset-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="3" onclick="ajaxList()">
-									      <span>
-									        3만 ~ 5만
-									      </span>
+								    	<input type="radio" id="storePrice4" value="3" name="storeprice" onclick="ajaxList()">
+					    				<label for="storePrice4" class="radiobtn">3만 ~ 5만</label>
 								    </div>
 								  	<div class="col-md-3">
-								  		<input class="form-check-input flex-shrink-0" type="radio" name="storeprice" value="4" onclick="ajaxList()">
-									      <span>
-									        5만 이상
-									      </span>
+								  		<input type="radio" id="storePrice5" value="4" name="storeprice" onclick="ajaxList()">
+					    				<label for="storePrice5" class="radiobtn">5만 이상</label>
 								  	</div>
 								</div>
 						    </div>	  
@@ -310,73 +276,55 @@
                       <form action="" id="stayTypeAjax">
                       <div class="container" id="detail_staytype">
 								  <div class="row">
-							  	   <div class="col-md-3">
-							  	   		<span>종류별</span>
+							  	   <div class="col-md-3 head">
+							  	   		<span class="division">종류별</span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" name="stay_type" value="0" checked="" onclick="ajaxList()">
-									      <span>
-									        모텔
-									      </span>
+								    	<input type="checkbox" id="stayType1" value="0" name="stay_type" onclick="ajaxList()">
+					    			    <label for="stayType1" class="checkboxbtn">모텔</label>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" name="stay_type" value="1" checked="" onclick="ajaxList()">
-									      <span>
-									        호텔
-									      </span>
+								    	<input type="checkbox" id="stayType2" value="1" name="stay_type" onclick="ajaxList()">
+					    			    <label for="stayType2" class="checkboxbtn">호텔</label>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="checkbox" name="stay_type" value="2" checked="" onclick="ajaxList()">
-									      <span>
-									        펜션
-									      </span>
+								    	<input type="checkbox" id="stayType3" value="2" name="stay_type" onclick="ajaxList()">
+					    			    <label for="stayType3" class="checkboxbtn">펜션</label>
 								    </div>
 								  </div>
 								  <div class="row">
 								  	<div class="col-md-3 offset-md-3">
-								  		<input class="form-check-input flex-shrink-0" type="checkbox" name="stay_type" value="3" checked="" onclick="ajaxList()">
-									      <span>
-									        게스트하우스
-									      </span>
+								  		<input type="checkbox" id="stayType4" value="3" name="stay_type" onclick="ajaxList()">
+					    			    <label for="stayType4" class="checkboxbtn">게스트하우스</label>
 								  	</div>
 								  </div>
 								  </div>
 							<div class="container" id="detail_stayprice">	  
 								  <div class="row">
-							  	   <div class="col-md-3">
-							  	   		<span>가격별</span>
+							  	   <div class="col-md-3 head">
+							  	   		<span class="division">가격별</span>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" checked="checked" value="0" onclick="ajaxList()">
-									      <span>
-									        전체
-									      </span>
+								    	<input type="radio" id="stayPrice1" value="0" name="stayprice" onclick="ajaxList()" checked="checked">
+					    				<label for="stayPrice1" class="radiobtn">전체</label>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="1" onclick="ajaxList()">
-									      <span>
-									        만원 미만
-									      </span>
+								    	<input type="radio" id="stayPrice2" value="1" name="stayprice" onclick="ajaxList()">
+					    				<label for="stayPrice2" class="radiobtn">1만 미만</label>
 								    </div>
 								    <div class="col-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="2" onclick="ajaxList()">
-									      <span>
-									       1만 ~ 3만
-									      </span>
+								    	<input type="radio" id="stayPrice3" value="2" name="stayprice" onclick="ajaxList()">
+					    				<label for="stayPrice3" class="radiobtn">1만 ~ 3만</label>
 								    </div>
 								  </div>
 								  <div class="row">
 								  	<div class="col-md-3 offset-md-3">
-								      <input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="3" onclick="ajaxList()">
-									      <span>
-									        3만 ~ 5만
-									      </span>
+								  		<input type="radio" id="stayPrice4" value="3" name="stayprice" onclick="ajaxList()">
+					    				<label for="stayPrice4" class="radiobtn">3만 ~ 5만</label>
 								    </div>
 								  	<div class="col-md-3">
-								  		<input class="form-check-input flex-shrink-0" type="radio" name="stayprice" value="4" onclick="ajaxList()">
-									      <span>
-									        5만 이상
-									      </span>
+								  		<input type="radio" id="stayPrice5" value="4" name="stayprice" onclick="ajaxList()">
+					    				<label for="stayPrice5" class="radiobtn">5만 이상</label>
 								  	</div>
 								  </div>
 								  

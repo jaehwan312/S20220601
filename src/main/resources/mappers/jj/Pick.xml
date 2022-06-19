@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+   <mapper namespace="com.oracle.S20220601.jjPickMapper">
+	  	<select id="jjSelectPick" parameterType="Host" resultType="int">
+	  		select count(*) from pick where host_num = #{host_num} and mem_num = #{mem_num}
+	  	</select>
+	  	<insert id="jjInsertPick" parameterType="Host">
+	  		insert into pick values(#{host_num}, #{mem_num})
+	  	</insert>
+	  	<delete id="jjDeletePick" parameterType="Host">
+	  		delete from pick where host_num=#{host_num} and mem_num=#{mem_num}
+	  	</delete>
+	  	<select id="jjHostPickCount" parameterType="Host" resultType="Host">
+	  		select case when (select count(*) from pick where host_num = h.host_num and mem_num = #{mem_num}) > 0 then 1
+            else 0 end my_like,
+			like_count from host h where host_num = #{host_num}
+	  	</select>
+	  	<update id="jjHostPickUp" parameterType="Host">
+	  		update host set like_count = like_count+1 where host_num = #{host_num}
+	  	</update>
+	  	<update id="jjHostPickDown" parameterType="Host">
+	  		update host set like_count = like_count-1 where host_num = #{host_num}
+	  	</update>
+   </mapper>

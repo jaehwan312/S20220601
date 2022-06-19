@@ -15,4 +15,7 @@ public class Host {
 	private int rev_count;		// 리뷰 갯수
 	private float host_avg;		// 평점
 	private int like_count;		// 찜한사람 수
+	
+	// 내가 찜했는지 유무
+	private int my_like;
 }

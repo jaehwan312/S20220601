@@ -68,14 +68,19 @@ function ajaxList(){
 				     +"<div class='mapButton'><button class='btn btn-secondary' onclick='storemap("+index+")'>지도</button></div>"
 	                 +"<p id='storeaddr"+index+"'>"+item.host_addr+"</p><p>가격대 : "+item.min_price+"~"+item.max_price+"</p>"
 	                 +"<span class='information'>"+item.type_name+"</span>"
-	                 +"<span class='information'><i class='fa fa-heart fa-md'></i>&ensp;"+item.like_count+"</span>"
-	                 +"<span class='information'><i class='fa fa-file-pen fa-md'></i>&ensp;"+item.rev_count+"</span>"
+	                 +"<i class='fa fa-heart fa-md heartLike' id='storeLike"+index+"' onclick=\'storeLikeAction("+index+","+item.host_num+",\""+item.host_name+"\")\'></i>"
+	                 +"<span class='information' id='storeLikes"+index+"'>"+item.like_count+"</span>"
+	                 +"<i class='fa fa-file-pen fa-md reviewCount'></i><span class='information'>"+item.rev_count+"</span>"
 	                 +"</div><div class='row'><div class='col-12'><div class='maps' id='storemap"+index+"' style='width:100%;height:350px;'>"
 	                 +"</div></div></div></div>";
 	                 $('#storeSection').append(store);
 	                 // 별점 소숫점 반영
 	                 if(item.host_avg-(Math.floor(item.host_avg))>0){
 	                 	$('#store-star-half'+index).css('display','inline-block');
+	                 }
+	                 // 본인 찜하기 유무 반영
+	                 if(item.my_like==1){
+	                 	$('#storeLike'+index).css('color','red');
 	                 }
 	                  
 	                  
@@ -134,8 +139,9 @@ function ajaxList(){
 					 +"<p>평일비용 : "+item.min_dayfee+"~"+item.max_dayfee+"</p>"
 					 +"<p>주말비용 : "+item.min_weekfee+"~"+item.max_weekfee+"</p>"
 	                 +"<span class='information'>"+item.type_name+"</span>"
-	                 +"<span class='information'><i class='fa fa-heart fa-md'></i>&ensp;"+item.like_count+"</span>"
-	                 +"<span class='information'><i class='fa fa-file-pen fa-md'></i>&ensp;"+item.rev_count+"</span>"
+	                 +"<i class='fa fa-heart fa-md heartLike' id='stayLike"+index+"' onclick=\'stayLikeAction("+index+","+item.host_num+",\""+item.host_name+"\")\'></i>"
+	                 +"<span class='information' id='stayLikes"+index+"'>"+item.like_count+"</span>"
+	                 +"<i class='fa fa-file-pen fa-md reviewCount'></i><span class='information'>"+item.rev_count+"</span>"
 	                 +"</div><div class='row'><div class='col-12'><div class='maps' id='staymap"+index+"' style='width:100%;height:350px;'>"
 	                 +"</div></div></div></div>";
 	                 $('#staySection').append(stay); 
@@ -143,6 +149,11 @@ function ajaxList(){
 	                 if(item.host_avg-(Math.floor(item.host_avg))>0){
 	                 	$('#stay-star-half'+index).css('display','inline-block');
 	                 }
+	                 // 본인 찜하기 유무 반영
+	                 if(item.my_like==1){
+	                 	$('#stayLike'+index).css('color','red');
+	                 }
+	                 
 				});
 				
 				// 숙소 건수 갱신
@@ -216,14 +227,19 @@ function ajaxList(){
 					 +"<p>평일비용 : "+item.min_dayfee+"~"+item.max_dayfee+"</p>"
 					 +"<p>주말비용 : "+item.min_weekfee+"~"+item.max_weekfee+"</p>"
 	                 +"<span class='information'>"+item.type_name+"</span>"
-	                 +"<span class='information'><i class='fa fa-heart fa-md'></i>&ensp;"+item.like_count+"</span>"
-	                 +"<span class='information'><i class='fa fa-file-pen fa-md'></i>&ensp;"+item.rev_count+"</span>"
+	                 +"<i class='fa fa-heart fa-md heartLike' id='stayLike"+index+"' onclick=\'stayLikeAction("+index+","+item.host_num+",\""+item.host_name+"\")\'></i>"
+	                 +"<span class='information' id='stayLikes"+index+"'>"+item.like_count+"</span>"
+	                 +"<i class='fa fa-file-pen fa-md reviewCount'></i><span class='information'>"+item.rev_count+"</span>"
 	                 +"</div><div class='row'><div class='col-12'><div class='maps' id='staymap"+index+"' style='width:100%;height:350px;'>"
 	                 +"</div></div></div></div>";
 	                 $('#staySection').append(stay); 
 	                 //별점 소숫점 반영
 	                 if(item.host_avg-(Math.floor(item.host_avg))>0){
 	                 	$('#stay-star-half'+index).css('display','inline-block');
+	                 }
+	                 // 본인 찜하기 유무 반영
+	                 if(item.my_like==1){
+	                 	$('#stayLike'+index).css('color','red');
 	                 }
 	                  
 				});
@@ -287,14 +303,19 @@ function ajaxList(){
 				     +"<div class='mapButton'><button class='btn btn-secondary' onclick='storemap("+index+")'>지도</button></div>"
 	                 +"<p id='storeaddr"+index+"'>"+item.host_addr+"</p><p>가격대 : "+item.min_price+"~"+item.max_price+"</p>"
 	                 +"<span class='information'>"+item.type_name+"</span>"
-	                 +"<span class='information'><i class='fa fa-heart fa-md'></i>&ensp;"+item.like_count+"</span>"
-	                 +"<span class='information'><i class='fa fa-file-pen fa-md'></i>&ensp;"+item.rev_count+"</span>"
+	                 +"<i class='fa fa-heart fa-md heartLike' id='storeLike"+index+"' onclick=\'storeLikeAction("+index+","+item.host_num+",\""+item.host_name+"\")\'></i>"
+	                 +"<span class='information' id='storeLikes"+index+"'>"+item.like_count+"</span>"
+	                 +"<i class='fa fa-file-pen fa-md reviewCount'></i><span class='information'>"+item.rev_count+"</span>"
 	                 +"</div><div class='row'><div class='col-12'><div class='maps' id='storemap"+index+"' style='width:100%;height:350px;'>"
 	                 +"</div></div></div></div>";
 	                 $('#storeSection').append(store);
 	                  // 별점 소숫점 반영
 	                 if(item.host_avg-(Math.floor(item.host_avg))>0){
 	                 	$('#store-star-half'+index).css('display','inline-block');
+	                 }
+	                 // 본인 찜하기 유무 반영
+	                 if(item.my_like==1){
+	                 	$('#storeLike'+index).css('color','red');
 	                 }
 	                  
 	                  
@@ -438,9 +459,52 @@ function staycontent(e){
 	location.href="stayRead?host_num="+e;
 }
 
+// 맛집, 숙소, 맛집+숙소 선택
 function selectSection(e){
 	$('#selectionId').val(e);
 	ajaxList();
 }
 
+// 맛집 찜하기 ajax in/out
+function storeLikeAction(index, host_num, host_name){
+	if(confirm(host_name+" 찜하러 갑숴?")){
+		$.ajax({
+			type: 'POST',
+			url: 'ajaxLikeInOut',
+			data: {host_num:host_num},
+			dataType: 'JSON',
+			success: function(data){
+				$('#storeLikes'+index).text(data.like_count);
+				if(data.my_like==0){
+					$('#storeLike'+index).css('color','gray');
+				}else if(data.my_like==1){
+					$('#storeLike'+index).css('color','red');
+				}
+			}
+		});
+	} else{
+		return;
+	}
+}
 
+// 숙소 찜하기 ajax in/out
+function stayLikeAction(index, host_num, host_name){
+	if(confirm(host_name+" 찜하러 갑숴?")){
+		$.ajax({
+			type: 'POST',
+			url: 'ajaxLikeInOut',
+			data: {host_num:host_num},
+			dataType: 'JSON',
+			success: function(data){
+				$('#stayLikes'+index).text(data.like_count);
+				if(data.my_like==0){
+					$('#stayLike'+index).css('color','gray');
+				}else if(data.my_like==1){
+					$('#stayLike'+index).css('color','red');
+				}
+			}
+		});
+	} else{
+		return;
+	}
+}

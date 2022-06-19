@@ -30,6 +30,10 @@
 	text-align: center;
 }
 
+#thinLine {
+	margin: 20px auto;
+    width: 80%;
+}
 
 
 /* 검색결과 없음 이미지 */
@@ -42,9 +46,16 @@
 }
 
 .mb100 {
-    margin-bottom: 100px;
+    background-color: gainsboro;
+    border-radius: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
+#mb100{
+	margin-top: 140px;
+	margin-bottom: 140px;
+}
 
 /* 업체 사진 */
 .img-wrapper {
@@ -80,23 +91,46 @@
     margin-bottom: 50px;
 }
 
+.heartLike, .reviewCount {
+	color: gray;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
 .detail {
 	display: none;
+	min-height: 120px;
+    /* background-color: gainsboro; */
+    padding: 20px;
+}
+
+.division {
+	margin: auto;
+	color: #002c71;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.head {
+	display: flex;
 }
 
 #details {
 	margin: 20px auto;
+	background: #fff;
+    padding: 40px;
+    box-shadow: 0px 8px 20px 0px rgb(0 0 0 / 15%);
+    border-radius: 10px;
 	
 }
 
-#detail_order, #detail_region {
-	text-align: left;
-	margin-top: 30px;
+#detail_order {
+	margin-bottom: 30px;
 	
 }
 
 #storedetails, #staydetails {
-	background-color: lightgray;
+	background-color: gainsboro;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	margin-bottom: 50px;
@@ -177,7 +211,9 @@
 	margin-top: 30px;
 }
 
-
+i.heartLike {
+	cursor: pointer;	
+}
 
 
 /*아이콘 CSS*/
@@ -185,7 +221,6 @@
 
 
 .travel-type-wrap {
-	margin-top: 140px;
 	margin-bottom: 20px;
 	display: inline-flex;
   
@@ -286,6 +321,7 @@
 /* 체크박스, 라디오버튼 */
 
 label {
+	  font-size:14px;
       display: inline-block;
       background-color: rgba(255, 255, 255, 0.9);
       border: 1px solid rgba(139, 139, 139, 0.3);
@@ -307,6 +343,7 @@ label {
 label.checkboxbtn {
   padding: 8px 12px;
   cursor: pointer; 
+  max-width:188px;
   width: 100%;
   text-align: center;
 }
@@ -333,6 +370,7 @@ label.checkboxbtn::before {
 label.radiobtn {
   padding: 8px 12px;
   cursor: pointer;
+  max-width:188px;
   width: 100%;
   text-align: center;
 }
@@ -365,8 +403,8 @@ input[type="checkbox"]:checked + label::before {
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
 
 input[type="checkbox"]:checked + label {
-  border: 1px solid #fec771;
-  background-color: #fec771;
+  border: 1px solid #002c71;
+  background-color: #002c71;
   color: #fff;
   -webkit-transition: all .2s;
   -o-transition: all .2s;
@@ -395,8 +433,8 @@ input[type="radio"]:checked + label::before {
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
 
 input[type="radio"]:checked + label {
-  border: 1px solid #fec771;
-  background-color: #fec771;
+  border: 1px solid #002c71;
+  background-color: #002c71;
   color: #fff;
   -webkit-transition: all .2s;
   -o-transition: all .2s;
