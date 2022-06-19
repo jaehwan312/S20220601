@@ -148,6 +148,7 @@
 							
 							success:function(){
 								jQuery(".chat_window").css("display","none");
+								jQuery("#chatNew").show();
 								
 							}
 						}
