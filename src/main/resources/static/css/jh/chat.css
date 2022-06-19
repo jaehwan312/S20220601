@@ -32,6 +32,7 @@
     overflow: hidden;
     display: none;
     z-index: 200;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 
 .chat_container {
@@ -70,6 +71,7 @@
 	width: 370px;
 	height: 539px;
 	background-color : white;
+	padding: 15px;
 }
 
 .chat_input {

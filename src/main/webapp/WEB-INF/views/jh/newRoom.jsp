@@ -20,6 +20,4 @@
     </div>
 	<script type="text/javascript" src="js/jh/chat.js" defer></script>
 </body>
-
-
 </html>

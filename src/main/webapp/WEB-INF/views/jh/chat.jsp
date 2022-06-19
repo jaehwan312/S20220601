@@ -19,13 +19,14 @@
 		color: white;
 	}
 	.adm_msg {
-		background: #d9d9d9;
+		background: #1e3069;
 		margin-top: 5px;
 		border-radius: 10px;
 		width: 70%;
 		overflow: auto;
 		word-wrap: break-word;
 		padding: 10px;
+		color: white;
 	}
 </style>
 <title>제주 감수광</title>

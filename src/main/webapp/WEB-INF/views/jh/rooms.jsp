@@ -14,25 +14,25 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-		    <table class = "table table-striped">
+		    <table class="table table-striped table-hover">
 		        <thead>
-		        <tr>
-		            <th>번호</th>
-		            <th>방 이름</th>
-		            <th>
-		            	${rooms }
-		            </th>
+		        <tr class="table-primary">
+		            <th>이름</th>
+		            <th>메시지</th>
+		            <th>등록시간</th>
+		            <th>답변</th>
 		        </tr>
 		        </thead>
 		        <tbody>
 		        <c:forEach var="room" items="${rooms }">
 		        <tr>
-		            <td>${room.roomId}</td>
-		            <td>${room.mem_num }</td>
+		        	<td>${room.mem_num }</td>
+		            <td></td>
+		            <td></td>
 		            <td>
 		            	<form action="chatEnter">
 		            		<input type="hidden" name="id" value="${room.roomId}">
-		            		<button class = "btn btn-primary pull-right" type="submit">입장</button>
+		            		<button class = "btn btn-primary pull-right" type="submit">답변하기</button>
 		            	</form>
 		            </td>
 		        </tr>
@@ -43,5 +43,6 @@
     </div>
 	<%@ include file="../footer.jsp" %>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/jh/chat.js" defer></script>
 </body>
 </html>

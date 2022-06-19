@@ -28,8 +28,15 @@ public class ChatRoom {
     public void handleMessage(WebSocketSession session, Chat chatMessage,
                               ObjectMapper objectMapper) throws IOException {
         if(chatMessage.getType() == MessageType.ENTER){
-            sessions.add(session);
-            chatMessage.setMessage(chatMessage.getGrade()+chatMessage.getWriter()+"님이 입장하셨습니다.");
+            if((String)chatMessage.getGrade() == "1") {
+            	sessions.add(session);
+                chatMessage.setMessage(chatMessage.getGrade()+"관리자가 입장하였습니다.");
+                System.out.println("chatMessage.getGrade()->"+chatMessage.getGrade());
+            } else {
+            	sessions.add(session);
+                chatMessage.setMessage(chatMessage.getGrade()+"1:1 채팅 문의가 시작되었습니다");
+                System.out.println("chatMessage.getGrade()->"+chatMessage.getGrade());
+            }
         }
         else if(chatMessage.getType() == MessageType.LEAVE){
             sessions.remove(session);

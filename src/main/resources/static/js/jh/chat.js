@@ -13,10 +13,7 @@ function chatOpen(mem_num) {
 				}
 	
 			});
-	
-			
 }
-
 
 function chatActive(){
 	$(".chat_window").css("display","block");
