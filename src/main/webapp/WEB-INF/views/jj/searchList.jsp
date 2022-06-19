@@ -81,6 +81,12 @@
 								<form action="" id="orderAjax">
 								 	<input type="hidden" name="keyword" value="${keyword }" id="callKeyword">
 								 	<input type="hidden" name="selection" value="${selection }" id="selectionId">
+								 	<c:if test="${mem_num!=null }">
+								 		<input type="hidden" name="mem_num" value=${mem_num } id="login_check">
+								 	</c:if>
+								 	<c:if test="${mem_num==null }">
+								 		<input type="hidden" name="mem_num" value="0" id="login_check">
+								 	</c:if>
 								
 								
 								<div class="container" id="detail_order">
