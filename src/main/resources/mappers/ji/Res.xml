@@ -116,7 +116,7 @@
 	<insert id="jiInsertRes" parameterType="ResInfo">
   		INSERT INTO RES VALUES
   			(res_num_seq.nextval,#{host_num},#{room_num},#{mem_num},
-  			TO_CHAR(TO_DATE(#{res_start}),'YYYYMMDD'),TO_CHAR(TO_DATE(#{res_end}),'YYYYMMDD'),#{pay},1)
+  			TO_CHAR(TO_DATE(#{res_start}),'YYYYMMDD'),TO_CHAR(TO_DATE(#{res_end}),'YYYYMMDD'),#{pay},0)
   	</insert>
 <!--   	현재 res_mum번호 -->
   	<select id="jiSelectResnumCurrval"  resultType="int">

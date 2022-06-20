@@ -64,9 +64,17 @@ public class KakaoController {
 		int insert_pay = ps.insertPay(p_pay); // 결제상태 0인 res삽입
 		if (insert_pay > 0)	System.out.println("결제삽입 성공");
 		else				System.out.println("결제삽입 실패");
+		//int pay_num = ps.selectPaynumCurrval(); // 마지막 예약번호 = 현재예약번호 가져오기 방금 입력한 예약번호
+		//System.out.println(" 방금 입력한 결제번호-> " + pay_num);
+		
 		//int pay_num = ps.selectPaynumCurrval();
 		logger.info("kakaoPay post............................................");
 		// 결제번호(결제테이블 번호), 아이템명(객실명), 고객아이디, 총금액
+		
+//        model.addAttribute("payment", payment);
+//        model.addAttribute("member", member);
+//        model.addAttribute("order_list", order_list);
+//        model.addAttribute("item_name", item_name);
 		return "redirect:" + kakaopay.kakaoPayReady();
 
 	}
