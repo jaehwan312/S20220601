@@ -175,5 +175,33 @@ public class ResDaoImpl implements ResDao {
 		return r_res;
 	}
 
+	@Override
+	public int updateStatus(int res_num) {
+		int update_status = 0;
+		System.out.println("ResDaoImpl updateStatus Start....");
+		try {
+			update_status = session.update("jiUpdateStatus",res_num);
+			
+		} catch (Exception e) {
+			System.out.println("ResDaoImpl updateStatus Exception -> "+e.getMessage());
+		}
+		
+		return update_status;
+	}
+
+	@Override
+	public int deleteFailRes(int res_num) {
+		int delete_res = 0;
+		System.out.println("ResDaoImpl deleteFailRes Start....");
+		try {
+			delete_res = session.update("jiDeleteFailRes",res_num);
+			
+		} catch (Exception e) {
+			System.out.println("ResDaoImpl deleteFailRes Exception -> "+e.getMessage());
+		}
+		
+		return delete_res;
+	}
+
 
 }
