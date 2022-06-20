@@ -17,6 +17,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 		registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/myPage")
 													   .addPathPatterns("/updateProfile")
 													   .addPathPatterns("/storeInsertForm")
+													   .addPathPatterns("/storeUpdateForm")
 													   .addPathPatterns("/stayInsertForm")
 		;
 		

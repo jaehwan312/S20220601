@@ -194,4 +194,18 @@ public class StoreRevController {
 		
 		return hostRevDelete;
 	}
+	
+	@ResponseBody
+	@PostMapping(value = "RevUpdateInsert")
+	public String RevUpdateInsert(@RequestBody Review review) {
+		
+		System.out.println(review.getRev_content());
+		System.out.println(review.getRev_num());
+		
+		int RevUpdateInsert = reviewService.RevUpdateInsert(review);
+		
+		
+		return review.getRev_content();
+	}
+	
 }
