@@ -29,6 +29,7 @@ public class Res {
 	private String eday;	//예약종료일 to_char
 	private String checkin;		// 체크인 시간
 	private String checkout;	// 체크아웃 시간
+	private String yesno;		//예약가능 불가여부
 	private int totalfee;	// 체크아웃 시간
 	
 	

@@ -95,7 +95,7 @@
 					</div>
     	</div>
     	<div style="margin-top: 100px; text-align: center;">
-    	<input type="button" value="리뷰등록" onclick="starrating()">
+    	<input type="button" value="수정" onclick="starrating()">
     	</div>
     	</form>
     <!-- 여기 위로오 ============================================================ -->   

@@ -32,4 +32,11 @@ public class HostStay {
 	private String weekfee;		// 주말요금
 	//코드
 	private int	   bcd_code = 300;	// bcd코드
+	//res
+	private int res_num;		// 예약번호
+	private int room_num;		// 객실번호
+	private String res_start;	// 예약시작일(체크인)
+	private String res_end;		// 예약종료일(체크아웃)
+	private String res_status;	// 진행상태
+
 }

@@ -14,4 +14,5 @@ public class Review {
 	private int rev_point;			// 평점
 	private int ref;				// ref
 	private int re_step;			// re_step
+
 }
