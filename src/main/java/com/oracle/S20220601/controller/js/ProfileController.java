@@ -288,8 +288,11 @@ public class ProfileController {
 		int mem_num = (int)session.getAttribute("mem_num");
 		Profile profile = ps.selectProfile(mem_num);
 //		System.out.println("확인용------> " + profile.getId());
-		System.out.println(profile.getJoin_date().substring(0,11));
-		profile.setJoin_date(profile.getJoin_date().substring(0,11));
+		System.out.println(profile.getJoin_date().length());
+		if(profile.getJoin_date().length()>10) {
+			System.out.println(profile.getJoin_date().substring(0,11));
+			profile.setJoin_date(profile.getJoin_date().substring(0,11));
+		}
 		model.addAttribute("profile", profile);
 		
 		return "js/myPage";

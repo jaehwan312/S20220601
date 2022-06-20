@@ -22,7 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 	    Method methodObj = method.getMethod();
 //	    String mem_num =  request.getSession().getAttribute("mem_num").toString();
 	   
-	    if (request.getSession().getAttribute("mem_num") != null && request.getSession().getAttribute("mem_num").equals("1")) {
+	    if (request.getSession().getAttribute("mem_num") != null) {
 	    	return true; 
 	    } else {
 	    	response.sendRedirect("loginPage?msg=1");
