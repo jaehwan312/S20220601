@@ -173,14 +173,13 @@
 								<strong><b>총 결제 금액</b>(VAT포함)</strong><span class="in_price">1원</span>
 							</p>
 							<p>
-								<strong><b>진짜 총 결제 금액</b>(VAT포함)</strong><span class="in_price">${totalfee }</span>
+								<strong><b>진짜 총 결제 금액</b>(VAT포함)</strong><span class="in_price">${total_fee }</span>
 							</p>
 
 							<p>
 								해당 객실가는 세금, 봉사료가 포함된 금액입니다<br> 결제완료 후 <span>예약자 이름</span>으로
 								바로 <span>체크인</span>하시면됩니다
 							</p>
-
 
 						</section>
 						<button type="button" class="btn btn-primary m-5"
@@ -225,19 +224,20 @@
 						</p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-bs-dismiss="modal">취소</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
 						<form method="post" action="/kakaoPay">
+						<input type="hidden" name="mem_num"	value=5>
 							<input type="hidden" name="room_name"	value="${room1.room_name }">
-							<input type="hidden" name="host_num"	value="${room.host_num }">
-							<input type="hidden" name="room_num" 	value="${room.room_num }">
-							<input type="hidden" name="res_start" 	value="2022-06-23">
-							<input type="hidden" name="res_end" 	value="2022-06-27"> 
-							<input type="hidden" name="price" 	value="${totalfee }">
+							<input type="hidden" name="host_num"	value="${room1.host_num }">
+							<input type="hidden" name="room_num" 	value="${room1.room_num }">
+							<input type="hidden" name="res_start" 	value="${res.res_start }">
+							<input type="hidden" name="res_end" 	value="${res.res_end}"> 
+							<input type="hidden" name="total_fee" 	value="${total_fee }">
 							<input type="hidden" name="name" 	value="${prof.name }">
 							<input type="hidden" name="id" 	value="${prof.id }">
 							<input type="hidden" name="phone" 	value="${prof.phone }">
 							<input type="hidden" name="email" 	value="${prof.email }">
+							<input type="hidden" name="pay" 	value="1">
 							
 							<button type="submit" class="btn btn-primary">동의 후 결제</button>
 						</form>

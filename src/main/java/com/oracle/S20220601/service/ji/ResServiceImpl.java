@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.oracle.S20220601.dao.ji.ResDao;
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
+import com.oracle.S20220601.model.ji.ResInfo;
 import com.oracle.S20220601.model.ji.ResRoom;
 import com.oracle.S20220601.model.ji.RoomPay;
 
@@ -74,5 +75,26 @@ public class ResServiceImpl implements ResService {
 		return total;
 	}
 
+	@Override
+	public int insertRes(ResInfo resInfo) {
+		System.out.println("ResServiceImpl  insertRes Start...");
+		int insert_res = rd.insertRes(resInfo);
+		return insert_res;
+
+	}
+
+	@Override
+	public int selectResnumCurrval() {
+		System.out.println("ResServiceImpl selectResnumCurrval Start...");
+		int res_num = rd.selectResnumCurrval();
+		return res_num;
+	}
+
+	@Override
+	public Res resByResnum(int res_num) {
+		System.out.println("ResServiceImpl resByResnum Start...");
+		Res r_res = rd.resByResnum(res_num);
+		return r_res;
+	}
 
 }

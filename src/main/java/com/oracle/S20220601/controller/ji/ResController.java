@@ -1,29 +1,25 @@
 package com.oracle.S20220601.controller.ji;
 
-import java.net.http.HttpRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
-import com.oracle.S20220601.model.ji.KakaoInfo;
+
 import com.oracle.S20220601.model.ji.ResRoom;
 import com.oracle.S20220601.model.ji.RoomPay;
-import com.oracle.S20220601.service.ji.KakaoPay;
-import com.oracle.S20220601.service.ji.ResService;
 
+import com.oracle.S20220601.service.ji.ResService;
 
 
 @Controller
@@ -35,6 +31,8 @@ public class ResController {
 
 	@Autowired
 	private ResService rs;
+	
+	
 
 	// 예약하기 화면
 	@PostMapping("resContent")
@@ -75,7 +73,7 @@ public class ResController {
 		rp.setWeekfee(room1.getWeekfee());
 		rp.setRes_start(res.getRes_start());
 		rp.setRes_end(res.getRes_end());
-		int totalfee = rs.totalFee(rp);
+		int total_fee = rs.totalFee(rp);
 
 //		System.out.println("checkin -> "+checkin);
 //		System.out.println("checkout -> "+checkout);
@@ -86,9 +84,9 @@ public class ResController {
 		System.out.println("rp.setWeekfee -> " + room1.getWeekfee());
 		System.out.println("rp.setRes_start -> " + res.getRes_start());
 		System.out.println("rp.setRes_end -> " + res.getRes_end());
-		System.out.println("totalfee -> " + totalfee);
+		System.out.println("total_fee -> " + total_fee);
 
-		model.addAttribute("totalfee", totalfee);	//	총 결제금액
+		model.addAttribute("total_fee", total_fee);	//	총 결제금액
 		model.addAttribute("checkin", checkin);		//	체크인	날짜 형변환 	YYYY-MM-DD -> MM.dd E
 		model.addAttribute("checkout", checkout);	//	체크아웃	날짜 형변환 	YYYY-MM-DD -> MM.dd E
 		model.addAttribute("res", res);				//	res --> stayRead에서 받아온 정보 
@@ -113,6 +111,12 @@ public class ResController {
 		System.out.println("ret2 -> " + ret);
 		System.out.println("resContent2 Start...");
 		return "ji/resContent2";
+	}
+	@RequestMapping("payments")
+	public String payments() {
+		
+		
+		return "ji/payment";
 	}
 
 	// 예약 상세
@@ -193,55 +197,6 @@ public class ResController {
 
 		return strNewDtFormat;
 	}
-	/* 							카카오페이 API 	 	 							*/
-	@Autowired
-	private KakaoPay kakaopay;
 
-	@GetMapping("/kakaoPay")
-	public void kakaoPayGet() {
-
-	}
-
-	@PostMapping("/kakaoPay")
-	public String kakaoPay(KakaoInfo kakaoInfo ) {
-		System.out.println(" Rescontroller kakaoPay 시작!");
-		logger.info("kakaoPay post............................................");
-		return "redirect:" + kakaopay.kakaoPayReady(kakaoInfo);
-
-	}
-	//결제성공	
-	@GetMapping("/kakaoPaySuccess")
-	public String kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model) {
-		System.out.println("Rescontroller kakaoPaySuccess 시작!");
-		logger.info("kakaoPaySuccess get............................................");
-		logger.info("kakaoPaySuccess pg_token : " + pg_token);
-		System.out.println("pg_token"+pg_token);
-		model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));
-		
-		//RES테이블에 예약건 INSERT
-		//PAY테이블에 결제건INSERT
-		return "ji/kakaoPaySuccess";
-	}
-	//결제취소	
-	@GetMapping("/kakaoPayCancel")
-	public String kakaoPayCancel(@RequestParam("pg_token") String pg_token, Model model) {
-		System.out.println("Rescontroller kakaoPayCancel 시작!");
-		logger.info("kakaoPayCancel get............................................");
-		logger.info("kakaoPayCancel pg_token : " + pg_token);
-		model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));
-
-		return "ji/kakaoPayCancel";
-
-	}//결제실패
-	@GetMapping("/kakaoPaySuccessFail")
-	public String kakaoPaySuccessFail(@RequestParam("pg_token") String pg_token, Model model) {
-		System.out.println("Rescontroller kakaoPaySuccessFail 시작!");
-		logger.info("kakaoPaySuccessFail get............................................");
-		logger.info("kakaoPaySuccessFail pg_token : " + pg_token);
-		model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));
-	
-		return "ji/kakaoPaySuccessFail";
-
-	}
 
 }

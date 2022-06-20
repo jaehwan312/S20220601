@@ -7,6 +7,7 @@
 	<select id="jiResTotal" resultType="int">
 		SELECT count(*)  FROM Res     
 	</select>
+	
 	<select id="jiResList" parameterType="Res" resultType="Res">
 		SELECT p.name,h.host_name, 
 		min_photo_num2(hp.host_num) host_photo, r.room_name, res.*,(TO_DATE(res.res_end) - TO_DATE(res.res_start))  nday,
@@ -28,6 +29,7 @@
 		order by res_start
 
 	</select>
+	
 	<select id="jiBeforeResList" parameterType="Res" resultType="Res">
 		SELECT p.name,h.host_name, 
 		min_photo_num2(hp.host_num) host_photo, r.room_name, res.*,(TO_DATE(res.res_end) - TO_DATE(res.res_start))  nday,
@@ -48,6 +50,7 @@
 		AND p.mem_num = #{mem_num}
 		order by res_start
 	</select>
+	
 	<select id="jiCancleResList" parameterType="Res" resultType="Res">
 		SELECT p.name,h.host_name, 
 		min_photo_num2(hp.host_num) host_photo, r.room_name, res.*,(TO_DATE(res.res_end) - TO_DATE(res.res_start))  nday,
@@ -68,6 +71,7 @@
 		AND p.mem_num = #{mem_num}
 		order by res_start
 	</select>
+	
 	<select id="jiResDetail" parameterType="int" resultType="Res">
 		SELECT p.name, p.phone, h.host_name, r.room_name, res.*,
 				(TO_DATE(res.res_end) - TO_DATE(res.res_start)) nday,
@@ -86,6 +90,7 @@
 		AND res.res_num = #{res_num}
 	
 	</select>
+	
 	<select id="jiResRoom" parameterType="Res" resultType="ResRoom">
 		SELECT h.host_name, s.checkin, s.checkout, r.*
 		FROM host h
@@ -106,5 +111,22 @@
 	<select id="jiTotalFee" parameterType="RoomPay" resultType="int">
 		SELECT WEEK_GUBUN1(#{res_start}, #{res_end}, #{dayfee}) + WEEK_GUBUN2(#{res_start},#{res_end},#{weekfee}) total
 		FROM dual
+	</select>
+
+	<insert id="jiInsertRes" parameterType="ResInfo">
+  		INSERT INTO RES VALUES
+  			(res_num_seq.nextval,#{host_num},#{room_num},#{mem_num},
+  			TO_CHAR(TO_DATE(#{res_start}),'YYYYMMDD'),TO_CHAR(TO_DATE(#{res_end}),'YYYYMMDD'),#{pay},1)
+  	</insert>
+<!--   	현재 res_mum번호 -->
+  	<select id="jiSelectResnumCurrval"  resultType="int">
+		SELECT res_num_seq.CURRVAL FROM dual
+	</select>
+	
+<!--   	현재 res_mum으로 res SELECT -->
+	<select id="jiResByResnum" parameterType="int" resultType="Res">
+		SELECT *
+		FROM RES
+		WHERE res_num=#{res_num}
 	</select>
 </mapper>
