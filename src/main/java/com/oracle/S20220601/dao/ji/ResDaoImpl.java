@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
+import com.oracle.S20220601.model.ji.ResInfo;
 import com.oracle.S20220601.model.ji.ResRoom;
+import com.oracle.S20220601.model.ji.RoomPay;
 @Repository
 public class ResDaoImpl implements ResDao {
 	@Autowired
@@ -116,4 +118,62 @@ public class ResDaoImpl implements ResDao {
 		
 		return prof;
 	}
+
+	@Override
+	public int totalFee(RoomPay rp) {
+		int totalFee = 0;
+		System.out.println("ResDaoImpl totalFee Start....");
+		try {
+			totalFee = session.selectOne("jiTotalFee",rp);
+			
+		} catch (Exception e) {
+			System.out.println("ResDaoImpl totalFee Exception -> "+e.getMessage());
+		}
+		
+		return totalFee;
+	}
+
+	@Override
+	public int insertRes(ResInfo resInfo) {
+		int insert_res = 0;
+		System.out.println("ResDaoImpl insertRes Start....");
+		try {
+			insert_res = session.insert("jiInsertRes",resInfo);
+			
+		} catch (Exception e) {
+			System.out.println("ResDaoImpl insertRes Exception -> "+e.getMessage());
+		}
+		
+		return insert_res;
+	}
+
+	@Override
+	public int selectResnumCurrval() {
+		int res_num = 0;
+		System.out.println("ResDaoImpl selectResnumCurrval Start....");
+		try {
+			res_num = session.selectOne("jiSelectResnumCurrval");
+			
+		} catch (Exception e) {
+			System.out.println("ResDaoImpl selectResnumCurrval Exception -> "+e.getMessage());
+		}
+		
+		return res_num;
+	}
+
+	@Override
+	public Res resByResnum(int res_num) {
+		Res r_res = null;
+		System.out.println("ResDaoImpl resByResnum Start....");
+		try {
+			r_res = session.selectOne("jiResByResnum",res_num);
+			
+		} catch (Exception e) {
+			System.out.println("ResDaoImpl resByResnum Exception -> "+e.getMessage());
+		}
+		
+		return r_res;
+	}
+
+
 }

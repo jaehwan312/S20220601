@@ -19,4 +19,5 @@ public class ResRoom {
 	private String host_name;	// 업체명
 	private String checkin;		// 체크인 시간
 	private String checkout;	// 체크아웃 시간
+	private int price;
 }
