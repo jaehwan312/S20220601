@@ -1,0 +1,428 @@
+
+/* ==========================================================================
+   #RESET
+   ========================================================================== */
+/**
+ * A very simple reset that sits on top of Normalize.css.
+ */
+body,
+h1, h2, h3, h4, h5, h6,
+blockquote, p, pre,
+dl, dd, ol, ul,
+figure,
+hr,
+fieldset, legend {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Remove trailing margins from nested lists.
+ */
+li > ol,
+li > ul {
+  margin-bottom: 0;
+}
+
+/**
+ * Remove default table spacing.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/**
+ * 1. Reset Chrome and Firefox behaviour which sets a `min-width: min-content;`
+ *    on fieldsets.
+ */
+fieldset {
+  min-width: 0;
+  /* [1] */
+  border: 0;
+}
+
+button {
+  outline: none;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   #BACKGROUND
+   ========================================================================== */
+.bg-img-1 {
+  background: url("../images/bg-img-01.jpg") center center/cover no-repeat;
+}
+
+/* ==========================================================================
+   #SPACING
+   ========================================================================== */
+.p-t-15 {
+  padding-top: 15px;
+}
+
+.p-t-5 {
+  padding-top: 5px;
+}
+
+.p-t-275 {
+  padding-top: 275px;
+}
+
+@media (max-width: 767px) {
+  .p-t-275 {
+    padding-top: 120px;
+  }
+}
+
+.p-t-165 {
+  padding-top: 165px;
+}
+
+@media (max-width: 767px) {
+  .p-t-165 {
+    padding-top: 120px;
+  }
+}
+
+.p-b-100 {
+  padding-bottom: 100px;
+}
+
+@media (max-width: 767px) {
+  .p-b-100 {
+    padding-bottom: 250px;
+  }
+}
+
+.m-r-45 {
+  margin-right: 45px;
+}
+
+@media (max-width: 767px) {
+  .m-r-45 {
+    margin-right: 15px;
+  }
+}
+
+/* ==========================================================================
+   #WRAPPER
+   ========================================================================== */
+.wrapper {
+  margin: 0 auto;
+}
+
+.wrapper--w680 {
+  max-width: 680px;
+}
+
+.wrapper--w720 {
+  max-width: 720px;
+}
+
+/* ==========================================================================
+   #BUTTON
+   ========================================================================== */
+.btn-submit {
+  display: block;
+  margin-top: 32px;
+  width: 100%;
+  line-height: 50px;
+  font-family: inherit;
+  background: #00ad5f;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  text-transform: capitalize;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.btn-submit:hover {
+  background: #00994b;
+}
+
+.m-t-0 {
+  margin-top: 0;
+}
+
+.m-t-15 {
+  margin-top: 15px;
+}
+
+/* ==========================================================================
+   #DATEPICKER
+   ========================================================================== */
+.daterangepicker {
+  display: none;
+  width: 570px;
+  -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 30px 35px;
+  padding-top: 27px;
+  padding-bottom: 45px;
+  margin-top: 5px;
+  margin-left: -48px;
+}
+
+@media (max-width: 767px) {
+  .daterangepicker {
+    width: -webkit-calc(100% - 60px);
+    width: -moz-calc(100% - 60px);
+    width: calc(100% - 60px);
+    padding: 25px 0px;
+  }
+}
+
+.daterangepicker:before, .daterangepicker:after {
+  display: none;
+}
+
+.daterangepicker .calendar {
+  margin: 0;
+  width: 235px;
+}
+
+.daterangepicker .calendar th {
+  font-size: 14px;
+  color: #aaa;
+  cursor: default;
+}
+
+.daterangepicker .calendar th.month {
+  font-size: 16px;
+  color: #555;
+  font-weight: 700;
+}
+
+.daterangepicker .calendar th.next, .daterangepicker .calendar th.prev {
+  font-size: 20px;
+  color: #ccc;
+  text-align: center;
+}
+
+.daterangepicker .calendar.right {
+  float: right;
+}
+
+@media (max-width: 767px) {
+  .daterangepicker .calendar {
+    width: 235px;
+    max-width: 270px;
+  }
+  .daterangepicker .calendar.right, .daterangepicker .calendar.left {
+    float: none !important;
+    clear: none !important;
+    margin: 0 auto !important;
+  }
+  .daterangepicker .calendar.left {
+    margin-bottom: 30px !important;
+  }
+}
+
+.daterangepicker .calendar-table {
+  padding: 0;
+}
+
+.daterangepicker .calendar-table .table-condensed thead tr:nth-child(2) th {
+  padding-top: 27px;
+  padding-bottom: 17px;
+}
+
+.daterangepicker.ltr .calendar.left .calendar-table {
+  padding: 0;
+}
+
+.daterangepicker_input {
+  display: none;
+}
+
+.daterangepicker td {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+}
+
+.daterangepicker td.start-date, .daterangepicker td.end-date {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background: #00ad5f;
+}
+
+.daterangepicker td.start-date.end-date {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.daterangepicker td.in-range {
+  background: #d9f1e3;
+}
+
+.daterangepicker td.today {
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+  background: #c9c9c9;
+}
+
+.daterangepicker td.today.in-range {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  background: #00ad5f;
+}
+
+.daterangepicker td.off, .daterangepicker td.off.in-range, .daterangepicker td.off.start-date, .daterangepicker td.off.end-date {
+  background: transparent;
+  color: #aaa;
+}
+
+.daterangepicker select {
+  outline: none;
+  font-family: inherit;
+}
+
+.daterangepicker select.monthselect, .daterangepicker select.yearselect {
+  font-size: 14px;
+  padding: 8px 4px;
+}
+
+.daterangepicker td.active,
+.daterangepicker td.active:hover {
+  background: #00ad5f;
+}
+
+.dropdown-datepicker {
+  position: relative;
+}
+
+.dropdown-datepicker .daterangepicker {
+  width: 280px;
+  padding: 20px;
+}
+
+/* ==========================================================================
+   #FORM
+   ========================================================================== */
+input,
+textarea {
+  outline: none;
+  margin: 0;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  width: 100%;
+  font-size: 18px;
+  font-family: inherit;
+}
+
+input:disabled {
+  background: transparent;
+  cursor: pointer;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 15px;
+  background: #ffffff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 9px 48px;
+  padding-bottom: 3px;
+  padding-right: 20px;
+}
+
+.input-group-symbol {
+  position: absolute;
+  font-size: 24px;
+  color: #ccc;
+  left: 18px;
+  bottom: 10px;
+}
+
+.input-group-icon {
+  position: relative;
+}
+
+.input-icon {
+  font-size: 24px;
+  color: #808080;
+  position: absolute;
+  line-height: 28px;
+  right: 0;
+  top: 0;
+  width: 28px;
+  background: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+.input--style-1 {
+  font-size: 16px;
+  padding: 5px 0;
+  padding-top: 0px;
+  text-transform: uppercase;
+  color: #808080;
+  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+}
