@@ -65,7 +65,7 @@
   	<!-- 예약가능여부 -->
 	<select id="respossible"  parameterType="Res" resultType="Res">
 	select 
-	case when #{res_end} > r.res_start and #{res_start} <![CDATA[ < ]]> r.res_end then '예약불가'
+	case when to_date(#{res_end}) > r.res_start and to_date(#{res_start}) <![CDATA[ < ]]> r.res_end then '예약불가'
     else '예약가능' end as yesno
 	,r.* from res r where host_num=#{host_num}
 	</select>  	 

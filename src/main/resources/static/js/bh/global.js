@@ -13,8 +13,8 @@
         },function (start, end) {
             $('#input-start').val(start.format('MM/DD/YYYY'));
             $('#input-end').val(end.format('MM/DD/YYYY'));
-            var startdate = start.format('YYYYMMDD');
-            var enddate = end.format('YYYYMMDD');
+            var startdate = start.format('YYYY-MM-DD');
+            var enddate = end.format('YYYY-MM-DD');
             $('#res_start').val(startdate);
             $('#res_end').val(enddate);
             var hostnum = $('#hostNumId').val();
