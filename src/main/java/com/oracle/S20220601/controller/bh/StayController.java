@@ -20,8 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
+import com.oracle.S20220601.model.Res;
+import com.oracle.S20220601.model.Review;
 import com.oracle.S20220601.model.Room;
-import com.oracle.S20220601.model.RoomPhoto;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
 import com.oracle.S20220601.model.bh.Review1;
@@ -42,31 +43,17 @@ public class StayController {	//숙소 Controller
 		HostStay       		stayRead  			= ss.stayRead(roomPhotoList.getHost_num());
 		List<HostPhoto> 	stayPhoto 			= ss.stayPhoto(roomPhotoList.getHost_num());
 		List<RoomPhotoList>	roomPhoto			= ss.roomPhoto(roomPhotoList);
+		Stay       	stayinfo  		= ss.stayinfo(roomPhotoList.getHost_num());
+		List<Review1> reviewList = ss.reviewList(roomPhotoList.getHost_num());
+		Host hostreview	=ss.hostreview(roomPhotoList.getHost_num());
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("hostreview", hostreview);
+		model.addAttribute("stayinfo", stayinfo);
 		model.addAttribute("stay", stayRead);
 		model.addAttribute("stayPhoto", stayPhoto);
 		model.addAttribute("roomPhoto", roomPhoto);
 		return "bh/stayRead";
 	}
-	
-	@RequestMapping(value = "stayInfo")
-	public String stayinfo(int host_num, Model model) {//업소 기본정보
-		logger.info("StayController stayinfo Start");
-		Stay       	stayinfo  		= ss.stayinfo(host_num);
-		model.addAttribute("stay", stayinfo);
-		
-		return "bh/roomInfo";
-	}
-	
-	@RequestMapping(value = "reviewList")
-	public String reviewList(Review1 review, Model model) {// 숙소 리뷰
-		logger.info("StayController reviwList Start");
-		List<Review1> reviewList = ss.reviewList(review.getHost_num());
-		Host hostreview	=ss.hostreview(review.getHost_num());
-		model.addAttribute("reviewList", reviewList);
-		model.addAttribute("hostreview", hostreview);
-		return "bh/reviewList";
-	}
-	
 	
 	@GetMapping(value = "stayInsertForm") //숙소 등록페이지
 	public String stayInsertForm(HttpServletRequest request,Model model) {
@@ -81,6 +68,7 @@ public class StayController {	//숙소 Controller
 	public String stayInsert(HostStay hostStay,Model model,MultipartFile host_photo0,
 										  MultipartFile host_photo1,MultipartFile host_photo2,
 										  MultipartFile host_photo3,MultipartFile host_photo4) {
+		
 		int stayInsert = ss.stayInsert(hostStay);
 		
 		System.out.println(host_photo0.getOriginalFilename());
@@ -119,13 +107,12 @@ public class StayController {	//숙소 Controller
 		}
 		System.out.println("업로드된 사진 --> " + roomPhoto);
 		System.out.println("host->"+stayInsert);
-		System.out.println("room->");
 		
 		if (stayInsert != 0) {
-			model.addAttribute("msg", "성공");
+			model.addAttribute("msg", "숙소 등록 성공");
 			model.addAttribute("host_num", stayInsert);
 		}else {
-			model.addAttribute("msg", "실패");
+			model.addAttribute("msg", "숙소 등록 실패");
 		}
 		
 		
@@ -133,8 +120,7 @@ public class StayController {	//숙소 Controller
 	}
 	
 	
-	
-	
+
 	
 	
 	@PostMapping(value = "roomInsert")
@@ -171,13 +157,88 @@ public class StayController {	//숙소 Controller
 		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
 		System.out.println("host->"+roomInsert);
 		
+		model.addAttribute("roomInsert", roomInsert);
 		
 		if (roomInsert > 0) {
-			model.addAttribute("msg", "성공");
+			model.addAttribute("msg", "객실 등록 성공");
 		}else {
-			model.addAttribute("msg", "실패");
+			model.addAttribute("msg", "객실 등록 실패");
 		}
-		return "bh/test1";
+		List<Room> roomList = ss.roomList(room);
 		
+		if(roomList.size() != 0) {
+			System.out.println("roomList->"+roomList);
+			for(Room aa:roomList) {
+				System.out.println("@@ "+aa.getRoom_name());
+			}
+			System.out.println("host_num---->>>"+room.getHost_num());
+			model.addAttribute("roomList", roomList);
+		}
+		model.addAttribute("host_num", room.getHost_num());
+		
+		return "bh/roomInsertForm";
 	}
+	
+	@GetMapping(value = "reviewInsertForm")
+	public String reviewInsertForm(HttpServletRequest request, Res res, Model model) {
+		logger.info("StayController reviewInsertForm Start");
+		int mem_num = (int)request.getSession().getAttribute("mem_num");
+		res.setMem_num(mem_num);
+		model.addAttribute("resInfo", res);
+		return "bh/reviewInsertForm";
+	}
+	
+	@RequestMapping(value = "reviewInsert")
+	public String revInsert(Review review,Model model,MultipartFile rev_Photo0,
+										  MultipartFile rev_Photo1,MultipartFile rev_Photo2,
+										  MultipartFile rev_Photo3,MultipartFile rev_Photo4) {
+		
+		System.out.println("hostnum->"+review.getHost_num());
+		int revInsert = ss.revInsert(review);
+		
+		System.out.println(rev_Photo0.getOriginalFilename());
+		Map<Integer, MultipartFile> revPhotoInsert     = new HashMap<Integer, MultipartFile>();
+		List<MultipartFile>			revPhotoInsertList = new ArrayList<MultipartFile>();
+	
+		
+		revPhotoInsert.put(0, rev_Photo0);
+		revPhotoInsert.put(1, rev_Photo1);
+		revPhotoInsert.put(2, rev_Photo2);
+		revPhotoInsert.put(3, rev_Photo3);
+		revPhotoInsert.put(4, rev_Photo4);
+		
+		
+		
+		for (int i = 0; i < revPhotoInsert.size(); i++) {
+			System.out.println("start  roomPhotoInsert.size()->"+i);
+			if (revPhotoInsert.get(i).getSize() != 0) {
+				revPhotoInsertList.add(revPhotoInsert.get(i));
+			}
+			System.out.println("end  roomPhotoInsert.size()->"+i);
+		}
+		
+		Review1 review1 = new Review1();
+		review1.setHost_num(review.getHost_num());
+		review1.setRevPhotolist(revPhotoInsertList);
+		
+		int uploadPhoto = 0;
+		System.out.println("업로드할 사진 갯수 --> " + revPhotoInsertList.size());
+		if (revPhotoInsertList.size() != 0) {
+			uploadPhoto = ss.revPhotoInsert(review1);
+		}
+		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
+		System.out.println("host->"+revInsert);
+		
+		model.addAttribute("revInsert", revInsert);
+		if (revInsert > 0) {
+			model.addAttribute("msg", "객실 등록 성공");
+		}else {
+			model.addAttribute("msg", "객실 등록 실패");
+		}
+		
+		
+		return "bh/reviewInsertForm";
+	}
+	
+	
 }

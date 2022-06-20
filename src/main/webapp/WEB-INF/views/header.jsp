@@ -34,7 +34,7 @@
         </div>
         <div class="header_background"></div>
         <div class="navbar_search">
-            <form action="getSearchResult" class="search_form" id="search_form">
+            <form action="getSearchResult" class="search_form" id="search_form" onsubmit="return checkIt2()">
                 <input type="text" id="search_area" name="keyword" class="search_bar" placeholder="Typing..." autocomplete="off" onkeyup="headerEnter()">                
                 <button class="search_btn" type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -50,8 +50,8 @@
     		    </div>
         </div>
         <ul class="navbar_menu">
-            <li><a href="">숙박</a></li>
-            <li><a href="">맛집</a></li>
+            <li><a href="stayList">숙박</a></li>
+            <li><a href="storeList">맛집</a></li>
             <li class="dropdown">
                 <a href="" class="dropdown_button">고객센터</a>
                 <div class="dropdown_content" id="csc">
@@ -65,9 +65,9 @@
         	<c:choose>
         		<c:when test="${grade=='2' }">
         			<li class="dropdown">
-		                <a href="" class="dropdown_button">마이페이지</a>
+		                <a href="myPage" class="dropdown_button">마이페이지</a>
 		                <div class="dropdown_content" id="mypage">
-		                    <a href="">나의 프로필</a>
+		                    <a href="myPage">나의 프로필</a>
 		                    <a href="">예약내역</a>
 		                    <a href="">나의 픽(찜목록)</a>
 		                    <a href="">나의 식당정보</a>
@@ -78,14 +78,14 @@
         		</c:when>
         		<c:when test="${grade=='1' }">
         			<li class="dropdown">
-		                <a href="" class="dropdown_button">마이페이지</a>
+		                <a href="myPage" class="dropdown_button">마이페이지</a>
 		                <div class="dropdown_content" id="mypage">
-		                    <a href="">나의 프로필</a>
+		                    <a href="myPage">나의 프로필</a>
 		                    <a href="">예약내역</a>
 		                    <a href="">나의 픽(찜목록)</a>
 		                    <a href="">나의 식당정보</a>
 		                    <a href="">나의 숙소정보</a>
-		                    <a href="admMain">관리자 페이지</a>
+		                    <a href="adminPage">관리자 페이지</a>
 		                </div>
 		            </li>
 		            <li><a href="logout">로그아웃</a></li>
@@ -102,7 +102,11 @@
         </a>
         
     </nav>
-   	<%@ include file="jh/newRoom.jsp" %>
+   	   <c:choose>
+    	<c:when test="${grade=='2' }">
+    		<%@ include file="jh/newRoom.jsp" %>
+    	</c:when>
+    </c:choose>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </body>
 </html>

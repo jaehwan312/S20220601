@@ -20,6 +20,15 @@ public class Search {
 	private String total_food_type;
 	private List<String> stay_type;
 	private String total_stay_type;
+	
+	//페이지 상세검색 조건
 	private String order;
+	private String selection;
+	private List<String> region;
+	private String stayprice;
+	private String storeprice;
+	
+	//나의 찜하기 유무 호출을 위한 mem_num
+	private int mem_num;
 	
 }

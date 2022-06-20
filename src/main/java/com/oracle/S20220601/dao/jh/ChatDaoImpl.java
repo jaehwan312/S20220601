@@ -1,10 +1,13 @@
 package com.oracle.S20220601.dao.jh;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.oracle.S20220601.model.Chat;
+import com.oracle.S20220601.model.jh.Chat;
+
 
 @Repository
 public class ChatDaoImpl implements ChatDao {
@@ -17,7 +20,6 @@ public class ChatDaoImpl implements ChatDao {
 		String resultStr="";
 		try {
 			resultStr = session.selectOne("jhUserName", mem_num);
-			System.out.println("ChatDaoImpl userName resultStr"+resultStr);
 		} catch (Exception e) {
 			System.out.println("ChatDaoImpl userName Exception->"+e.getMessage());
 		}
@@ -44,6 +46,17 @@ public class ChatDaoImpl implements ChatDao {
 			System.out.println("ChatDaoImpl deleteChat Exception->"+e.getMessage());
 		}
 		return result;
+	}
+
+	@Override
+	public List<Chat> listChat(Chat chat) {
+		List<Chat> listChat = null;
+		try {
+			listChat = session.selectList("jhChatListSelect", chat);
+		} catch (Exception e) {
+			System.out.println("ChatDaoImpl listChat Exception->"+e.getMessage());
+		}
+		return listChat;
 	}
 
 

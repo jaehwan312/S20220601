@@ -30,8 +30,8 @@
   	{
   		call HOSTSTAY_INSERT(
   				    #{host_num   , mode=IN   , jdbcType=INTEGER}
-	   			   ,#{host_name  , mode=IN   , jdbcType=INTEGER}
-	  			   ,#{mem_num  	 , mode=IN   , jdbcType=VARCHAR}
+	  			   ,#{mem_num  	 , mode=IN   , jdbcType=INTEGER}
+	   			   ,#{host_name  , mode=IN   , jdbcType=VARCHAR}
 	  			   ,#{host_addr  , mode=IN   , jdbcType=VARCHAR}
 	  			   ,#{host_info  , mode=IN   , jdbcType=VARCHAR}
 	  			   ,#{host_code  , mode=IN   , jdbcType=INTEGER}
@@ -49,7 +49,7 @@
   	</insert>
   	<!-- HOST_NUM SEQ -->
   	<select id="bhgetHost_num" resultType="int">
-  		SELECT SEQ_HOST_NUM.CURRVAL FROM DUAL
+  		SELECT SEQ_HOST_NUM.currval FROM DUAL
   	</select>
   	
   	<!-- HOST_NUM + ROOM_NUM SEQ -->

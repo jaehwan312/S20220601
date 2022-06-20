@@ -5,79 +5,155 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-<link rel="stylesheet" href="css/template.css">
-<link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
+<link rel="stylesheet" href="css/jh/chat.css">
+<style type="text/css">
+	.adm_msg {
+		margin-left: 30%;
+		background-color: #33a9fa;
+		margin-top: 5px;
+		border-radius: 10px;
+		width: 70%;
+		overflow: auto;
+		word-wrap: break-word;
+		padding: 10px;
+		color: white;
+	}
+	.user_msg {
+		background-color: #1e3069;
+		margin-top: 5px; 
+		border-radius: 10px;
+		width: 70%;
+		overflow: auto;
+		word-wrap: break-word;
+		padding: 10px;
+		color: white;
+	}
+</style>
 <title>제주 감수광</title>
 </head>
 <body>
-	<%-- <%@ include file="../header.jsp" %> --%>
-    <div class="container" onload="connect()">
+	<%@ include file="../header.jsp" %>
+    <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-	    
-	    <input type="hidden" id="nickname" value="${room.mem_num }">
-		<label id="roomId" class="form-inline">${room.roomId }</label>
-		<br>
-		<label for="roomName" class="label label-default">방 이름</label>
-		<label id="roomName" class="form-inline">${room.mem_num }</label>
-		<div id = "chatroom" style = "overflow:auto; width:400px;  height: 600px; border:1px solid; background-color : gray"></div>
-		<input type = "text" id = "message" style = "height : 30px; width : 340px" placeholder="내용을 입력하세요" autofocus>
-		<button class = "btn btn-primary" id = "send">전송</button>
-		<button class = "btn btn-primary" id = "close" onclick="onClose()">나가기</button>
+    	<div class="chat_container">
+    		<div class="chat_header">
+		    	<div class="header_info">
+					<label id="roomId">${room.roomId }</label>
+					<label id="roomName">${room.mem_num }</label>
+					<label for="roomName">방 이름</label>
+					<div id="userName"></div>
+		    	</div>
+		    	<i class="fa-solid fa-xmark" id="chat_out" onclick="chatOut(${mem_num})"></i>
+		    </div>
+			<div id="chatroom" class="container">
+			
+			</div>
+			<div class="chat_input">
+				<label class="send_box">	
+					<input type = "text" class="msg" id="message" placeholder="내용을 입력하세요">
+					<button onclick="send(${mem_num},${grade })" id="sendBtn">
+						<i class="fa-solid fa-arrow-up"></i>
+					</button>
+				</label>
+			</div>
+    	</div>
     <!-- 여기 위로오 ============================================================ -->   
-    </div>
-	<%-- <%@ include file="../footer.jsp" %> --%>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	 </div>
+	<%@ include file="../footer.jsp" %>
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
-	    
-	
 	    var webSocket;
 	    var nickname;
 	    var roomId = $('#roomId').text();
+	    var grade = ${grade};
 	    /* <![CDATA[*/
 	    
 	    /* ]]> */
 	    $(function(){
+	    	var mem_num = ${mem_num};
+	    	$.ajax(
+	    			{
+	    				url:"/getUserName",
+	    				data:{mem_num : mem_num},
+	    				
+	    				async:false,
+	    				dataType:'text',
+	    				success:function(data){
+	    					nickname = data;
+	    					$('#userName').text(nickname);
+	    				}
+	    			}
+	    	);
 	    	connect();
+			document.addEventListener("keypress", function(e){
+				if(e.keyCode == 13){
+					send(mem_num, grade);
+				}
+			});
 	    });
 	    
 	    function connect(){
-	    	nickname = document.getElementById("nickname").value;
-	        webSocket = new WebSocket("ws://localhost:8908/chat");
+            webSocket = new WebSocket("ws://localhost:8908/chat");
 	        webSocket.onopen = onOpen;
 	        webSocket.onclose = onClose;
 	        webSocket.onmessage = onMessage;
 	    }
 	    
 	    function onOpen(){
-	        webSocket.send(JSON.stringify({chatRoomId : roomId,type:'ENTER',writer:nickname}));
+	        webSocket.send(JSON.stringify({chatRoomId:roomId, type:'ENTER', writer:nickname, grade:grade}));
 	    }
 	    
-	    document.getElementById("send").addEventListener("click",function(){
-	        send();
-	    })
-	    
-	    function send(){
+	    function send(mem_num, grade){
 	        msg = document.getElementById("message").value;
-	        webSocket.send(JSON.stringify({chatRoomId : roomId,type:'CHAT',writer:nickname,message : msg}));
+	        webSocket.send(JSON.stringify({chatRoomId:roomId, type:'CHAT', writer:nickname, message:msg, grade:grade}));
+ 	        $.ajax(
+					{
+						url:"/insertChat",
+						type:'post',
+						data:{mem_num : mem_num, grade : grade, msg : $("#message").val()}
+					}
+			);
 	        document.getElementById("message").value = "";
 	    }
 
 	    function onMessage(e){
-	        data = e.data;
+	    	var data = e.data.toString();
+	    	var msg = data.substring(2, data.length-1);
+	    	cls = data.substring(1,2);
 	        chatroom = document.getElementById("chatroom");
-	        chatroom.innerHTML = chatroom.innerHTML + "<br>" + data;
+	        // chatroom.innerHTML = chatroom.innerHTML + "<br>" + data;
+	        if(cls == '1'){
+	        	$("#chatroom").append("<div><p class='adm_msg'>" + msg + "</p></div>");
+	        } else {
+	        	$("#chatroom").append("<div><p class='user_msg'>" + msg + "</p></div>");
+	        }
 	    }
 	    function onClose(){
 	        disconnect();
 	    }
 	    
 	    function disconnect(){
-	        webSocket.send(JSON.stringify({chatRoomId : roomId,type:'LEAVE',writer:nickname}));
+	        webSocket.send(JSON.stringify({chatRoomId:roomId, type:'LEAVE', writer:nickname, grade:grade}));
 	        webSocket.close();
 	    }
-	
+	    
+	    function chatOut(mem_num) {
+			if (confirm("채팅창을 나가시면 채팅 내용이 전부 삭제됩니다. 채팅창을 나가시겠습니까?")){
+				disconnect()
+				$.ajax(
+						{
+							url:"/deleteChat",
+							data:{mem_num : mem_num},
+							
+							success:function(){
+								$(".chat_window").css("display","none");
+							}
+						}
+				);
+			} else {
+				return false;
+			}
+		}
 	</script>
 </body>
 </html>

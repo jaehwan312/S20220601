@@ -10,6 +10,8 @@ import com.oracle.S20220601.dao.bh.StayDao;
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
+import com.oracle.S20220601.model.Res;
+import com.oracle.S20220601.model.Review;
 import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
@@ -107,6 +109,34 @@ public class StayServiceImpl implements StayService {
 		System.out.println("StayServiceImpl roomPhotoInsert start...");
 		int roomPhotoInsert = sd.roomPhotoInsert(roomfile);
 		return roomPhotoInsert;
+	}
+
+	@Override
+	public List<Room> roomList(Room room) {
+		System.out.println("StayServiceImpl roomList start...");
+		List<Room> roomList = sd.roomList(room);
+		return roomList;
+	}
+
+	@Override
+	public int revInsert(Review review) {
+		System.out.println("StayServiceImpl revInsert start...");
+		int revInsert = sd.revInsert(review);
+		return revInsert;
+	}
+
+	@Override
+	public int revPhotoInsert(Review1 review1) {
+		System.out.println("StayServiceImpl revPhotoInsert start...");
+		int revPhotoInsert = sd.revPhotoInsert(review1);
+		return revPhotoInsert;
+	}
+
+	@Override
+	public Res resInfo(Res res) {
+		System.out.println("StayServiceImpl resInfo start...");
+		Res resInfo = sd.resInfo(res);
+		return resInfo;
 	}
 
 

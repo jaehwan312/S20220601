@@ -32,4 +32,7 @@ public class HostStayjj {
 	
 	// 숙소 사진
 	private String host_photo;
+	
+	// 나의 찜하기 유무
+	private int my_like;
 }

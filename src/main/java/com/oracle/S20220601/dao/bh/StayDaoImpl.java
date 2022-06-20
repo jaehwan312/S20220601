@@ -10,7 +10,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
+import com.oracle.S20220601.model.Res;
 import com.oracle.S20220601.model.RevPhoto;
+import com.oracle.S20220601.model.Review;
 import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.RoomPhoto;
 import com.oracle.S20220601.model.Stay;
@@ -231,6 +233,68 @@ public class StayDaoImpl implements StayDao {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public List<Room> roomList(Room room) {
+		System.out.println("StayDaoImpl roomList start...");
+		List<Room> roomList = null;
+		try {
+			roomList=session.selectList("roomList", room);
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl roomList Exception->"+e.getMessage());
+		}
+		return roomList;
+	}
+
+	@Override
+	public int revInsert(Review review) {
+		System.out.println("StayDaoImpl revInsert start...");
+		int revInsert = 0;
+		try {
+			revInsert =session.insert("revInsert", review);
+			revInsert=1;
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl revInsert Exception->"+e.getMessage());
+		}
+		return revInsert;
+	}
+
+	@Override
+	public int revPhotoInsert(Review1 review1) {
+		System.out.println("StayDaoImpl revPhotoInsert start...");
+		int result = 0;
+		RevPhoto revPhoto = null;
+	try {
+		for(MultipartFile multipartFile : review1.getRevPhotolist()) {
+			if(multipartFile.getOriginalFilename() != null) {
+				revPhoto = new RevPhoto();
+				revPhoto.setHost_num(review1.getHost_num());
+				//int host_num = session.selectOne("bhgetHost_num");
+				//revPhoto.setHost_num(host_num);
+				revPhoto.setRev_photo(multipartFile.getOriginalFilename());
+				result += session.insert("revPhotoInsert", revPhoto);
+				System.out.println(multipartFile.getOriginalFilename());
+			}
+		}
+	} catch (Exception e) {
+		System.out.println("StayDaoImpl revPhotoInsert Exception->"+e.getMessage());
+	}
+	
+	return result;
+
+	}
+
+	@Override
+	public Res resInfo(Res res) {
+		System.out.println("StayDaoImpl resInfo start...");
+		Res resInfo = null;
+		try {
+			resInfo = session.selectOne("resInfo", res);
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl resInfo Exception->"+e.getMessage());
+		}
+		return resInfo;
 	}
 
 

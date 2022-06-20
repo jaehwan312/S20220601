@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.S20220601.dao.jj.SearchDao;
+import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.Search;
 import com.oracle.S20220601.model.jj.HostStayjj;
 import com.oracle.S20220601.model.jj.HostStorejj;
@@ -30,6 +31,12 @@ public class SearchServiceImpl implements SearchService {
 	public List<HostStayjj> getHostStayList(Search search) {
 		List<HostStayjj> stay = sd.getHostStayList(search);
 		return stay;
+	}
+
+	@Override
+	public Host getLikeResult(Host host) {
+		Host result = sd.getLikeResult(host);
+		return result;
 	}
 
 }

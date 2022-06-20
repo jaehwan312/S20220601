@@ -1,6 +1,8 @@
 package com.oracle.S20220601.controller.js;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -14,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +27,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oracle.S20220601.model.Profile;
+import com.oracle.S20220601.service.js.Paging;
 import com.oracle.S20220601.service.js.ProfileService;
 
 @Controller
@@ -40,9 +46,21 @@ public class ProfileController {
 	
 	// 로그인 페이지
 	@RequestMapping(value = "loginPage")	
-	public String loginPage() {
+	public String loginPage(Model model, HttpServletRequest request, String msg) {
 		System.out.println("loginPage Start...");
-		return "js/loginPage";
+		if (request.getSession().getAttribute("mem_num") == null) {
+			if(msg != null) {
+				if (msg.equals("1")) {
+					model.addAttribute("msg", "로그인이후 이용이 가능합니다.");
+				}
+			}
+			return "js/loginPage";
+		} else {
+			model.addAttribute("msg", "이미 로그인된 상태입니다. 메인화면으로 이동합니다.");
+			return "forward:main";
+		}
+		
+		
 	}
 	
 	// 로그인 눌렀을때 처리
@@ -53,6 +71,7 @@ public class ProfileController {
 		ModelAndView mav = new ModelAndView();
 		if (profile != null) { // 로그인 성공
 			session = request.getSession();
+			System.out.println("grade-------->"+ session.getAttribute("grade"));
 			session.setAttribute("mem_num", session.getAttribute("mem_num"));
 			session.setAttribute("grade",  session.getAttribute("grade"));
 			mav.setViewName("redirect:main");
@@ -197,12 +216,272 @@ public class ProfileController {
 	// 아이디 찾기
 	@RequestMapping(value = "SearchId", method = RequestMethod.POST)
 	@ResponseBody
-	public String SearchId(@RequestParam("name") String name, @RequestParam String phone ) {
+	public String SearchId(Profile profile, @RequestParam("name") String name, @RequestParam("phone") String phone ) {
 		System.out.println("----------------- Controller SearchId Start --------------");
-		String result = ps.searchId(name, phone);
+		String result = ps.searchId(profile);
 		
 		return result;
 		
 	}
+	
+	
+	// 비밀번호 찾기
+	@RequestMapping(value = "SearchPw", method = RequestMethod.POST)
+	@ResponseBody
+	public int SearchPw(Profile profile, @RequestParam("id")String id, @RequestParam("email")String email) {
+		System.out.println("----------------- Controller SearchPw Start --------------");
+		int cnt = ps.emailCheck(profile);
+
+		if (cnt == 1) {
+			int leftLimit = 48; // numeral '0'
+			int rightLimit = 122; // letter 'z'
+			int targetStringLength = 10;
+			Random random = new Random();
+
+			String generatedString = random.ints(leftLimit,rightLimit + 1)
+			  .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+			  .limit(targetStringLength)
+			  .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+			  .toString();
+
+			profile.setPw(generatedString);
+			// 임시비밀번호 DB 저장
+			ps.pwSave(profile);
+
+			/* 이메일 보내기 */
+	        String setFrom = "kjs9502@gmail.com";
+	        String toMail = email;
+	        String title = "제주 감수광 비밀번호찾기 이메일 입니다.";
+	        String content = 
+	                "홈페이지를 방문해주셔서 감사합니다." +
+	                "<br><br>" +
+	                id+"님의"+
+	                "<br>" + 
+	                "임시 비밀번호는 " + generatedString + " 입니다." + 
+	                "<br>" + 
+	                "로그인후 비밀번호를 변경 해주세요."+
+	                "<br>" +
+	                "<a href='http://localhost:8908/loginPage'>로그인 페이지</a>";
+	        
+	        try {
+	            
+	            MimeMessage message = mailSender.createMimeMessage();
+	            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+	            helper.setFrom(setFrom);
+	            helper.setTo(toMail);
+	            helper.setSubject(title);
+	            helper.setText(content,true);
+	            mailSender.send(message);
+	            
+	        }catch(Exception e) {
+	            e.printStackTrace();
+	        }
+		}
+		
+		return cnt;
+	}
+	
+	@RequestMapping(value = "myPage")
+	public String myPage(HttpSession session,HttpServletRequest request, Model model) {
+		System.out.println("myPage Start...");
+		session = request.getSession();
+		int mem_num = (int)session.getAttribute("mem_num");
+		Profile profile = ps.selectProfile(mem_num);
+//		System.out.println("확인용------> " + profile.getId());
+		System.out.println(profile.getJoin_date().length());
+		if(profile.getJoin_date().length()>10) {
+			System.out.println(profile.getJoin_date().substring(0,11));
+			profile.setJoin_date(profile.getJoin_date().substring(0,11));
+		}
+		model.addAttribute("profile", profile);
+		
+		return "js/myPage";
+	}
+
+	@RequestMapping(value = "updateProfile")
+	public String updateProfile(HttpSession session,HttpServletRequest request, Model model) {
+		System.out.println("------------ updateProfile Start ----------");
+		session = request.getSession();
+		int mem_num = (int)session.getAttribute("mem_num");
+		Profile profile = ps.selectProfile(mem_num);
+		model.addAttribute("profile", profile);
+		
+		return "js/updateProfile";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/profileAuth", method = RequestMethod.POST)
+	public String profileAuth(String email) {		
+		Random random = new Random();
+		int checkNum = random.nextInt(888888) + 111111;
+
+		/* 이메일 보내기 */
+        String setFrom = "kjs9502@gmail.com";
+        String toMail = email;
+        String title = "프로필 수정 인증 이메일 입니다.";
+        String content = 
+                "홈페이지를 방문해주셔서 감사합니다." +
+                "<br><br>" + 
+                "인증 번호는 " + checkNum + "입니다." + 
+                "<br>" + 
+                "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+        
+        try {
+            
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+            helper.setFrom(setFrom);
+            helper.setTo(toMail);
+            helper.setSubject(title);
+            helper.setText(content,true);
+            mailSender.send(message);
+            
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        
+        return Integer.toString(checkNum);
+ 
+	}
+	
+	
+	@RequestMapping(value = "updateInfo", method = RequestMethod.POST)
+	public String updateInfo(Profile profile, HttpSession session,HttpServletRequest request , MultipartFile profilePhoto, Model model) throws IOException, Exception {
+		System.out.println("------------ Controller updateInfo -------------");
+		System.out.println("파일 확인 ---------------"+ profilePhoto.getOriginalFilename());
+		session = request.getSession();
+		int mem_num = (int)session.getAttribute("mem_num");
+		profile.setMem_num(mem_num);
+		
+		if(profilePhoto.getSize() != 0) {
+		String uploadPath = request.getSession().getServletContext().getRealPath("/images/js/");
+		
+		logger.info("originalName: " + profilePhoto.getOriginalFilename());
+	    logger.info("size: " + profilePhoto.getSize());
+	    logger.info("contentType: " + profilePhoto.getContentType());
+	    logger.info("uploadPath: " + uploadPath);	    String savedName = uploadFile(profilePhoto.getOriginalFilename(), profilePhoto.getBytes(), uploadPath);
+        logger.info("savedName: " + savedName);
+		profile.setPhoto(savedName);
+		
+		
+		
+		int result = ps.updatePhoto(profile); 
+		
+		}
+		
+			int result = ps.updateInfo(profile);
+			
+			if(result > 0) {
+				session.invalidate();
+				model.addAttribute("msg", "회원정보가 수정 되었습니다! 다시 로그인 해주세요.");
+				return "forward:loginPage";
+			}else {
+				return "redirect:updateProfile";
+			}
+		}
+	
+	@RequestMapping(value = "adminPage")
+	public String adminPage() {
+		System.out.println("------------ Controller adminPage -------------");
+		
+		return "js/adminPage"; 
+		
+	}
+	
+	@RequestMapping(value = "userSleep")
+	public String userSleep() {
+		System.out.println("------------ Controller userSleep -------------");
+		
+		return "js/userSleep";
+	}
+	
+	@RequestMapping(value = "userSleepUpdate")
+	public String userSleepUpdate(Profile profile, HttpSession session, HttpServletRequest request, Model model) {
+		System.out.println("------------ Controller userSleepUpdate -------------");
+		session = request.getSession();
+		int mem_num = (int)session.getAttribute("mem_num");
+		profile.setMem_num(mem_num);
+		int result = ps.userSleepUpdate(profile);
+		
+		if (result > 0) {
+			model.addAttribute("msg", "회원탈퇴가 정상적으로 처리되었습니다.");
+			return "forward:main";
+		} else {
+			model.addAttribute("msg", "회원탈퇴에 실패했습니다. 다시 로그인해주세요");
+			return "forward:loginPage";
+		}
+	}
+		
+	
+	@RequestMapping(value="/pwCheck" , method=RequestMethod.POST)
+	@ResponseBody
+	public String pwCheck(Profile profile, HttpServletRequest request, HttpSession session) throws Exception{
+		session = request.getSession();
+		int mem_num = (int) session.getAttribute("mem_num");
+		profile.setMem_num(mem_num);
+		String result = ps.pwCheck(profile);
+		return result;
+	}
+	
+	@PostMapping(value = "gradeCheck")
+	@ResponseBody
+	public String gradeCheck(Profile profile) {
+		System.out.println("------------ Controller gradeCheck -------------");
+		String grade = ps.gradeCheck(profile);
+		
+		return grade;
+	}
+	
+	
+	@RequestMapping(value = "exampleMyPage")
+	public String exampleMyPage(HttpSession session,HttpServletRequest request) {
+		System.out.println("exampleMyPage ---------------");
+		session = request.getSession();
+		
+		
+		return "exampleMyPage";
+	}
+	
+//	@RequestMapping(value="list")
+//	public String list(Profile profile, String currentPage, Model model) {
+//		logger.info("EmpController Start list...");
+//
+//		int total = ps.total();   // Emp Count -> 19
+//	
+//		System.out.println("EmpController total=>" + total);
+//		Paging pg = new Paging(total, currentPage); 
+//		emp.setStart(pg.getStart());   // 시작시 1
+//		emp.setEnd(pg.getEnd());       // 시작시 10 
+//		List<Profile> listEmp = ps.listProfile(profile); 
+//		System.out.println("EmpController list listEmp.size()=>" + listProfile.size());
+//		model.addAttribute("listEmp",listProfile);
+//		model.addAttribute("pg",pg);
+//		model.addAttribute("total", total);
+//		return "list";
+//	}
+//    // keyword(조건) 조회
+//	@RequestMapping(value="listKeyword")
+//	public String listKeyword(Emp emp, String currentPage, Model model) {
+//		logger.info("EmpController Start listKeyword 조건 조회  ...");
+//
+//		// Keyword 맞는 Count 도출 
+//		int total = es.totalKeyword(emp);   // Emp Count -> 19
+//	
+//		System.out.println("EmpController total=>" + total);
+//		com.oracle.S20220601.service.js.Paging pg = new Paging(total, currentPage);
+//		emp.setStart(pg.getStart());   // 시작시 1
+//		emp.setEnd(pg.getEnd());       // 시작시 10 
+//		System.out.println("EmpController pg.getTotal=>" + pg.getTotal());
+//		System.out.println("EmpController pg.getStart()=>" + pg.getStart());
+//		List<Emp> listEmpKeyword = es.listEmpKeyword(emp); 
+//		System.out.println("EmpController list listEmpKeyword.size()=>" + listEmpKeyword.size());
+//		model.addAttribute("listEmp",listEmpKeyword);
+//		model.addAttribute("pg",pg);
+//		model.addAttribute("total", total);
+//		model.addAttribute("keyword", emp.getKeyword());
+//		
+//		return "listKeyword";
+//	}
+//	
 	
 }

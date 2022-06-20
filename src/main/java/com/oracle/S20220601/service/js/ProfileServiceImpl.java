@@ -1,14 +1,9 @@
 package com.oracle.S20220601.service.js;
 
-import java.io.File;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.S20220601.dao.js.ProfileDao;
 import com.oracle.S20220601.model.Profile;
@@ -59,12 +54,12 @@ public class ProfileServiceImpl implements ProfileService {
 
 
 	@Override
-	public String searchId(String name, String phone) {
+	public String searchId(Profile profile) {
 		System.out.println("----------------- Service SearchId Start --------------");
 		String result = "";
 		
 		try {
-			result = pd.searchId(name, phone);
+			result = pd.searchId(profile);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,6 +67,19 @@ public class ProfileServiceImpl implements ProfileService {
 		return result;
 	}
 
+
+	@Override
+	public int emailCheck(Profile profile) {
+		System.out.println("----------------- Service emailCheck Start --------------");
+		int cnt = pd.emailCheck(profile);
+		return cnt;
+	}
+
+
+	@Override
+	public void pwSave(Profile profile) {
+		pd.pwSave(profile);
+	}
 	
 	
 //	로그인한 회원 정보 가져오기 by 김인헌
@@ -85,6 +93,47 @@ public class ProfileServiceImpl implements ProfileService {
 		return selectProfile;
 	}
 //	로그인한 회원 정보 가져오기	
+
+
+	@Override
+	public int updateInfo(Profile profile) {
+		System.out.println("------------ Service updateInfo -------------");
+		int result = pd.updateInfo(profile);
+		return result;
+	}
+
+
+	@Override
+	public int updatePhoto(Profile profile) {
+		int result = pd.updatePhoto(profile);
+		return result;
+	}
+
+
+	@Override
+	public String pwCheck(Profile profile) {
+		String result = pd.pwCheck(profile);
+		return result;
+	}
+
+
+	@Override
+	public int userSleepUpdate(Profile profile) {
+		int result = pd.userSleepUpdate(profile);
+		return result;
+	}
+
+
+	@Override
+	public String gradeCheck(Profile profile) {
+		System.out.println("------------ service gradeCheck -------------");
+		String grade = pd.gradeCheck(profile);
+		return grade;
+	}
+
+
+
+
 
 
 

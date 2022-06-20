@@ -53,6 +53,26 @@ public class StorePhotoDaoImpl implements StorePhotoDao {
 		}
 		return storePhotoInsert;
 	}
+	
+	@Override
+	public int storePhotoUpdate(List<HostPhoto> storePhotoInsertList, Map<Integer, MultipartFile> fileName,
+			int host_num) {
+		System.out.println("StorePhotoDaoImpl storePhotoUpdate Start....");
+		int storePhotoUpdate = 0;
+		int i = 0;
+		try {
+			for (HostPhoto hostPhoto : storePhotoInsertList) {
+				hostPhoto.setHost_num(host_num);
+				hostPhoto.setHost_photo(fileName.get(i).getOriginalFilename());
+				storePhotoUpdate += session.insert("storePhotoInsert", hostPhoto);
+				System.out.println(hostPhoto.getHost_photo());
+				++i;
+			}
+		} catch (Exception e) {
+			System.out.println("StorePhotoDaoImpl storePhotoInsert ErrorMessage --> " + e.getMessage());
+		}
+		return storePhotoUpdate;
+	}
 
 	
 }

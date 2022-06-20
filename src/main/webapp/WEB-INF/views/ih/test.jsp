@@ -10,15 +10,15 @@
 <script type="text/javascript">
 	var msg = "${msg}";
 	alert(msg);
-	location.href="main";
-</script>
+	location.href="storeUpdateForm?host_num=1";
+</script> 
 <title>제주 감수광</title>
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-    	
+    
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>

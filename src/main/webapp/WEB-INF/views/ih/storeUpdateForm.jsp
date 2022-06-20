@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/ih/storePhoto.css">
 <link rel="stylesheet" href="css/ih/menuList.css">
-<script type="text/javascript" src="js/ih/storePhoto.js"></script>
+<script type="text/javascript" src="js/ih/storeUpdatePhoto.js"></script>
 <script type="text/javascript" src="js/ih/menuList.js"></script>
 <title>제주 감수광</title>
 </head>
@@ -19,23 +19,32 @@
     <!-- 여기 밑으로 ============================================================ -->
     	<div style="text-align: center; margin-top: 100px;">
 	    	<form action="storeUpdate" method="post" style="text-align: center;" enctype="multipart/form-data">
+	    		<input type="hidden" name="host_num" value="${store.host_num }">
+	    		<input type="hidden" name="mem_num" value="${store.mem_num }">
+	    		<input type="hidden" name="host_app" value="${store.host_app }">
+	    		<input type="hidden" name="host_avg" value="${store.host_avg }">
+	    		<input type="hidden" name="like_count" value="${store.like_count }">
+	    		<input type="hidden" name="rev_count" value="${store.rev_count}">
 				<div>
-					<div>
-						<div class="" id="preview"></div>
+					<div style="display: inline;">
+						<div id="preview1" style="display: inline;"><!-- read photo  -->
+						<c:forEach items="${storePhoto }" var="storePhoto" varStatus="i">
+								<img src="images/ih/${storePhoto.host_photo }" width="100px" height="100px" >
+							 <c:if test="${i.last }">
+							 	<input type="hidden" value="${i.index + 1 }" id="photoEndIndex">
+							 </c:if>
+						</c:forEach>
+						</div>
 					</div>
 					
 					<div>
 						<div class="insertPhoto" >
-							<c:forEach items="${storePhoto }" var="storePhoto" end="4" varStatus="i">
+							<c:forEach begin="0" end="4" varStatus="i">
 			                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
 			                       	 👉 CLICK HERE!👈 
 									<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
-										onchange="previewFiles(${i.index })" accept="image/*" value="${storePhoto.host_photo }" 
-										src="images/ih/${storePhoto.host_photo }">
+										onchange="previewFiles(${i.index })" accept="images/*">
 			                    </label>
-			                    <c:if test="${i.last }">
-									<input type="hidden" id="photoEndIndex" value="${i.index }"></input>
-								</c:if>
 			                </c:forEach>
 	      				</div>
 					</div>
@@ -97,6 +106,8 @@
 		    			<c:forEach items="${menuList }" var="menuList" varStatus="i">
 		    				<div>
 			   					<label class="labelmenuInfo" id="labelmenuInfo${i.index}" for="menuinputInfo${i.index}">
+			   								<input type="hidden" name="menu_list[${i.index}].menu_num" id="menuinputInfo${i.index}" value="${menuList.menu_num}">
+			   								<input type="hidden" name="menu_list[${i.index}].host_num" id="menuinputInfo${i.index}" value="${menuList.host_num}">
 				    				메뉴명 : <input type="text" name="menu_list[${i.index}].menu_name" id="menuinputInfo${i.index}" value="${menuList.menu_name}" required="required">
 							    	가격    : <input type="number" name="menu_list[${i.index}].menu_price" id="menuinputInfo${i.index}" value="${menuList.menu_price}" required="required">
 					    			  <input type="button" onclick="menuPlus(${i.index})" id="menuInfoInsert${i.index}" value="+" class="btn btn-primary">

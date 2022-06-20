@@ -18,12 +18,24 @@
 		select rev_count,host_avg from host where host_num=#{rev_num}
 	</select>
 	
+	<!-- REV_NUM SEQ -->
+  	<select id="bhgetRoom_num" resultType="int">
+  		SELECT seq_rev_num.currval FROM DUAL
+  	</select>
 	
-
-
-
-
-
+	<!-- 리뷰등록 -->
+	<insert id="revInsert" parameterType="Review">
+		INSERT INTO review VALUES(#{host_num},seq_rev_num.nextval,#{mem_num},#{rev_content},sysdate,#{rev_point},seq_rev_num.nextval,0)
+	</insert>
+	<!-- 리뷰 사진 등록 -->
+	<insert id="revPhotoInsert" parameterType="RevPhoto">
+	  	INSERT INTO revphoto VALUES(#{host_num},SEQ_REV_NUM.CURRVAL,SEQ_REV_PHOTO_NUM.nextval,#{rev_photo})
+	 </insert>
+	
+	<!-- 리뷰 host,mem 가져오기 -->
+	<select id="resInfo" parameterType="Res" resultType="Res">
+		select host_num,mem_num from Res where host_num=#{host_num} and mem_num=#{mem_num}
+	</select>
 </mapper>
   
   

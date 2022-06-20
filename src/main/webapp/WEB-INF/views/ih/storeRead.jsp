@@ -16,9 +16,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/ih/storeReview.css">
+<link rel="stylesheet" href="css/ih/style.css"><!--평점 css -->
 <link rel="stylesheet" href="css/ih/storePhoto.css">
 <script type="text/javascript" src="js/ih/storePhoto.js"></script>
 <script type="text/javascript" src="js/ih/storeReview.js"></script>
+<script type="text/javascript" src="js/ih/pick.js"></script>
 <style type="text/css">
 	hr {
 		margin-bottom: 10px;
@@ -35,9 +37,9 @@
 	    	<input type="hidden" value="${store.host_num}" id="HostNum">
 	    	<input type="hidden" value="${store.host_code}">
 	    	<input type="hidden" value="${store.mem_num}"  id="Mem_mem">
-	    	<div>
-				<input type="checkbox" style="float: right;" id="checkbox">
-	    	</div>
+	    	<label style="margin-bottom: 10px;">
+				<input type="checkbox" style="float: right;" id="checkbox" size="5px;" onclick="pick(${store.host_num})" value="${0 }">
+	    	</label>
 			
 	
 	    	
@@ -152,41 +154,50 @@
 	    	</div>
 	    	<hr/>
 	    	<!-- 리뷰 시작  -->
-	    	<div>
+	    	<div id="user_rev_insert">
 	    		<!-- 리뷰 등록 시작 -->
-	    		<c:if test="${mem_num != null }">
-			   		<label>
-							<img alt="업체사진" src="images/ih/스시호시카이.jpg"
-								 style="float: right; border-radius: 50%;" width="100px;" height="100px;"><br/>
-							<b>작성자:${name }</b>
-			   		</label>
-			   		<label>
-			   			<textarea rows="4px;" cols="135px;" style="float: right;" id="rev_content" name="rev_content"></textarea>
-			   		</label>
-					<div>
-						<div class="" id="preview"></div>
-					</div>
-					<!-- 사진  시작-->
-					<div>
-						<div class="insertPhoto">
-							<c:forEach begin="0" end="4" varStatus="i">
-			                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
-			                       	 👉 CLICK HERE!👈 
-									<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
-										onchange="previewFiles(${i.index })" accept="images/ih/*">
-			                    </label>
-			                </c:forEach>
-	      				</div>
-					</div>
-					<!-- 사진 끝 -->
-					<button type="submit" onclick="storeReviewInsert(${mem_num})" style="float: right;" class="btn btn-primary">리뷰등록</button>
-					<!-- 리뷰등록 끝 -->
+	    		<c:if test="${mem_num != 0}">
+	    			<c:if test="${mem_num != store.mem_num }">
+				   		<label>
+								<img alt="업체사진" src="images/ih/스시호시카이.jpg"
+									 style="float: right; border-radius: 50%;" width="100px;" height="100px;"><br/>
+								<b>작성자:${name }</b>
+				   		</label>
+					   		<label>
+					   			<textarea rows="4px;" cols="135px;" style="float: right;" id="rev_content" name="rev_content"></textarea>
+					   		</label>
+					   	<div id="photo_point">	
+							<div>
+								<div class="" id="preview"></div>
+							</div>
+							<section class="section">
+		                              <div class="card-body">
+		                                  <div id="step" class="star-rating" style="width: 160px; height: 32px; background-size: 32px;" title="1/5"></div>
+			                    	  </div>
+		               		</section>	
+							<!-- 사진  시작-->
+							<div>
+								<div class="insertPhoto">
+									<c:forEach begin="0" end="4" varStatus="i">
+					                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
+					                       	 👉 CLICK HERE!👈 
+											<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
+												onchange="previewFiles(${i.index })" accept="images/ih/*">
+					                    </label>
+					                </c:forEach>
+			      				</div>
+							</div>
+							<!-- 사진 끝 -->
+							<button type="submit" onclick="storeReviewInsert(${mem_num})" style="float: right;" class="btn btn-primary">리뷰등록</button>
+							<!-- 리뷰등록 끝 -->
+						</div>
 					</c:if>
+				</c:if>
 				</div>
 				<div>현재 리뷰<b  id="StoreRevCount">${store.rev_count }</b>개</div>
 				<div id="review">
 					<c:forEach items="${revList }" var="user_rev" varStatus="u">
-					<h6 hidden=""><%=count = 0 %></h6>
+					<h6 hidden="" id="count">${count = 0}</h6>
 						<c:if test="${user_rev.re_step == 0 }">
 							<div id="storeRevList${user_rev.rev_num}">
 								<hr/>
@@ -217,40 +228,49 @@
 											   id="userRevMemNum${user_rev.rev_num }"></input>
 										<input type="hidden"  value="${user_rev.rev_num }"
 											   id="userRevNum${user_rev.rev_num }"></input>
-										<button onclick="userRevUpdate(${user_rev.rev_num});" 
-												style="float: right; " class="btn btn-primary" >리뷰수정</button>
-										<button onclick="userRevDelete(${user_rev.rev_num});" 
-												style="float: right;" class="btn btn-primary">리뷰삭제</button>
+										<c:if test="${mem_num == user_rev.mem_num }">
+											<button onclick="userRevUpdate(${user_rev.rev_num});" 
+													style="float: right; " class="btn btn-primary" >리뷰수정</button>
+											<button onclick="userRevDelete(${user_rev.rev_num});" 
+													style="float: right;" class="btn btn-primary">리뷰삭제</button>
+										</c:if>
 									</div>
 									<br/>
 				   				</div>
-				   				<div id="host_rev">
-				   					<div id="host_rev_select">
-										<c:forEach items="${revList }" var="step_rev" varStatus="h">
-												<c:if test="${user_rev.rev_num == step_rev.ref && step_rev.re_step == 1}">
-													<h6 hidden=""><%=count = 1 %></h6>
-													<br/>
-													<div style="margin-top: 50px;">
-														<label style="float: right; ">[답변] : ${step_rev.rev_content }</label>
-														<br/>
-														<button onclick="hostRevUpdate(${step_rev.rev_num});" style="float: right;" class="btn btn-primary">답변수정</button>
-														<button onclick="hostRevDelete(${step_rev.rev_num});" style="float: right;" class="btn btn-primary">답변삭제</button>
-													</div>
+				   				<!--답글  Start -->
+					   				<div id="host_rev">
+					   					<div id="host_rev_select">
+												<c:forEach items="${revList }" var="step_rev" varStatus="h">
+													<c:if test="${user_rev.rev_num == step_rev.ref && step_rev.re_step == 1}">
+															<h6 hidden="" id="count">${count = 1}</h6>
+															<br/>
+																<div style="margin-top: 50px;">
+																	<label style="float: right;">[답변] : ${step_rev.rev_content }</label>
+																	<br/>
+																	<c:if test="${mem_num == store.mem_num }">
+																		<button onclick="hostRevUpdate(${step_rev.rev_num})" style="float: right;" class="btn btn-primary">답변수정</button>
+																		<button onclick="hostRevDelete(${step_rev.rev_num})" style="float: right;" class="btn btn-primary">답변삭제</button>
+																		<input type="hidden" value="${step_rev.rev_num }" id="step_rev.rev_num">
+																		<input type="hidden" value="${user_rev.rev_num }" id="user_rev.rev_num">
+																	</c:if>
+																</div>
+														</c:if>
+												</c:forEach>
+										</div>
+										<c:if test="${mem_num == store.mem_num }">
+											<div  id="host_rev_insert">
+												<c:if test="${count == 0 }">
+													<label>
+														<textarea rows="4px;" cols="155px;" style="float: right;" id="host_rev_content" name="host_rev_content"></textarea>
+													</label>
+													<button onclick="hostRevInsert(${user_rev.rev_num})" style="float: right;" class="btn btn-primary">답변등록</button>
 												</c:if>
-										</c:forEach>
-									</div>
-									<div  id="host_rev_insert">
-										<c:if test="<%=count == 0 %>">
-											<br/>
-											<label>
-												<textarea rows="4px;" cols="155px;" style="float: right;" id="host_rev_content" name="host_rev_content"></textarea>
-											</label>
-											<button onclick="hostRevInsert(${user_rev.rev_num})" style="float: right;" class="btn btn-primary">답변등록</button>
+											</div>
 										</c:if>
 									</div>
-								</div>
-							</div>
+								<!--답글 End -->
 							<br/>
+							</div>
 						</c:if>
 					</c:forEach>
 	   		</div><!-- 리뷰 끝  -->
@@ -258,6 +278,8 @@
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>
+	<script src="js/ih/rater-js.js"></script>
+	<script src="js/ih/rater-js2.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

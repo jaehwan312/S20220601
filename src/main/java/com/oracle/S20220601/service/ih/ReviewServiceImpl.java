@@ -82,4 +82,10 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewDao.hostRevDelete(review);
 	}
 
+	@Override
+	public StoreReview reviewSelect(int rev_num) {
+		System.out.println("ReviewServiceImpl reviewSelect Start...");
+		return reviewDao.reviewSelect(rev_num);
+	}
+
 }

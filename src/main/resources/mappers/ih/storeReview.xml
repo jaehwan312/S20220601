@@ -6,7 +6,7 @@
    <mapper namespace="com.oracle.S20220601.StoreRevMapper">
 	 	<!-- 식당 리뷰  -->
 	  	<select id="storeRevList" parameterType="int" resultType="review">
-	  		SELECT * FROM review WHERE host_num = 1 ORDER BY rev_num DESC
+	  		SELECT * FROM review WHERE host_num = #{host_num} ORDER BY rev_num DESC
 	  	</select>
 	  	<!-- 식당 리뷰 사진 -->
 	  	<select id="storeRevPhoto" parameterType="Review" resultType="RevPhoto">
@@ -31,7 +31,7 @@
 	  	
 	  	<!-- 리뷰 작성  -->
 	  	<insert id="storeUserRevInsert" parameterType="StoreReview">
-	  		INSERT INTO review VALUES(#{host_num},SEQ_REV_NUM.nextval,#{mem_num},#{rev_content},sysdate,5,SEQ_REV_NUM.nextval,0)
+	  		INSERT INTO review VALUES(#{host_num},SEQ_REV_NUM.nextval,#{mem_num},#{rev_content},sysdate,#{rev_point},SEQ_REV_NUM.nextval,0)
 	  	</insert>
 	  	
 	  	<!-- 리뷰 사진 등록  -->
@@ -50,4 +50,18 @@
 				  						   AND   host_num = #{host_num}
 				  						   AND   mem_num  = #{mem_num}
 	  	</delete>
+	  	
+	  	<!-- 답변 리뷰 번호 확인 -->
+	  	<select id="host_rev_num_select" parameterType="int" resultType="int">
+	  		SELECT rev_num FROM review WHERE ref = #{rev_num} AND re_step = 1
+	  	</select>
+	  	
+	  	<!-- 현재 리뷰 번호 확인 -->
+	  	<select id="user_rev_num_select" resultType="int">
+	  		SELECT seq_rev_num.currval FROM DUAL
+	  	</select>
+	  	
+	  	<select id="reviewSelect" parameterType="int" resultType="StoreReview">
+	  		SELECT * FROM review WHERE rev_num = #{rev_num} AND re_step = 0
+	  	</select>
    </mapper>
