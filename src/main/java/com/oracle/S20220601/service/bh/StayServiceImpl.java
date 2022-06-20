@@ -12,6 +12,7 @@ import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Res;
+import com.oracle.S20220601.model.RevPhoto;
 import com.oracle.S20220601.model.Review;
 import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.RoomPhoto;
@@ -121,16 +122,16 @@ public class StayServiceImpl implements StayService {
 	}
 
 	@Override
-	public int revInsert(Review review) {
+	public int revInsert(Review1 review) {
 		System.out.println("StayServiceImpl revInsert start...");
 		int revInsert = sd.revInsert(review);
 		return revInsert;
 	}
 
 	@Override
-	public int revPhotoInsert(Review1 review1) {
+	public int revPhotoInsert(List<RevPhoto> revPhotoInsertList, Map<Integer, MultipartFile> filename) {
 		System.out.println("StayServiceImpl revPhotoInsert start...");
-		int revPhotoInsert = sd.revPhotoInsert(review1);
+		int revPhotoInsert = sd.revPhotoInsert(revPhotoInsertList,filename);
 		return revPhotoInsert;
 	}
 

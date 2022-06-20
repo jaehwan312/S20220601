@@ -226,6 +226,7 @@ public class StayDaoImpl implements StayDao {
 					roomPhoto.setRoom_photo(filename.get(i).getOriginalFilename());
 					result += session.insert("roomPhotoInsert", roomPhoto);
 					System.out.println(roomPhoto.getRoom_photo());
+					++i;
 			}
 		} catch (Exception e) {
 			System.out.println("StayDaoImpl roomPhotoInsert Exception->"+e.getMessage());
@@ -247,7 +248,7 @@ public class StayDaoImpl implements StayDao {
 	}
 
 	@Override
-	public int revInsert(Review review) {
+	public int revInsert(Review1 review) {
 		System.out.println("StayDaoImpl revInsert start...");
 		int revInsert = 0;
 		try {
@@ -260,21 +261,19 @@ public class StayDaoImpl implements StayDao {
 	}
 
 	@Override
-	public int revPhotoInsert(Review1 review1) {
+	public int revPhotoInsert(List<RevPhoto> revPhotoInsertList, Map<Integer, MultipartFile> filename) {
 		System.out.println("StayDaoImpl revPhotoInsert start...");
 		int result = 0;
-		RevPhoto revPhoto = null;
+		int i = 0;
 	try {
-		for(MultipartFile multipartFile : review1.getRevPhotolist()) {
-			if(multipartFile.getOriginalFilename() != null) {
+		for(RevPhoto revPhoto : revPhotoInsertList) {
 				revPhoto = new RevPhoto();
-				revPhoto.setHost_num(review1.getHost_num());
+				revPhoto.setHost_num(revPhoto.getHost_num());
 				//int host_num = session.selectOne("bhgetHost_num");
 				//revPhoto.setHost_num(host_num);
-				revPhoto.setRev_photo(multipartFile.getOriginalFilename());
+				revPhoto.setRev_photo(filename.get(i).getOriginalFilename());
 				result += session.insert("revPhotoInsert", revPhoto);
-				System.out.println(multipartFile.getOriginalFilename());
-			}
+				System.out.println(revPhoto.getRev_photo());
 		}
 	} catch (Exception e) {
 		System.out.println("StayDaoImpl revPhotoInsert Exception->"+e.getMessage());
