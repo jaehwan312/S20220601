@@ -28,7 +28,7 @@ public class ChatRoom {
     public void handleMessage(WebSocketSession session, Chat chatMessage,
                               ObjectMapper objectMapper) throws IOException {
         if(chatMessage.getType() == MessageType.ENTER){
-            if((String)chatMessage.getGrade() == "1") {
+            if(Integer.parseInt(chatMessage.getGrade()) == 1) {
             	sessions.add(session);
                 chatMessage.setMessage(chatMessage.getGrade()+"관리자가 입장하였습니다.");
                 System.out.println("chatMessage.getGrade()->"+chatMessage.getGrade());
