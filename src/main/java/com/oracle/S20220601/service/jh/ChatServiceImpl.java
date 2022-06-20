@@ -1,5 +1,7 @@
 package com.oracle.S20220601.service.jh;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,13 @@ public class ChatServiceImpl implements ChatService {
 		int result = 0;
 		result = cd.deleteChat(mem_num);
 		return result;
+	}
+
+	@Override
+	public List<Chat> listChat(Chat chat) {
+		List<Chat> listChat = null;
+		listChat = cd.listChat(chat);
+		return listChat;
 	}
 
 }
