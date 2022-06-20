@@ -69,9 +69,13 @@ public class StoreController {
 		Code      		foodcode   	   = codeService.foodcode(storeRead);	 	//음식종류
 		List<Review>    revList   	   = reviewService.revList(host_num);		//리뷰
 		HostStore 		storeRevcount  = storeService.storeRead(host_num);		//리뷰갯수
+		
+		
 		if (mem_num != 0) {
 			Profile     profile        = profileService.selectProfile(mem_num); //회원정보 불러오기
+			String		maxReviewDate  = reviewService.maxReviewDate(host_num,mem_num);
 			model.addAttribute("name", profile.getName());
+			model.addAttribute("maxReviewDate",maxReviewDate);
 		}
 		
 		if (revList.size() != 0) {

@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/ih/storePhoto.css">
 <script type="text/javascript" src="js/ih/storePhoto.js"></script>
 <script type="text/javascript" src="js/ih/storeReview.js"></script>
-<script type="text/javascript" src="js/ih/pick.js"></script>
+<script type="text/javascript" src="js/ih/flatpickr.js"></script>
 <style type="text/css">
 	hr {
 		margin-bottom: 10px;
@@ -37,8 +37,10 @@
 	    	<input type="hidden" value="${store.host_num}" id="HostNum">
 	    	<input type="hidden" value="${store.host_code}">
 	    	<input type="hidden" value="${store.mem_num}"  id="Mem_mem">
+	    	<input type="hidden" value="${maxReviewDate}"  id="maxReviewDate">
 	    	<label style="margin-bottom: 10px;">
-				<input type="checkbox" style="float: right;" id="checkbox" size="5px;" onclick="pick(${store.host_num})" value="${0 }">
+				<i class="fa fa-heart fa-md heartLike" id="storeLike" onclick="storeLikeAction(0,${store.host_num},&quot;a&quot;)" aria-hidden="true"></i>
+				<span class="information" id="storeLikes0">1</span>
 	    	</label>
 			
 	
@@ -170,9 +172,9 @@
 							<div>
 								<div class="" id="preview"></div>
 							</div>
-							<section class="section">
-		                              <div class="card-body">
-		                                  <div id="step" class="star-rating" style="width: 160px; height: 32px; background-size: 32px;" title="1/5"></div>
+							<section class="section"  >
+		                              <div class="card-body" >
+		                                  <div id="step" class="star-rating" style="width: 160px; height: 32px; background-size: 32px;" title="1/5" ></div>
 			                    	  </div>
 		               		</section>	
 							<!-- 사진  시작-->
@@ -202,15 +204,15 @@
 							<div id="storeRevList${user_rev.rev_num}">
 								<hr/>
 								<br/>
-								<div>
+								<div id="host_user_rev">
 									<div style="float: left;">
 										<img alt="업체사진" src="images/ih/스시호시카이.jpg"
 											 style="float: right; border-radius: 50%;" width="100px;" height="100px;" ><br/>
 										<b>작성자: ${user_rev.mem_num }</b>
 									</div>
 									<div>
-										<div>
-											<label ><b>${user_rev.rev_content }</b></label><br/>
+										<div id="host_user_rev${user_rev.rev_num}">
+											<label><b id="user_rev.rev_content${user_rev.rev_num}">${user_rev.rev_content }</b></label><br/>
 										</div>
 										<div>
 											<c:forEach items="${revPhotos }" var="photo">
@@ -229,10 +231,10 @@
 										<input type="hidden"  value="${user_rev.rev_num }"
 											   id="userRevNum${user_rev.rev_num }"></input>
 										<c:if test="${mem_num == user_rev.mem_num }">
-											<button onclick="userRevUpdate(${user_rev.rev_num});" 
-													style="float: right; " class="btn btn-primary" >리뷰수정</button>
-											<button onclick="userRevDelete(${user_rev.rev_num});" 
-													style="float: right;" class="btn btn-primary">리뷰삭제</button>
+											<button onclick="userRevUpdate(${user_rev.rev_num})" 
+													style="float: right; " class="btn btn-primary" id="userRevUpdate${user_rev.rev_num}" >리뷰수정</button>
+											<button onclick="userRevDelete(${user_rev.rev_num})" 
+													style="float: right;" class="btn btn-primary" id="userRevDelete${user_rev.rev_num}">리뷰삭제</button>
 										</c:if>
 									</div>
 									<br/>
@@ -245,11 +247,14 @@
 															<h6 hidden="" id="count">${count = 1}</h6>
 															<br/>
 																<div style="margin-top: 50px;">
-																	<label style="float: right;">[답변] : ${step_rev.rev_content }</label>
+																	<div id="host_host_rev${step_rev.rev_num}">
+																		<label style="float: right;"><b id="step_rev.rev_content${step_rev.rev_num}">${step_rev.rev_content }</b></label>
+																		<label style="float: right;"><b>[답변] : </b></label>
+																	</div>
 																	<br/>
 																	<c:if test="${mem_num == store.mem_num }">
-																		<button onclick="hostRevUpdate(${step_rev.rev_num})" style="float: right;" class="btn btn-primary">답변수정</button>
-																		<button onclick="hostRevDelete(${step_rev.rev_num})" style="float: right;" class="btn btn-primary">답변삭제</button>
+																		<button onclick="hostRevUpdate(${step_rev.rev_num})" style="float: right;" class="btn btn-primary" id="hostRevUpdate${step_rev.rev_num}">답변수정</button>
+																		<button onclick="hostRevDelete(${step_rev.rev_num})" style="float: right;" class="btn btn-primary" id="hostRevDelete${step_rev.rev_num}">답변삭제</button>
 																		<input type="hidden" value="${step_rev.rev_num }" id="step_rev.rev_num">
 																		<input type="hidden" value="${user_rev.rev_num }" id="user_rev.rev_num">
 																	</c:if>

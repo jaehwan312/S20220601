@@ -14,6 +14,7 @@ function hostRevDelete(e){
 	var host_rev        = document.getElementById('host_rev');
 	
 	var host_rev_select = document.getElementById('host_rev_select');
+	
 	//답변을 inset 하는 코드
 	var host_rev_insert = "<div id='host_rev'>"
 						+ "<c:if test='${mem_num == store.mem_num }'>"
@@ -51,10 +52,14 @@ function hostRevDelete(e){
 
 //답글작성
 function hostRevInsert(e){
-
+	
+	//현재 업체번호
 	var host_num        = document.getElementById('HostNum').value;
+	//답글을 단 리뷰 변호
 	var rev_num         = e;
+	//답글 내용
 	var rev_content     = document.getElementById('host_rev_content').value;
+	//답글자 회원번호
 	var mem_num         = document.getElementById('Mem_mem').value;
 	
 	//답변 관련 코드
@@ -104,48 +109,97 @@ function hostRevInsert(e){
 
 //고객 리뷰 작성
 function storeReviewInsert(e){
+
 	
-	var host_num     = document.getElementById('HostNum').value;
-	var mem_num		 = e;
-	var rev_content  = document.getElementById('rev_content').value;
-	var formData 	 = new FormData();
 	
-	if( $('#step').data('rating') != null){
-		var rev_point     = $('#step').data('rating');
-	}else{
-		var rev_point     = 0
-	}
-	
-	elFileForm = document.querySelector('input[type=file]#inputInfo0')
-	for(var i = 0; i < 5; i++){
-		formData.append("inputinfo" + i,document.querySelector('input[type=file]#inputInfo' + i).files[0]);
-	}
-	
-	formData.append("host_num",host_num);
-	formData.append("mem_num",mem_num);
-	formData.append("rev_content",rev_content);
-	formData.append("rev_point", rev_point);
-	
-	$.ajax({
-		type:'post',                    //전송방식 POST
-		url: "/storeRevInsert",         //storeRevInsert로 이동
-		data : formData,				//전송 data formData
-		processData: false,				
-		contentType: false,
-		dataType   : 'json',			//데이터 리턴 방식 json
-		success: function(data){		//연결 성공시 실행
-			$('#rev_content').val("");
-			//$('.insertPhoto').remove();
-			//$('#preview').remove();
-			//$('.section').remove();
-			elFileForm.value ='';
-			console.log(data);
-			StoreRevCount(host_num);
-			StoreAvgUpdate(host_num);
+	if(chakDate() == 1){
+		//리뷰 다는 업체 번호
+		var host_num     = document.getElementById('HostNum').value;
+		//리뷰 작성자 회원 번호
+		var mem_num		 = e;
+		//리뷰 내용
+		var rev_content  = document.getElementById('rev_content').value;
+		//사진등 리뷰작성 정보를 jons으로 넘기기 위한 FormData 생성
+		var formData 	 = new FormData();
+		
+		//평점(평점 입력이 없으면  null 조건처리)
+		if( $('#step').data('rating') == null){
+			alert("평점을 입력해 주세요.")
+			
+		}else{
+			var rev_point     = $('#step').data('rating');
+			
+			
+			if(rev_content == ""){
+				alert("리뷰 내용을 입력해 주세요.")		
+			}else{
+				//사진 및 리뷰 정보 담기
+				elFileForm = document.querySelector('input[type=file]#inputInfo0')
+				for(var i = 0; i < 5; i++){
+					formData.append("inputinfo" + i,document.querySelector('input[type=file]#inputInfo' + i).files[0]);
+				}
+				formData.append("host_num",host_num);
+				formData.append("mem_num",mem_num);
+				formData.append("rev_content",rev_content);
+				formData.append("rev_point", rev_point);
+				
+				
+				$.ajax({
+					type:'post',                    //전송방식 POST
+					url: "/storeRevInsert",         //storeRevInsert로 이동
+					data : formData,				//전송 data formData
+					processData: false,				
+					contentType: false,
+					dataType   : 'json',			//데이터 리턴 방식 json
+					success: function(data){		//연결 성공시 실행
+						
+						//리뷰 내용 초기화
+						$('#rev_content').val("");
+						//$('div').removeData('rating');
+						//사진 preview 초기화
+						$('#preview').empty();
+						//사진 insert 초기화
+						$('#labelInfo0').show();
+						$('#labelInfo1').hide();
+						$('#labelInfo2').hide();
+						$('#labelInfo3').hide();
+						$('#labelInfo4').hide();
+						//FormData 초기화
+						elFileForm.value ='';
+						
+						//console.log("data --> " + data);
+						//$.each(data, function (k, v) {
+			             //           $('<option></option>').val(k).text(v).appendTo($('#review'));
+			            //        });
+			            
+						StoreRevCount(host_num);
+						StoreAvgUpdate(host_num);
+					}
+				});
+			}
+			
 		}
-	});
-	
+	}
+
 }
+
+function chakDate(e){
+	let today = new Date();
+	var maxReviewDate = document.getElementById('maxReviewDate').value;
+	maxReviewDate = new Date(maxReviewDate);
+	
+	if ((today - maxReviewDate)/(60*60*1000) <= 24) {
+          alert("해당 업체에 리뷰를 작성한지 1일 경과 되어야 작성 가능 합니다.");
+          return 0;
+          
+    }
+    else {
+          return 1;
+    }
+
+}
+
+
 
 //식당 평점 업데이트
 function StoreAvgUpdate(e){
@@ -225,15 +279,86 @@ function userRevDelete(e){
 	
 }
 
-
-
-/*
+//리뷰 수정
 function userRevUpdate(e){
+
 	console.log('userRevUpdate' + e);
+	var rev_content = document.getElementById('user_rev.rev_content' + e).innerText;
+	$('#userRevUpdate' + e).hide();
+	$('#userRevDelete' + e).hide();
+	$('#host_user_rev' + e).empty();
+	$('#host_user_rev' + e).append("<label>"
+							   +"	<textarea rows='4px;' cols='135px;' style='float: right;' id='rev_content_update"+e+"' name='rev_content'>"+rev_content+"</textarea>"
+							   +"</label>"
+							   +"<button onclick='userRevUpdateInsert("+e+")'"
+							   +					"style='float: right;' class='btn btn-primary' id='userRevUpdateInsert"+e+"'>수정완료</button>");
+
 }
 
+function userRevUpdateInsert(e){
+
+
+	console.log('userRevUpdateInsert' + e);
+	var rev_content_update = document.getElementById('rev_content_update'+e).value;
+	var rev_num = e;
+	console.log(rev_content_update);
+	
+	var update = {"rev_num" : rev_num, "rev_content" : rev_content_update}
+	console.log(update);
+	$.ajax({
+		url: 'RevUpdateInsert',
+		type: 'post',
+		data : JSON.stringify(update),
+		contentType: 'application/json; charset=UTF-8',
+		dataType : 'text',
+		success: function(data){
+			$('#rev_content_update' +e).remove();
+			$('#host_user_rev' + e).append("<b id='user_rev.rev_content"+e+"'>"+data+"</b>");
+			$('#userRevUpdate' + e).show();
+			$('#userRevDelete' + e).show();
+			$('#userRevUpdateInsert' + e).remove();
+		}
+			
+	})
+	
+}
+
+//답글 수정
 function hostRevUpdate(e){
 	console.log('hostRevUpdate' + e);
+	var rev_content = document.getElementById('step_rev.rev_content' + e).innerText;
+	$('#hostRevUpdate' + e).hide();
+	$('#hostRevDelete' + e).hide();
+	$('#host_host_rev' + e).empty();
+	$('#host_host_rev' + e).append("<label>"
+							   +"	<textarea rows='4px;' cols='135px;' style='float: right;' id='rev_content_update"+e+"' name='rev_content'>"+rev_content+"</textarea>"
+							   +"</label>"
+							   +"<button onclick='hostRevUpdateInsert("+e+")'"
+							   +					"style='float: right;' class='btn btn-primary' id='hostRevUpdateInsert"+e+"'>수정완료</button>");
 }
 
-*/
+function hostRevUpdateInsert(e){
+	console.log('hostRevUpdateInsert' + e);
+	var rev_content_update = document.getElementById('rev_content_update'+e).value;
+	var rev_num = e;
+	console.log(rev_content_update);
+	
+	var update = {"rev_num" : rev_num, "rev_content" : rev_content_update}
+	console.log(update);
+	$.ajax({
+		url: 'RevUpdateInsert',
+		type: 'post',
+		data : JSON.stringify(update),
+		contentType: 'application/json; charset=UTF-8',
+		dataType : 'text',
+		success: function(data){
+			$('#rev_content_update' +e).remove();
+			$('#host_host_rev' + e).append("<b id='step_rev.rev_content"+e+"' style='float:right;'>[답변]"+data+"</b>");
+			$('#hostRevUpdate' + e).show();
+			$('#hostRevDelete' + e).show();
+			$('#hostRevUpdateInsert' + e).remove();
+		}
+			
+	})
+	
+}
