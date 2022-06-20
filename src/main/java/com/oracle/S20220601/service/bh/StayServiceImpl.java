@@ -1,6 +1,7 @@
 package com.oracle.S20220601.service.bh;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Res;
 import com.oracle.S20220601.model.Review;
 import com.oracle.S20220601.model.Room;
+import com.oracle.S20220601.model.RoomPhoto;
 import com.oracle.S20220601.model.Stay;
 import com.oracle.S20220601.model.bh.HostStay;
 import com.oracle.S20220601.model.bh.Review1;
@@ -91,9 +93,9 @@ public class StayServiceImpl implements StayService {
 	}
 
 	@Override
-	public HostPhoto stayPhotoInsert(List<MultipartFile> file) {
+	public HostPhoto stayPhotoInsert(List<HostPhoto> stayPhotoInsertList, Map<Integer, MultipartFile> filename) {
 		System.out.println("StayServiceImpl stayPhotoInsert start...");
-		HostPhoto stayPhotoInsert = sd.stayPhotoInsert(file);
+		HostPhoto stayPhotoInsert = sd.stayPhotoInsert(stayPhotoInsertList,filename);
 		return stayPhotoInsert;
 	}
 
@@ -105,9 +107,9 @@ public class StayServiceImpl implements StayService {
 	}
 
 	@Override
-	public int roomPhotoInsert(List<MultipartFile> roomfile) {
+	public int roomPhotoInsert(List<RoomPhoto> roomPhotoInsertList, Map<Integer, MultipartFile> filename) {
 		System.out.println("StayServiceImpl roomPhotoInsert start...");
-		int roomPhotoInsert = sd.roomPhotoInsert(roomfile);
+		int roomPhotoInsert = sd.roomPhotoInsert(roomPhotoInsertList,filename);
 		return roomPhotoInsert;
 	}
 
@@ -137,6 +139,20 @@ public class StayServiceImpl implements StayService {
 		System.out.println("StayServiceImpl resInfo start...");
 		Res resInfo = sd.resInfo(res);
 		return resInfo;
+	}
+
+	@Override
+	public List<Res> respossible(Res res) {
+		System.out.println("StayServiceImpl respossible start...");
+		List<Res> respossible = sd.respossible(res);
+		return respossible;
+	}
+
+	@Override
+	public int stayUpdate(HostStay hostStay) {
+		System.out.println("StayServiceImpl stayUpdate start...");
+		int stayUpdate =sd.stayUpdate(hostStay);
+		return stayUpdate;
 	}
 
 
