@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +38,9 @@ public class ResController {
 
 	// 예약하기 화면
 	@PostMapping("resContent")
-	public String resContent(Res res, Model model) {
+	public String resContent(Res res, Model model, HttpServletRequest request) {
 		/* res --> stayRead에서 받아온 정보 */
+		int mem_num = (int)request.getSession().getAttribute("mem_num");
 		// 프로필
 		Profile prof = rs.profile(mem_num);
 		
@@ -140,9 +143,12 @@ public class ResController {
 
 	//예약내역 리스트
 	@RequestMapping("/resList")
-	public String resList(Res res, Model model) {
+	public String resList(Res res, Model model,HttpServletRequest request) {
+		/* res --> stayRead에서 받아온 정보 */
+		int mem_num = (int)request.getSession().getAttribute("mem_num");
+		
 		res.setMem_num(mem_num);
-		System.out.println(res.getMem_num());
+		System.out.println("res.getMem_num()"+res.getMem_num());
 		System.out.println("resList Start...");
 		// 예약확정 내역
 		List<Res> listRes = rs.listRes(res);

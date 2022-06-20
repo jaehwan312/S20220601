@@ -97,4 +97,19 @@ public class ResServiceImpl implements ResService {
 		return r_res;
 	}
 
+	@Override
+	public int updateStatus(int res_num) {
+		System.out.println("ResServiceImpl updateStatus Start...");
+		int update_status = rd.updateStatus(res_num);
+		return update_status;
+	}
+
+	@Override
+	public int deleteFailRes(int res_num) {
+		System.out.println("ResServiceImpl deleteFailRes Start...");
+		int delete_res = rd.deleteFailRes(res_num);
+		return delete_res;
+	}
+	
+
 }

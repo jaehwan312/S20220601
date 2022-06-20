@@ -32,4 +32,8 @@ public interface ResDao {
 
 	Res resByResnum(int res_num);
 
+	int updateStatus(int res_num);
+
+	int deleteFailRes(int res_num);
+
 }

@@ -184,12 +184,6 @@
 						</section>
 						<button type="button" class="btn btn-primary m-5"
 							data-bs-toggle="modal" onclick="resCheck()">결제하기</button>
-						<form method="post" action="/kakaoPay">
-	
-							<button type="button" class="btn btn-primary" id="pay">동의후 결제</button>
-						</form>
-
-
 					</div>
 				</div>
 			</div>

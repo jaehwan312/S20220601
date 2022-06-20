@@ -26,7 +26,7 @@
 						
 		AND res.res_status = 1
 		AND p.mem_num = #{mem_num}
-		order by res_start
+		order by res_num
 
 	</select>
 	
@@ -48,7 +48,7 @@
 						
 		AND res.res_status = 2
 		AND p.mem_num = #{mem_num}
-		order by res_start
+		order by res_num
 	</select>
 	
 	<select id="jiCancleResList" parameterType="Res" resultType="Res">
@@ -69,7 +69,7 @@
 						
 		AND res.res_status = 3
 		AND p.mem_num = #{mem_num}
-		order by res_start
+		order by res_num
 	</select>
 	
 	<select id="jiResDetail" parameterType="int" resultType="Res">
@@ -129,4 +129,16 @@
 		FROM RES
 		WHERE res_num=#{res_num}
 	</select>
+
+	<update id="jiUpdateStatus" parameterType="int" >
+		UPDATE
+		RES SET res_status = 1
+		WHERE res_num = #{res_num}
+	</update>
+	
+	<delete id="jiDeleteFailRes" parameterType="int">
+		DELETE 
+		FROM RES
+		WHERE res_num = #{res_num}
+	</delete>
 </mapper>
