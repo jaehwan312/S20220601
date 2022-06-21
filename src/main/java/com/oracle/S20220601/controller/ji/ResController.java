@@ -27,14 +27,10 @@ import com.oracle.S20220601.service.ji.ResService;
 @Controller
 public class ResController {
 	private static final Logger logger = LoggerFactory.getLogger(ResController.class);
-	// 세션으로 받을 예정
-	int mem_num = 5;
-	/* int mem_num = (int)session.getAttribute("mem_num"); */
+
 
 	@Autowired
 	private ResService rs;
-	
-	
 
 	// 예약하기 화면
 	@PostMapping("resContent")
@@ -124,12 +120,16 @@ public class ResController {
 
 	// 예약 상세
 	@RequestMapping("resDetail")
-	public String resDetail(Model model, int res_num) {
-
+	public String resDetail(Model model, int res_num, HttpServletRequest request) {
+		/* res --> stayRead에서 받아온 정보 */
+		int mem_num = (int)request.getSession().getAttribute("mem_num");
+		String grade = (String)request.getSession().getAttribute("grade");
+		
 		System.out.println("resDetail Start...");
 		System.out.println("res_num -> " + res_num); // 예약 번호
 		Res res1 = rs.resDetail(res_num);
 		model.addAttribute("res", res1);
+		model.addAttribute("grade", grade);
 
 		return "ji/resDetail";
 	}
@@ -146,6 +146,7 @@ public class ResController {
 	public String resList(Res res, Model model,HttpServletRequest request) {
 		/* res --> stayRead에서 받아온 정보 */
 		int mem_num = (int)request.getSession().getAttribute("mem_num");
+		String grade = (String)request.getSession().getAttribute("grade");
 		
 		res.setMem_num(mem_num);
 		System.out.println("res.getMem_num()"+res.getMem_num());
@@ -164,6 +165,7 @@ public class ResController {
 		model.addAttribute("listBeforeRes", listBeforeRes);
 		model.addAttribute("listCancleRes", listCancleRes);
 		model.addAttribute("mem_num", mem_num);
+		model.addAttribute("grade", grade);
 
 		return "ji/resList";
 	}

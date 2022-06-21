@@ -19,6 +19,9 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 													   .addPathPatterns("/storeInsertForm")
 													   .addPathPatterns("/storeUpdateForm")
 													   .addPathPatterns("/stayInsertForm")
+													   .addPathPatterns("/resContent")
+													   .addPathPatterns("/resList")
+													   .addPathPatterns("/resDetail")
 		;
 		
 	}
