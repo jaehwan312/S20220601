@@ -128,55 +128,50 @@ function storeReviewInsert(e){
 			
 		}else{
 			var rev_point     = $('#step').data('rating');
-			
-			
-			if(rev_content == ""){
-				alert("리뷰 내용을 입력해 주세요.")		
-			}else{
-				//사진 및 리뷰 정보 담기
-				elFileForm = document.querySelector('input[type=file]#inputInfo0')
-				for(var i = 0; i < 5; i++){
-					formData.append("inputinfo" + i,document.querySelector('input[type=file]#inputInfo' + i).files[0]);
-				}
-				formData.append("host_num",host_num);
-				formData.append("mem_num",mem_num);
-				formData.append("rev_content",rev_content);
-				formData.append("rev_point", rev_point);
-				
-				
-				$.ajax({
-					type:'post',                    //전송방식 POST
-					url: "/storeRevInsert",         //storeRevInsert로 이동
-					data : formData,				//전송 data formData
-					processData: false,				
-					contentType: false,
-					dataType   : 'json',			//데이터 리턴 방식 json
-					success: function(data){		//연결 성공시 실행
-						
-						//리뷰 내용 초기화
-						$('#rev_content').val("");
-						//$('div').removeData('rating');
-						//사진 preview 초기화
-						$('#preview').empty();
-						//사진 insert 초기화
-						$('#labelInfo0').show();
-						$('#labelInfo1').hide();
-						$('#labelInfo2').hide();
-						$('#labelInfo3').hide();
-						$('#labelInfo4').hide();
-						//FormData 초기화
-						elFileForm.value ='';
-						
-						//console.log("data --> " + data);
-						//$.each(data, function (k, v) {
-			             //           $('<option></option>').val(k).text(v).appendTo($('#review'));
-			            //        });
-			            
-						StoreRevCount(host_num);
-						StoreAvgUpdate(host_num);
-					}
-				});
+			//사진 및 리뷰 정보 담기
+			elFileForm = document.querySelector('input[type=file]#inputInfo0')
+			for(var i = 0; i < 5; i++){
+				formData.append("inputinfo" + i,document.querySelector('input[type=file]#inputInfo' + i).files[0]);
 			}
+			formData.append("host_num",host_num);
+			formData.append("mem_num",mem_num);
+			formData.append("rev_content",rev_content);
+			formData.append("rev_point", rev_point);
+			
+			
+			$.ajax({
+				type:'post',                    //전송방식 POST
+				url: "/storeRevInsert",         //storeRevInsert로 이동
+				data : formData,				//전송 data formData
+				processData: false,				
+				contentType: false,
+				dataType   : 'json',			//데이터 리턴 방식 json
+				success: function(data){		//연결 성공시 실행
+					
+					//리뷰 내용 초기화
+					$('#rev_content').val("");
+					//$('div').removeData('rating');
+					//사진 preview 초기화
+					$('#preview').empty();
+					//사진 insert 초기화
+					$('#labelInfo0').show();
+					$('#labelInfo1').hide();
+					$('#labelInfo2').hide();
+					$('#labelInfo3').hide();
+					$('#labelInfo4').hide();
+					//FormData 초기화
+					elFileForm.value ='';
+					
+					//console.log("data --> " + data);
+					//$.each(data, function (k, v) {
+		             //           $('<option></option>').val(k).text(v).appendTo($('#review'));
+		            //        });
+		            
+					StoreRevCount(host_num);
+					StoreAvgUpdate(host_num);
+					location.reload();
+				}
+			});
 			
 		}
 	}

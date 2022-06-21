@@ -1,0 +1,20 @@
+@charset "UTF-8";
+.notice {
+	font-family: 'Gugi', cursive;
+	font-size: 25px;
+	margin-top: 50px;
+}
+
+.horizontal_rule {
+	margin-bottom: 50px;
+}
+
+.pg_div {
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.btn_div {
+	text-align: right;
+	margin-bottom: 50px;
+}

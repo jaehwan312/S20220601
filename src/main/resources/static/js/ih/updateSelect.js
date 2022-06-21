@@ -1,3 +1,4 @@
+//음식 및 주차 가능 여부 코드 가져오기
 $(document).ready(function () {
 		parking_val   = $('select.parking').attr('data-parking');    //주차 가능여부 코드
 		food_type_val = $('select.food_type').attr('data-food_type');//음식 코드
@@ -6,6 +7,8 @@ $(document).ready(function () {
 	  	console.log(parking_val);
 	  	console.log(food_type_val);
 });
+
+//메뉴 리스트
 $(document).ready(function () {
 	var menuEndIndex = document.getElementById('menuEndIndex').value;
 	console.log(menuEndIndex);

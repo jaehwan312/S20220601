@@ -14,5 +14,10 @@ public class Review {
 	private int rev_point;			// 평점
 	private int ref;				// ref
 	private int re_step;			// re_step
+	
+	
+	//버퍼 저장용
+	private String name; //작성자 이름
+	private String photo; //작성자 사진
 
 }

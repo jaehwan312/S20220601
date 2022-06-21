@@ -21,11 +21,14 @@ public class AdminInterceptor implements HandlerInterceptor {
 	    HandlerMethod method = (HandlerMethod) handler;
 	    Method methodObj = method.getMethod();
 	    if (request.getSession().getAttribute("grade") != null && request.getSession().getAttribute("grade").equals("1")) {
-	    	return true; 
-	    } else {
-	    	response.sendRedirect("main?msg=1");
-	    	return false;
-		}
+	    	  return true; 
+	      } else if (request.getSession().getAttribute("grade") == null) {
+	          response.sendRedirect("loginPage?msg=1");
+	          return false;
+	      } else {
+	          response.sendRedirect("main?msg=1");
+	          return false;
+	      }
 	   
 	}	
 	

@@ -43,6 +43,7 @@
 		
 		<!-- jh -->
 		<typeAlias alias="Chat"     		type="com.oracle.S20220601.model.Chat"/>
+		<typeAlias alias="Ntc"     			type="com.oracle.S20220601.model.Notice"/>
 		
 	</typeAliases>
 </configuration>
