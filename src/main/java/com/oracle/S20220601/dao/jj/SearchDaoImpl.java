@@ -112,4 +112,27 @@ public class SearchDaoImpl implements SearchDao {
 		}
 	}
 
+	@Override
+	public Search getKeywordSearch(int search_num) {
+		Search search = null;
+		try {
+			search = session.selectOne("jjRecKeywordSelect", search_num);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return search;
+	}
+
+	@Override
+	public int getKeywordUpdate(Search search) {
+		int result = 0;
+		try {
+			result = session.update("jjRecKeywordUpdate", search);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return result;
+	}
+
 }

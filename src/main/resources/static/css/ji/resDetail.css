@@ -1,0 +1,11 @@
+@charset "UTF-8";
+body div {
+  font-size: medium;
+}
+
+
+  #content-wrapper {
+
+    padding: 10%;
+  }
+  

@@ -37,6 +37,10 @@
 	<form action="keywordDelete" id="keywordDelForm">
 		<input type="hidden" name="search_num" id="keywordDelId">
 	</form>
+	<!-- <form action="keywordUpdate" id="keywordUpdateForm">
+		<input type="hidden" name="search_num" id="keywordUpdateNum">
+		<input type="hidden" name="search_count" id="keywordUpdateCount">
+	</form> -->
 	<table class="table table-striped table-hover" id="tableSet">
         <thead>
         <tr class="table-primary">
@@ -48,16 +52,45 @@
         </thead>
         <tbody>
         <c:forEach var="keyword" items="${keywords }" varStatus="i">
-        <tr>
+        <tr id="listRow${i.index }">
         	<td>${keyword.search_count }</td>
         	<td>${keyword.keyword }</td>
         	<td>${keyword.search_day }</td>
         	<td>
-        		<button class="btn btn-primary btn-sm" type="button">수정</button>
-            	<button class="btn btn-primary btn-sm" type="button" onclick="recDel(${keyword.search_num}, '${keyword.keyword }')">삭제</button>
+        		<div class="row col-12">
+        		<div class="col-6">
+        			<button class="btn btn-primary btn-sm col-12" type="button" onclick="recUpdate(${i.index}, ${keyword.search_num })">수정</button>
+        		</div>
+        		<div class="col-6">
+            		<button class="btn btn-primary btn-sm col-12" type="button" onclick="recDel(${keyword.search_num}, '${keyword.keyword }')">삭제</button>
+            	</div>
+            	</div>
         	</td>
         </tr>
         </c:forEach>
+        <!-- <tr>
+        	<td>
+        		<select class="form-select" aria-label="Default select example" name="search_count">
+				  <option>우선순위</option>
+				  <option value="1">1순위</option>
+				  <option value="2">2순위</option>
+				  <option value="3">3순위</option>
+				</select>
+        	</td>
+        	<td>
+        		<input type="text" name="keyword" class="form-control" value="노블피아호텔">
+        	</td>
+        	<td>
+        		20220601
+        	</td>
+        	<td>
+        		<div class="row col-12">
+        			<div class="col-12">
+						<button class="btn btn-primary btn-sm col-12" type="button">수정완료</button>
+					</div>
+				</div>
+        	</td>
+        </tr> -->
         </tbody>
     </table>
     </div>

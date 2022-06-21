@@ -13,4 +13,11 @@ public class Notice {
 	private int n_view;			// 조회수
 	private String n_content;	// 내용
 	private String n_photo;		// 사진 Path
+	
+	// 조회용
+	private String search;
+	private String keyword;
+	private String pageNum;
+	private int start;
+	private int end;
 }
