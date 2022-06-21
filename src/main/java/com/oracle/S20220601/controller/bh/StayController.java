@@ -208,7 +208,7 @@ public class StayController {	//숙소 Controller
 		
 		Map<Integer, MultipartFile> filename     = new HashMap<Integer, MultipartFile>();
 		List<RevPhoto>			revPhotoInsertList = new ArrayList<RevPhoto>();
-		RevPhoto				revPhoto			= new RevPhoto();
+		RevPhoto	revPhoto = new RevPhoto();
 		String uploadPath = request.getSession().getServletContext().getRealPath("/images/bh/");
 		
 		filename.put(0, rev_Photo0);
@@ -228,13 +228,14 @@ public class StayController {	//숙소 Controller
 			System.out.println("end  roomPhotoInsert.size()->"+i);
 		}
 		
-		review.setHost_num(review.getHost_num());
-		review.setRevPhoto(revPhotoInsertList);
+		//Review1 review1 = new Review1();
+		//review1.setHost_num(review.getHost_num());
+		//review1.setRevPhoto(revPhotoInsertList);
 	
 		int uploadPhoto = 0;
 		System.out.println("업로드할 사진 갯수 --> " + revPhotoInsertList.size());
 		if (revPhotoInsertList.size() != 0) {
-			uploadPhoto = ss.revPhotoInsert(revPhotoInsertList,filename);
+			uploadPhoto = ss.revPhotoInsert(revPhotoInsertList,filename, review.getHost_num());
 		}
 		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
 		System.out.println("host->"+revInsert);
@@ -288,6 +289,7 @@ public class StayController {	//숙소 Controller
 		model.addAttribute("stay", stayRead);
 		model.addAttribute("stayPhoto", stayPhoto);
 		model.addAttribute("codeList", codeList);
+		
 		return "bh/stayUpdateForm";
 	}
 	
@@ -348,14 +350,25 @@ public class StayController {	//숙소 Controller
 				uploadFile(fileName.get(i).getOriginalFilename(), fileName.get(i).getBytes(), uploadPath);
 			}
 		}
+		System.out.println("fileName.size() --> " + fileName.size());
+		for (int i = 0; i < fileName.size(); i++) {
+			System.out.println(fileName.get(i).getSize());
+		}
 		
-		
-		
-		
+		System.out.println("업로드할 사진 갯수 --> " + stayPhotoInsertList.size());
+		int uploadPhoto = 0; 
+		if (stayPhotoInsertList.size() != 0) {uploadPhoto =  ss.stayPhotoUpdate(stayPhotoInsertList,fileName,hostStay.getHost_num());}
+		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
+		  
+		if (stayUpdate > 0 || uploadPhoto > 0) {
+			model.addAttribute("msg", "수정 요청 성공");
+		}else {
+			model.addAttribute("msg", "수정 요청 실패");
+		}
 		
 		//하다가 끊김
 		
-		return "";
+		return "bh/roomUpdateForm";
 		
 	}
 }

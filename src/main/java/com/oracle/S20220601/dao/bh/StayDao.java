@@ -34,9 +34,10 @@ public interface StayDao {
 	int 				roomPhotoInsert(List<RoomPhoto> roomPhotoInsertList, Map<Integer, MultipartFile> filename);
 	List<Room> 			roomList(Room room);
 	int 				revInsert(Review1 review);
-	int 				revPhotoInsert(List<RevPhoto> revPhotoInsertList, Map<Integer, MultipartFile> filename);
+	int 				revPhotoInsert(List<RevPhoto> RevPhotoInsertList, Map<Integer, MultipartFile> filename, int host_num);
 	Res 				resInfo(Res res);
 	List<Res> 			respossible(Res res);
 	int 				stayUpdate(HostStay hostStay);
+	int 				stayPhotoUpdate(List<HostPhoto> stayPhotoInsertList, Map<Integer, MultipartFile> fileName, int host_num);
 	
 }
