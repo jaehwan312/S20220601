@@ -186,8 +186,23 @@ public class ProfileDaoImpl implements ProfileDao {
 
 
 	@Override
-	public int updateUser(Profile profile) {
-		int result = session.update("updateUser", profile);
+	public Profile updateUser(Profile profile) {
+		Profile result = null;
+		if(session.update("updateUser", profile)>0) {
+			result = session.selectOne("selectProfile", profile.getMem_num());
+		}
+		
+		return result;
+	}
+
+
+	@Override
+	public Profile updateAdmin(Profile profile) {
+		Profile result = null;
+		if(session.update("updateAdmin", profile)>0) {
+			result = session.selectOne("selectProfile", profile.getMem_num());
+		}
+		
 		return result;
 	}
 

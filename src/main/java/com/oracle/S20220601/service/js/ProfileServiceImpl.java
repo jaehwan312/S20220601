@@ -172,8 +172,15 @@ public class ProfileServiceImpl implements ProfileService {
 
 
 	@Override
-	public int updateUser(Profile profile) {
-		int result = pd.updateUser(profile);
+	public Profile updateUser(Profile profile) {
+		Profile result = pd.updateUser(profile);
+		return result;
+	}
+
+
+	@Override
+	public Profile updateAdmin(Profile profile) {
+		Profile result = pd.updateAdmin(profile);
 		return result;
 	}
 

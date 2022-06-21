@@ -25,7 +25,8 @@ public interface ProfileDao {
 	List<Profile>	profileList(Profile profile);
 	int             totalKeyword(Profile profile);
 	List<Profile>   listProfileKeyword(Profile profile);
-	int             updateUser(Profile profile);
+	Profile         updateUser(Profile profile);
+	Profile         updateAdmin(Profile profile);
 
 
 

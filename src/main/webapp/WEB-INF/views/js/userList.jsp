@@ -20,22 +20,71 @@
 		}
 	}
 	
-	function updateUser() {
-			var grade  = $('#grade').val();	
+	function updateUser(num, index) {
+			var mem_num  = num;	
+			var gradeStr = "";
+			var buttonStr = "";
 			$.ajax({
 				type : "POST",
 				url : "/updateUser1",
-				data : {grade : grade},
+				data : {mem_num : mem_num},
 				dataType : 'json',
 				success: function(data){
-					if(data == 1){
-						alert("휴면계정은 로그인하실수 없습니다.");
+					if(data != null){
+						alert("등급변경에 성공했습니다.");
 					} else {
 						alert("등급변경에 실패했습니다.")
 					}
+					
+					$('#grade'+index).empty();
+					$('#button'+index).empty();
+					if(data.grade=='1'){
+						gradeStr = '관리자';
+						buttonStr = '<button onclick="updateUser('+data.mem_num+')" class="btn btn-sm btn-primary">일반회원으로변경</button>';
+					}else if(data.grade=='2') {
+						gradeStr = '일반회원';
+						buttonStr = '<button onclick="updateAdmin()" class="btn btn-sm btn-primary">관리자로변경</button>';
+					}
+					
+					$('#grade'+index).append(gradeStr);
+					$('#button'+index).append(buttonStr);
+					
 				}
 			});
 	};
+	
+	function updateAdmin(num, index) {
+		var mem_num  = num;	
+		var gradeStr = "";
+		var buttonStr = "";
+		$.ajax({
+			type : "POST",
+			url : "/updateAdmin1",
+			data : {mem_num : mem_num},
+			dataType : 'json',
+			success: function(data){
+				if(data != null){
+					alert("등급변경에 성공했습니다.");
+				} else {
+					alert("등급변경에 실패했습니다.")
+				}
+				
+				$('#grade'+index).empty();
+				$('#button'+index).empty();
+				if(data.grade=='1'){
+					gradeStr = '관리자';
+					buttonStr = '<button onclick="updateUser('+data.mem_num+')" class="btn btn-sm btn-primary">일반회원으로변경</button>';
+				}else if(data.grade=='2') {
+					gradeStr = '일반회원';
+					buttonStr = '<button onclick="updateAdmin()" class="btn btn-sm btn-primary">관리자로변경</button>';
+				}
+				
+				$('#grade'+index).append(gradeStr);
+				$('#button'+index).append(buttonStr);
+				
+			}
+		});
+};
 </script>
 <body onload="message()">
 	<%@ include file="../header.jsp" %>
@@ -56,16 +105,16 @@
 			<div class="table-responsive">
 				<table class="table table-striped table-sm"> 
 					<tr><th>회원번호</th><th>아이디</th><th>이름</th><th>전화번호</th><th>이메일</th><th>회원등급</th><th>등급변경</th></tr>
-					<c:forEach var="profile" items="${profileList}">
+					<c:forEach var="profile" items="${profileList}" varStatus="i">
 						<tr><td>${profile.mem_num }</td>
 						    <td><a href="detail?id=${profile.id}">${profile.id}</a></td>
 						    <td>${profile.name }</td><td>${profile.phone }</td><td>${profile.email }</td>
-						    <td><c:if test="${profile.grade == 1}">관리자</c:if><c:if test="${profile.grade == 2 }">일반회원</c:if></td>
-						    <td><c:if test="${profile.grade == 1}">
-						    		<button onclick="updateUser" class="btn btn-sm btn-primary">일반회원으로변경</button>
+						    <td id="grade${i.index }"><c:if test="${profile.grade == 1}">관리자</c:if><c:if test="${profile.grade == 2 }">일반회원</c:if></td>
+						    <td id="button${i.index }"><c:if test="${profile.grade == 1}">
+						    		<button onclick="updateUser(${profile.mem_num}, ${i.index })" class="btn btn-sm btn-primary">일반회원으로변경</button>
 						    	</c:if>
 						    	<c:if test="${profile.grade == 2}">
-						    		<button onclick="updateAdmin" class="btn btn-sm btn-primary">관리자로변경</button>
+						    		<button onclick="updateAdmin(${profile.mem_num}, ${i.index })" class="btn btn-sm btn-primary">관리자로변경</button>
 						    	</c:if>
 						    </td>
 						</tr>

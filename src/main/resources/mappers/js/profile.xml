@@ -27,7 +27,7 @@
 	<update id="pwSave" parameterType="Profile" >
 		UPDATE PROFILE SET pw = #{pw} WHERE id = #{id} and email = #{email}
 	</update>
-	<select id="selectProfile" resultType="Profile">
+	<select id="selectProfile" parameterType="int" resultType="Profile">
 		SELECT * from PROFILE 
         WHERE mem_num = #{mem_num}
 	</select>
@@ -116,7 +116,12 @@
   		</choose>  
 		
 	</select>
+	
     <update id="updateUser" parameterType="Profile">
-    	UPDATE PROFILE SET grade = "2"
+    	UPDATE PROFILE SET grade = 2 WHERE mem_num = #{mem_num}
+    </update>
+    
+    <update id="updateAdmin" parameterType="Profile">
+    	UPDATE PROFILE SET grade = 1 WHERE mem_num = #{mem_num}
     </update>
   </mapper>	

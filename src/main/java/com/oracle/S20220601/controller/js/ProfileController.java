@@ -484,10 +484,16 @@ public class ProfileController {
 	
 	@PostMapping(value = "updateUser1")
 	@ResponseBody
-	public int updateUser1(Profile profile) {
-		int result = ps.updateUser(profile);
+	public Profile updateUser1(Profile profile) {
+		Profile result = ps.updateUser(profile);
 		return result;
 	}
 	
+	@PostMapping(value = "updateAdmin1")
+	@ResponseBody
+	public Profile updateAdmin1(Profile profile) {
+		Profile result = ps.updateAdmin(profile);
+		return result;
+	}
 	
 }
