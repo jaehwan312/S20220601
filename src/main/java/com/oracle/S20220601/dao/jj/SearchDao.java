@@ -22,5 +22,9 @@ public interface SearchDao {
 	void getKeywordInsert(Search search);
 
 	void getKeywordDelete(Search search);
+
+	Search getKeywordSearch(int search_num);
+
+	int getKeywordUpdate(Search search);
 	
 }

@@ -224,4 +224,14 @@
 	  	<delete id="jjRecKeywordDelete" parameterType="Search">
 	  		delete from search where search_num = #{search_num}
 	  	</delete>
+	  	
+	  	<!-- 관리자용 추천검색어 조건 조회 -->
+	  	<select id="jjRecKeywordSelect" parameterType="int" resultType="Search">
+	  		select * from search where search_num=#{search_num}
+	  	</select>
+	  	
+	  	<!-- 관리자용 추천검색어 수정 -->
+	  	<update id="jjRecKeywordUpdate" parameterType="Search">
+	  		update search set keyword = #{keyword}, search_count = #{search_count} where search_num = #{search_num}
+	  	</update>
    </mapper>

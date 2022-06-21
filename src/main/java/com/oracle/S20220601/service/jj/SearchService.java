@@ -23,4 +23,8 @@ public interface SearchService {
 
 	void getKeywordDelete(Search search);
 
+	Search getKeywordSearch(int search_num);
+
+	int getKeywordUpdate(Search search);
+
 }
