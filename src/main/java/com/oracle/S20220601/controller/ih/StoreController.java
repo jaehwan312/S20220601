@@ -75,12 +75,24 @@ public class StoreController {
 			Profile     profile        = profileService.selectProfile(mem_num); //회원정보 불러오기
 			String		maxReviewDate  = reviewService.maxReviewDate(host_num,mem_num);
 			model.addAttribute("name", profile.getName());
+			model.addAttribute("userphoto",profile.getPhoto());
 			model.addAttribute("maxReviewDate",maxReviewDate);
+			
 		}
+		
 		
 		if (revList.size() != 0) {
 			List<RevPhoto>	revPhotos  = reviewService.storeRevPhoto(revList);  //리뷰 사진
 			model.addAttribute("revPhotos", revPhotos);
+			
+			Profile     profile        = profileService.selectProfile(mem_num); //회원정보 불러오기
+			String		maxReviewDate  = reviewService.maxReviewDate(host_num,mem_num);
+			
+			for (int i = 0; i < revList.size(); i++) {
+				revList.get(i).setPhoto(profileService.selectProfile(revList.get(i).getMem_num()).getPhoto());
+				revList.get(i).setName(profileService.selectProfile(revList.get(i).getMem_num()).getName());
+			}
+			
 		}
 		
 		//view로 보여질 정보들
