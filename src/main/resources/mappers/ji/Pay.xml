@@ -7,5 +7,28 @@
   		INSERT INTO PAY VALUES
   			(pay_num_seq.nextval,#{res_num},1,TO_CHAR(TO_DATE(sysdate),'YYYYMMDD'),#{price},'','')
   	</insert>
-  
+  	
+  <!--   	현재 pay_mum번호 -->
+  	<select id="jiSelectPaynumCurrval"  resultType="int">
+		SELECT pay_num_seq.CURRVAL FROM dual
+	</select>
+
+
+	<select id="jiPayByPaynum" parameterType="Pay" resultType="Pay">
+		SELECT *
+		FROM Pay
+		WHERE pay_num=#{pay_num}
+	</select>
+	
+	<update id="jiUpdatePayDate" parameterType="Pay" >
+		UPDATE
+		PAY SET pay_date = #{pay_date}
+		WHERE pay_num = #{pay_num}
+	</update>
+	
+	<delete id="jiDeleteFailPay" parameterType="int">
+		DELETE 
+		FROM PAY
+		WHERE pay_num = #{pay_num}
+	</delete>
   </mapper>

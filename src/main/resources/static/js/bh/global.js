@@ -15,8 +15,12 @@
             $('#input-end').val(end.format('MM/DD/YYYY'));
             var startdate = start.format('YYYYMMDD');
             var enddate = end.format('YYYYMMDD');
-            $('#res_start').val(startdate);
-            $('#res_end').val(enddate);
+            
+            var startdate1 = start.format('YYYY-MM-DD');
+            var enddate1 = end.format('YYYY-MM-DD');
+            
+            $('#res_start').val(startdate1);
+            $('#res_end').val(enddate1);
             var hostnum = $('#hostNumId').val();
             $.ajax({
             	url: 'respossible',

@@ -9,6 +9,7 @@ import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Res;
+import com.oracle.S20220601.model.RevPhoto;
 import com.oracle.S20220601.model.Review;
 import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.RoomPhoto;
@@ -32,8 +33,8 @@ public interface StayDao {
 	int 				roomInsert(Room room);
 	int 				roomPhotoInsert(List<RoomPhoto> roomPhotoInsertList, Map<Integer, MultipartFile> filename);
 	List<Room> 			roomList(Room room);
-	int 				revInsert(Review review);
-	int 				revPhotoInsert(Review1 review1);
+	int 				revInsert(Review1 review);
+	int 				revPhotoInsert(List<RevPhoto> revPhotoInsertList, Map<Integer, MultipartFile> filename);
 	Res 				resInfo(Res res);
 	List<Res> 			respossible(Res res);
 	int 				stayUpdate(HostStay hostStay);

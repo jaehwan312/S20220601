@@ -55,9 +55,9 @@
             <li class="dropdown">
                 <a href="" class="dropdown_button">고객센터</a>
                 <div class="dropdown_content" id="csc">
-                    <a href="">공지사항</a>
-                    <a href="">이용약관</a>
-                    <a href="">FAQ</a>
+                    <a href="ntcList">공지사항</a>
+                    <a href="tosContent">이용약관</a>
+                    <a href="faqContent">FAQ</a>
                 </div>
             </li>
         </ul>
@@ -68,7 +68,7 @@
 		                <a href="myPage" class="dropdown_button">마이페이지</a>
 		                <div class="dropdown_content" id="mypage">
 		                    <a href="myPage">나의 프로필</a>
-		                    <a href="">예약내역</a>
+		                    <a href="resList">예약내역</a>
 		                    <a href="">나의 픽(찜목록)</a>
 		                    <a href="">나의 식당정보</a>
 		                    <a href="">나의 숙소정보</a>
@@ -81,7 +81,7 @@
 		                <a href="myPage" class="dropdown_button">마이페이지</a>
 		                <div class="dropdown_content" id="mypage">
 		                    <a href="myPage">나의 프로필</a>
-		                    <a href="">예약내역</a>
+		                    <a href="resList">예약내역</a>
 		                    <a href="">나의 픽(찜목록)</a>
 		                    <a href="">나의 식당정보</a>
 		                    <a href="">나의 숙소정보</a>
