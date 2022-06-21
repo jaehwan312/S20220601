@@ -18,4 +18,5 @@ public class Host {
 	
 	// 내가 찜했는지 유무
 	private int my_like;
+	private int rev_point;
 }

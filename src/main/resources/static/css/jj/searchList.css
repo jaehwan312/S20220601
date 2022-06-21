@@ -7,6 +7,10 @@
     font-weight: bold;
 }
 
+.host_name {
+	font-weight: bold;
+}
+
 /* 검색결과 없음 메세지 */
 .emptyMsg {
 	margin-top: 30px;

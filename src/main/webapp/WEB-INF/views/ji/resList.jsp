@@ -21,8 +21,7 @@
 	<div class="container">
 		<!-- 여기 밑으로 ============================================================ -->
 		<div class="reserve_list">
-			${mem_num }
-			<h5>이제 재준오빠가 가로로 배치해주면 좋겠다 가로에 3개씩 ^.^</h5>
+
 			<section class="list_present">
 				<h4>예약 내역</h4>
 				<ul class="list_wrap">
@@ -75,7 +74,7 @@
 												${listBeforeRes.eday} • ${listBeforeRes.nday}박</span>
 										</a>
 										<p>
-											<a href="reReserve">다시 예약 </a>
+											<a href="stayRead?host_num=${listBeforeRes.host_num }">다시 예약 </a>
 										</p>
 
 									</div>
@@ -114,7 +113,7 @@
 												${listCancleRes.eday} • ${listCancleRes.nday}박</span>
 										</a>
 										<p>
-											<a href="reReserve">다시 예약 </a>
+											<a href="stayRead?host_num=${listCancleRes.host_num }">다시 예약 </a>
 										</p>
 
 									</div>

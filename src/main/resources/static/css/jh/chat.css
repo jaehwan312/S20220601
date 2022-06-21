@@ -41,6 +41,7 @@
 	border-radius: 15px;
 	overflow: hidden;
 	margin: 50px auto;
+	box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 
 .chat_header {

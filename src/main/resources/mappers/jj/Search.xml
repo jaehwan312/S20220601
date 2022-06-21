@@ -209,4 +209,19 @@
 			<!-- ${total_stay_type} -->
 		
 	  	</select>
+	  	
+	  	<!-- 관리자용 추천검색어 리스트 조회 -->
+	  	<select id="jjRecKeywordList" resultType="Search">
+	  		select * from search where search_code = 1 order by search_count, search_num desc
+	  	</select>
+	  	
+	  	<!-- 관리자용 추천검색어 입력 -->
+	  	<insert id="jjRecKeywordInsert" parameterType="Search">
+	  		insert into search values(1, seq_search_num.nextval, #{keyword}, to_char(sysdate,'YYYYMMDD'), #{search_count})
+	  	</insert>
+	  	
+	  	<!-- 관리자용 추천검색어 삭제 -->
+	  	<delete id="jjRecKeywordDelete" parameterType="Search">
+	  		delete from search where search_num = #{search_num}
+	  	</delete>
    </mapper>

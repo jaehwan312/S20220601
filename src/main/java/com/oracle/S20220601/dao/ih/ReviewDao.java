@@ -19,6 +19,8 @@ public interface ReviewDao {
 	int             storeRevPhotoInsert(List<StoreReview> RevPhotoInsertList, Map<Integer, MultipartFile> RevPhotoInsert); //식당 리뷰 사진 등록
 	int             hostRevInsert(Review review);				 //식당 리뷰 답변 작성
 	int 			hostRevDelete(Review review); 				 //식당 리뷰 답변 삭제
-	StoreReview	    reviewSelect(int rev_num);					 //작성된 식당 리뷰 반환
-}
- 
+	StoreReview	    reviewSelect(int rev_num);					 //작성된 식당 리뷰 정보 반환
+	int			    RevUpdateInsert(Review review);			 //식당리뷰 업데이트
+	String 		    maxReviewDate(int host_num, int mem_num); //최근 댓글 작성 시간
+} 
+  

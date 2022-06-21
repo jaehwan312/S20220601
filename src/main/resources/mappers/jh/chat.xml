@@ -10,4 +10,10 @@
 	<delete id="jhDeleteChat" parameterType="int">
 		delete from chat where mem_num=#{mem_num}
 	</delete>
+	
+	<select id="jhChatListSelect" parameterType="Chat" resultType="Chat">
+	<![CDATA[
+		select * from chat 
+	]]>
+	</select>
 </mapper>

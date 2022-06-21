@@ -19,7 +19,7 @@
 	</select>
 	
 	<!-- REV_NUM SEQ -->
-  	<select id="bhgetRoom_num" resultType="int">
+  	<select id="bhgetRev_num" resultType="int">
   		SELECT seq_rev_num.currval FROM DUAL
   	</select>
 	

@@ -33,7 +33,7 @@
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
-    <div class="container" style="background-color: #e9e9e9">
+    <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
     	<div class="chat_container">
     		<div class="chat_header">

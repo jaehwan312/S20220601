@@ -1,5 +1,7 @@
 package com.oracle.S20220601.controller.jh;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +34,10 @@ public class ChatController {
     private final ChatRoomRepository chatRoomRepository;
     // 관리자 페이지 리스트 목록
     @GetMapping("/chatList")
-    public String rooms(Model model){
-        model.addAttribute("rooms",chatRoomRepository.findAllRoom());
+    public String rooms(Chat chat, Model model){
+    	List<Chat> listChat = cs.listChat(chat);
+        model.addAttribute("rooms", chatRoomRepository.findAllRoom());
+        model.addAttribute("listChat", listChat);
         return "jh/rooms";
     }
     
