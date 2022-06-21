@@ -185,6 +185,15 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 
+	@Override
+	public List<Profile> userSleepList(Profile profile) {
+		System.out.println("ProfileServiceImpl Start..." );
+		List<Profile> userSleepList = pd.userSleepList(profile);
+		System.out.println("ProfileServiceImpl profileList.size()->" +userSleepList.size());
+		return userSleepList;
+	}
+
+
 
  
 

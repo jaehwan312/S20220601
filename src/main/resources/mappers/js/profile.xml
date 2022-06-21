@@ -124,4 +124,17 @@
     <update id="updateAdmin" parameterType="Profile">
     	UPDATE PROFILE SET grade = 1 WHERE mem_num = #{mem_num}
     </update>
+    
+      <select id="userSleepList" parameterType="Profile" resultType="Profile">
+     <![CDATA[
+	    SELECT *
+		FROM (
+		        SELECT rownum rn ,  a.*
+		        FROM  (select * from profile order by mem_num) a
+		     )
+		WHERE rn >= #{start} 
+		AND   rn <= #{end}
+		AND   (grade = 3)
+	 ]]>
+    </select>
   </mapper>	

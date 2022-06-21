@@ -27,6 +27,7 @@ public interface ProfileDao {
 	List<Profile>   listProfileKeyword(Profile profile);
 	Profile         updateUser(Profile profile);
 	Profile         updateAdmin(Profile profile);
+	List<Profile>   userSleepList(Profile profile);
 
 
 
