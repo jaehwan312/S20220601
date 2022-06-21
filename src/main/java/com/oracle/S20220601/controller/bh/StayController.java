@@ -26,6 +26,7 @@ import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Res;
+import com.oracle.S20220601.model.RevPhoto;
 import com.oracle.S20220601.model.Review;
 import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.RoomPhoto;
@@ -195,43 +196,45 @@ public class StayController {	//숙소 Controller
 	}
 	//리뷰 등록
 	@RequestMapping(value = "reviewInsert")
-	public String revInsert(Review review,Model model,MultipartFile rev_Photo0,
+	public String revInsert(Review1 review,Model model,MultipartFile rev_Photo0,
 										  MultipartFile rev_Photo1,MultipartFile rev_Photo2,
 										  MultipartFile rev_Photo3,MultipartFile rev_Photo4,
-										  HttpServletRequest request) {
+										  HttpServletRequest request) throws IOException, Exception {
 		
 		System.out.println("hostnum->"+review.getHost_num());
 		int revInsert = ss.revInsert(review);
 		
 		System.out.println(rev_Photo0.getOriginalFilename());
-		Map<Integer, MultipartFile> revPhotoInsert     = new HashMap<Integer, MultipartFile>();
-		List<MultipartFile>			revPhotoInsertList = new ArrayList<MultipartFile>();
-	
 		
-		revPhotoInsert.put(0, rev_Photo0);
-		revPhotoInsert.put(1, rev_Photo1);
-		revPhotoInsert.put(2, rev_Photo2);
-		revPhotoInsert.put(3, rev_Photo3);
-		revPhotoInsert.put(4, rev_Photo4);
+		Map<Integer, MultipartFile> filename     = new HashMap<Integer, MultipartFile>();
+		List<RevPhoto>			revPhotoInsertList = new ArrayList<RevPhoto>();
+		RevPhoto				revPhoto			= new RevPhoto();
+		String uploadPath = request.getSession().getServletContext().getRealPath("/images/bh/");
+		
+		filename.put(0, rev_Photo0);
+		filename.put(1, rev_Photo1);
+		filename.put(2, rev_Photo2);
+		filename.put(3, rev_Photo3);
+		filename.put(4, rev_Photo4);
 		
 		
 		
-		for (int i = 0; i < revPhotoInsert.size(); i++) {
+		for (int i = 0; i < filename.size(); i++) {
 			System.out.println("start  roomPhotoInsert.size()->"+i);
-			if (revPhotoInsert.get(i).getSize() != 0) {
-				revPhotoInsertList.add(revPhotoInsert.get(i));
+			if (filename.get(i).getSize() != 0) {
+				revPhotoInsertList.add(i,revPhoto);
+				uploadFile(filename.get(i).getOriginalFilename(), filename.get(i).getBytes(), uploadPath);
 			}
 			System.out.println("end  roomPhotoInsert.size()->"+i);
 		}
 		
-		Review1 review1 = new Review1();
-		review1.setHost_num(review.getHost_num());
-		review1.setRevPhotolist(revPhotoInsertList);
-		
+		review.setHost_num(review.getHost_num());
+		review.setRevPhoto(revPhotoInsertList);
+	
 		int uploadPhoto = 0;
 		System.out.println("업로드할 사진 갯수 --> " + revPhotoInsertList.size());
 		if (revPhotoInsertList.size() != 0) {
-			uploadPhoto = ss.revPhotoInsert(review1);
+			uploadPhoto = ss.revPhotoInsert(revPhotoInsertList,filename);
 		}
 		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
 		System.out.println("host->"+revInsert);

@@ -17,4 +17,14 @@ public interface SearchService {
 
 	Host getLikeResult(Host host);
 
+	List<Search> getKeywordList();
+
+	void getKeywordInsert(Search search);
+
+	void getKeywordDelete(Search search);
+
+	Search getKeywordSearch(int search_num);
+
+	int getKeywordUpdate(Search search);
+
 }

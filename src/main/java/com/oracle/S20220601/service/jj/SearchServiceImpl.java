@@ -39,4 +39,32 @@ public class SearchServiceImpl implements SearchService {
 		return result;
 	}
 
+	@Override
+	public List<Search> getKeywordList() {
+		List<Search> search = sd.getKeywordList();
+		return search;
+	}
+
+	@Override
+	public void getKeywordInsert(Search search) {
+		sd.getKeywordInsert(search);
+	}
+
+	@Override
+	public void getKeywordDelete(Search search) {
+		sd.getKeywordDelete(search);
+	}
+
+	@Override
+	public Search getKeywordSearch(int search_num) {
+		Search search = sd.getKeywordSearch(search_num);
+		return search;
+	}
+
+	@Override
+	public int getKeywordUpdate(Search search) {
+		int result = sd.getKeywordUpdate(search);
+		return result;
+	}
+
 }
