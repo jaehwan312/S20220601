@@ -19,23 +19,6 @@
 			alert(value2);
 		}
 	}
-	
-	function updateUser() {
-			var grade  = $('#grade').val();	
-			$.ajax({
-				type : "POST",
-				url : "/updateUser1",
-				data : {grade : grade},
-				dataType : 'json',
-				success: function(data){
-					if(data == 1){
-						alert("휴면계정은 로그인하실수 없습니다.");
-					} else {
-						alert("등급변경에 실패했습니다.")
-					}
-				}
-			});
-	};
 </script>
 <body onload="message()">
 	<%@ include file="../header.jsp" %>
@@ -62,23 +45,23 @@
 						    <td>${profile.name }</td><td>${profile.phone }</td><td>${profile.email }</td>
 						    <td><c:if test="${profile.grade == 1}">관리자</c:if><c:if test="${profile.grade == 2 }">일반회원</c:if></td>
 						    <td><c:if test="${profile.grade == 1}">
-						    		<button onclick="updateUser" class="btn btn-sm btn-primary">일반회원으로변경</button>
+						    		<button class="btn btn-sm btn-primary">일반회원으로변경</button>
 						    	</c:if>
 						    	<c:if test="${profile.grade == 2}">
-						    		<button onclick="updateAdmin" class="btn btn-sm btn-primary">관리자로변경</button>
+						    		<button class="btn btn-sm btn-primary">관리자로변경</button>
 						    	</c:if>
 						    </td>
 						</tr>
 					</c:forEach>
 				</table>
 				<c:if test="${pg.startPage > pg.pageBlock }">
-					<a href="userList?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
+					<a href="userListKeyword?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
 				</c:if>
 				<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-					<a href="userList?currentPage=${i}">[${i}]</a>
+					<a href="userListKeyword?currentPage=${i}">[${i}]</a>
 				</c:forEach>
 				<c:if test="${pg.endPage < pg.totalPage }">
-					<a href="userList?currentPage=${pg.startPage+pg.pageBlock}">[다음]</a>
+					<a href="userListKeyword?currentPage=${pg.startPage+pg.pageBlock}">[다음]</a>
 				</c:if>
 			</div>
     <!-- 여기 위로오 ============================================================ -->   

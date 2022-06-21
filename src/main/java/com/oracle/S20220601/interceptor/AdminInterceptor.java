@@ -20,8 +20,7 @@ public class AdminInterceptor implements HandlerInterceptor {
 	    System.out.println("pre handle..........................");
 	    HandlerMethod method = (HandlerMethod) handler;
 	    Method methodObj = method.getMethod();
-	    String grade =  request.getSession().getAttribute("grade").toString();
-	    if (grade.equals("1")) {
+	    if (request.getSession().getAttribute("grade") != null && request.getSession().getAttribute("grade").equals("1")) {
 	    	return true; 
 	    } else {
 	    	response.sendRedirect("main?msg=1");

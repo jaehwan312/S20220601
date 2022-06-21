@@ -52,4 +52,71 @@
 	<select id="userGrade" parameterType="Profile" resultType="String">
 		SELECT GRADE FROM PROFILE WHERE ID = #{id}
 	</select>
+	
+	<select id="ProfileTotal" resultType="int" >
+		SELECT Count(*) FROM PROFILE
+	</select>
+    <select id="ProfileList" parameterType="Profile" resultType="Profile">
+     <![CDATA[
+	    SELECT *
+		FROM (
+		        SELECT rownum rn ,  a.*
+		        FROM  (select * from profile order by mem_num) a
+		     )
+		WHERE rn >= #{start} 
+		AND   rn <= #{end}
+		AND   (grade = 1 OR grade = 2)
+	 ]]>
+    </select>
+    <select id="listProfileKeyword" parameterType="Profile" resultType="Profile">
+ 	    SELECT *
+		FROM (
+		        SELECT rownum rn ,  a.*
+		        FROM  (select * from profile 
+				 		  <choose>
+				            <when test="search == 's_all'">
+				                  WHERE (     name like '%' || #{keyword} || '%' 
+				                          OR  id   like '%' || #{keyword} || '%'   
+				                       )  
+				             </when>
+				  			 <when test="search == 's_id'">
+				                 WHERE id  like '%' || #{keyword} || '%'    
+				    		 </when>
+				             <when test="search == 's_name'">
+				                  WHERE name like '%' || #{keyword} || '%'    
+				             </when>
+				             <otherwise>
+			                      WHERE (     name like '%' 
+				                          OR  id   like '%'   
+				                       )  
+				             </otherwise>
+				  		   </choose>  
+		                  order by mem_num) a
+		     )
+		WHERE rn between #{start} AND  #{end} AND (grade = 1 or grade =2)
+    </select>
+ 
+ 	<select id="profileTotalKeyword"  parameterType="Profile" resultType="int" >
+		SELECT Count(*) FROM profile
+		  <choose>
+            <when test="search == 's_all'">
+                  WHERE (     name like '%' || #{keyword} || '%' 
+                          OR  id   like '%' || #{keyword} || '%'   
+                        )  
+             </when>
+  			<when test="search == 's_id'">
+                 WHERE id  like '%' || #{keyword} || '%'    
+    		</when>
+             <when test="search == 's_name'">
+                  WHERE name like '%' || #{keyword} || '%'    
+             </when>
+             <otherwise>
+                  WHERE id   like '%'   
+             </otherwise>
+  		</choose>  
+		
+	</select>
+    <update id="updateUser" parameterType="Profile">
+    	UPDATE PROFILE SET grade = "2"
+    </update>
   </mapper>	
