@@ -12,6 +12,11 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new AdminInterceptor()).addPathPatterns("/adminPage")
 													   .addPathPatterns("/chatList")
+													   .addPathPatterns("/keywordList")
+													   .addPathPatterns("/keywordInsert")
+													   .addPathPatterns("/keywordDelete")
+													   .addPathPatterns("/keywordSearch")
+													   .addPathPatterns("/keywordUpdate")
 		;
 		registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/myPage")
 													   .addPathPatterns("/updateProfile")
