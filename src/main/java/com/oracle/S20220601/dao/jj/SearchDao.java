@@ -16,5 +16,11 @@ public interface SearchDao {
 	List<HostStayjj> getHostStayList(Search search);
 
 	Host getLikeResult(Host host);
+
+	List<Search> getKeywordList();
+
+	void getKeywordInsert(Search search);
+
+	void getKeywordDelete(Search search);
 	
 }

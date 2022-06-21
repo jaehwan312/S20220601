@@ -22,20 +22,22 @@
 	<div class="col-8 mx-auto">
 	<h2 class="adminTitle">추천검색어 관리</h2>
 	
-	<form action="" id="keywordInsert">
+	<form action="keywordInsert">
 		<div class="input-group mb-3">
-		    <input id="keywordInsert" type="text" class="form-control" placeholder="추천검색어를 입력하세요" style="width: 50%;">
-			<select class="form-select" aria-label="Default select example">
+		    <input id="keywordInsert" type="text" name="keyword" class="form-control" placeholder="추천검색어를 입력하세요" style="width: 50%;">
+			<select class="form-select" aria-label="Default select example" name="search_count">
 			  <option selected>우선순위</option>
 			  <option value="1">1순위</option>
 			  <option value="2">2순위</option>
 			  <option value="3">3순위</option>
 			</select>
-			<button class="btn btn-primary" type="button">입력 완료</button>
+			<button class="btn btn-primary" type="submit">입력 완료</button>
 	    </div>
     </form>
-	
-	<table class="table table-striped table-hover" style="vertical-align: middle;">
+	<form action="keywordDelete" id="keywordDelForm">
+		<input type="hidden" name="search_num" id="keywordDelId">
+	</form>
+	<table class="table table-striped table-hover" id="tableSet">
         <thead>
         <tr class="table-primary">
             <th>우선순위</th>
@@ -45,15 +47,17 @@
         </tr>
         </thead>
         <tbody>
+        <c:forEach var="keyword" items="${keywords }" varStatus="i">
         <tr>
-        	<td>1</td>
-        	<td>브라운스위트</td>
-        	<td>2022-06-27</td>
+        	<td>${keyword.search_count }</td>
+        	<td>${keyword.keyword }</td>
+        	<td>${keyword.search_day }</td>
         	<td>
         		<button class="btn btn-primary btn-sm" type="button">수정</button>
-            	<button class="btn btn-primary btn-sm" type="button">삭제</button>
+            	<button class="btn btn-primary btn-sm" type="button" onclick="recDel(${keyword.search_num}, '${keyword.keyword }')">삭제</button>
         	</td>
         </tr>
+        </c:forEach>
         </tbody>
     </table>
     </div>
@@ -65,5 +69,6 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
 		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/jj/adminKeyword.js"></script>
 </body>
 </html>
