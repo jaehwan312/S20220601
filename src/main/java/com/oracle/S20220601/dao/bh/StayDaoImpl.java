@@ -1,6 +1,7 @@
 package com.oracle.S20220601.dao.bh;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -174,20 +175,20 @@ public class StayDaoImpl implements StayDao {
 	}
 
 	@Override
-	public HostPhoto stayPhotoInsert(List<MultipartFile> file) {
+	public HostPhoto stayPhotoInsert(List<HostPhoto> stayPhotoInsertList, Map<Integer, MultipartFile> filename) {
 		System.out.println("StayDaoImpl stayPhotoInsert start...");
 		HostPhoto stayPhotoInsert =null;
 		int result = 0;
+		int i =0;
 		try {
-			for(MultipartFile multipartFile : file) {
-				if(multipartFile.getOriginalFilename() != null) {
+			for(HostPhoto hostPhoto : stayPhotoInsertList) {
 					stayPhotoInsert = new HostPhoto();
-					stayPhotoInsert.setHost_photo(multipartFile.getOriginalFilename());
+					stayPhotoInsert.setHost_photo(filename.get(i).getOriginalFilename());
 					int host_num = session.selectOne("bhgetHost_num");
 					stayPhotoInsert.setHost_num(host_num);
 					result += session.insert("stayPhotoInsert", stayPhotoInsert);
-					System.out.println(multipartFile.getOriginalFilename());
-				}
+					System.out.println(stayPhotoInsert.getHost_photo());
+					++i;
 			}
 		} catch (Exception e) {
 			System.out.println("StayDaoImpl stayInsert Exception->"+e.getMessage());
@@ -211,22 +212,21 @@ public class StayDaoImpl implements StayDao {
 	}
 
 	@Override
-	public int roomPhotoInsert(List<MultipartFile> roomfile) {
+	public int roomPhotoInsert(List<RoomPhoto> roomPhotoInsertList, Map<Integer, MultipartFile> filename) {
 		System.out.println("StayDaoImpl roomPhotoInsert start...");
 			int result = 0;
-			RoomPhoto roomPhoto = null;
+			int i = 0;
 		try {
-			for(MultipartFile multipartFile : roomfile) {
-				if(multipartFile.getOriginalFilename() != null) {
+			for(RoomPhoto roomPhoto : roomPhotoInsertList) {
 					roomPhoto = new RoomPhoto();
 					int host_num = session.selectOne("bhgetHost_num");
 					int room_num = session.selectOne("bhgetRoom_num");
 					roomPhoto.setHost_num(host_num);
 					roomPhoto.setRoom_num(room_num);
-					roomPhoto.setRoom_photo(multipartFile.getOriginalFilename());
+					roomPhoto.setRoom_photo(filename.get(i).getOriginalFilename());
 					result += session.insert("roomPhotoInsert", roomPhoto);
-					System.out.println(multipartFile.getOriginalFilename());
-				}
+					System.out.println(roomPhoto.getRoom_photo());
+					++i;
 			}
 		} catch (Exception e) {
 			System.out.println("StayDaoImpl roomPhotoInsert Exception->"+e.getMessage());
@@ -248,7 +248,7 @@ public class StayDaoImpl implements StayDao {
 	}
 
 	@Override
-	public int revInsert(Review review) {
+	public int revInsert(Review1 review) {
 		System.out.println("StayDaoImpl revInsert start...");
 		int revInsert = 0;
 		try {
@@ -261,21 +261,19 @@ public class StayDaoImpl implements StayDao {
 	}
 
 	@Override
-	public int revPhotoInsert(Review1 review1) {
+	public int revPhotoInsert(List<RevPhoto> revPhotoInsertList, Map<Integer, MultipartFile> filename) {
 		System.out.println("StayDaoImpl revPhotoInsert start...");
 		int result = 0;
-		RevPhoto revPhoto = null;
+		int i = 0;
 	try {
-		for(MultipartFile multipartFile : review1.getRevPhotolist()) {
-			if(multipartFile.getOriginalFilename() != null) {
+		for(RevPhoto revPhoto : revPhotoInsertList) {
 				revPhoto = new RevPhoto();
-				revPhoto.setHost_num(review1.getHost_num());
+				revPhoto.setHost_num(revPhoto.getHost_num());
 				//int host_num = session.selectOne("bhgetHost_num");
 				//revPhoto.setHost_num(host_num);
-				revPhoto.setRev_photo(multipartFile.getOriginalFilename());
+				revPhoto.setRev_photo(filename.get(i).getOriginalFilename());
 				result += session.insert("revPhotoInsert", revPhoto);
-				System.out.println(multipartFile.getOriginalFilename());
-			}
+				System.out.println(revPhoto.getRev_photo());
 		}
 	} catch (Exception e) {
 		System.out.println("StayDaoImpl revPhotoInsert Exception->"+e.getMessage());
@@ -295,6 +293,31 @@ public class StayDaoImpl implements StayDao {
 			System.out.println("StayDaoImpl resInfo Exception->"+e.getMessage());
 		}
 		return resInfo;
+	}
+
+	@Override
+	public List<Res> respossible(Res res) {
+		System.out.println("StayDaoImpl respossible start...");
+		List<Res> respossible =null;
+		try {
+			respossible =session.selectList("respossible", res);
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl respossible Exception->"+e.getMessage());
+		}
+		return respossible;
+	}
+
+	@Override
+	public int stayUpdate(HostStay hostStay) {
+		System.out.println("StayDaoImpl stayUpdate start...");
+		int stayUpdate =0;
+		try {
+			stayUpdate =session.update("stayUpdate", hostStay);
+			stayUpdate=1;
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl respossible Exception->"+e.getMessage());
+		}
+		return stayUpdate;
 	}
 
 

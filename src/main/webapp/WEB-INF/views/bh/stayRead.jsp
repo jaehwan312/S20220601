@@ -7,7 +7,9 @@
 <meta charset="UTF-8">
 <link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
   <!-- Css Styles -->
-
+ <!-- Icons font CSS-->
+    <link href="css/bh/daterangepicker.css" rel="stylesheet" media="all">
+    <link href="css/bh/datepicks.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="css/bh/style.css" type="text/css">
 <title>제주 감수광</title>
 </head>
@@ -16,7 +18,7 @@
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
     <div>
-		
+			<input type="hidden" name="host_num" value="${host_num }" id="hostNumId">
 			<!-- test st -->
 			<section class="product-details spad">
 	        <div class="container">
@@ -97,7 +99,28 @@
 	        </div>
 	    </section>
 	    </div>
+	    
 		<div id="onRoom0">
+			<div class="container">
+		    	<div class="col-4" style="margin: auto;">
+	    		  <div class="row row-space">
+	                      <div class="col-6">
+	                          <div class="input-group">
+	                              <label class="label">체크인</label>
+	                              <input class="input--style-1" type="text" name="check-in" placeholder="mm/dd/yyyy" id="input-start">
+	                              <i class="zmdi zmdi-calendar-alt input-group-symbol"></i>
+	                          </div>
+	                      </div>
+	                      <div class="col-6">
+	                          <div class="input-group">
+	                              <label class="label">체크아웃</label>
+	                              <input class="input--style-1" type="text" name="check-out" placeholder="mm/dd/yyyy" id="input-end">
+	                              <i class="zmdi zmdi-calendar-alt input-group-symbol"></i>
+	                          </div>
+	                      </div>
+	                    </div>
+		    	</div>
+		    </div>
 		<!-- room -->
 		<%-- <div >
 					<p>
@@ -183,15 +206,17 @@
 								${room.room_name }<p/>
 								${room.dayfee }원<p/>
 								${room.room_info }<p/>
+								
 								<form action="resContent" method="post">
 									<input type="hidden" name="host_num" value="${room.host_num }">
 									<input type="hidden" name="room_num" value="${room.room_num }">
-									<input type="hidden" name="res_start" value="2022-06-26">
-									<input type="hidden" name="res_end" value="2022-06-30">
+									<input type="hidden" name="res_start" id="res_start">
+									<input type="hidden" name="res_end" id="res_end">
 									<input type="hidden" name="sale_price" value=${room.dayfee }>
 									<button type="submit">예약</button>
 								</form>
 							</div>
+							<span id="resPossible${j.index }" >여기다넣자</span>
 							
 						</div>
 						</c:forEach>
@@ -250,8 +275,9 @@
 				<div style="padding: 80px; border: 1px solid black;">
 	            <c:forEach items="${reviewList }" var="getList" varStatus="l">
 	            <div style="border: 1px solid black; margin-top: 20px;">
+	            	<div>${getList.rev_point}</div>
 	               <div style="text-align: left; padding-left: 70px; padding-top:30px; " >
-	                      ${getList.room_name }
+	                      ${getList.room_name}
 	                </div>
 	                <div style="width: 40%; text-align: left; padding-left: 60px; padding-bottom: 30px; padding-top: 30px;">
 	                  ${getList.rev_content}</div>
@@ -281,6 +307,7 @@
 	                    </button>
 	                  </div>
 	               </div>
+	               ${getList.rev_date}
 	            </div>
 	            </c:forEach> 
 	         </div>
@@ -292,5 +319,10 @@
 	<%@ include file="../footer.jsp" %>
 	<script type="text/javascript" src="js/bh/stayinfo.js"></script>
 	<script type="text/javascript" src="js/bh/reviewRead.js"></script>
+    <script src="js/bh/select2/select2.min.js"></script>
+    <script src="js/bh/datepicker/moment.min.js"></script>
+    <script src="js/bh/datepicker/daterangepicker.js"></script>
+    <!-- Main JS-->
+    <script src="js/bh/global.js"></script>
 </body>
 </html>

@@ -110,14 +110,15 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	@Override//식당 리뷰 사진 등록
 	public int storeRevPhotoInsert(List<StoreReview> RevPhotoInsertList,Map<Integer, MultipartFile> RevPhotoInsert) {
-		System.out.println("ReviewDaoImpl storeUserRevInsert Start...");
+		System.out.println("ReviewDaoImpl storeRevPhotoInsert Start...");
 		int storeRevPhotoInsert = 0;
 		int i = 0;
 		try {
 			for (StoreReview photo : RevPhotoInsertList) {
 				photo.setRev_photo(RevPhotoInsert.get(i).getOriginalFilename());
-				System.out.println(photo.getHost_num());
-				System.out.println(photo.getRev_photo());
+//				System.out.println("업체번호 --> " + photo.getHost_num());
+//				System.out.println("리뷰등록 회원번호 --> " + photo.getMem_num());
+//				System.out.println("사진이름 --> " + photo.getRev_photo());
 				storeRevPhotoInsert += session.insert("storeRevPhotoInsert",photo);
 				++i;
 			}
@@ -170,6 +171,40 @@ public class ReviewDaoImpl implements ReviewDao {
 			System.out.println("ReviewDaoImpl reviewSelect ErrorMessage --> " + e.getMessage());
 		}
 		return reviewSelect;
+	}
+
+	@Override
+	public int RevUpdateInsert(Review review) {
+		System.out.println("ReviewDaoImpl RevUpdateInsert Start...");
+		
+		int RevUpdateInsert = 0;
+		
+		try {
+			RevUpdateInsert  = session.update("RevUpdateInsert", review);
+			
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl RevUpdateInsert ErrorMessage --> " + e.getMessage());
+		}
+		return RevUpdateInsert;
+	}
+
+	@Override
+	public String maxReviewDate(int host_num, int mem_num) {
+		System.out.println("ReviewDaoImpl maxReviewDate Start...");
+		
+		Review review = new Review();
+		
+		String maxReviewDate = "";
+		
+		review.setHost_num(host_num);
+		review.setMem_num(mem_num);
+		try {
+			maxReviewDate  = session.selectOne("maxReviewDate", review);
+			System.out.println("maxReviewDate --> " + maxReviewDate);
+		} catch (Exception e) {
+			System.out.println("ReviewDaoImpl RevUpdateInsert ErrorMessage --> " + e.getMessage());
+		}
+		return maxReviewDate;
 	}
 	
 	

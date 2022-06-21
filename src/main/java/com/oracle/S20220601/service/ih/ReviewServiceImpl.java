@@ -88,4 +88,16 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewDao.reviewSelect(rev_num);
 	}
 
+	@Override
+	public int RevUpdateInsert(Review review) {
+		System.out.println("ReviewServiceImpl RevUpdateInsert Start...");
+		return reviewDao.RevUpdateInsert(review);
+	}
+
+	@Override
+	public String maxReviewDate(int host_num, int mem_num) {
+		System.out.println("ReviewServiceImpl maxReviewDate Start...");
+		return reviewDao.maxReviewDate(host_num,mem_num);
+	}
+
 }

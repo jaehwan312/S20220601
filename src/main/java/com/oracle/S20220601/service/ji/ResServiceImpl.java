@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import com.oracle.S20220601.dao.ji.ResDao;
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
+import com.oracle.S20220601.model.ji.ResInfo;
 import com.oracle.S20220601.model.ji.ResRoom;
+import com.oracle.S20220601.model.ji.RoomPay;
 
 @Service
 public class ResServiceImpl implements ResService {
@@ -65,5 +67,49 @@ public class ResServiceImpl implements ResService {
 		Profile prof = rd.profile(mem_num);
 		return prof;
 	}
+
+	@Override
+	public int totalFee(RoomPay rp) {
+		System.out.println("ResServiceImpl  profile Start...");
+		int total = rd.totalFee(rp);
+		return total;
+	}
+
+	@Override
+	public int insertRes(ResInfo resInfo) {
+		System.out.println("ResServiceImpl  insertRes Start...");
+		int insert_res = rd.insertRes(resInfo);
+		return insert_res;
+
+	}
+
+	@Override
+	public int selectResnumCurrval() {
+		System.out.println("ResServiceImpl selectResnumCurrval Start...");
+		int res_num = rd.selectResnumCurrval();
+		return res_num;
+	}
+
+	@Override
+	public Res resByResnum(int res_num) {
+		System.out.println("ResServiceImpl resByResnum Start...");
+		Res r_res = rd.resByResnum(res_num);
+		return r_res;
+	}
+
+	@Override
+	public int updateStatus(int res_num) {
+		System.out.println("ResServiceImpl updateStatus Start...");
+		int update_status = rd.updateStatus(res_num);
+		return update_status;
+	}
+
+	@Override
+	public int deleteFailRes(int res_num) {
+		System.out.println("ResServiceImpl deleteFailRes Start...");
+		int delete_res = rd.deleteFailRes(res_num);
+		return delete_res;
+	}
+	
 
 }

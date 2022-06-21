@@ -17,6 +17,9 @@
 		<!-- ji -->
 		<typeAlias alias="Res"     			type="com.oracle.S20220601.model.Res"/>
 		<typeAlias alias="ResRoom"     		type="com.oracle.S20220601.model.ji.ResRoom"/>
+		<typeAlias alias="RoomPay"     		type="com.oracle.S20220601.model.ji.RoomPay"/>
+		<typeAlias alias="ResInfo"     		type="com.oracle.S20220601.model.ji.ResInfo"/>
+		<typeAlias alias="Pay"     			type="com.oracle.S20220601.model.Pay"/>
 		
 		<!-- bh -->
 		<typeAlias alias="HostStay"      	type="com.oracle.S20220601.model.bh.HostStay"/>

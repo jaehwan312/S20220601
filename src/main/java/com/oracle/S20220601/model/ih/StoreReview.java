@@ -18,4 +18,6 @@ public class StoreReview {
 	
 	private int 	rev_photo_num;	// 사진번호
 	private String	rev_photo;		// 사진
+	
+	
 }
