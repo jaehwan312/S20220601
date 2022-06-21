@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220601.NoticeMapper">
+	<select id="jhSelectTotal" resultType="int">
+		SELECT Count(*) FROM NOTICE
+	</select>
+	
+	<select id="jhNtcListAll" parameterType="Ntc" resultType="Ntc">
+		SELECT * 
+		FROM (
+				SELECT rownum rn, a.*
+				FROM (SELECT * FROM NOTICE ORDER BY N_NUM) a
+			)
+		WHERE rn between #{start} AND #{end}
+	</select>
+</mapper>

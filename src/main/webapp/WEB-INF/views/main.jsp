@@ -38,9 +38,9 @@
             <li class="dropdown">
                 <a href="" class="dropdown_button">고객센터</a>
                 <div class="dropdown_content" id="csc">
-                    <a href="">공지사항</a>
-                    <a href="">이용약관</a>
-                    <a href="">FAQ</a>
+                    <a href="ntcList">공지사항</a>
+                    <a href="tosContent">이용약관</a>
+                    <a href="faqContent">FAQ</a>
                 </div>
             </li>
         </ul>
