@@ -207,13 +207,13 @@
 								${room.dayfee }원<p/>
 								${room.room_info }<p/>
 								
-								<form action="resContent" method="post">
+								<form id="frm${j.index }" action="resContent" onsubmit="return false">
 									<input type="hidden" name="host_num" value="${room.host_num }">
 									<input type="hidden" name="room_num" value="${room.room_num }">
 									<input type="hidden" name="res_start" id="res_start">
 									<input type="hidden" name="res_end" id="res_end">
 									<input type="hidden" name="sale_price" value=${room.dayfee }>
-									<button type="submit">예약</button>
+									<button type="submit" id="goReserve" onclick="chkDate(${j.index })">예약</button>
 								</form>
 							</div>
 							<span id="resPossible${j.index }" >여기다넣자</span>
@@ -324,5 +324,23 @@
     <script src="js/bh/datepicker/daterangepicker.js"></script>
     <!-- Main JS-->
     <script src="js/bh/global.js"></script>
+	<script type="text/javascript">
+
+		function chkDate(e) {
+			var result = true;
+			var startdate = $('#frm'+e).children('input:eq(2)').val();
+			var enddate = $('#frm'+e).children('input:eq(3)').val();
+			
+
+			if (startdate==""||startdate==null||enddate==""||enddate==null) {
+				alert("날짜를 선택해주세요");
+				result = false;
+			}else {
+				document.getElementById('frm'+e).submit();
+			}
+
+		};
+	</script>
+
 </body>
 </html>
