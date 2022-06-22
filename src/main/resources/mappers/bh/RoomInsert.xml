@@ -19,7 +19,19 @@
 	<select id="roomList" parameterType="Room" resultType="Room">
 		select * from room where host_num=#{host_num}
 	</select>
-
-
+	
+	<!-- 객실 수정 -->
+	<update id="roomUpdate" parameterType="Room">
+		update Room set room_name=#{room_name}, allow=#{allow}, room_info=#{room_info}, dayfee=#{dayfee}, weekfee=#{weekfee} where host_num=#{host_num} and room_num=#{room_num}
+	</update>
+	
+	<select id="bhRoomSelect" parameterType="Room" resultType="Room">
+		select * from room where host_num=#{host_num} and room_num=#{room_num}
+	</select>
+	
+	<!-- 숙박 포토 삭제 -->
+  	<delete id="roomPhotoDelete" parameterType="int" >
+  	delete from roomphoto where host_num=#{host_num} and room_num=#{room_num}
+  	</delete>
 
 </mapper>

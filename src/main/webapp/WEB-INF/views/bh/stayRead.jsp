@@ -19,6 +19,8 @@
     <!-- 여기 밑으로 ============================================================ -->
     <div>
 			<input type="hidden" name="host_num" value="${host_num }" id="hostNumId">
+			<input type="hidden" name="mem_num" value="${mem_num }" id="memNumId">
+			<input type="hidden" name="room_num" value="${room_num }" id="roomNumId">
 			<!-- test st -->
 			<section class="product-details spad">
 	        <div class="container">
@@ -57,11 +59,17 @@
 	                </div>
 	                <div class="col-lg-6 col-md-6">
 	                    <div class="product__details__text">
-	                        <h3>${stay.host_name}</h3>
+	                        <h3 id="stayname">${stay.host_name}</h3>
+	                        <form action="stayUpdateForm">
+	                        <input type="hidden" name="host_num" value="${host_num }">
+	                        <c:if test="${host_mem_num==mem_num}">
+	                        <button >숙소 수정</button>
+	                        </c:if>
+	                        </form>
 	                        <div class="product__details__rating">
 	                            ${stay.host_avg} ${stay.rev_count}
 	                        </div>
-	                        	${stay.host_addr}
+	                        <div id="stayaddr">${stay.host_addr}</div>
 	                        <div class="product__details__price">${stay.host_info}</div>
 	                       
 	                    </div>
@@ -215,6 +223,13 @@
 									<input type="hidden" name="sale_price" value=${room.dayfee }>
 									<button type="submit">예약</button>
 								</form>
+								<form action="roomUpdateForm">
+									<input type="hidden" name="host_num" value="${room.host_num }">
+									<input type="hidden" name="room_num" value="${room.room_num }">
+									<c:if test="${host_mem_num==mem_num }">
+										<button type="submit">객실수정</button>
+									</c:if>
+								</form>
 							</div>
 							<span id="resPossible${j.index }" >여기다넣자</span>
 							
@@ -228,7 +243,7 @@
 			
 		<div id="onRoom1" style="margin-bottom: 100px;">
 		 	
-			
+			<div id="staymap"></div>	
 			<!--  -->
 			<div class="accordion" id="accordionPanelsStayOpenExample">
 			  <div class="accordion-item">
@@ -242,6 +257,7 @@
 			        <strong><br>오는길 : ${stayinfo.way}<br><br>
 				        		체크인 : ${stayinfo.checkin }<br><br>
 			    				체크아웃 : ${stayinfo.checkout }</strong> 
+			    			
 			    </div>
 			  </div>
 			  <div class="accordion-item">
@@ -324,5 +340,6 @@
     <script src="js/bh/datepicker/daterangepicker.js"></script>
     <!-- Main JS-->
     <script src="js/bh/global.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e16bda872939904d33c13e42c58e211b&libraries=services"></script>
 </body>
 </html>
