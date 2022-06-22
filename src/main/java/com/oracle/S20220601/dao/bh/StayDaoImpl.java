@@ -412,6 +412,40 @@ public class StayDaoImpl implements StayDao {
 		return roomDelete;
 	}
 
+	@Override
+	public int reviewUpdate(Review1 review) {
+		System.out.println("StayDaoImpl roomUpdate start...");
+		int reviewUpdate =0;
+		try {
+			reviewUpdate =session.update("roomUpdate", review);
+			reviewUpdate =1;
+		} catch (Exception e) {
+			System.out.println("StorePhotoDaoImpl roomUpdate ErrorMessage --> " + e.getMessage());
+		}
+		return reviewUpdate;
+	}
+
+	@Override
+	public int revPhotoUpdate(List<RevPhoto> revPhotoInsertList, Map<Integer, MultipartFile> filename, Review1 review) {
+		System.out.println("StayDaoImpl revPhotoUpdate start...");
+		int revPhotoUpdate = 0;
+		int i = 0;
+		try {
+			session.delete("roomPhotoDelete", review);
+			for(RevPhoto revPhoto : revPhotoInsertList) {
+				revPhoto.setHost_num(review.getHost_num());
+				revPhoto.setRev_num(review.getRev_num());
+				System.out.println("photo_num->"+revPhoto.getRev_photo_num());
+				revPhoto.setRev_photo(filename.get(i).getOriginalFilename());
+				revPhotoUpdate += session.insert("roomPhotoInsert", revPhoto);
+				++i;
+			}
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl revPhotoUpdate ErrorMessage --> " + e.getMessage());
+		}
+		return revPhotoUpdate;
+	}
+
 	
 
 }

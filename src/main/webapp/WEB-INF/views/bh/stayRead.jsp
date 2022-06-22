@@ -180,7 +180,7 @@
 								${room.dayfee }원<p/>
 								${room.room_info }<p/>
 								
-								<form action="resContent" method="post">
+								<form id="frm${j.index }" action="resContent" onsubmit="return false">
 									<input type="hidden" name="host_num" value="${room.host_num }">
 									<input type="hidden" name="room_num" value="${room.room_num }">
 									<input type="hidden" name="res_start" id="res_start">
@@ -295,8 +295,14 @@
 	                    </button>
 	                  </div>
 	               </div>
-	               ${getList.rev_date} 
-	               <button>수정</button> <button>삭제</button>
+	               ${getList.rev_date}
+	               <form action="reviewUpdateForm">
+	               		<input type="hidden" name="host_num" value="${host_num }">
+				   		<input type="hidden" name="room_num" value="${rev_num }">
+				   		<c:if test="${getList.mem_num==mem_num }">
+	               		<button>수정</button>
+	               		</c:if>
+	               </form> <button>삭제</button>
 	            </div>
 	            
 	            </c:forEach> 

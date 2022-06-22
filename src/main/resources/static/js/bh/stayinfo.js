@@ -28,3 +28,20 @@ function roomInsertCheck() {
      return false;
  }
 }	
+//권재인
+<script type="text/javascript">
+
+      function chkDate(e) {
+         var result = true;
+         var startdate = $('#frm'+e).children('input:eq(2)').val();
+         var enddate = $('#frm'+e).children('input:eq(3)').val();
+         
+
+         if (startdate==""||startdate==null||enddate==""||enddate==null) {
+            alert("날짜를 선택해주세요");
+            result = false;
+         }else {
+            document.getElementById('frm'+e).submit();
+         }
+
+      };
