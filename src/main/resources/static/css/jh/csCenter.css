@@ -14,7 +14,26 @@
 	margin-bottom: 25px;
 }
 
-.btn_div {
+.write_btn_div {
 	text-align: right;
+	margin-bottom: 50px;
+}
+
+.contents {
+	width: 80%;
+	margin: auto;
+}
+
+.title {
+	width: 80px;
+}
+
+.content {
+	height: 50vh;
+}
+
+.content_btn_div {
+	display: flex;
+	justify-content: space-between;
 	margin-bottom: 50px;
 }

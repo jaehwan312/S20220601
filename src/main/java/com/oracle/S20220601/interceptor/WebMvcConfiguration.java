@@ -26,6 +26,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 													   .addPathPatterns("/resContent")
 													   .addPathPatterns("/resList")
 													   .addPathPatterns("/resDetail")
+													   .addPathPatterns("/kakaoPay")
 		;
 		
 	}

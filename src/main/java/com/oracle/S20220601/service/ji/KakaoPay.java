@@ -63,6 +63,7 @@ private static final String HOST = "https://kapi.kakao.com";
         params.add("approval_url", "http://localhost:8908/kakaoPaySuccess");
         params.add("cancel_url", "http://localhost:8908/kakaoPayCancel");
         params.add("fail_url", "http://localhost:8908/kakaoPaySuccessFail");
+        params.add("room_num", Integer.toString(res.getRoom_num()));
         
 
          HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String,String>>(params, headers);

@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -33,7 +33,7 @@ public class ResController {
 	private ResService rs;
 
 	// 예약하기 화면
-	@PostMapping("resContent")
+	@GetMapping("resContent")
 	public String resContent(Res res, Model model, HttpServletRequest request) {
 		/* res --> stayRead에서 받아온 정보 */
 		int mem_num = (int)request.getSession().getAttribute("mem_num");

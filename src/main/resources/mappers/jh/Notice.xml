@@ -15,4 +15,12 @@
 			)
 		WHERE rn between #{start} AND #{end}
 	</select>
+	
+	<select id="jhSelContent" parameterType="int" resultType="Ntc">
+		select * from notice where n_num = #{n_num}
+	</select>
+	
+	<delete id="jhNtcDelete" parameterType="int">
+		delete from notice where n_num = #{n_num}
+	</delete>
 </mapper>

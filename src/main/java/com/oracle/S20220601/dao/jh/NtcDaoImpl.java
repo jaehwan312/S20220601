@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.oracle.S20220601.model.Notice;
+import com.sun.net.httpserver.Authenticator.Result;
 
 
 @Repository
@@ -35,6 +36,28 @@ public class NtcDaoImpl implements NtcDao {
 		}
 		
 		return ntcList;
+	}
+
+	@Override
+	public Notice ntcContent(int n_num) {
+		Notice ntc = null;
+		try {
+			ntc = session.selectOne("jhSelContent", n_num);
+		} catch (Exception e) {
+			System.out.println("NtcDaoImpl ntcContent Exception->"+e.getMessage());
+		}
+		return ntc;
+	}
+
+	@Override
+	public int ntcDelete(int n_num) {
+		int result = 0;
+		try {
+			result = session.delete("jhNtcDelete", n_num);
+		} catch (Exception e) {
+			System.out.println("NtcDaoImpl ntcContent Exception->"+e.getMessage());
+		}
+		return result;
 	}
 
 }

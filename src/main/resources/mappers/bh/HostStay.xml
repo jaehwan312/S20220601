@@ -93,7 +93,13 @@
   	<!-- 숙박 포토 삭제 -->
   	<delete id="stayPhotoDelete" parameterType="int" >
   	delete from hostphoto where host_num=#{host_num}
-  	
-  	
   	</delete>
+  	
+  	<!-- 숙소 삭제 요청 -->
+  	<delete id="stayDelete" parameterType="HostStay">
+  		update host set host_app=3 where host_num=#{host_num}
+  	</delete>  	
+  	
+  	
+  	
   </mapper>

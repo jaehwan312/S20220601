@@ -33,4 +33,18 @@ public class NtcController {
 		model.addAttribute("total", total);
 		return "jh/ntcList";
 	}
+	
+	@GetMapping(value = "ntcContent")
+	public String ntcContent(int n_num, int num, Model model) {
+		Notice ntc = ns.ntcContent(n_num);
+		model.addAttribute("ntc", ntc);
+		model.addAttribute("num", num);
+		return "jh/ntcContent";
+	}
+	
+	@GetMapping(value = "ntcDelete")
+	public String ntcDelete(int n_num, String currentPage, Model model) {
+		int result = ns.ntcDelete(n_num);
+		return "redirect:ntcList";
+	}
 }
