@@ -184,6 +184,20 @@ public class StayServiceImpl implements StayService {
 		return result;
 	}
 
+	@Override
+	public int stayDelete(HostStay hostStay) {
+		System.out.println("StayServiceImpl stayDelete start...");
+		int stayDelete = sd.stayDelete(hostStay);
+		return stayDelete;
+	}
+
+	@Override
+	public int roomDelete(Room room) {
+		System.out.println("StayServiceImpl roomDelete start...");
+		int roomDelete = sd.roomDelete(room);
+		return roomDelete;
+	}
+
 
 
 	

@@ -385,6 +385,33 @@ public class StayDaoImpl implements StayDao {
 		return result;
 	}
 
+	@Override
+	public int stayDelete(HostStay hostStay) {
+		System.out.println("StayDaoImpl stayDelete start...");
+		int stayDelete =0;
+		try {
+			stayDelete =session.update("stayDelete", hostStay);
+			System.out.println("host->"+hostStay.getHost_num());
+			stayDelete=1;
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl stayDelete Exception->"+e.getMessage());
+		}
+		return stayDelete;
+	}
+
+	@Override
+	public int roomDelete(Room room) {
+		System.out.println("StayDaoImpl roomDelete start...");
+		int roomDelete = 0;
+		try {
+			roomDelete = session.delete("roomDelete", room);
+			roomDelete = 1;
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl roomDelete Exception->"+e.getMessage());
+		}
+		return roomDelete;
+	}
+
 	
 
 }
