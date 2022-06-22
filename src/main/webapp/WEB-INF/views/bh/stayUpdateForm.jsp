@@ -41,7 +41,7 @@
     <!-- 여기 밑으로 ============================================================ -->
     	<div style="text-align: center; margin-top: 100px;">
     	
-    	<form action="stayInsert" method="post" style="text-align: center;" enctype="multipart/form-data">
+    	<form action="stayUpdate" method="post" style="text-align: center;" enctype="multipart/form-data">
     	<input type="hidden" name="host_num" value="${stay.host_num }">
 	    		<input type="hidden" name="mem_num" value="${stay.mem_num }">
 	    		<input type="hidden" name="host_app" value="${stay.host_app }">
@@ -53,13 +53,13 @@
 					숙소명 :
 				</label>
 				<label>
-					<input type="text" name="host_name" required="required" placeholder="제주 NEW 호텔">
+					<input type="text" name="host_name" value="${stay.host_name }">
 				</label><p/><p/>
 				<label>
 					업체주소 :
 				</label>
 				<label>
-					<input type="text" name="host_addr" required="required" placeholder="도로명주소">
+					<input type="text" name="host_addr"  value="${stay.host_addr }">
 				</label><p/>
 
 			<div>
@@ -94,36 +94,36 @@
 					업체소개 :
 				</label>
 				<label>
-					<input type="text" name="host_info" required="required" placeholder="업체에대한 간략한소개 및 사장님 한마디">
+					<input type="text" name="host_info"  value="${stay.host_info }">
 				</label><p/>
 				<label>
 					편의시설 :
 				</label>
 				<label>
-					<input type="text" name="convenient" required="required" placeholder="ex)헬스장,바베큐장">
+					<input type="text" name="convenient"  value="${stay.convenient}">
 				</label><p/>
 				<label>
 					오시는길 :
 				</label>
 				<label>
-					<input type="text" name="way" required="required" placeholder="ex)공항에서 차로 10분 거리,버스 30번 이용후 xx정류장하차">
+					<input type="text" name="way"  value="${stay.way }">
 				</label><p/>
 				<label>
 					체크인 가능시간 :
 				</label>
 				<label>
-					 <input  type="time" class="form-control" name="checkin" id="stay_checkin" autocomplete="off" >
+					 <input  type="time" class="form-control" name="checkin" id="stay_checkin" autocomplete="off" value="${stay.checkin}" >
 				</label><p/>
 				<label>
 					체크아웃 완료시간 :
 				</label>
 				<label>
-					<input type="time"  class="form-control" name="checkout" id="stay_checkout" autocomplete="off">
+					<input type="time"  class="form-control" name="checkout" id="stay_checkout" autocomplete="off" value="${stay.checkout}">
 				</label><p/>
 			
 			
 			</div>
-			<input type="submit" value="등록요청">
+			<input type="submit" value="수정">
     	</form>
     	</div>
     	

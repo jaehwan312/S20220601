@@ -32,7 +32,7 @@ public class StorePhotoDaoImpl implements StorePhotoDao {
 		return storePhoto;
 	}
 
-	@Override
+	@Override//사진 등록
 	public int storePhotoInsert(List<HostPhoto> storePhotoInsertList, Map<Integer, MultipartFile> fileName) {
 		
 		System.out.println("StorePhotoDaoImpl storePhotoInsert Start....");
@@ -54,7 +54,7 @@ public class StorePhotoDaoImpl implements StorePhotoDao {
 		return storePhotoInsert;
 	}
 	
-	@Override
+	@Override//사진 추가 등록
 	public int storePhotoUpdate(List<HostPhoto> storePhotoInsertList, Map<Integer, MultipartFile> fileName,
 			int host_num) {
 		System.out.println("StorePhotoDaoImpl storePhotoUpdate Start....");

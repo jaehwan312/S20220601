@@ -1,5 +1,7 @@
 package com.oracle.S20220601.service.js;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,10 +133,69 @@ public class ProfileServiceImpl implements ProfileService {
 		return grade;
 	}
 
+	@Override
+	public int total() {
+		System.out.println("ProfileServiceImpl Start total..." );
+		int totCnt = pd.total();
+		System.out.println("ProfileServiceImpl total totCnt->"+totCnt );
+		return totCnt;
+	}
+
+
+	@Override
+	public List<Profile> profileList(Profile profile) {
+		List<Profile> profileList = null;
+		System.out.println("ProfileServiceImpl Start..." );
+		profileList = pd.profileList(profile);
+		System.out.println("ProfileServiceImpl profileList.size()->" +profileList.size());
+		return profileList;
+	}
+
+
+	@Override
+	public int totalKeyword(Profile profile) {
+		System.out.println("ProfileServiceImpl totalKeyword Start..." );
+		int totCnt = pd.totalKeyword(profile);
+		System.out.println("ProfileServiceImpl totalKeyword totCnt->"+totCnt );
+		return totCnt;
+	}
+
+
+	@Override
+	public List<Profile> listProfileKeyword(Profile profile) {
+		List<Profile> listProfileKeyword = null;
+		System.out.println("ProfileServiceImpl listProfileKeyword Start..." );
+		listProfileKeyword = pd.listProfileKeyword(profile);
+		System.out.println("ProfileServiceImpl listProfileKeyword.size()->" +listProfileKeyword.size());
+		return listProfileKeyword; 
+	}
+
+
+	@Override
+	public Profile updateUser(Profile profile) {
+		Profile result = pd.updateUser(profile);
+		return result;
+	}
+
+
+	@Override
+	public Profile updateAdmin(Profile profile) {
+		Profile result = pd.updateAdmin(profile);
+		return result;
+	}
+
+
+	@Override
+	public List<Profile> userSleepList(Profile profile) {
+		System.out.println("ProfileServiceImpl Start..." );
+		List<Profile> userSleepList = pd.userSleepList(profile);
+		System.out.println("ProfileServiceImpl profileList.size()->" +userSleepList.size());
+		return userSleepList;
+	}
 
 
 
-
+ 
 
 
 

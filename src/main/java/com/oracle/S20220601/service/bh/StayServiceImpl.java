@@ -129,9 +129,9 @@ public class StayServiceImpl implements StayService {
 	}
 
 	@Override
-	public int revPhotoInsert(List<RevPhoto> revPhotoInsertList, Map<Integer, MultipartFile> filename) {
+	public int revPhotoInsert(List<RevPhoto> RevPhotoInsertList, Map<Integer, MultipartFile> filename, int host_num) {
 		System.out.println("StayServiceImpl revPhotoInsert start...");
-		int revPhotoInsert = sd.revPhotoInsert(revPhotoInsertList,filename);
+		int revPhotoInsert = sd.revPhotoInsert(RevPhotoInsertList,filename, host_num);
 		return revPhotoInsert;
 	}
 
@@ -155,6 +155,35 @@ public class StayServiceImpl implements StayService {
 		int stayUpdate =sd.stayUpdate(hostStay);
 		return stayUpdate;
 	}
+
+	@Override
+	public int stayPhotoUpdate(List<HostPhoto> stayPhotoInsertList, Map<Integer, MultipartFile> fileName,
+			int host_num) {
+		System.out.println("StayServiceImpl stayPhotoUpdate start...");
+		int stayPhotoUpdate = sd.stayPhotoUpdate(stayPhotoInsertList,fileName,host_num);
+		return stayPhotoUpdate;
+	}
+
+	@Override
+	public int roomUpdate(Room room) {
+		System.out.println("StayServiceImpl roomUpdate start...");
+		int roomUpdate = sd.roomUpdate(room);
+		return roomUpdate;
+	}
+
+	@Override
+	public int roomPhotoUpdate(List<RoomPhoto> roomPhotoInsertList, Map<Integer, MultipartFile> filename,Room room) {
+		System.out.println("StayServiceImpl roomPhotoUpdate start...");
+		int roomPhotoUpdate = sd.roomPhotoUpdate(roomPhotoInsertList,filename,room);
+		return roomPhotoUpdate;
+	}
+
+	@Override
+	public Room stayRead(Room room) {
+		Room result = sd.selectRoom(room);
+		return result;
+	}
+
 
 
 	
