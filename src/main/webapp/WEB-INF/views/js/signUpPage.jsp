@@ -87,7 +87,7 @@
 						   <input type="checkbox" name="agree" id="agree" value="Y"><a href="signUpCheckPage" target="_blank" style="text-decoration: underline;  color: #4b70fd;">개인정보 수집 이용 및 약관</a> 동의합니다.
 						<br>
 					</div>
-					<button type="submit" class="btn btn-danger btn-lg" style="margin-top: 50px;">회원가입</button>					
+					<button type="submit" class="btn btn-primary btn-lg" style="margin-top: 50px;">회원가입</button>					
 				</form>
 			</div>
 		</div>

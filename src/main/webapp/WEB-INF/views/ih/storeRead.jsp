@@ -94,7 +94,7 @@
 	    		</label><p/>
 				<br/><hr/><br/>
 					<!--지도 start  -->
-					<div id="map" style="width:500px;height:400px;" url=""></div>
+					<div id="map" style="width:300px;height:300px; float: right;" ></div>
 					<!--지도 end  -->
 					<div>
 			    		<label style="float: left;  margin-right: 25px; width: 100px;">
@@ -241,9 +241,9 @@
 										</div>
 										<br/>
 					   				</div>
-					   				<!--답글  Start -->
-						   				<div id="host_rev">
-						   					<div id="host_rev_select">
+					   				<!--답글  Start --><!-- 답글을 다는 리뷰의 번호로 기능동작구분 -->
+						   				<div id="host_rev${user_rev.rev_num}">
+						   					<div id="host_rev_select${user_rev.rev_num}">
 													<c:forEach items="${revList }" var="step_rev" varStatus="h">
 														<c:if test="${user_rev.rev_num == step_rev.ref && step_rev.re_step == 1}">
 																<h6 hidden="" id="count">${count = 1}</h6>
@@ -265,10 +265,10 @@
 													</c:forEach>
 											</div>
 											<c:if test="${mem_num == store.mem_num }">
-												<div  id="host_rev_insert">
+												<div  id="host_rev_insert${user_rev.rev_num}">
 													<c:if test="${count == 0 }">
 														<label>
-															<textarea rows="4px;" cols="155px;" style="float: right;" id="host_rev_content" name="host_rev_content"></textarea>
+															<textarea rows="4px;" cols="155px;" style="float: right;" id="host_rev_content${user_rev.rev_num}" name="host_rev_content"></textarea>
 														</label>
 														<button onclick="hostRevInsert(${user_rev.rev_num})" style="float: right;" class="btn btn-primary">답변등록</button>
 													</c:if>
