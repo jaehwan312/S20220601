@@ -125,7 +125,17 @@ public class StayController {	//숙소 Controller
 		return "bh/roomInsertForm";
 	}
 	
-	
+	@PostMapping(value = "roomInsertForm")
+	public String roomInsertForm(int host_num,Model model) {
+		Room room = new Room();
+		room.setHost_num(host_num);
+		List<Room> roomList = ss.roomList(room);
+		
+		model.addAttribute("host_num", host_num);
+		model.addAttribute("roomList", roomList);
+		
+		return "bh/roomInsertForm";
+	}
 
 	
 	//객실 등록
@@ -247,28 +257,28 @@ public class StayController {	//숙소 Controller
 		}else {
 			model.addAttribute("msg", "객실 등록 실패");
 		}
-		
-		
 		return "bh/reviewInsertForm";
 	}
+	
 	//예약가능여부 확인
 	@PostMapping(value = "respossible")
 	@ResponseBody
 	public List<Res> respossible(Res res,Model model) {
-		
 		List<Res> responssible = ss.respossible(res);
-		
 		return responssible;
 	}
+	
 	//리뷰 업데이트 페이지
 	@GetMapping(value = "reviewUpdateForm")
 	public String reviewUpdateForm(HttpServletRequest request,Review1 review,Model model) {
 		logger.info("StayController reviewUpdateForm Start");
 		int mem_num = (int)request.getSession().getAttribute("mem_num");
+		//review.setHost_num(host_num);
 		review.setMem_num(mem_num);
 		model.addAttribute("reviewUpdateForm", review);
 		return "bh/reviewUpdateForm";
 	}
+	
 	//리뷰 업데이트
 //	@RequestMapping(value = "reviewUpdate")
 //	public String reviewUpdate(Review1 review, Model model){
@@ -319,7 +329,7 @@ public class StayController {	//숙소 Controller
 							 MultipartFile host_photo1,MultipartFile host_photo2,
 							 MultipartFile host_photo3,MultipartFile host_photo4,HttpServletRequest request) throws IOException, Exception {
 		
-		System.out.println("StoreController stayUpdate Start..");
+		System.out.println("StayController stayUpdate Start..");
 		
 		int stayUpdate = ss.stayUpdate(hostStay);
 		
@@ -381,7 +391,7 @@ public class StayController {	//숙소 Controller
 							  MultipartFile room_photo1,MultipartFile room_photo2,
 							  MultipartFile room_photo3,MultipartFile room_photo4,
 							  HttpServletRequest request) throws IOException, Exception {
-		System.out.println("StoreController roomUpdate Start..");
+		System.out.println("StayController roomUpdate Start..");
 		int roomUpdate = ss.roomUpdate(room);
 		
 		
@@ -416,9 +426,9 @@ public class StayController {	//숙소 Controller
 		model.addAttribute("roomInsert", roomUpdate);
 		
 		if (roomUpdate > 0) {
-			model.addAttribute("msg", "객실 등록 성공");
+			model.addAttribute("msg", "객실 수정 성공");
 		}else {
-			model.addAttribute("msg", "객실 등록 실패");
+			model.addAttribute("msg", "객실 수정 실패");
 		}
 		List<Room> roomList = ss.roomList(room);
 		
@@ -431,6 +441,31 @@ public class StayController {	//숙소 Controller
 			model.addAttribute("roomList", roomList);
 		}
 		model.addAttribute("host_num", room.getHost_num());
+		
+		return "main";
+	}
+	
+	@RequestMapping(value = "stayDelete")
+	public String stayDelete(HostStay hostStay,Model model) {
+		System.out.println("StayController stayDeleteForm Start..");
+		int stayDelete = ss.stayDelete(hostStay);
+		if (stayDelete > 0) {
+			model.addAttribute("msg", "삭제 요청 성공");
+		}else {
+			model.addAttribute("msg", "객실 등록 실패");
+		}
+		return "main";
+	}
+	
+	@RequestMapping(value = "roomDelete")
+	public String roomDelete(Room room,Model model) {
+		System.out.println("StayController roomDelete Start..");
+		int roomDelete = ss.roomDelete(room);
+		if (roomDelete > 0) {
+			model.addAttribute("msg", "객실 삭제 성공");
+		}else {
+			model.addAttribute("msg", "객실 등록 실패");
+		}
 		
 		return "main";
 	}

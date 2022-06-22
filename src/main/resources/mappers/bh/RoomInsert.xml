@@ -31,7 +31,13 @@
 	
 	<!-- 숙박 포토 삭제 -->
   	<delete id="roomPhotoDelete" parameterType="int" >
-  	delete from roomphoto where host_num=#{host_num} and room_num=#{room_num}
+  		delete from roomphoto where host_num=#{host_num} and room_num=#{room_num}
   	</delete>
-
+	
+	<!-- 객실 삭제  -->
+	<delete id="roomDelete" parameterType="Room">
+		delete from room where host_num=#{host_num} and room_num=#{room_num}
+	</delete>
+	
+	
 </mapper>
