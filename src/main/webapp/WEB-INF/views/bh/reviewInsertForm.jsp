@@ -88,7 +88,6 @@
 										<input type="file" class="host_photo" id="inputInfo${i.index }" name="rev_Photo${i.index}" 
 											onchange="previewFiles(${i.index })" accept="images/bh/*">
 				                    </label>
-				                    
 				                </c:forEach>
 		      				</div>
 						</div>
