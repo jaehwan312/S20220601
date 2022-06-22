@@ -49,7 +49,7 @@
         			<button class="btn btn-primary btn-sm col-12" type="button" onclick="stayApprove(${stay.host_num })">승인</button>
         		</div>
         		<div class="col-6">
-            		<button class="btn btn-primary btn-sm col-12" type="button" onclick="stayReject(${stay.host_num }')">거절</button>
+            		<button class="btn btn-primary btn-sm col-12" type="button" onclick="stayReject(${stay.host_num })">거절</button>
             	</div>
             	</div>
         	</td>

@@ -13,5 +13,7 @@ public interface StayConfirmDao {
 
 	int approveStay(int host_num);
 
+	int rejectStay(int host_num);
+
 	
 }

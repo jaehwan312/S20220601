@@ -31,4 +31,10 @@ public class StayConfirmServiceImpl implements StayConfirmService {
 		int result = scd.approveStay(host_num);
 		return result;
 	}
+
+	@Override
+	public int rejectStay(int host_num) {
+		int result = scd.rejectStay(host_num);
+		return result;
+	}
 }

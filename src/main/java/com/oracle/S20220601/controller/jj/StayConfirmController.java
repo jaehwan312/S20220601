@@ -45,4 +45,12 @@ public class StayConfirmController {
 		
 		return result;
 	}
+	
+	@PostMapping(value = "rejectStay")
+	@ResponseBody
+	public int rejectStay(int host_num) {
+		int result = scs.rejectStay(host_num);
+		
+		return result;
+	}
 }

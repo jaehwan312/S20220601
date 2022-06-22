@@ -13,5 +13,7 @@ public interface StayConfirmService {
 
 	int approveStay(int host_num);
 
+	int rejectStay(int host_num);
+
 
 }

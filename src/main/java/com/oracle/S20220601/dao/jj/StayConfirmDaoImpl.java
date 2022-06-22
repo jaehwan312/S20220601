@@ -46,4 +46,15 @@ public class StayConfirmDaoImpl implements StayConfirmDao {
 		}
 		return result;
 	}
+
+	@Override
+	public int rejectStay(int host_num) {
+		int result = 0;
+		try {
+			result = session.delete("jjRejectStay", host_num);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
 }
