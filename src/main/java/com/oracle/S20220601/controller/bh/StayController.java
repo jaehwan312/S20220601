@@ -257,28 +257,28 @@ public class StayController {	//숙소 Controller
 		}else {
 			model.addAttribute("msg", "객실 등록 실패");
 		}
-		
-		
 		return "bh/reviewInsertForm";
 	}
+	
 	//예약가능여부 확인
 	@PostMapping(value = "respossible")
 	@ResponseBody
 	public List<Res> respossible(Res res,Model model) {
-		
 		List<Res> responssible = ss.respossible(res);
-		
 		return responssible;
 	}
+	
 	//리뷰 업데이트 페이지
 	@GetMapping(value = "reviewUpdateForm")
 	public String reviewUpdateForm(HttpServletRequest request,Review1 review,Model model) {
 		logger.info("StayController reviewUpdateForm Start");
 		int mem_num = (int)request.getSession().getAttribute("mem_num");
+		//review.setHost_num(host_num);
 		review.setMem_num(mem_num);
 		model.addAttribute("reviewUpdateForm", review);
 		return "bh/reviewUpdateForm";
 	}
+	
 	//리뷰 업데이트
 //	@RequestMapping(value = "reviewUpdate")
 //	public String reviewUpdate(Review1 review, Model model){
