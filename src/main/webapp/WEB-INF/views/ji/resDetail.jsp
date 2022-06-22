@@ -159,11 +159,4 @@
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>
-
-
-
-
-
-
-
 <!-- 여기밑에만 복사 -->
