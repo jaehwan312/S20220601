@@ -1,4 +1,4 @@
-.userSleepTitle {
+.loginTitle {
 	font-family: 'Gugi', cursive;
     display: flex;
     justify-content: space-around;
@@ -11,4 +11,3 @@
     font-size: 17px;
     margin: 20px;
 }
-

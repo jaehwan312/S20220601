@@ -37,8 +37,8 @@
 					    <input type="password" class="form-control" id="pwCheck" placeholder="비밀번호 확인" maxlength="12">
 					</div>
 					<div style="text-align: right;">
-						<button type="button" class="btn btn-danger" onclick="join()">회원탈퇴</button>
-						<button type="button" class="btn btn-danger" onclick="location.href='myPage'">취소</button>				
+						<button type="button" class="btn btn-primary" onclick="join()">회원탈퇴</button>
+						<button type="button" class="btn btn-primary" onclick="location.href='myPage'">취소</button>				
 					</div>
 				</form>
 		</div>

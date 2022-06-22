@@ -12,7 +12,7 @@
 	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/template.css">
-<link rel="stylesheet" href="css/js/sideBar.css">
+<link rel="stylesheet" href="css/js/sideBar.css?after">
 <link rel='stylesheet'
 	href='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
 <link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css"
@@ -103,15 +103,15 @@
 							</tbody>
 						</table>
 						<div style="text-align: right;">
-							<button type="button" class="btn btn-danger" style="margin-top: 10px;"
+							<button type="button" class="btn btn-primary" style="margin-top: 10px;"
 		          					  onclick="location.href='updateProfile'">수정하기</button>
-		          			<button type="button" class="btn btn-danger" style="margin-top: 10px;"
+		          			<button type="button" class="btn btn-primary" style="margin-top: 10px;"
 		          					  onclick="location.href='userSleep'">회원탈퇴</button>
 		          		</div>
 					</div>
 					<!-- /본문 -->
 				</div>
-			</div>
+			</div>	
 		</div>
 		<!-- 여기 위로오 ============================================================ -->
 	</div>
