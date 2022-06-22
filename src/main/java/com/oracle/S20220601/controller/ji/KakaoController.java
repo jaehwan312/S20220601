@@ -1,5 +1,6 @@
 package com.oracle.S20220601.controller.ji;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -152,7 +153,7 @@ public class KakaoController {
 	}
 	//결제취소	
 	@GetMapping("/kakaoPayCancel")
-	public String kakaoPayCancel(HttpServletRequest request) {
+	public String kakaoPayCancel(HttpServletRequest request, Model model) throws ParseException {
 		System.out.println("KakaoController kakaoPayCancel 시작!");
 		/* res --> stayRead에서 받아온 정보 */
 //		int mem_num = (int)request.getSession().getAttribute("mem_num");
@@ -162,18 +163,34 @@ public class KakaoController {
 		
 		int res_num = rs.selectResnumCurrval();
 		System.out.println(" kakaoPayCancel 방금 입력한 예약번호-> " + res_num);
+		Res r_res = rs.resByResnum(res_num); // room_num을 얻기 위한 RES SELECT
+		System.out.println("r_res.getRoom_num -> "+r_res.getRoom_num());
 		
 		int pay_num = ps.selectPaynumCurrval();
 		System.out.println(" kakaoPayCancel 방금 입력한 결제번호-> " + pay_num);
-
+		Pay p_pay = new Pay();
+		p_pay.setPay_num(pay_num);
+		Pay p_pay2 = ps.payByPaynum(p_pay);
+		int price = p_pay.getPrice();	//총 결제금액
+		String start = r_res.getRes_start().substring(0,4)+"-"+r_res.getRes_start().substring(4,6)+"-"+r_res.getRes_start().substring(6,8);
+    	String end = r_res.getRes_end().substring(0,4)+"-"+r_res.getRes_end().substring(4,6)+"-"+r_res.getRes_end().substring(6,8);
+    	
+    	System.out.println(start);
+    	System.out.println(end);
+		//결제테이블 삭제
 		int delete_pay = ps.deleteFailPay(pay_num);
-		if(delete_pay>0)		System.out.println("실패 결제 삭제 성공");
-		else 					System.out.println("실패 결제 삭제 실패");
+		if(delete_pay>0)		System.out.println("kakaoPayCancel 결제 삭제 성공");
+		else 					System.out.println("kakaoPayCancel 결제 삭제 실패");
+		//예약테이블 삭제
     	int delete_res = rs.deleteFailRes(res_num);
-    	if(delete_res>0)		System.out.println("실패 예약 삭제 성공");
-    	else 					System.out.println("실패 예약 삭제 실패");
-    	return "redirect:/resContent";
-
+    	if(delete_res>0)		System.out.println("kakaoPayCancel 예약 삭제 성공");
+    	else 					System.out.println("kakaoPayCancel 예약 삭제 실패");
+    	
+    	
+    	System.out.println("getRes_start()-->" +r_res.getRes_start());
+    	System.out.println();
+    	//로그인이라도 되어 있어야 하는데.....;;;
+    	return "redirect:/resContent?room_num="+r_res.getRoom_num()+"&res_start="+start+"&res_end="+end+"&sale_price="+price;
 	}
 	//결제실패
 	@GetMapping("/kakaoPaySuccessFail")
@@ -187,19 +204,34 @@ public class KakaoController {
 		
 		int res_num = rs.selectResnumCurrval();
 		System.out.println(" kakaoPayCancel 방금 입력한 예약번호-> " + res_num);
+		Res r_res = rs.resByResnum(res_num); // room_num을 얻기 위한 RES SELECT
+		System.out.println("r_res.getRoom_num -> "+r_res.getRoom_num());
 		
 		int pay_num = ps.selectPaynumCurrval();
 		System.out.println(" kakaoPayCancel 방금 입력한 결제번호-> " + pay_num);
-
-		int delete_pay = ps.deleteFailPay(pay_num);
-		if(delete_pay>0)		System.out.println("실패 결제 삭제 성공");
-		else 					System.out.println("실패 결제 삭제 실패");
-    	int delete_res = rs.deleteFailRes(res_num);
-    	if(delete_res>0)		System.out.println("실패 예약 삭제 성공");
-    	else 					System.out.println("실패 예약 삭제 실패");
+		Pay p_pay = new Pay();
+		p_pay.setPay_num(pay_num);
+		Pay p_pay2 = ps.payByPaynum(p_pay);
+		int price = p_pay.getPrice();	//총 결제금액
+		String start = r_res.getRes_start().substring(0,4)+"-"+r_res.getRes_start().substring(4,6)+"-"+r_res.getRes_start().substring(6,8);
+    	String end = r_res.getRes_end().substring(0,4)+"-"+r_res.getRes_end().substring(4,6)+"-"+r_res.getRes_end().substring(6,8);
     	
-    	return "redirect:/resContent";
-
+    	System.out.println(start);
+    	System.out.println(end);
+		//결제테이블 삭제
+		int delete_pay = ps.deleteFailPay(pay_num);
+		if(delete_pay>0)		System.out.println("kakaoPayCancel 결제 삭제 성공");
+		else 					System.out.println("kakaoPayCancel 결제 삭제 실패");
+		//예약테이블 삭제
+    	int delete_res = rs.deleteFailRes(res_num);
+    	if(delete_res>0)		System.out.println("kakaoPayCancel 예약 삭제 성공");
+    	else 					System.out.println("kakaoPayCancel 예약 삭제 실패");
+    	
+    	
+    	System.out.println("getRes_start()-->" +r_res.getRes_start());
+    	System.out.println();
+    	//로그인이라도 되어 있어야 하는데.....;;;
+    	return "redirect:/resContent?room_num="+r_res.getRoom_num()+"&res_start="+start+"&res_end="+end+"&sale_price="+price;
 
 	}
 

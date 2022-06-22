@@ -186,7 +186,7 @@
 									<input type="hidden" name="res_start" id="res_start">
 									<input type="hidden" name="res_end" id="res_end">
 									<input type="hidden" name="sale_price" value=${room.dayfee }>
-									<button class="btn btn-outline-primary" type="submit">예약</button>
+									<button type="submit" id="goReserve" onclick="chkDate(${j.index })">예약</button>
 								</form>
 								<form action="roomUpdateForm">
 									<input type="hidden" name="host_num" value="${room.host_num }">

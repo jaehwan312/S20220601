@@ -9,66 +9,7 @@
 <link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css"
 	rel="stylesheet">
 <title>제주 감수광</title>
-<script type="text/javascript">
 
-	$(document).ready(function() {
-		$("#cbx_chkAll").click(function() {
-			if ($("#cbx_chkAll").is(":checked"))
-				$("input[name=chk]").prop("checked", true);
-			else
-				$("input[name=chk]").prop("checked", false);
-		});
-
-		$("input[name=chk]").click(function() {
-			var total = $("input[name=chk]").length;
-			var checked = $("input[name=chk]:checked").length;
-			if (total != checked)
-				$("#cbx_chkAll").prop("checked", false);
-			else
-				$("#cbx_chkAll").prop("checked", true);
-		});
-	});
-	function checkName() {
-		var name = $("input[name=name]").val(); //id값이 "id"인 입력란의 값을 저장
-		var storyLength = $("input[name=name]").val().length;
-
-		if (name == "")
-			$('.name_ok').css("display", "inline-block");
-		else {
-			$('.name_ok').css("display", "none");
-		}
-
-	};
-	function checkPhone() {
-		var phone = $("input[name=phone]").val(); //id값이 "id"인 입력란의 값을 저장
-		var total = $("input[name=chk]").length;
-
-		if (phone == "")
-			$('.phone_ok').css("display", "inline-block");
-		else {
-			$('.phone_ok').css("display", "none");
-		}
-
-	};
-
-	function resCheck() {
-
-		if ($("input[name=name]").val() == "") {
-			alert("예약자  이름을 입력해주세요.");
-			$('#staticBackdrop').modal('hide')
-		} else if ($('#phone').val() == "") {
-			alert("휴대폰번호를 입력해주세요.");
-			$('#staticBackdrop').modal('hide')
-		} else if (!$("#cbx_chkAll").is(":checked")) {
-			alert("필수 이용 동의 항목에 동의(체크)해주세요.");
-			document.getElementById("cbx_chkAll").focus();
-			$('#staticBackdrop').modal('hide')
-		} else {
-			$('#staticBackdrop').modal('show')
-		}
-
-	};
-</script>
 </head>
 <body>
 	<%@ include file="../header.jsp"%>
@@ -229,5 +170,65 @@
 	<%@ include file="../footer.jsp"%>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<script type="text/javascript" src="js/ji/kakao.js"></script>
+	<script type="text/javascript">
+	
+		$(document).ready(function() {
+			$("#cbx_chkAll").click(function() {
+				if ($("#cbx_chkAll").is(":checked"))
+					$("input[name=chk]").prop("checked", true);
+				else
+					$("input[name=chk]").prop("checked", false);
+			});
+	
+			$("input[name=chk]").click(function() {
+				var total = $("input[name=chk]").length;
+				var checked = $("input[name=chk]:checked").length;
+				if (total != checked)
+					$("#cbx_chkAll").prop("checked", false);
+				else
+					$("#cbx_chkAll").prop("checked", true);
+			});
+		});
+		function checkName() {
+			var name = $("input[name=name]").val(); //id값이 "id"인 입력란의 값을 저장
+			var storyLength = $("input[name=name]").val().length;
+	
+			if (name == "")
+				$('.name_ok').css("display", "inline-block");
+			else {
+				$('.name_ok').css("display", "none");
+			}
+	
+		};
+		function checkPhone() {
+			var phone = $("input[name=phone]").val(); //id값이 "id"인 입력란의 값을 저장
+			var total = $("input[name=chk]").length;
+	
+			if (phone == "")
+				$('.phone_ok').css("display", "inline-block");
+			else {
+				$('.phone_ok').css("display", "none");
+			}
+	
+		};
+	
+		function resCheck() {
+	
+			if ($("input[name=name]").val() == "") {
+				alert("예약자  이름을 입력해주세요.");
+				$('#staticBackdrop').modal('hide')
+			} else if ($('#phone').val() == "") {
+				alert("휴대폰번호를 입력해주세요.");
+				$('#staticBackdrop').modal('hide')
+			} else if (!$("#cbx_chkAll").is(":checked")) {
+				alert("필수 이용 동의 항목에 동의(체크)해주세요.");
+				document.getElementById("cbx_chkAll").focus();
+				$('#staticBackdrop').modal('hide')
+			} else {
+				$('#staticBackdrop').modal('show')
+			}
+	
+		};
+	</script>
 </body>
 </html>
