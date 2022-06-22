@@ -56,7 +56,7 @@ public class KakaoController {
 		System.out.println("resInfo -> " + resInfo.getRoom_name());
 		Res r_res = new Res();	
 		Pay p_pay = new Pay();
-		String item = resInfo.getRoom_name();
+		String item = resInfo.getRoom_name();	//결제할 아이템(=객실명)
 		
 		int total_fee = resInfo.getTotal_fee();
 
@@ -172,6 +172,7 @@ public class KakaoController {
 		p_pay.setPay_num(pay_num);
 		Pay p_pay2 = ps.payByPaynum(p_pay);
 		int price = p_pay.getPrice();	//총 결제금액
+		System.out.println("kakaoPayCancel PRICE -> "+price);
 		String start = r_res.getRes_start().substring(0,4)+"-"+r_res.getRes_start().substring(4,6)+"-"+r_res.getRes_start().substring(6,8);
     	String end = r_res.getRes_end().substring(0,4)+"-"+r_res.getRes_end().substring(4,6)+"-"+r_res.getRes_end().substring(6,8);
     	
@@ -190,7 +191,7 @@ public class KakaoController {
     	System.out.println("getRes_start()-->" +r_res.getRes_start());
     	System.out.println();
     	//로그인이라도 되어 있어야 하는데.....;;;
-    	return "redirect:/resContent?room_num="+r_res.getRoom_num()+"&res_start="+start+"&res_end="+end+"&sale_price="+price;
+    	return "redirect:/resContent?room_num="+r_res.getRoom_num()+"&res_start="+start+"&res_end="+end;
 	}
 	//결제실패
 	@GetMapping("/kakaoPaySuccessFail")
@@ -231,7 +232,7 @@ public class KakaoController {
     	System.out.println("getRes_start()-->" +r_res.getRes_start());
     	System.out.println();
     	//로그인이라도 되어 있어야 하는데.....;;;
-    	return "redirect:/resContent?room_num="+r_res.getRoom_num()+"&res_start="+start+"&res_end="+end+"&sale_price="+price;
+    	return "redirect:/resContent?room_num="+r_res.getRoom_num()+"&res_start="+start+"&res_end="+end;
 
 	}
 

@@ -76,7 +76,7 @@
 
 						<section class="info">
 							<p class="name">
-								<strong>숙소이름</strong>${room1.host_name }
+								<strong>숙소이름</strong>${room1.host_name }(host_num : ${room1.host_num }/room_num : ${room1.room_num })
 							</p>
 							<p>
 								<strong>객실타입/기간</strong>${room1.room_name } / ${nday }박
@@ -87,17 +87,8 @@
 							<p>
 								<strong>체크아웃</strong>${checkout } ${room1.checkout }
 							</p>
-							<p>
-								<strong>주중금액</strong> ${room1.dayfee }
-							</p>
-							<p>
-								<strong>주말금액</strong> ${room1.weekfee }
-							</p>
 						</section>
 						<section class="total_price">
-							<p>
-								<strong><b>총 결제 금액</b>(VAT포함)</strong><span class="in_price">1원</span>
-							</p>
 							<p>
 								<strong><b>진짜 총 결제 금액</b>(VAT포함)</strong><span class="in_price">${total_fee }</span>
 							</p>
@@ -109,7 +100,7 @@
 
 						</section>
 						<button type="button" class="btn btn-primary m-5"
-							data-bs-toggle="modal" onclick="resCheck()">결제하기</button>
+							data-bs-toggle="modal" onclick="resCheck()" data-target="#staticBackdrop">결제하기</button>
 					</div>
 				</div>
 			</div>
