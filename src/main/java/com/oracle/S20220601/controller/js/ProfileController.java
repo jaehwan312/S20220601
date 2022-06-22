@@ -443,7 +443,7 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(value="userList")
-	public String list(Profile profile, String currentPage, Model model) {
+	public String userList(Profile profile, String currentPage, Model model) {
 		logger.info("ProfileController Start userList");
 
 		int total = ps.total();   
@@ -484,9 +484,34 @@ public class ProfileController {
 	
 	@PostMapping(value = "updateUser1")
 	@ResponseBody
-	public int updateUser1(Profile profile) {
-		int result = ps.updateUser(profile);
+	public Profile updateUser1(Profile profile) {
+		Profile result = ps.updateUser(profile);
 		return result;
+	}
+	
+	@PostMapping(value = "updateAdmin1")
+	@ResponseBody
+	public Profile updateAdmin1(Profile profile) {
+		Profile result = ps.updateAdmin(profile);
+		return result;
+	}
+	
+	@RequestMapping(value="userSleepList")
+	public String userSleepList(Profile profile, String currentPage, Model model) {
+		logger.info("ProfileController Start userList");
+
+		int total = ps.total();   
+	
+		System.out.println("userListController total=>" + total);
+		Paging pg = new Paging(total, currentPage); 
+		profile.setStart(pg.getStart());   // 시작시 1
+		profile.setEnd(pg.getEnd());       // 시작시 10 
+		List<Profile> userSleepList = ps.userSleepList(profile); 
+		System.out.println("userListController userList listProfile()=>" + userSleepList.size());
+		model.addAttribute("profileList",userSleepList);
+		model.addAttribute("pg",pg);
+		model.addAttribute("total", total);
+		return "js/userSleepList";
 	}
 	
 	

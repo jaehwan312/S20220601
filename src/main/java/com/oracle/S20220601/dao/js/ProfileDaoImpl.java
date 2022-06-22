@@ -172,8 +172,8 @@ public class ProfileDaoImpl implements ProfileDao {
 	public List<Profile> listProfileKeyword(Profile profile) {
 		List<Profile> listProfileKeyword = null;
 		System.out.println("listProfileKeyword Start ..." );
-		System.out.println("listProfileKeyword emp.getSearch()-->"+profile.getSearch() );
-		System.out.println("listProfileKeyword emp.getKeyword()-->"+profile.getKeyword() );
+		System.out.println("listProfileKeyword profile.getSearch()-->"+profile.getSearch() );
+		System.out.println("listProfileKeyword profile.getKeyword()-->"+profile.getKeyword() );
 		if (profile.getKeyword() == null) profile.setKeyword("%");
 		
 		try {
@@ -186,9 +186,40 @@ public class ProfileDaoImpl implements ProfileDao {
 
 
 	@Override
-	public int updateUser(Profile profile) {
-		int result = session.update("updateUser", profile);
+	public Profile updateUser(Profile profile) {
+		Profile result = null;
+		if(session.update("updateUser", profile)>0) {
+			result = session.selectOne("selectProfile", profile.getMem_num());
+		}
+		
 		return result;
+	}
+
+
+	@Override
+	public Profile updateAdmin(Profile profile) {
+		Profile result = null;
+		if(session.update("updateAdmin", profile)>0) {
+			result = session.selectOne("selectProfile", profile.getMem_num());
+		}
+		
+		return result;
+	}
+
+
+	@Override
+	public List<Profile> userSleepList(Profile profile) {
+		List<Profile> userSleepList = null;
+		System.out.println("ProfileDaoImpl userSleepList Start ..." );
+        try {
+        	userSleepList = session.selectList("userSleepList",  profile);
+    		System.out.println("ProfileDaoImpl userSleepList profileList.size()-->"+userSleepList.size() );
+    		
+    		
+		} catch (Exception e) {
+			System.out.println("ProfileDaoImpl profileList Exception->"+e.getMessage());
+		} 
+		return userSleepList;
 	}
 
 	
