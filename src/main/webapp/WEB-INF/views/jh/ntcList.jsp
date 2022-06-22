@@ -27,7 +27,7 @@
     	</thead>
     	<tbody>
     		<c:forEach var="ntcList" items="${ntcList}">
-    		<tr>
+    		<tr onclick="location.href='ntcContent?n_num=${ntcList.n_num}&num=${num}'" style="cursor: pointer;">
     			<td>${num}</td>
     			<td>${ntcList.n_title}</td>
     			<td>${ntcList.n_date}</td>
@@ -48,10 +48,9 @@
 			<a href="list?currentPage=${pg.startPage+pg.pageBlock}">[다음]</a>
 		</c:if>
     </div>
-   	<div class="btn_div">
+   	<div class="write_btn_div">
         <c:if test="${grade=='1'}">
 	    	<button type="button" class="btn btn-outline-primary" id="csc_write_btn" onclick="location.href=''">글쓰기</button>
-			<!-- <button type="button" class="btn btn-outline-secondary" onclick="location.href='cscInsert.do" style="margin-bottom: 10px;">글쓰기</button> -->
 		</c:if>
     </div>
     <!-- 여기 위로오 ============================================================ -->   

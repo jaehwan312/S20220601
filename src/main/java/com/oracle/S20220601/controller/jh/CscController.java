@@ -11,11 +11,11 @@ public class CscController {
 	
 	@GetMapping(value = "tosContent")
 	public String TOSContent() {
-		return "tosContent";
+		return "jh/tosContent";
 	}
 	
 	@GetMapping(value = "faqContent")
 	public String FAQContent() {
-		return "faqContent";
+		return "jh/faqContent";
 	}
 }
