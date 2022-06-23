@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="css/ih/storeReview.css">
 <link rel="stylesheet" href="css/ih/style.css"><!--평점 css -->
 <link rel="stylesheet" href="css/ih/storePhoto.css">
+<link rel="stylesheet" href="css/ih/storeMapApi.css">
 <script type="text/javascript" src="js/ih/storePhoto.js"></script>
 <script type="text/javascript" src="js/ih/storeReview.js"></script>
 <script type="text/javascript" src="js/ih/flatpickr.js"></script>
@@ -94,7 +95,28 @@
 	    		</label><p/>
 				<br/><hr/><br/>
 					<!--지도 start  -->
-					<div id="map" style="width:300px;height:300px; float: right;" ></div>
+					<div>
+						<div id="map" style="width:300px;height:300px; float: right;" ></div>
+					</div>
+					<%-- <div>
+						<div class="map_wrap"  style="width:300px;height:300px; float: right;">
+					    <div id="map" style="width:100%;height:100%; float: right;;position:relative;overflow:hidden;"></div>
+					
+					    <div id="menu_wrap" class="bg_white">
+					        <div class="option">
+					            <div>
+					                <form onsubmit="searchPlaces(); return false;">
+					                    키워드 : <input type="text" value="${store.host_addr} 맛집" id="keyword" size="15"> 
+					                    <button type="submit">검색하기</button> 
+					                </form>
+					            </div>
+					        </div>
+					        <hr>
+					        <ul id="placesList"></ul>
+					        <div id="pagination"></div>
+					  	 </div>
+						</div></div>
+					 --%>
 					<!--지도 end  -->
 					<div>
 			    		<label style="float: left;  margin-right: 25px; width: 100px;">
@@ -164,6 +186,8 @@
 				   		<label>
 								<img alt="${userphoto }" src="images/ih/${userphoto }"
 									 style="float: right; border-radius: 50%;" width="100px;" height="100px;"><br/>
+							    <input hidden="" value="${userphoto }" id="userphoto">
+							    <input hidden="" value="${name }"      id="name">
 								<b>작성자:${name }</b>
 				   		</label>
 					   		<label>
@@ -217,11 +241,11 @@
 												<label><b id="user_rev.rev_content${user_rev.rev_num}">${user_rev.rev_content }</b></label><br/>
 											</div>
 											<div>
-												<c:forEach items="${revPhotos }" var="photo">
+												<c:forEach items="${revPhotos }" var="photo" varStatus="i">
 													<c:if test="${user_rev.rev_num == photo.rev_num }">
 													<label><img alt="" src="images/ih/${photo.rev_photo }" 
 															 style="float: left; margin-top: 80px;" width="100px;" height="100px;"></label>
-															<input type="image" value="images/ih/${photo.rev_photo }" hidden="" id="storeRevPhotoNum">
+															<input type="image" value="images/ih/${photo.rev_photo }" hidden="" id="storeRevPhoto${i.index}">
 													</c:if>
 												</c:forEach>
 											</div>
@@ -257,8 +281,8 @@
 																		<c:if test="${mem_num == store.mem_num }">
 																			<button onclick="hostRevUpdate(${step_rev.rev_num})" style="float: right;" class="btn btn-primary" id="hostRevUpdate${step_rev.rev_num}">답변수정</button>
 																			<button onclick="hostRevDelete(${step_rev.rev_num})" style="float: right;" class="btn btn-primary" id="hostRevDelete${step_rev.rev_num}">답변삭제</button>
-																			<input type="hidden" value="${step_rev.rev_num }" id="step_rev.rev_num">
-																			<input type="hidden" value="${user_rev.rev_num }" id="user_rev.rev_num">
+																			<input type="hidden" value="${step_rev.rev_num }" id="step_rev.rev_num${step_rev.rev_num }">
+																			<input type="hidden" value="${user_rev.rev_num }" id="user_rev.rev_num${step_rev.rev_num }">
 																		</c:if>
 																	</div>
 															</c:if>
