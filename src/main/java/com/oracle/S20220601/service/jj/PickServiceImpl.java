@@ -17,15 +17,13 @@ public class PickServiceImpl implements PickService {
 
 	@Override
 	public List<HostStorejj> ajaxMyStoreList(int mem_num) {
-		List<HostStorejj> list = null;
-		list = pd.ajaxMyStoreList(mem_num);
+		List<HostStorejj> list = pd.ajaxMyStoreList(mem_num);
 		return list;
 	}
 
 	@Override
 	public List<HostStayjj> ajaxMyStayList(int mem_num) {
-		List<HostStayjj> list = null;
-		list = pd.ajaxMyStayList(mem_num);
+		List<HostStayjj> list = pd.ajaxMyStayList(mem_num);
 		return list;
 	}
 }
