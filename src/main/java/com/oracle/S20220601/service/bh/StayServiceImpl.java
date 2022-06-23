@@ -164,6 +164,62 @@ public class StayServiceImpl implements StayService {
 		return stayPhotoUpdate;
 	}
 
+	@Override
+	public int roomUpdate(Room room) {
+		System.out.println("StayServiceImpl roomUpdate start...");
+		int roomUpdate = sd.roomUpdate(room);
+		return roomUpdate;
+	}
+
+	@Override
+	public int roomPhotoUpdate(List<RoomPhoto> roomPhotoInsertList, Map<Integer, MultipartFile> filename,Room room) {
+		System.out.println("StayServiceImpl roomPhotoUpdate start...");
+		int roomPhotoUpdate = sd.roomPhotoUpdate(roomPhotoInsertList,filename,room);
+		return roomPhotoUpdate;
+	}
+
+	@Override
+	public Room stayRead(Room room) {
+		Room result = sd.selectRoom(room);
+		return result;
+	}
+
+	@Override
+	public int stayDelete(HostStay hostStay) {
+		System.out.println("StayServiceImpl stayDelete start...");
+		int stayDelete = sd.stayDelete(hostStay);
+		return stayDelete;
+	}
+
+	@Override
+	public int roomDelete(Room room) {
+		System.out.println("StayServiceImpl roomDelete start...");
+		int roomDelete = sd.roomDelete(room);
+		return roomDelete;
+	}
+
+	@Override
+	public int reviewUpdate(Review1 review) {
+		System.out.println("StayServiceImpl reviewUpdate start...");
+		int reviewUpdate = sd.reviewUpdate(review);
+		return reviewUpdate;
+	}
+
+	@Override
+	public int revPhotoUpdate(List<RevPhoto> revPhotoInsertList, Map<Integer, MultipartFile> filename, Review1 review) {
+		System.out.println("StayServiceImpl revPhotoUpdate start...");
+		int revPhotoUpdate = sd.revPhotoUpdate(revPhotoInsertList,filename,review);
+		return revPhotoUpdate;
+	}
+
+	@Override
+	public int reviewDelete(Review1 review) {
+		System.out.println("StayServiceImpl reviewDelete start...");
+		int reviewDelete = sd.reviewDelete(review);
+		return reviewDelete;
+	}
+
+
 
 	
 

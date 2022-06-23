@@ -45,7 +45,7 @@ public class StayDaoImpl implements StayDao {
 		List<HostPhoto> stayPhoto=null;
 		try {
 			stayPhoto = session.selectList("stayPhoto", host_num);
-			System.out.println("StoreDaoImpl stayPhoto stayPhoto.size() --> " + stayPhoto.size());
+			System.out.println("StayDaoImpl stayPhoto stayPhoto.size() --> " + stayPhoto.size());
 		} catch (Exception e) {
 			System.out.println("StayDaoImpl stayPhoto Exception->"+e.getMessage());
 		}
@@ -119,6 +119,8 @@ public class StayDaoImpl implements StayDao {
 		System.out.println("StayDaoImpl hostreview start...");
 		Host hostreview=null;
 		try {
+//			hostreview.setHost_num(hostreview.getHost_num());
+//			hostreview.setMem_num(hostreview.getMem_num());
 			hostreview = session.selectOne("hostreview", host_num);
 		} catch (Exception e) {
 			System.out.println("StayDaoImpl hostreview Exception->"+e.getMessage());
@@ -340,5 +342,127 @@ public class StayDaoImpl implements StayDao {
 		return stayPhotoUpdate;
 	}
 
+	@Override
+	public int roomUpdate(Room room) {
+		System.out.println("StayDaoImpl roomUpdate start...");
+		int roomUpdate =0;
+		try {
+			roomUpdate =session.update("roomUpdate", room);
+			roomUpdate =1;
+		} catch (Exception e) {
+			System.out.println("StorePhotoDaoImpl roomUpdate ErrorMessage --> " + e.getMessage());
+		}
+		return roomUpdate;
+	}
+
+	@Override
+	public int roomPhotoUpdate(List<RoomPhoto> roomPhotoInsertList, Map<Integer, MultipartFile> filename,Room room) {
+		System.out.println("StayDaoImpl roomPhotoUpdate start...");
+		int roomPhotoUpdate = 0;
+		int i = 0;
+		try {
+			session.delete("roomPhotoDelete", room);
+			for(RoomPhoto roomPhoto : roomPhotoInsertList) {
+				roomPhoto.setHost_num(room.getHost_num());
+				roomPhoto.setRoom_num(room.getRoom_num());
+				System.out.println("photo_num->"+roomPhoto.getRoom_photo_num());
+				roomPhoto.setRoom_photo(filename.get(i).getOriginalFilename());
+				roomPhotoUpdate += session.insert("roomPhotoInsert", roomPhoto);
+				++i;
+			}
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl roomPhotoUpdate ErrorMessage --> " + e.getMessage());
+		}
+		return roomPhotoUpdate;
+	}
+
+	@Override
+	public Room selectRoom(Room room) {
+		Room result = null;
+		try {
+			result = session.selectOne("bhRoomSelect", room);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+
+	@Override
+	public int stayDelete(HostStay hostStay) {
+		System.out.println("StayDaoImpl stayDelete start...");
+		int stayDelete =0;
+		try {
+			stayDelete =session.update("stayDelete", hostStay);
+			System.out.println("host->"+hostStay.getHost_num());
+			stayDelete=1;
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl stayDelete Exception->"+e.getMessage());
+		}
+		return stayDelete;
+	}
+
+	@Override
+	public int roomDelete(Room room) {
+		System.out.println("StayDaoImpl roomDelete start...");
+		int roomDelete = 0;
+		try {
+			roomDelete = session.delete("roomDelete", room);
+			roomDelete = 1;
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl roomDelete Exception->"+e.getMessage());
+		}
+		return roomDelete;
+	}
+
+	@Override
+	public int reviewUpdate(Review1 review) {
+		System.out.println("StayDaoImpl roomUpdate start...");
+		int reviewUpdate =0;
+		try {
+			
+			reviewUpdate =session.update("reviewUpdate", review);
+			
+		} catch (Exception e) {
+			System.out.println("StorePhotoDaoImpl roomUpdate ErrorMessage --> " + e.getMessage());
+		}
+		return reviewUpdate;
+	}
+
+	@Override
+	public int revPhotoUpdate(List<RevPhoto> revPhotoInsertList, Map<Integer, MultipartFile> filename, Review1 review) {
+		System.out.println("StayDaoImpl revPhotoUpdate start...");
+		int revPhotoUpdate = 0;
+		int i = 0;
+		try {
+			session.delete("revPhotoDelete", review);
+			for(RevPhoto revPhoto : revPhotoInsertList) {
+				revPhoto.setHost_num(review.getHost_num());
+				revPhoto.setRev_num(review.getRev_num());
+				System.out.println("photo_num->"+revPhoto.getRev_photo_num());
+				revPhoto.setRev_photo(filename.get(i).getOriginalFilename());
+				revPhotoUpdate += session.insert("revPhotoUpdate", revPhoto);
+				++i;
+			}
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl revPhotoUpdate ErrorMessage --> " + e.getMessage());
+		}
+		return revPhotoUpdate;
+	}
+
+	@Override
+	public int reviewDelete(Review1 review) {
+		System.out.println("StayDaoImpl reviewDelete start...");
+		int reviewDelete =0;
+		try {
+			
+			reviewDelete =session.delete("reviewDelete", review);
+			
+		} catch (Exception e) {
+			System.out.println("StorePhotoDaoImpl reviewDelete ErrorMessage --> " + e.getMessage());
+		}
+		return reviewDelete;
+	}
+
+	
 
 }

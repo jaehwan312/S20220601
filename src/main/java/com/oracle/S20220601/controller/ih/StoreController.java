@@ -184,11 +184,13 @@ public class StoreController {
 		//식당정보 등록 요청 확인 msg 보냄
 		if (storeInsert > 0 && menuInsert > 0) {
 			model.addAttribute("msg", "등록 요청 성공");
+			System.out.println("성공");
 		}else {
 			model.addAttribute("msg", "등록 요청 실패");
+			System.out.println("실패");
 		}
 		
-		return "ih/test"; //현재 리스트가 존재 하지 않으 므로 test으로 이동
+		return "main"; //현재 리스트가 존재 하지 않으 므로 test으로 이동
 	}
 
 //====================================파일 업로드==================================================	  
