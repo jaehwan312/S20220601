@@ -39,6 +39,12 @@ public class MyPickController {
 		return "jj/myPickList";
 	}
 	
-	
+	@PostMapping(value = "myPickDel")
+	@ResponseBody
+	public int myPickDel(int host_num, HttpServletRequest request, Model model) {
+		int mem_num = (int)request.getSession().getAttribute("mem_num");
+		int result = ps.myPickDel(host_num, mem_num);
+		return result;
+	}
 	
 }

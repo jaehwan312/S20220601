@@ -26,4 +26,10 @@ public class PickServiceImpl implements PickService {
 		List<HostStayjj> list = pd.ajaxMyStayList(mem_num);
 		return list;
 	}
+
+	@Override
+	public int myPickDel(int host_num, int mem_num) {
+		int result = pd.myPickDel(host_num, mem_num);
+		return result;
+	}
 }

@@ -41,4 +41,8 @@
 			where h.host_num = s.host_num and s.host_num = r.host_num and k.mem_num = #{mem_num} and k.host_num = h.host_num
 	  	</select>
 	  	
+	  	<delete id="jjMyPickDel" parameterType="Pick">
+	  		delete from pick where host_num=#{host_num} and mem_num=#{mem_num}
+	  	</delete>
+	  	
    </mapper>

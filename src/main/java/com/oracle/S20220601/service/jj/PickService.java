@@ -11,4 +11,6 @@ public interface PickService {
 
 	List<HostStayjj> ajaxMyStayList(int mem_num);
 
+	int myPickDel(int host_num, int mem_num);
+
 }

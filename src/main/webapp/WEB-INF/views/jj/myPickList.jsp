@@ -14,14 +14,13 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
+    	 <div class="col-8 mx-auto">
+			<h2 class="myPickList">나의 찜 목록</h2>
+    	 </div>
     	 <section class="wrapper">
 		    <div class="container-fostrap">
-		        <div>
-		            <h1 class="heading">
-		                나의 찜 목록
-		            </h1>
-		        </div>
 		        <div class="content">
+		        	<form action="myPickList" id="reset"></form>
 		            <div class="container">
 		                <div class="row">
 		                	<c:forEach var="store" items="${host.store }">
@@ -30,10 +29,13 @@
 		                            <a class="img-card" href="storeRead?host_num=${store.host_num }">
 		                            <img src="images/jj/${store.host_photo }" />
 		                          </a>
-		                          <button type="button" class="btn-close btn-close-white close_button" aria-label="Close"></button>
+		                          <button type="button" class="btn-close btn-close-white close_button" aria-label="Close"
+		                           onclick="deletePick('${store.host_name}',${store.host_num })"></button>
 		                            <div class="card-content">
+		                                	<i class="fa-solid fa-utensils icons" style="color: #d33d38;"></i>
 		                                <h4 class="card-title">
-		                                    <a href="storeRead?host_num=${store.host_num }"> ${store.host_name }
+		                                    <a href="storeRead?host_num=${store.host_num }"> 
+		                                    	 ${store.host_name }
 		                                  </a>
 		                                </h4>
 		                                <p class="">
@@ -55,10 +57,13 @@
 		                            <a class="img-card" href="stayRead?host_num=${stay.host_num }">
 		                            <img src="images/jj/${stay.host_photo }" />
 		                          </a>
-		                          <button type="button" class="btn-close btn-close-white close_button" aria-label="Close"></button>
+		                          <button type="button" class="btn-close btn-close-white close_button" aria-label="Close"
+		                           onclick="deletePick('${stay.host_name}',${stay.host_num })"></button>
 		                            <div class="card-content">
+		                                	<i class="fa-solid fa-bed icons" style="color: #42a2f9;"></i>
 		                                <h4 class="card-title">
-		                                    <a href="stayRead?host_num=${stay.host_num }"> ${stay.host_name }
+		                                    <a href="stayRead?host_num=${stay.host_num }">
+		                                       ${stay.host_name }
 		                                  </a>
 		                                </h4>
 		                                <p class="">
