@@ -40,15 +40,24 @@
 	    	<input type="hidden" value="${store.host_code}">
 	    	<input type="hidden" value="${store.mem_num}"  id="Mem_mem">
 	    	<input type="hidden" value="${maxReviewDate}"  id="maxReviewDate">
-	    	<%-- <label style="margin-bottom: 10px;">
-				<i class="fa fa-heart fa-md heartLike" id="storeLike" onclick="storeLikeAction(0,${store.host_num},&quot;a&quot;)" aria-hidden="true"></i>
-				<span class="information" id="storeLikes0">1</span>
-	    	</label> --%>
-			
+	    	<c:if test="${mem_num != 0}">
+		    	<c:if test="${index == 0}">
+		    		<label style="margin-bottom: 20px;">
+					<i class="fa fa-heart fa-md heartLike" id="storeLike${index }" onclick="storeLikeAction(${index},${store.host_num},'${store.host_name}')" aria-hidden="true" style="color: gray;"></i>
+					<span class="information" id="storeLikes${index}">${store.like_count}</span>
+		    		</label>	
+		    	</c:if>
+		    	<c:if test="${index == 1 }">
+		    		<label style="margin-bottom: 20px;">
+					<i class="fa fa-heart fa-md heartLike" id="storeLike${index }" onclick="storeLikeAction(${index},${store.host_num},'${store.host_name}')" aria-hidden="true" style="color: red;"></i>
+					<span class="information" id="storeLikes${index}">${store.like_count}</span>
+		    		</label>	
+		    	</c:if>
+			</c:if>
 	
 	    	
 	    	
-	<!-- 사진 테스트  스타트-->  
+	<!-- 사진 슬라이드  스타트-->  
 			<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
 			  <div class="carousel-indicators">
 			   		<c:forEach items="${storePhoto }" var="photo" varStatus="i">
@@ -84,7 +93,7 @@
 			  </button>
 			</div>
 			 
-	<!-- 사진 테스트  끝-->   	
+	<!-- 사진 슬라이드  끝-->   	
 	    	<div>
 	    		<label style="font-size: 40px;">
 	    			<input type="hidden" value="${store.host_name }" id="host_name">
@@ -98,26 +107,7 @@
 					<div>
 						<div id="map" style="width:300px;height:300px; float: right;" ></div>
 					</div>
-					<%-- <div>
-						<div class="map_wrap"  style="width:300px;height:300px; float: right;">
-					    <div id="map" style="width:100%;height:100%; float: right;;position:relative;overflow:hidden;"></div>
-					
-					    <div id="menu_wrap" class="bg_white">
-					        <div class="option">
-					            <div>
-					                <form onsubmit="searchPlaces(); return false;">
-					                    키워드 : <input type="text" value="${store.host_addr} 맛집" id="keyword" size="15"> 
-					                    <button type="submit">검색하기</button> 
-					                </form>
-					            </div>
-					        </div>
-					        <hr>
-					        <ul id="placesList"></ul>
-					        <div id="pagination"></div>
-					  	 </div>
-						</div></div>
-					 --%>
-					<!--지도 end  -->
+					<!-- 지도 END  -->
 					<div>
 			    		<label style="float: left;  margin-right: 25px; width: 100px;">
 			    			<b>주소</b>
@@ -224,9 +214,10 @@
 				<div>현재 리뷰<b  id="StoreRevCount">${store.rev_count }</b>개</div>
 				<div id="review" class="review">
 					<c:forEach items="${revList }" var="user_rev" varStatus="u">
+					<c:if test="${user_rev.re_step == 0 }">
 					<div class="reviewList" style="display: none;">
 						<h6 hidden="" id="count">${count = 0}</h6>
-							<c:if test="${user_rev.re_step == 0 }">
+							
 								<div id="storeRevList${user_rev.rev_num}">
 									<hr/>
 									<br/>
@@ -238,7 +229,9 @@
 										</div>
 										<div>
 											<div id="host_user_rev${user_rev.rev_num}">
-												<label><b id="user_rev.rev_content${user_rev.rev_num}">${user_rev.rev_content }</b></label><br/>
+												<label><b id="user_rev.rev_content${user_rev.rev_num}"> 
+												${fn:replace(fn:replace(fn:replace(fn:replace(user_rev.rev_content,'<','&lt;' ),'>', '&gt;' ),nbsp, '&nbsp;'),enter , '<br/>' )}
+												<%-- ${user_rev.rev_content } --%></b></label><br/>
 											</div>
 											<div>
 												<c:forEach items="${revPhotos }" var="photo" varStatus="i">
@@ -274,7 +267,10 @@
 																<br/>
 																	<div style="margin-top: 50px;">
 																		<div id="host_host_rev${step_rev.rev_num}">
-																			<label style="float: right;"><b id="step_rev.rev_content${step_rev.rev_num}">${step_rev.rev_content }</b></label>
+																			<label style="float: right;"><b id="step_rev.rev_content${step_rev.rev_num}">
+																			<%-- ${step_rev.rev_content } --%>
+																			${fn:replace(fn:replace(fn:replace(fn:replace(step_rev.rev_content,'<','&lt;' ),'>', '&gt;' ),nbsp, '&nbsp;'),enter , '<br/>' )}
+																			</b></label>
 																			<label style="float: right;"><b>[답변] : </b></label>
 																		</div>
 																		<br/>
@@ -302,8 +298,8 @@
 									<!--답글 End -->
 								<br/>
 								</div>
-							</c:if>
 						</div>
+						</c:if>
 					</c:forEach>
 					<br>
 					<div style="text-align: center;">
