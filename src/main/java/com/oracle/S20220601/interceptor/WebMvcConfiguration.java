@@ -17,9 +17,13 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 													   .addPathPatterns("/keywordDelete")
 													   .addPathPatterns("/keywordSearch")
 													   .addPathPatterns("/keywordUpdate")
+													   .addPathPatterns("/userList")
+													   .addPathPatterns("/userListKeyword")
+													   .addPathPatterns("/userSleepList")
 		;
 		registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/myPage")
 													   .addPathPatterns("/updateProfile")
+													   .addPathPatterns("/userSleep")
 													   .addPathPatterns("/storeInsertForm")
 													   .addPathPatterns("/storeUpdateForm")
 													   .addPathPatterns("/stayInsertForm")

@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row g-3" style="justify-content: space-evenly">
                 <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
-	            	<a href="">       
+	            	<a href="userList">       
 	                    <div class="fact-item bg-light rounded text-center h-100 p-5">
 	                        <i class="fa fa-user-large fa-4x text-primary mb-4" aria-hidden="true"></i>
 	                        <p class="mb-2">회원관리</p>
@@ -36,7 +36,7 @@
 	                </a>
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
-               		<a href="">     	
+               		<a href="userSleepList">     	
 	                    <div class="fact-item bg-light rounded text-center h-100 p-5">
 	                        <i class="fa fa-user-xmark fa-4x text-primary mb-4" aria-hidden="true"></i>
 	                        <p class="mb-2">휴면회원 관리</p>
