@@ -48,6 +48,27 @@ public class NtcDaoImpl implements NtcDao {
 		}
 		return ntc;
 	}
+	
+	@Override
+	public void viewCount(int n_num) {
+		try {
+			session.update("jhViewCount", n_num);
+		} catch (Exception e) {
+			System.out.println("NtcDaoImpl viewCount Exception->"+e.getMessage());
+		}
+	}
+
+	@Override
+	public int ntcUpdate(Notice ntc) {
+		int result = 0;
+		try {
+			System.out.println("NtcDaoImpl ntcUpdate Start...");
+			result = session.update("jhNtcUpdate", ntc);
+		} catch (Exception e) {
+			System.out.println("NtcDaoImpl ntcUpdate Exception->"+e.getMessage());
+		}
+		return result;
+	}
 
 	@Override
 	public int ntcDelete(int n_num) {
@@ -56,6 +77,17 @@ public class NtcDaoImpl implements NtcDao {
 			result = session.delete("jhNtcDelete", n_num);
 		} catch (Exception e) {
 			System.out.println("NtcDaoImpl ntcContent Exception->"+e.getMessage());
+		}
+		return result;
+	}
+
+	@Override
+	public int ntcInsert(Notice ntc) {
+		int result = 0;
+		try {
+			result = session.insert("jhNtcInsert", ntc);
+		} catch (Exception e) {
+			System.out.println("NtcDaoImpl ntcInsert Exception->"+e.getMessage());
 		}
 		return result;
 	}

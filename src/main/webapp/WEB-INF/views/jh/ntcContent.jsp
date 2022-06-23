@@ -38,7 +38,7 @@
 	    	<button type="button" class="btn btn-outline-primary" onclick="location.href='ntcList'">목록</button>
 	    	<div>
 	    		<c:if test="${grade=='1'}">
-	    			<button type="button" class="btn btn-outline-primary" onclick="location.href=''">수정</button>
+	    			<button type="button" class="btn btn-outline-primary" onclick="location.href='ntcUpdateForm?n_num=${ntc.n_num}&num=${num}'">수정</button>
 	    			<button type="button" class="btn btn-outline-primary" onclick="chk()">삭제</button>
 	    		</c:if>
 	    	</div>
