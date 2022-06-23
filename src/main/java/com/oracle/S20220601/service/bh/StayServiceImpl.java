@@ -212,6 +212,13 @@ public class StayServiceImpl implements StayService {
 		return revPhotoUpdate;
 	}
 
+	@Override
+	public int reviewDelete(Review1 review) {
+		System.out.println("StayServiceImpl reviewDelete start...");
+		int reviewDelete = sd.reviewDelete(review);
+		return reviewDelete;
+	}
+
 
 
 	

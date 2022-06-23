@@ -63,10 +63,12 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-    	<form action="reviewInsert" method="post" enctype="multipart/form-data" id="reviewForm">
+    	<form action="reviewUpdate" method="post" enctype="multipart/form-data" id="reviewForm">
     	<div style="text-align: center; margin-top: 100px;">
-    	<input type="hidden" value="${resInfo.host_num }" name="host_num" id="hostnum">
-    	<input type="hidden" value="${resInfo.mem_num }" name="mem_num" id="memnum">
+    	<input type="hidden" value="${review.host_num }" name="host_num" id="hostnum">
+    	<input type="hidden" value="${review.mem_num }" name="mem_num" id="memnum">
+    	<input type="hidden" value="${review.rev_num }" name="rev_num" id="revnum">
+    	
     	<input type="hidden" name="rev_point" id="revpoint">
     		<section class="section">
               <div class="card-body">
@@ -81,7 +83,7 @@
 						<div id="preview" ></div>
 						</div>
 						<div style="display: inline-block; margin-top: 50px; ">
-							<div class="reviewInsert" style="align-content: center;">
+							<div  style="align-content: center;">
 								<c:forEach begin="0" end="4" varStatus="i">
 				                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
 				                       	<img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px;"/>

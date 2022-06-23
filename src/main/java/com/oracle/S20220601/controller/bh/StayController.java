@@ -254,7 +254,7 @@ public class StayController {	//숙소 Controller
 		}else {
 			model.addAttribute("msg", "리뷰 등록 실패");
 		}
-		return "bh/reviewInsertForm";
+		return "main";
 	}
 	
 	//예약가능여부 확인
@@ -271,7 +271,9 @@ public class StayController {	//숙소 Controller
 		logger.info("StayController reviewUpdateForm Start");
 		int mem_num = (int)request.getSession().getAttribute("mem_num");
 		review.setMem_num(mem_num);
-		model.addAttribute("reviewUpdateForm", review);
+		System.out.println("@$! 호스트넘"+review.getHost_num());
+		System.out.println("$!$@ 맴넘"+review.getMem_num());
+		model.addAttribute("review", review);
 		return "bh/reviewUpdateForm";
 	}
 	
@@ -511,5 +513,14 @@ public class StayController {	//숙소 Controller
 		return "main";
 	}
 	
+	@RequestMapping(value = "reviewDelete")
+	public String reviewDelete(HttpServletRequest request, Review1 review) {
+		System.out.println("StayController reviewDelete Start..");
+		int mem_num = (int)request.getSession().getAttribute("mem_num");
+		review.setMem_num(mem_num);
+		int reviewDelete=ss.reviewDelete(review);
+		
+		return "main";
+	}
 	
 }
