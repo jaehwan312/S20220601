@@ -239,10 +239,7 @@ public class StayController {	//숙소 Controller
 			System.out.println("end  roomPhotoInsert.size()->"+i);
 		}
 		
-		//Review1 review1 = new Review1();
-		//review1.setHost_num(review.getHost_num());
-		//review1.setRevPhoto(revPhotoInsertList);
-	
+		
 		int uploadPhoto = 0;
 		System.out.println("업로드할 사진 갯수 --> " + revPhotoInsertList.size());
 		if (revPhotoInsertList.size() != 0) {
@@ -253,11 +250,11 @@ public class StayController {	//숙소 Controller
 		
 		model.addAttribute("revInsert", revInsert);
 		if (revInsert > 0) {
-			model.addAttribute("msg", "객실 등록 성공");
+			model.addAttribute("msg", "리뷰 등록 성공");
 		}else {
-			model.addAttribute("msg", "객실 등록 실패");
+			model.addAttribute("msg", "리뷰 등록 실패");
 		}
-		return "bh/reviewInsertForm";
+		return "main";
 	}
 	
 	//예약가능여부 확인
@@ -273,18 +270,63 @@ public class StayController {	//숙소 Controller
 	public String reviewUpdateForm(HttpServletRequest request,Review1 review,Model model) {
 		logger.info("StayController reviewUpdateForm Start");
 		int mem_num = (int)request.getSession().getAttribute("mem_num");
-		//review.setHost_num(host_num);
 		review.setMem_num(mem_num);
-		model.addAttribute("reviewUpdateForm", review);
+		System.out.println("@$! 호스트넘"+review.getHost_num());
+		System.out.println("$!$@ 맴넘"+review.getMem_num());
+		model.addAttribute("review", review);
 		return "bh/reviewUpdateForm";
 	}
 	
 	//리뷰 업데이트
-//	@RequestMapping(value = "reviewUpdate")
-//	public String reviewUpdate(Review1 review, Model model){
-//		
-//		return reviewUpdate;
-//	}
+	@RequestMapping(value = "reviewUpdate")
+	public String reviewUpdate(Review1 review,Model model,MultipartFile rev_Photo0,
+								  MultipartFile rev_Photo1,MultipartFile rev_Photo2,
+								  MultipartFile rev_Photo3,MultipartFile rev_Photo4,
+								  HttpServletRequest request) throws IOException, Exception{
+		System.out.println("hostnum->"+review.getHost_num());
+		int reviewUpdate = ss.reviewUpdate(review);
+		
+		System.out.println(rev_Photo0.getOriginalFilename());
+		
+		Map<Integer, MultipartFile> filename     = new HashMap<Integer, MultipartFile>();
+		List<RevPhoto>			revPhotoInsertList = new ArrayList<RevPhoto>();
+		RevPhoto	revPhoto = new RevPhoto();
+		String uploadPath = request.getSession().getServletContext().getRealPath("/images/bh/");
+		
+		filename.put(0, rev_Photo0);
+		filename.put(1, rev_Photo1);
+		filename.put(2, rev_Photo2);
+		filename.put(3, rev_Photo3);
+		filename.put(4, rev_Photo4);
+		
+		
+		
+		for (int i = 0; i < filename.size(); i++) {
+			System.out.println("start  roomPhotoInsert.size()->"+i);
+			if (filename.get(i).getSize() != 0) {
+				revPhotoInsertList.add(i,revPhoto);
+				uploadFile(filename.get(i).getOriginalFilename(), filename.get(i).getBytes(), uploadPath);
+			}
+			System.out.println("end  roomPhotoInsert.size()->"+i);
+		}
+		
+		
+		int uploadPhoto = 0;
+		System.out.println("업로드할 사진 갯수 --> " + revPhotoInsertList.size());
+		if (revPhotoInsertList.size() != 0) {
+			uploadPhoto = ss.revPhotoUpdate(revPhotoInsertList,filename, review);
+		}
+		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
+		System.out.println("host->"+reviewUpdate);
+		
+		model.addAttribute("revInsert", reviewUpdate);
+		if (reviewUpdate > 0) {
+			model.addAttribute("msg", "리뷰 수정 성공");
+		}else {
+			model.addAttribute("msg", "리뷰 수정 실패");
+		}
+		return "main";
+	}
 	
 	//숙소 업데이트 페이지
 	@GetMapping(value = "stayUpdateForm")
@@ -386,6 +428,7 @@ public class StayController {	//숙소 Controller
 		return "bh/roomUpdateForm";
 	}
 	
+	//룸 업데이트
 	@RequestMapping(value = "roomUpdate")
 	public String roomUpdate(Room room,Model model,MultipartFile room_photo0,
 							  MultipartFile room_photo1,MultipartFile room_photo2,
@@ -469,4 +512,15 @@ public class StayController {	//숙소 Controller
 		
 		return "main";
 	}
+	
+	@RequestMapping(value = "reviewDelete")
+	public String reviewDelete(HttpServletRequest request, Review1 review) {
+		System.out.println("StayController reviewDelete Start..");
+		int mem_num = (int)request.getSession().getAttribute("mem_num");
+		review.setMem_num(mem_num);
+		int reviewDelete=ss.reviewDelete(review);
+		
+		return "main";
+	}
+	
 }

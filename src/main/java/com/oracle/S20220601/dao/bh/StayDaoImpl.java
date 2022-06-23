@@ -119,6 +119,8 @@ public class StayDaoImpl implements StayDao {
 		System.out.println("StayDaoImpl hostreview start...");
 		Host hostreview=null;
 		try {
+//			hostreview.setHost_num(hostreview.getHost_num());
+//			hostreview.setMem_num(hostreview.getMem_num());
 			hostreview = session.selectOne("hostreview", host_num);
 		} catch (Exception e) {
 			System.out.println("StayDaoImpl hostreview Exception->"+e.getMessage());
@@ -410,6 +412,55 @@ public class StayDaoImpl implements StayDao {
 			System.out.println("StayDaoImpl roomDelete Exception->"+e.getMessage());
 		}
 		return roomDelete;
+	}
+
+	@Override
+	public int reviewUpdate(Review1 review) {
+		System.out.println("StayDaoImpl roomUpdate start...");
+		int reviewUpdate =0;
+		try {
+			
+			reviewUpdate =session.update("reviewUpdate", review);
+			
+		} catch (Exception e) {
+			System.out.println("StorePhotoDaoImpl roomUpdate ErrorMessage --> " + e.getMessage());
+		}
+		return reviewUpdate;
+	}
+
+	@Override
+	public int revPhotoUpdate(List<RevPhoto> revPhotoInsertList, Map<Integer, MultipartFile> filename, Review1 review) {
+		System.out.println("StayDaoImpl revPhotoUpdate start...");
+		int revPhotoUpdate = 0;
+		int i = 0;
+		try {
+			session.delete("revPhotoDelete", review);
+			for(RevPhoto revPhoto : revPhotoInsertList) {
+				revPhoto.setHost_num(review.getHost_num());
+				revPhoto.setRev_num(review.getRev_num());
+				System.out.println("photo_num->"+revPhoto.getRev_photo_num());
+				revPhoto.setRev_photo(filename.get(i).getOriginalFilename());
+				revPhotoUpdate += session.insert("revPhotoUpdate", revPhoto);
+				++i;
+			}
+		} catch (Exception e) {
+			System.out.println("StayDaoImpl revPhotoUpdate ErrorMessage --> " + e.getMessage());
+		}
+		return revPhotoUpdate;
+	}
+
+	@Override
+	public int reviewDelete(Review1 review) {
+		System.out.println("StayDaoImpl reviewDelete start...");
+		int reviewDelete =0;
+		try {
+			
+			reviewDelete =session.delete("reviewDelete", review);
+			
+		} catch (Exception e) {
+			System.out.println("StorePhotoDaoImpl reviewDelete ErrorMessage --> " + e.getMessage());
+		}
+		return reviewDelete;
 	}
 
 	

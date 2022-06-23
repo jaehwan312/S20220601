@@ -24,4 +24,21 @@
 	  	<update id="jjHostPickDown" parameterType="Host">
 	  		update host set like_count = like_count-1 where host_num = #{host_num}
 	  	</update>
+	  	
+	  	<select id="jjMyStoreList" parameterType="int" resultType="HostStorejj">
+	  		select m.min_price, m.max_price,
+	  		 h.*, s.*, (select c.name from code c where c.bcd=200 and c.mcd=s.food_type) type_name,
+	  		(select host_photo from hostphoto p where p.host_num = h.host_num and rownum=1) host_photo  
+	  		from host h, store s, (select host_num, min(menu_price) min_price, max(menu_price) max_price from menu group by host_num) m, pick k
+			where h.host_num = s.host_num and s.host_num = m.host_num and k.mem_num = #{mem_num} and k.host_num = h.host_num
+	  	</select>
+	  	
+	  	<select id="jjMyStayList" parameterType="int" resultType="HostStayjj">
+	  		select r.min_dayfee, r.max_dayfee, r.min_weekfee, r.max_weekfee,
+	  		h.*, s.*, (select c.name from code c where c.bcd=300 and c.mcd=s.stay_type) type_name,
+	  		(select host_photo from hostphoto p where p.host_num = h.host_num and rownum=1) host_photo  
+	  		from host h, stay s, (select host_num, min(dayfee) min_dayfee, max(dayfee) max_dayfee, min(weekfee) min_weekfee, max(weekfee) max_weekfee from room group by host_num) r,  pick k
+			where h.host_num = s.host_num and s.host_num = r.host_num and k.mem_num = #{mem_num} and k.host_num = h.host_num
+	  	</select>
+	  	
    </mapper>

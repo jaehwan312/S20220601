@@ -198,6 +198,27 @@ public class StayServiceImpl implements StayService {
 		return roomDelete;
 	}
 
+	@Override
+	public int reviewUpdate(Review1 review) {
+		System.out.println("StayServiceImpl reviewUpdate start...");
+		int reviewUpdate = sd.reviewUpdate(review);
+		return reviewUpdate;
+	}
+
+	@Override
+	public int revPhotoUpdate(List<RevPhoto> revPhotoInsertList, Map<Integer, MultipartFile> filename, Review1 review) {
+		System.out.println("StayServiceImpl revPhotoUpdate start...");
+		int revPhotoUpdate = sd.revPhotoUpdate(revPhotoInsertList,filename,review);
+		return revPhotoUpdate;
+	}
+
+	@Override
+	public int reviewDelete(Review1 review) {
+		System.out.println("StayServiceImpl reviewDelete start...");
+		int reviewDelete = sd.reviewDelete(review);
+		return reviewDelete;
+	}
+
 
 
 	

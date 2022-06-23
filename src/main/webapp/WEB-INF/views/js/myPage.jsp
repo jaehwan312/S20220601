@@ -44,7 +44,7 @@
 							<li><a href="#">나의 픽(찜목록)</a></li>
 							<li><a href="#">나의 식당정보</a></li>
 							<li><a href="#">나의 숙소정보</a></li>
-							<li><a href="#">관리자 페이지</a></li>
+							<li><a href="adminPage">관리자 페이지</a></li>
 						</ul>
 					</c:when>
 					<c:when test="${grade=='2' }">

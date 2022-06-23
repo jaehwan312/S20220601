@@ -20,7 +20,6 @@ function roomremoveCheck() {
  }
 }
 	
-	
 function roomInsertCheck() {
  if (confirm("객실을 추가 하시겠습니까??") == true){    
      $('#roomInsertForm').submit();
@@ -28,3 +27,30 @@ function roomInsertCheck() {
      return false;
  }
 }	
+
+	
+function revDeleteCheck() {
+ if (confirm("리뷰를 정말 삭제하시겠습니까??") == true){    
+     $('#reviewDeleteForm').submit();
+ }else{   
+     return false;
+ }
+}
+
+
+//권재인
+
+      function chkDate(e) {
+         var result = true;
+         var startdate = $('#frm'+e).children('input:eq(2)').val();
+         var enddate = $('#frm'+e).children('input:eq(3)').val();
+         
+
+         if (startdate==""||startdate==null||enddate==""||enddate==null) {
+            alert("날짜를 선택해주세요");
+            result = false;
+         }else {
+            document.getElementById('frm'+e).submit();
+         }
+
+      };

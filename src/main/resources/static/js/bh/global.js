@@ -29,10 +29,11 @@
             	dataType: 'json',
             	success: function(data){
             		$.each(data, function(index, item){
-            			$('#resPossible'+index).text(item.yesno);
+            			
             			if(item.yesno=='예약가능'){
             				$('#resPossible'+index).css('color','blue');
             			}else if(item.yesno=='예약불가'){
+            				$('#resPossible'+index).text(item.yesno);
             				$('#resPossible'+index).css('color','red');
             			}
             		});
