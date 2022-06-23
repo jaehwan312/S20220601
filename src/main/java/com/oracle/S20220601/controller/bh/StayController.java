@@ -60,6 +60,7 @@ public class StayController {	//숙소 Controller
 		model.addAttribute("stayPhoto", stayPhoto);
 		model.addAttribute("roomPhoto", roomPhoto);
 		model.addAttribute("host_num", roomPhotoList.getHost_num());
+		model.addAttribute("host_mem_num", stayRead.getMem_num());
 		return "bh/stayRead";
 	}
 	//숙소 등록페이지
@@ -124,7 +125,17 @@ public class StayController {	//숙소 Controller
 		return "bh/roomInsertForm";
 	}
 	
-	
+	@PostMapping(value = "roomInsertForm")
+	public String roomInsertForm(int host_num,Model model) {
+		Room room = new Room();
+		room.setHost_num(host_num);
+		List<Room> roomList = ss.roomList(room);
+		
+		model.addAttribute("host_num", host_num);
+		model.addAttribute("roomList", roomList);
+		
+		return "bh/roomInsertForm";
+	}
 
 	
 	//객실 등록
@@ -228,10 +239,7 @@ public class StayController {	//숙소 Controller
 			System.out.println("end  roomPhotoInsert.size()->"+i);
 		}
 		
-		//Review1 review1 = new Review1();
-		//review1.setHost_num(review.getHost_num());
-		//review1.setRevPhoto(revPhotoInsertList);
-	
+		
 		int uploadPhoto = 0;
 		System.out.println("업로드할 사진 갯수 --> " + revPhotoInsertList.size());
 		if (revPhotoInsertList.size() != 0) {
@@ -242,23 +250,21 @@ public class StayController {	//숙소 Controller
 		
 		model.addAttribute("revInsert", revInsert);
 		if (revInsert > 0) {
-			model.addAttribute("msg", "객실 등록 성공");
+			model.addAttribute("msg", "리뷰 등록 성공");
 		}else {
-			model.addAttribute("msg", "객실 등록 실패");
+			model.addAttribute("msg", "리뷰 등록 실패");
 		}
-		
-		
 		return "bh/reviewInsertForm";
 	}
+	
 	//예약가능여부 확인
 	@PostMapping(value = "respossible")
 	@ResponseBody
 	public List<Res> respossible(Res res,Model model) {
-		
 		List<Res> responssible = ss.respossible(res);
-		
 		return responssible;
 	}
+	
 	//리뷰 업데이트 페이지
 	@GetMapping(value = "reviewUpdateForm")
 	public String reviewUpdateForm(HttpServletRequest request,Review1 review,Model model) {
@@ -268,26 +274,67 @@ public class StayController {	//숙소 Controller
 		model.addAttribute("reviewUpdateForm", review);
 		return "bh/reviewUpdateForm";
 	}
+	
 	//리뷰 업데이트
-//	@RequestMapping(value = "reviewUpdate")
-//	public String reviewUpdate(Review1 review, Model model){
-//		
-//		return reviewUpdate;
-//	}
+	@RequestMapping(value = "reviewUpdate")
+	public String reviewUpdate(Review1 review,Model model,MultipartFile rev_Photo0,
+								  MultipartFile rev_Photo1,MultipartFile rev_Photo2,
+								  MultipartFile rev_Photo3,MultipartFile rev_Photo4,
+								  HttpServletRequest request) throws IOException, Exception{
+		System.out.println("hostnum->"+review.getHost_num());
+		int reviewUpdate = ss.reviewUpdate(review);
+		
+		System.out.println(rev_Photo0.getOriginalFilename());
+		
+		Map<Integer, MultipartFile> filename     = new HashMap<Integer, MultipartFile>();
+		List<RevPhoto>			revPhotoInsertList = new ArrayList<RevPhoto>();
+		RevPhoto	revPhoto = new RevPhoto();
+		String uploadPath = request.getSession().getServletContext().getRealPath("/images/bh/");
+		
+		filename.put(0, rev_Photo0);
+		filename.put(1, rev_Photo1);
+		filename.put(2, rev_Photo2);
+		filename.put(3, rev_Photo3);
+		filename.put(4, rev_Photo4);
+		
+		
+		
+		for (int i = 0; i < filename.size(); i++) {
+			System.out.println("start  roomPhotoInsert.size()->"+i);
+			if (filename.get(i).getSize() != 0) {
+				revPhotoInsertList.add(i,revPhoto);
+				uploadFile(filename.get(i).getOriginalFilename(), filename.get(i).getBytes(), uploadPath);
+			}
+			System.out.println("end  roomPhotoInsert.size()->"+i);
+		}
+		
+		
+		int uploadPhoto = 0;
+		System.out.println("업로드할 사진 갯수 --> " + revPhotoInsertList.size());
+		if (revPhotoInsertList.size() != 0) {
+			uploadPhoto = ss.revPhotoUpdate(revPhotoInsertList,filename, review);
+		}
+		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
+		System.out.println("host->"+reviewUpdate);
+		
+		model.addAttribute("revInsert", reviewUpdate);
+		if (reviewUpdate > 0) {
+			model.addAttribute("msg", "리뷰 수정 성공");
+		}else {
+			model.addAttribute("msg", "리뷰 수정 실패");
+		}
+		return "main";
+	}
 	
 	//숙소 업데이트 페이지
 	@GetMapping(value = "stayUpdateForm")
-	public String stayUpdateForm(int host_num, Model model) {
+	public String stayUpdateForm(Host host, Model model) {
 		System.out.println("StayController stayUpdateForm Start");
-		HostStay       		stayRead  			= ss.stayRead(host_num);
-		List<HostPhoto> 	stayPhoto 			= ss.stayPhoto(host_num);
+		HostStay       		stayRead  			= ss.stayRead(host.getHost_num());
 		List<Code>	 		codeList			= ss.codeList(stayRead.getBcd_code());
 		
-		for (int i = 0; i < stayPhoto.size(); i++) {
-			System.out.println(stayPhoto.get(i).getHost_photo());
-		}
+		
 		model.addAttribute("stay", stayRead);
-		model.addAttribute("stayPhoto", stayPhoto);
 		model.addAttribute("codeList", codeList);
 		
 		return "bh/stayUpdateForm";
@@ -322,11 +369,11 @@ public class StayController {	//숙소 Controller
 							 MultipartFile host_photo1,MultipartFile host_photo2,
 							 MultipartFile host_photo3,MultipartFile host_photo4,HttpServletRequest request) throws IOException, Exception {
 		
-		System.out.println("StoreController stayUpdate Start..");
+		System.out.println("StayController stayUpdate Start..");
 		
 		int stayUpdate = ss.stayUpdate(hostStay);
 		
-		List<HostPhoto>     stayPhoto 	   = ss.stayPhoto(hostStay.getHost_num());//식당사진
+		List<HostPhoto>     stayPhoto 	   = ss.stayPhoto(hostStay.getHost_num());
 		for (int i = 0; i < stayPhoto.size(); i++) {
 			System.out.println(stayPhoto.get(i).getHost_photo());
 		}
@@ -366,9 +413,103 @@ public class StayController {	//숙소 Controller
 			model.addAttribute("msg", "수정 요청 실패");
 		}
 		
-		//하다가 끊김
+		return "main";
+	}
+	
+	@GetMapping(value = "roomUpdateForm")
+	public String roomUpdateForm(Room room, Model model) {
+		System.out.println("StayController stayUpdateForm Start");
+		Room       		result  			= ss.stayRead(room);
+		
+		model.addAttribute("room", result);
 		
 		return "bh/roomUpdateForm";
-		
 	}
+	
+	//룸 업데이트
+	@RequestMapping(value = "roomUpdate")
+	public String roomUpdate(Room room,Model model,MultipartFile room_photo0,
+							  MultipartFile room_photo1,MultipartFile room_photo2,
+							  MultipartFile room_photo3,MultipartFile room_photo4,
+							  HttpServletRequest request) throws IOException, Exception {
+		System.out.println("StayController roomUpdate Start..");
+		int roomUpdate = ss.roomUpdate(room);
+		
+		
+		Map<Integer, MultipartFile> 	filename     		= new HashMap<Integer, MultipartFile>();
+		List<RoomPhoto>					roomPhotoInsertList = new ArrayList<RoomPhoto>();
+		RoomPhoto						roomPhoto			= new RoomPhoto();
+		String uploadPath = request.getSession().getServletContext().getRealPath("/images/bh/");
+
+		filename.put(0, room_photo0);
+		filename.put(1, room_photo1);
+		filename.put(2, room_photo2);
+		filename.put(3, room_photo3);
+		filename.put(4, room_photo4);
+		
+		for (int i = 0; i < filename.size(); i++) {
+			System.out.println("start  roomPhotoInsert.size()->"+i);
+			if (filename.get(i).getSize() != 0) {
+				roomPhotoInsertList.add(i,roomPhoto);
+				uploadFile(filename.get(i).getOriginalFilename(), filename.get(i).getBytes(), uploadPath);
+			}
+			System.out.println("end  roomPhotoInsert.size()->"+i);
+		}
+		
+		int uploadPhoto = 0;
+		System.out.println("업로드할 사진 갯수 --> " + roomPhotoInsertList.size());
+		if (roomPhotoInsertList.size() != 0) {
+			uploadPhoto = ss.roomPhotoUpdate(roomPhotoInsertList,filename,room);
+		}
+		System.out.println("업로드된 사진 갯수 --> " + uploadPhoto);
+		System.out.println("host->"+roomUpdate);
+		
+		model.addAttribute("roomInsert", roomUpdate);
+		
+		if (roomUpdate > 0) {
+			model.addAttribute("msg", "객실 수정 성공");
+		}else {
+			model.addAttribute("msg", "객실 수정 실패");
+		}
+		List<Room> roomList = ss.roomList(room);
+		
+		if(roomList.size() != 0) {
+			System.out.println("roomList->"+roomList);
+			for(Room aa:roomList) {
+				System.out.println("@@ "+aa.getRoom_name());
+			}
+			System.out.println("host_num---->>>"+room.getHost_num());
+			model.addAttribute("roomList", roomList);
+		}
+		model.addAttribute("host_num", room.getHost_num());
+		
+		return "main";
+	}
+	
+	@RequestMapping(value = "stayDelete")
+	public String stayDelete(HostStay hostStay,Model model) {
+		System.out.println("StayController stayDeleteForm Start..");
+		int stayDelete = ss.stayDelete(hostStay);
+		if (stayDelete > 0) {
+			model.addAttribute("msg", "삭제 요청 성공");
+		}else {
+			model.addAttribute("msg", "객실 등록 실패");
+		}
+		return "main";
+	}
+	
+	@RequestMapping(value = "roomDelete")
+	public String roomDelete(Room room,Model model) {
+		System.out.println("StayController roomDelete Start..");
+		int roomDelete = ss.roomDelete(room);
+		if (roomDelete > 0) {
+			model.addAttribute("msg", "객실 삭제 성공");
+		}else {
+			model.addAttribute("msg", "객실 등록 실패");
+		}
+		
+		return "main";
+	}
+	
+	
 }

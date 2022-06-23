@@ -36,6 +36,15 @@
 	<select id="resInfo" parameterType="Res" resultType="Res">
 		select host_num,mem_num from Res where host_num=#{host_num} and mem_num=#{mem_num}
 	</select>
+	
+	<!-- 리뷰포토 삭제 -->
+	<delete id="roomPhotoDelete" parameterType="Review">
+		delete from review where host_num=#{host_num} and rev_num=#{rev_num}
+	</delete>
+	<!-- 리뷰 수정 -->
+	<update id="roomUpdate" parameterType="Review">
+		update Review set rev_content=#{rev_content},rev_date=sysdate,rev_point=#{rev_point} where host_num=#{host_num} and mem_num=#{mem_num} and rev_num#{rev_num}
+	</update>
 </mapper>
   
   

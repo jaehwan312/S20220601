@@ -28,31 +28,6 @@
 #labelInfo4{
    display: none;   
 }
-.labelInfo {
-    float:left;
-    height:28px;
-}
-.file_input_div {
-    position:relative;
-    width:80px;
-    height:36px;
-    overflow:hidden;
-}
-
-.img_btn {
-    padding:0 0 0 5px;
-}
-
-.host_photo {
-    font-size:29px;
-    position:absolute;
-    right:0px;
-    top:0px;
-    opacity:0;
-    filter: alpha(opacity=0);
-    -ms-filter: alpha(opacity=0);
-    cursor:pointer;
-}
 
    </style>
 <title>제주 감수광</title>
@@ -62,38 +37,39 @@
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
     	<div style="text-align: center; margin-top: 100px;">
-    	<form action="roomInsert" method="post" style="text-align: center;" enctype="multipart/form-data">
-    		<input type="hidden" value="${host_num }" name="host_num">
+    	<form action="roomUpdate" method="post" style="text-align: center;" enctype="multipart/form-data">
+    		<input type="hidden" value="${room.host_num }" name="host_num">
+    		<input type="hidden" value="${room.room_num }" name="room_num">
 			<div>
 				<label>
 					객실명 :
 				</label>
 				<label>
-					<input type="text" name="room_name" required="required" placeholder="객실 이름">
+					<input type="text" name="room_name" value="${room.room_name}">
 				</label><p/><p/>
 				<label>
 					인원 :
 				</label>
 				<label>
-					<input type="number"    name="allow"       required="required" min="1" max="20" value="1">
+					<input type="number"    name="allow"    min="1" max="20" value="${room.allow}">
 				</label><p/>
 				<label>
 					객실 소개글 :
 				</label>
 				<label>
-					<input type="text"      name="room_info"    required="required" placeholder="객실 소개글">
+					<input type="text"      name="room_info"  value="${room.room_info}">
 				</label><p/>
 				<label>
 					평일요금 :
 				</label>
 				<label>
-					<input type="number"     name="dayfee"       required="required" placeholder="ex)100000">
+					<input type="number"     name="dayfee"   value="${room.dayfee}">
 				</label><p/>
 				<label>
 					주말요금 :
 				</label>
 				<label>
-					<input type="number"      name="weekfee"    required="required" placeholder="ex)150000">
+					<input type="number"      name="weekfee"  value="${room.weekfee}">
 				</label><p/>
 					
 					<div>
@@ -104,7 +80,7 @@
 							<div class="insertPhoto">
 								<c:forEach begin="0" end="4" varStatus="i">
 				                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
-				                       	 <img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px;"/>
+				                       	 사진 업로드
 										<input type="file" class="host_photo" id="inputInfo${i.index }" name="room_photo${i.index}" 
 											onchange="previewFiles(${i.index })" accept="images/bh/*">
 				                    </label><p/>
@@ -113,34 +89,9 @@
 						</div>
 					</div>
 			</div>
-			<input type="submit" value="등록요청">
+			<input type="submit" value="수정">
     	</form>
-    	
-    	
-	    	<table border="1" >
-	    		
-		    		<c:if test="${roomList != null}">
-		    			<th>객실명</th>
-		    			<th>인원수</th>
-		    			<th>객실 소개글</th>
-		    			<th>평일요금</th>
-		    			<th>주말요금</th>
-		    		</c:if>
-		    	 	<c:if test="${roomList != null}">
-			    		<c:forEach items="${roomList}" var="room">
-				    		<tr>
-				    			<td>${room.room_name}</td>
-				    			<td>${room.allow}</td>
-				    			<td>${room.room_info}</td>
-				    			<td>${room.dayfee}</td>
-				    			<td>${room.weekfee}</td>
-				    		</tr>
-			    		</c:forEach>
-		    		</c:if>
-	    	</table>
     	</div>
-    	
-     <!-- 여기 위로오 ============================================================ -->   
    <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>

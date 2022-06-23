@@ -81,14 +81,13 @@
 						<div id="preview" ></div>
 						</div>
 						<div style="display: inline-block; margin-top: 50px; ">
-							<div class="insertPhoto" style="align-content: center;">
+							<div class="reviewInsert" style="align-content: center;">
 								<c:forEach begin="0" end="4" varStatus="i">
 				                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
 				                       	<img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px;"/>
 										<input type="file" class="host_photo" id="inputInfo${i.index }" name="rev_Photo${i.index}" 
 											onchange="previewFiles(${i.index })" accept="images/bh/*">
 				                    </label>
-				                    
 				                </c:forEach>
 		      				</div>
 						</div>

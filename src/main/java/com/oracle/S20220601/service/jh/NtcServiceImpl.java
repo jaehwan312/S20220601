@@ -28,4 +28,17 @@ public class NtcServiceImpl implements NtcService {
 		return ntcList;
 	}
 
+	@Override
+	public Notice ntcContent(int n_num) {
+		Notice ntc = nd.ntcContent(n_num);
+		return ntc;
+	}
+
+	@Override
+	public int ntcDelete(int n_num) {
+		int result = 0;
+		result = nd.ntcDelete(n_num);
+		return result;
+	}
+
 }
