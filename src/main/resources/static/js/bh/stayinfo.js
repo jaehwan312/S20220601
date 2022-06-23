@@ -20,7 +20,6 @@ function roomremoveCheck() {
  }
 }
 	
-	
 function roomInsertCheck() {
  if (confirm("객실을 추가 하시겠습니까??") == true){    
      $('#roomInsertForm').submit();
@@ -28,8 +27,18 @@ function roomInsertCheck() {
      return false;
  }
 }	
+
+	
+function revDeleteCheck() {
+ if (confirm("리뷰를 정말 삭제하시겠습니까??") == true){    
+     $('#reviewDeleteForm').submit();
+ }else{   
+     return false;
+ }
+}
+
+
 //권재인
-<script type="text/javascript">
 
       function chkDate(e) {
          var result = true;
