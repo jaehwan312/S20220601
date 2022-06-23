@@ -228,6 +228,7 @@ function storeReviewInsert(e){
 
 //리뷰 작성 1일 제한
 function chakDate(e){
+	
 	let today = new Date();
 	var maxReviewDate = document.getElementById('maxReviewDate').value;
 	maxReviewDate = new Date(maxReviewDate);

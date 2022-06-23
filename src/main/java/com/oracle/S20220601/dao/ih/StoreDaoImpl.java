@@ -1,9 +1,14 @@
 package com.oracle.S20220601.dao.ih;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oracle.S20220601.model.Host;
+import com.oracle.S20220601.model.Pick;
 import com.oracle.S20220601.model.ih.HostStore;
 
 @Repository
@@ -46,7 +51,6 @@ public class StoreDaoImpl implements StoreDao {
 			hostStore.setBreak_time(hostStore.getBreak_start_time() 
 									    + "~" + 
 									    hostStore.getBreak_end_time());
-//			prn(hostStore);
 			storeInsert = session.insert("storeInsert", hostStore);
 			storeInsert = 1;
 		} catch (Exception e) {
@@ -57,7 +61,7 @@ public class StoreDaoImpl implements StoreDao {
 	}
 
 
-	@Override
+	@Override //식당정보 업데이트
 	public int storeUpdate(HostStore hostStore) {
 		System.out.println("StoreDaoImpl storeUpdate Start....");
 		
@@ -67,7 +71,6 @@ public class StoreDaoImpl implements StoreDao {
 			hostStore.setIn_break_time(hostStore.getIn_break_start_time() + "~" + hostStore.getIn_break_end_time());
 			storeUpdate = session.update("storeUpdate", hostStore);
 			storeUpdate = 1;
-//			in_prn(hostStore);
 		} catch (Exception e) {
 			storeUpdate = 0;
 			System.out.println("StoreDaoImpl storeInsert ErrorMessage --> " + e.getMessage());
@@ -75,6 +78,49 @@ public class StoreDaoImpl implements StoreDao {
 		
 		System.out.println("storeUpdate-----<> "+ storeUpdate);
 		return storeUpdate;
+	}
+
+	@Override //찜하기 확인
+	public int storePick(int mem_num, int host_num) {
+		System.out.println("StoreDaoImpl storePick Start....");
+		
+		int storePick = 0;
+		Pick storePickChack = new Pick();
+		storePickChack.setHost_num(host_num);
+		storePickChack.setMem_num(mem_num);
+		try {
+			storePick = session.selectOne("storePickChack", storePickChack);
+		} catch (Exception e) {
+			System.out.println("StoreDaoImpl storePick ErrorMessage --> " + e.getMessage());
+		}
+		return storePick;
+	}
+
+	@Override  //내 식당 등록정보
+	public List<Host> myStoreList(int mem_num) {
+		System.out.println("StoreDaoImpl myStoreList Start....");
+		
+		List<Host> myStoreList = null;
+		try {
+			myStoreList = session.selectList("myStoreList", mem_num);
+		} catch (Exception e) {
+			System.out.println("StoreDaoImpl myStoreList ErrorMessage --> " + e.getMessage());
+		}
+		return myStoreList;
+	}
+
+	@Override  //내 찜한식당
+	public List<Host> myStorePickList(int mem_num) {
+		System.out.println("StoreDaoImpl myStorePickList Start....");
+		
+		List<Host> myStorePickList =null;
+		
+		try {
+			myStorePickList = session.selectList("myStorePickList", mem_num);
+		} catch (Exception e) {
+			System.out.println("StoreDaoImpl myStorePickList ErrorMessage --> " + e.getMessage());
+		}
+		return myStorePickList;
 	}
 	
 	

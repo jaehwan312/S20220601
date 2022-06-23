@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.S20220601.model.Code;
+import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Menu;
+import com.oracle.S20220601.model.Pick;
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.RevPhoto;
 import com.oracle.S20220601.model.Review;
@@ -71,16 +73,21 @@ public class StoreController {
 		HostStore 		storeRevcount  = storeService.storeRead(host_num);		//리뷰갯수
 		
 		
+		//로그인 상태 일때 넘기는 정보
 		if (mem_num != 0) {
 			Profile     profile        = profileService.selectProfile(mem_num); //회원정보 불러오기
 			String		maxReviewDate  = reviewService.maxReviewDate(host_num,mem_num);
 			model.addAttribute("name", profile.getName());
+			int 	  	pick  		   = storeService.storePick(mem_num,host_num);
 			model.addAttribute("userphoto",profile.getPhoto());
 			model.addAttribute("maxReviewDate",maxReviewDate);
-			
+			model.addAttribute("index",pick);
+		}else {
+			model.addAttribute("index",0);
 		}
 		
 		
+		//리뷰 사진 넘기기
 		if (revList.size() != 0) {
 			List<RevPhoto>	revPhotos  = reviewService.storeRevPhoto(revList);  //리뷰 사진
 			model.addAttribute("revPhotos", revPhotos);
@@ -134,6 +141,7 @@ public class StoreController {
 							  MultipartFile host_photo4,     HttpServletRequest request) throws Exception {
 		
 		System.out.println("StoreController storeInsert Start..");
+		
 		//식당정보 등록(DB저장)
 		int storeInsert  = storeService.storeInsert(hostStore);
 		
@@ -334,6 +342,60 @@ public class StoreController {
 		}
 		
 		
-		return "ih/test";
+		return "ih/main";
+	}
+	
+	//내 식당 등록정보
+	@GetMapping(value = "myStoreList")
+	public String myStoreList(Model model, HttpServletRequest request, HttpSession session) {
+		
+		System.out.println("StoreController myStoreList Start..");
+		
+		session     = request.getSession();
+		int mem_num = 0;
+		if (session.getAttribute("mem_num") == null) {
+			mem_num = 0;
+		}else {
+			mem_num = (int) session.getAttribute("mem_num"); //로그이 성공시 회원번호 값
+		}
+		
+		List<Host> myStoreList = storeService.myStoreList(mem_num);
+		
+		if (myStoreList.size() != 0) {
+			model.addAttribute("myStoreList" ,myStoreList);
+		}else {
+			model.addAttribute("myStoreList" ,0);
+		}
+		
+		
+		return "ih/myStoreList";
+	}
+	
+	@GetMapping(value = "myStorePickList")
+	public String myStorePickList(Model model, HttpServletRequest request, HttpSession session) {
+		
+		System.out.println("StoreController myStorePickList Start..");
+		
+		session     = request.getSession();
+		int mem_num = 0;
+		if (session.getAttribute("mem_num") == null) {
+			mem_num = 0;
+		}else {
+			mem_num = (int) session.getAttribute("mem_num"); //로그이 성공시 회원번호 값
+		}
+		
+		List<Host> myStorePickList = storeService.myStorePickList(mem_num);
+		
+		for (int i = 0; i < myStorePickList.size(); i++) {
+			System.out.println("host_name --> " + myStorePickList.get(i).getHost_name());
+		}
+		
+		if (myStorePickList.size() != 0) {
+			model.addAttribute("myStorePickList" ,myStorePickList);
+			model.addAttribute("size" ,myStorePickList.size());
+		}else {
+			model.addAttribute("size" ,0);
+		}
+		return "ih/myStorePickList";
 	}
 }
