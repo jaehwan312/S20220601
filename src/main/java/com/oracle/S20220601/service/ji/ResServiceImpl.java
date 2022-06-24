@@ -110,6 +110,28 @@ public class ResServiceImpl implements ResService {
 		int delete_res = rd.deleteFailRes(res_num);
 		return delete_res;
 	}
+
+	@Override
+	public int deleteByResnum(Res res) {
+		System.out.println("ResServiceImpl deleteByResnum Start...");
+		int delete_res = rd.deleteByResnum(res);
+		return delete_res;
+	}
+
+	@Override
+	public Res statusChange(int res_num) {
+		System.out.println("ResServiceImpl statusChange Start...");
+		Res res = rd.statusChange(res_num);
+		return res;
+	}
+
+	@Override
+	public int updStatusCanc(int res_num) {
+		System.out.println("ResServiceImpl updStatusCanc Start...");
+		int upd_res_canc = rd.updStatusCanc(res_num);
+		return upd_res_canc;
+	
+	}
 	
 
 }

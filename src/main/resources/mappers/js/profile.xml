@@ -10,6 +10,9 @@
   	<select id="idCheck" parameterType="String" resultType="int">
   		SELECT COUNT(id) FROM PROFILE WHERE id = #{id}
   	</select>
+  	<select id="phoneCheck" parameterType="String" resultType="int">
+  		SELECT COUNT(phone) FROM PROFILE WHERE phone = #{phone}
+  	</select>
   	<select id="getSeq" parameterType="Profile" resultType="int">
 		SELECT SEQ_MEM_NUM.NEXTVAL FROM DUAL
 	</select>
@@ -54,8 +57,13 @@
 	</select>
 	
 	<select id="ProfileTotal" resultType="int" >
-		SELECT Count(*) FROM PROFILE
+		SELECT Count(*) FROM PROFILE WHERE grade = 1 OR grade = 2	
 	</select>
+	
+	<select id="ProfileSleepTotal" resultType="int" >
+		SELECT Count(*) FROM PROFILE WHERE grade = 3
+	</select>
+	
     <select id="ProfileList" parameterType="Profile" resultType="Profile">
      <![CDATA[
 	    SELECT *
@@ -137,4 +145,25 @@
 		AND   (grade = 3)
 	 ]]>
     </select>
+  	<select id="userCnt" parameterType="profile" resultType="String">
+  		SELECT COUNT(*) FROM PROFILE WHERE grade = 1 OR grade = 2
+  	</select>
+  	
+  	<select id="sleepUserCnt" parameterType="profile" resultType="String">
+  		SELECT COUNT(*) FROM PROFILE WHERE grade = 3
+  	</select>
+  	
+  	<select id="searchCnt" parameterType="Search" resultType="String">
+  		SELECT COUNT(*) FROM SEARCH WHERE search_code = 1
+  	</select>
+  	
+  	<select id="storeCnt" parameterType="Host" resultType="String">
+  		SELECT COUNT(*) FROM HOST WHERE host_app = 1 AND host_code = 1
+  	</select>
+  	
+  	<select id="stayCnt" parameterType="Host" resultType="String">
+  		SELECT COUNT(*) FROM HOST WHERE host_app = 1 AND host_code = 2
+  	</select>
+  	
+  	
   </mapper>	

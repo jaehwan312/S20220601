@@ -34,7 +34,6 @@ body {
 	position: absolute;
     top: 5px;
     right: 5px;
-    background-color: white;
 }
  
 .wrapper {
@@ -44,7 +43,6 @@ body {
 }
 
 .container-fostrap {
-  display: table-cell;
   padding: 1em;
   text-align: center;
   vertical-align: middle;
@@ -126,4 +124,31 @@ h1.heading {
   padding:10px;
   font-weight:600;
   text-transform: uppercase
+}
+
+/* 검색결과 없음 메세지 */
+.emptyMsg {
+	margin-top: 30px;
+	margin-bottom: 30px;
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#totalEmpty {
+	top: 20%;
+	padding-bottom: 100px;
+	padding-top: 100px;
+}
+
+.innerEmpty {
+	margin: auto;
+	text-align: center;
+}
+
+.emptyImages2 {
+	width: 420px;
+	border-radius: 23px;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }

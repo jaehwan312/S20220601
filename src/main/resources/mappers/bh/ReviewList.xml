@@ -54,7 +54,10 @@
 	<delete id="reviewDelete" parameterType="Review1">
 		delete from Review where host_num=#{host_num} and rev_num=#{rev_num} and mem_num=#{mem_num}
 	</delete>
-	
+	<!-- 리뷰 카운트 수정 -->
+	<update id="countUpdate" parameterType="Review1">
+		update host set rev_count = (select count(*) from review where host_num=#{host_num}) where host_num=#{host_num}
+	</update>
 </mapper>
   
   

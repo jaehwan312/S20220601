@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.oracle.S20220601.model.Pay;
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
 
 import com.oracle.S20220601.model.ji.ResRoom;
 import com.oracle.S20220601.model.ji.RoomPay;
-
+import com.oracle.S20220601.service.ji.PayService;
 import com.oracle.S20220601.service.ji.ResService;
 
 
@@ -31,6 +32,8 @@ public class ResController {
 
 	@Autowired
 	private ResService rs;
+	@Autowired
+	private PayService ps;
 
 	// 예약하기 화면
 	@GetMapping("resContent")
@@ -161,6 +164,7 @@ public class ResController {
 		List<Res> listCancleRes = rs.listCancleRes(res);
 		System.out.println("Rescontroller resList listCancleRes.size() ->" + listCancleRes.size());
 
+
 		model.addAttribute("listRes", listRes);
 		model.addAttribute("listBeforeRes", listBeforeRes);
 		model.addAttribute("listCancleRes", listCancleRes);
@@ -170,7 +174,56 @@ public class ResController {
 		return "ji/resList";
 	}
 	
-	
+	@RequestMapping(value = "statusChange")
+	public Res statusChange(int res_num, Model model) {
+		Res res = rs.statusChange(res_num);
+		return res;
+		
+	}
+	@RequestMapping(value = "statusChange2")
+	public String resCancle(Pay pay, Model model) {	//예약번호, 캔슬이유 받아옴
+		//pay 결제취소일, 결제취소이유 update
+		Pay p_pay = new Pay();
+		p_pay.setRes_num(pay.getRes_num());
+		p_pay.setCanc_reason(pay.getCanc_reason());
+		int upd_pay_status = ps.updateStatus(p_pay);
+		if (upd_pay_status > 0)	System.out.println("updateStatus 성공");
+		else					System.out.println("updateStatus 실패");
+		
+		//res상태 3으로
+		int res_num = pay.getRes_num();
+		int upd_res_canc = rs.updStatusCanc(res_num);
+		
+		if (upd_res_canc > 0)	System.out.println("예약상태3 UPDATE 성공");
+		else					System.out.println("예약상태3 UPDATE 실패");
+		return "redirect:/resList";
+		
+	}
+
+	@RequestMapping("resDelete")
+	public String resDelete(Res res, Model model,HttpServletRequest request) {
+		System.out.println("Rescontroller resDelete Start...");
+		int mem_num = (int)request.getSession().getAttribute("mem_num");
+		String grade = (String)request.getSession().getAttribute("grade");
+		
+		int res_num1 = res.getRes_num();	//받아온 예약번호
+		System.out.println("삭제할 res_num -> "+res_num1);
+		
+		//res_num으로 Pay Delete
+		Pay p_pay = new Pay();
+		p_pay.setRes_num(res_num1);
+		int delete_pay = ps.deleteByResnum(p_pay);
+		if (delete_pay > 0)	System.out.println("resDelete 결제삭제 성공");
+		else				System.out.println("결제삭제 실패");
+		
+		//res_num으로 Pay에서 삭제할 p_num찾기
+		int delete_res = rs.deleteByResnum(res); // 결제상태 0인 res삽입
+		if (delete_res > 0)	System.out.println("resDelete 예약삭제 성공");
+		else				System.out.println("예약삭제 실패");
+		
+		
+		return  "redirect:/resList";
+	}
 		
 	/* 							컨트롤러에서 사용한 함수 							*/
 	
