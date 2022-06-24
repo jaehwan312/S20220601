@@ -30,7 +30,7 @@
 		                            <img src="images/jj/${store.host_photo }" />
 		                          </a>
 		                          <button type="button" class="btn-close btn-close-white close_button" aria-label="Close"
-		                           onclick="deletePick('${store.host_name}',${store.host_num })"></button>
+		                           onclick="deletePick('${store.host_name}',${store.host_num })" style="background-color: darkgray;"></button>
 		                            <div class="card-content">
 		                                	<i class="fa-solid fa-utensils icons" style="color: #d33d38;"></i>
 		                                <h4 class="card-title">
@@ -58,7 +58,7 @@
 		                            <img src="images/jj/${stay.host_photo }" />
 		                          </a>
 		                          <button type="button" class="btn-close btn-close-white close_button" aria-label="Close"
-		                           onclick="deletePick('${stay.host_name}',${stay.host_num })"></button>
+		                           onclick="deletePick('${stay.host_name}',${stay.host_num })" style="background-color: darkgray;"></button>
 		                            <div class="card-content">
 		                                	<i class="fa-solid fa-bed icons" style="color: #42a2f9;"></i>
 		                                <h4 class="card-title">

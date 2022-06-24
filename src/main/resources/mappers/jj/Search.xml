@@ -26,7 +26,7 @@
 	  		 h.*, s.*, (select c.name from code c where c.bcd=200 and c.mcd=s.food_type) type_name,
 	  		(select host_photo from hostphoto p where p.host_num = h.host_num and rownum=1) host_photo  
 	  		from host h, store s, (select host_num, min(menu_price) min_price, max(menu_price) max_price from menu group by host_num) m
-			where h.host_num = s.host_num and s.host_num = m.host_num
+			where h.host_num = s.host_num and s.host_num = m.host_num and h.host_app = 2 
 			<if test='keyword!=null'>
 				and (host_name like '%'||#{keyword}||'%' or host_addr like '%'||#{keyword}||'%' or
 				 (select c.name from code c where c.bcd=200 and c.mcd=s.food_type) like '%'||#{keyword}||'%')
@@ -123,7 +123,7 @@
 	  		h.*, s.*, (select c.name from code c where c.bcd=300 and c.mcd=s.stay_type) type_name,
 	  		(select host_photo from hostphoto p where p.host_num = h.host_num and rownum=1) host_photo  
 	  		from host h, stay s, (select host_num, min(dayfee) min_dayfee, max(dayfee) max_dayfee, min(weekfee) min_weekfee, max(weekfee) max_weekfee from room group by host_num) r
-			where h.host_num = s.host_num and s.host_num = r.host_num
+			where h.host_num = s.host_num and s.host_num = r.host_num and h.host_app = 2 
 			<if test='keyword!=null'>
 				and (host_name like '%'||#{keyword}||'%' or host_addr like '%'||#{keyword}||'%' or
 				 (select c.name from code c where c.bcd=300 and c.mcd=s.stay_type) like '%'||#{keyword}||'%')
