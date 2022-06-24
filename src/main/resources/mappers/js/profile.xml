@@ -15,7 +15,7 @@
 	</select>
   	<insert id="insertProfile" parameterType="Profile">
   		INSERT INTO PROFILE(mem_num, id, pw, name, gender, email, phone, birth, agree , join_date , photo, grade)
-					VALUES (#{mem_num}, #{id}, #{pw}, #{name},#{gender},#{email},#{phone},#{birth},#{agree}, TO_CHAR(SYSDATE, 'YYYY/MM/DD') ,#{photo},2)
+					VALUES (#{mem_num}, #{id}, #{pw}, #{name},#{gender},#{email},#{phone},#{birth},#{agree}, TO_CHAR(SYSDATE, 'YYYYMMDD') ,#{photo},2)
   	</insert>
   	<select id="searchId" resultType="String">
 		SELECT id from PROFILE 
