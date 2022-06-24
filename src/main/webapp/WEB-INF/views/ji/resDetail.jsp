@@ -150,7 +150,11 @@
 						</div>
 					<!-- /Modal -->
 						<c:if test="${res.res_status eq '2' }">
-							<button type="button" onclick="location.href=">리뷰작성하기</button>
+						<form action="reviewInsertForm">
+						<input type="hidden" name="host_num" value="${res.host_num }">
+						<input type="hidden" name="room_num" value="${res.mem_num }">
+							<button type="submit" onclick="location.href=">리뷰작성하기</button>
+						</form>
 							<button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">삭제</button>
 						</c:if>
 						<c:if test="${res.res_status eq '3' }">

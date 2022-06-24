@@ -65,7 +65,7 @@
 						<input type="hidden" id="email1" value="${profile.email }">
 						<label for="email" class="form-label">이메일</label>
 						<input type="text" placeholder="이메일을 입력해주세요" name="email" id="email" class="form-control" value="${profile.email}">
-						<button type="button" id="email_auth_btn" class="btn btn-primary" style="float: right; margin-top: 5px;'" onclick="auth_btn()">인증번호 받기</button>
+						<button type="button" class="btn btn-primary btn-lg" id="email_auth_btn" style="float: right; margin-top: 5px;" onclick="auth_btn()">인증번호 받기</button>
 					</div>
 					<div class="col-12"  style="margin-top: 0px;">
 						<label for="email_auth_key" class="form-label" >인증번호</label>

@@ -69,8 +69,8 @@
 		                <div class="dropdown_content" id="mypage">
 		                    <a href="myPage">나의 프로필</a>
 		                    <a href="resList">예약내역</a>
-		                    <a href="">나의 픽(찜목록)</a>
-		                    <a href="">나의 식당정보</a>
+		                    <a href="myPickList">나의 픽(찜목록)</a>
+		                    <a href="myStoreList">나의 식당정보</a>
 		                    <a href="">나의 숙소정보</a>
 		                </div>
 		            </li>
@@ -82,8 +82,8 @@
 		                <div class="dropdown_content" id="mypage">
 		                    <a href="myPage">나의 프로필</a>
 		                    <a href="resList">예약내역</a>
-		                    <a href="">나의 픽(찜목록)</a>
-		                    <a href="">나의 식당정보</a>
+		                    <a href="myPickList">나의 픽(찜목록)</a>
+		                    <a href="myStoreList">나의 식당정보</a>
 		                    <a href="">나의 숙소정보</a>
 		                    <a href="adminPage">관리자 페이지</a>
 		                </div>

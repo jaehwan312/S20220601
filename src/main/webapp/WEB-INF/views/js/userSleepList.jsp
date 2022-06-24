@@ -27,7 +27,7 @@
     	 <div class="loginTitle">
             <h1>휴면회원 조회</h1>
          </div>
-			<div class="table-responsive">
+			<div class="table-responsive" style="text-align: center;">
 				<table class="table table-striped table-sm"> 
 					<tr><th>회원번호</th><th>아이디</th><th>이름</th><th>전화번호</th><th>이메일</th><th>회원등급</th></tr>
 					<c:forEach var="profile" items="${profileList}">

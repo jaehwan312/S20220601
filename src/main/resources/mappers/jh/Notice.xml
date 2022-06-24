@@ -15,4 +15,25 @@
 			)
 		WHERE rn between #{start} AND #{end}
 	</select>
+	
+	<select id="jhSelContent" parameterType="int" resultType="Ntc">
+		select * from notice where n_num = #{n_num}
+	</select>
+	
+	<update id="jhViewCount" parameterType="int">
+		update notice set n_view = n_view+1 where n_num = #{n_num}
+	</update>
+	
+	<update id="jhNtcUpdate" parameterType="Ntc">
+		update notice set n_title=#{n_title}, n_date=to_char(sysdate, 'yyyymmdd'), n_content=#{n_content} where n_num=#{n_num}
+	</update>
+	
+	<delete id="jhNtcDelete" parameterType="int">
+		delete from notice where n_num = #{n_num}
+	</delete>
+	
+	<insert id="jhNtcInsert" parameterType="Ntc">
+		insert into notice values (SEQ_N_NUM.nextval, #{mem_num}, #{n_title}, to_char(sysdate, 'yyyymmdd'), 0, #{n_content}, '사진')
+	</insert>
+	
 </mapper>

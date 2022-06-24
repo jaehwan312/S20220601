@@ -11,4 +11,14 @@ public interface NtcService {
 
 	List<Notice> listNtc(Notice ntc);
 
+	Notice ntcContent(int n_num);
+
+	void viewCount(int n_num);
+
+	int ntcUpdate(Notice ntc);
+
+	int ntcDelete(int n_num);
+
+	int ntcInsert(Notice ntc);
+
 }

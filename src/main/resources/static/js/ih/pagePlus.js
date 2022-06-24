@@ -7,4 +7,7 @@ $(document).ready(function () {
 			$('#load').css('display','none');
 		}
 	});
+	if($('.reviewList').length <= 5){
+			$('#load').css('display','none');
+	}
 });

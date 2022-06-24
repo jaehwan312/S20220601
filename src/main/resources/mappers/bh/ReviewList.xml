@@ -25,17 +25,39 @@
 	
 	<!-- 리뷰등록 -->
 	<insert id="revInsert" parameterType="Review">
-		INSERT INTO review VALUES(#{host_num},seq_rev_num.nextval,#{mem_num},#{rev_content},sysdate,#{rev_point},seq_rev_num.nextval,0)
+		INSERT INTO review VALUES(#{host_num},seq_rev_num.nextval,#{mem_num},#{rev_content},to_char(sysdate,'yyyymmdd'),#{rev_point},seq_rev_num.nextval,0)
 	</insert>
 	<!-- 리뷰 사진 등록 -->
 	<insert id="revPhotoInsert" parameterType="RevPhoto">
 	  	INSERT INTO revphoto VALUES(#{host_num},SEQ_REV_NUM.CURRVAL,SEQ_REV_PHOTO_NUM.nextval,#{rev_photo})
+	 </insert>
+	 
+	 <!-- 리뷰 사진 수정 -->
+	<insert id="revPhotoUpdate" parameterType="RevPhoto">
+	  	INSERT INTO revphoto VALUES(#{host_num},#{rev_num},SEQ_REV_PHOTO_NUM.nextval,#{rev_photo})
 	 </insert>
 	
 	<!-- 리뷰 host,mem 가져오기 -->
 	<select id="resInfo" parameterType="Res" resultType="Res">
 		select host_num,mem_num from Res where host_num=#{host_num} and mem_num=#{mem_num}
 	</select>
+	
+	<!-- 리뷰포토 삭제 -->
+	<delete id="revPhotoDelete" parameterType="Review1">
+		delete from revphoto where host_num=#{host_num} and rev_num=#{rev_num}
+	</delete>
+	<!-- 리뷰 수정 -->
+	<update id="reviewUpdate" parameterType="Review1">
+		update Review set rev_content=#{rev_content},rev_date=to_char(sysdate,'yyyymmdd'),rev_point=#{rev_point} where host_num=#{host_num} and mem_num=#{mem_num} and rev_num=#{rev_num}
+	</update>
+	<!-- 리뷰 삭제 -->
+	<delete id="reviewDelete" parameterType="Review1">
+		delete from Review where host_num=#{host_num} and rev_num=#{rev_num} and mem_num=#{mem_num}
+	</delete>
+	<!-- 리뷰 카운트 수정 -->
+	<update id="countUpdate" parameterType="Review1">
+		update host set rev_count = (select count(*) from review where host_num=#{host_num}) where host_num=#{host_num}
+	</update>
 </mapper>
   
   

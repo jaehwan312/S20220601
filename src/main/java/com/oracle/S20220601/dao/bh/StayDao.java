@@ -44,5 +44,8 @@ public interface StayDao {
 	Room 				selectRoom(Room room);
 	int 				stayDelete(HostStay hostStay);
 	int 				roomDelete(Room room);
+	int 				reviewUpdate(Review1 review);
+	int 				revPhotoUpdate(List<RevPhoto> revPhotoInsertList, Map<Integer, MultipartFile> filename, Review1 review);
+	int 				reviewDelete(Review1 review);
 	
 }
