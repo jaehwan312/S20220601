@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,6 @@
 <link href="css/jj/myPickList.css" rel="stylesheet">    
 
 <title>제주 감수광</title>
-
 </head>
 <body>
 	<%@ include file="../header.jsp" %>
@@ -84,6 +84,14 @@
 		        </div>
 		    </div>
 		</section>
+		<c:if test="${fn:length(host.store)==0 and fn:length(host.stay)==0 }">
+			<div class="col-md-12" id="totalEmpty">
+	        	<div class="innerEmpty">
+	        	   <img alt="" src="images/jj/no.jpg" class="emptyImages2">
+	            <h2 class="emptyMsg">찜한게 하나도 없네요</h2>
+	           </div>
+	        </div>
+        </c:if>
     
     <!-- 여기 위로오 ============================================================ -->   
     </div>
