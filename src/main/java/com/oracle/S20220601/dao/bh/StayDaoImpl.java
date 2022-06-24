@@ -1,5 +1,7 @@
 package com.oracle.S20220601.dao.bh;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -98,20 +100,32 @@ public class StayDaoImpl implements StayDao {
 	}
 
 	@Override
-	public List<Review1> reviewList(int host_num) {
+	public List<Map<String, Review1>> reviewList(int host_num) {
 		System.out.println("StayDaoImpl reviewList start...");
+		
+		List<Map<String, Review1>> maps = new ArrayList<Map<String,Review1>>();
 		List<Review1> reviewList = null;
+		
 		try {
 			reviewList = session.selectList("bhreviewList", host_num);
 			List<RevPhoto> rp =null;
 			for(Review1 rv : reviewList) {
+				Map<String, Review1> map = new HashMap<String, Review1>();
+				Review1 reply = session.selectOne("bhReplyList", rv.getRef());
 				rp = session.selectList("bhrevPhotoList", rv);
 				rv.setRevPhoto(rp);
+				map.put("content", rv);
+				if(reply!=null) {
+					map.put("reply",reply);
+				}
+				maps.add(map);
 			}
+			
+			
 		} catch (Exception e) {
 			System.out.println("StayDaoImpl reviewList Exception->"+e.getMessage());
 		}
-		return reviewList;
+		return maps;
 	}
 
 	@Override
@@ -461,6 +475,30 @@ public class StayDaoImpl implements StayDao {
 			System.out.println("StorePhotoDaoImpl reviewDelete ErrorMessage --> " + e.getMessage());
 		}
 		return reviewDelete;
+	}
+
+	@Override
+	public List<HostStay> hostList(int mem_num) {
+		System.out.println("StayDaoImpl hostList start...");
+		List<HostStay> hostList = null;
+		try {
+			hostList= session.selectList("hostList", mem_num);
+		} catch (Exception e) {
+			System.out.println("StorePhotoDaoImpl hostList ErrorMessage --> " + e.getMessage());
+		}
+		return hostList;
+	}
+
+	@Override
+	public int refInsert(Review review) {
+		System.out.println("StayDaoImpl refInsert start...");
+		int refInsert = 0;
+		try {
+			refInsert = session.selectOne("refInsert", review);
+		} catch (Exception e) {
+			System.out.println("StorePhotoDaoImpl refInsert ErrorMessage --> " + e.getMessage());
+		}
+		return refInsert;
 	}
 
 	

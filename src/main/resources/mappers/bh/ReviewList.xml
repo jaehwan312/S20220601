@@ -10,6 +10,10 @@
 		sub where room.host_num=sub.host_num and room.room_num = sub.room_num	
 	</select>
 	
+	<select id="bhReplyList" parameterType="int" resultType="Review1">
+		select * from review where ref = #{ref} and re_step = 1
+	</select>
+	
 	<select id="bhrevPhotoList" parameterType="Review1" resultType="RevPhoto">
 		select * from revphoto where host_num=#{host_num} and rev_num=#{rev_num}
 	</select>  
@@ -58,6 +62,10 @@
 	<update id="countUpdate" parameterType="Review1">
 		update host set rev_count = (select count(*) from review where host_num=#{host_num}) where host_num=#{host_num}
 	</update>
+	<!-- 리뷰 답글 -->
+	<insert id="refInsert" parameterType="Review">
+		INSERT INTO review VALUES(#{host_num},seq_rev_num.nextval,#{mem_num},#{rev_content},to_char(sysdate,'yyyymmdd'),0,#{rev_num},1)
+	</insert>
 </mapper>
   
   
