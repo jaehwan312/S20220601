@@ -9,9 +9,17 @@
 <link rel="stylesheet" href="css/template.css">
 <link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
 <title>제주 감수광</title>
+<script type="text/javascript" src="js/js/signUpPage.js"></script>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+
+	
+</script>
 <style type="text/css">
 	.id_ok{color:#6A82FB; display: none; margin: 5px;}
 	.id_already{color:#FF0000; display: none; margin: 5px;}
+	.phone_ok{color:#6A82FB; display: none; margin: 5px;}
+	.phone_already{color:#FF0000; display: none; margin: 5px;}
 </style>
 </head>
 <body>
@@ -41,11 +49,12 @@
 					  		 onkeyup="characterCheck(this)" onkeydown="characterCheck(this)">
 					</div>
 					   <span class="id_ok" style="margin: 0px">사용 가능한 아이디입니다.</span>
-					   <span class="id_already" style="margin: 0px">누군가 이 아이디를 사용중입니다.</span>
+					   <span class="id_already" style="margin: 0px">사용 불가능한 아이디입니다.</span>
 					
-					<div class="col-12">
+					<div class="col-12"> 
 						<label for="passwd" class="form-label">비밀번호</label> 
-						<input type="password" name="pw" class="form-control" id="pw" placeholder="4~12자의 영문 대소문자와 숫자로만 입력" maxlength="12">
+						<input type="password" name="pw" class="form-control" id="pw"
+							   placeholder="6~10자의 영문 대소문자와 숫자로만 입력" maxlength="12" onkeyup="pwCheck(this)" onkeydown="pwCheck(this)">
 					</div>
 					<div class="col-12">
 						<label for="pwCheck" class="form-label">비밀번호 확인</label>
@@ -53,7 +62,7 @@
 					</div>
 					<div class="col-md-6">
 						<label for="name" class="form-label">이름</label>
-						<input type="text" name="name" class="form-control" id="name" maxlength="20">
+						<input type="text" name="name" class="form-control" autocomplete="off" id="name" maxlength="20" onkeyup="nameCheck(this)" onkeydown="nameCheck(this)" placeholder="한글로만 입력해주세요">
 					</div>
 					<div class="col-md-6">
 						<label for="gender" class="form-label">성별</label> 
@@ -65,20 +74,24 @@
 					</div>
 					<div class="col-12">
 						<label for="birth" class="form-label">생년월일</label> 
-						<input type="text" name="birth" class="form-control" id="birth" placeholder="ex)19980514">
+						<input type="text" name="birth" autocomplete="off" class="form-control" id="birth" placeholder="ex)19980514" onkeyup="birthCheck(this)" onkeydown="birthCheck(this)">
 					</div>
 					<div class="col-12">
 						<label for="phone" class="form-label">전화번호</label> 
-						<input type="tel" name="phone" class="form-control" id="phone" placeholder="'-'없이 입력" pattern="[0-9]{11}">
+						<input type="text" autocomplete="off" name="phone" id="phone" class="form-control" placeholder="'-'없이  숫자로 11자리 입력해주세요"  
+					  		 autocomplete="off" oninput = "checkPhonek()" 
+					  		 onkeyup="phoneCheck(this)" onkeydown="phoneCheck(this)">
 					</div>
+						<span class="phone_ok" style="margin: 0px">사용 가능한 핸드폰번호 입니다.</span>
+					    <span class="phone_already" style="margin: 0px">사용 불가능한 핸드폰 번호입니다.</span>
 					<div class="col-12">
 						<label for="email" class="form-label">이메일</label>
-						<input type="text" placeholder="이메일을 입력해주세요" name="email" id="email" class="form-control">
+						<input type="text" placeholder="이메일을 입력해주세요" name="email" id="email" class="form-control" autocomplete="off">
 						<button type="button" id="email_auth_btn" class="btn btn-primary" style="float: right; margin-top: 5px;" onclick="auth_btn()">인증번호 받기</button>
 					</div>
 					<div class="col-12"  style="margin-top: 0px;">
 						<label for="email_auth_key" class="form-label" >인증번호</label>
-						<input type="text" placeholder="인증번호 입력" id="email_auth_key" class="form-control">
+						<input type="text" autocomplete="off" placeholder="인증번호 입력" id="email_auth_key" class="form-control">
 					</div>
 					
 					
@@ -94,7 +107,6 @@
 	</div>
     <!-- 여기 위로오 ============================================================ -->   
 	<%@ include file="../footer.jsp" %>
-	<script type="text/javascript" src="js/js/signUpPage.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

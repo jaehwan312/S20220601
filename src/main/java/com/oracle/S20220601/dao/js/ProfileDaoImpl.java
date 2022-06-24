@@ -8,7 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.Profile;
+import com.oracle.S20220601.model.Search;
 
 
 @Repository
@@ -134,7 +136,19 @@ public class ProfileDaoImpl implements ProfileDao {
 		}
 		return tot;
 	}
-
+	
+	@Override
+	public int total1() {
+		int tot = 0;
+		System.out.println("ProfileTotal Start total..." );
+		try {
+			tot = session.selectOne("ProfileSleepTotal");
+			System.out.println("ProfileTotal total tot->"+tot );
+		} catch (Exception e) {
+			System.out.println("ProfileTotal total Exception->"+e.getMessage());
+		}
+		return tot;
+	}
 
 	@Override
 	public List<Profile> profileList(Profile profile) {
@@ -220,6 +234,49 @@ public class ProfileDaoImpl implements ProfileDao {
 			System.out.println("ProfileDaoImpl profileList Exception->"+e.getMessage());
 		} 
 		return userSleepList;
+	}
+
+
+	@Override
+	public String userCnt(Profile profile) {
+		String result = session.selectOne("userCnt", profile);
+		return result;
+	}
+
+
+	@Override
+	public String sleepUserCnt(Profile profile) {
+		String result = session.selectOne("sleepUserCnt", profile);
+		return result;
+	}
+
+
+	@Override
+	public String searchCnt(Search search) {
+		String result = session.selectOne("searchCnt", search);
+		return result;
+	}
+
+
+	@Override
+	public String storeCnt(Host host) {
+		String result = session.selectOne("storeCnt", host);
+		return result;
+	}
+
+
+	@Override
+	public String stayCnt(Host host) {
+		String result = session.selectOne("stayCnt", host);
+		return result;
+	}
+
+
+	@Override
+	public int phoneCheck(String phone) {
+		int cnt = session.selectOne("phoneCheck", phone);
+		System.out.println("핸드폰 cnt 확인---->"+ cnt);
+		return cnt;
 	}
 
 	

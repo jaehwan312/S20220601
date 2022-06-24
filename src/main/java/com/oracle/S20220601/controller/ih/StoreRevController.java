@@ -56,7 +56,7 @@ public class StoreRevController {
 		System.out.println("StoreRevController StoreRevCount Start...");
 		
 		HostStore storeRevcount  = storeService.storeRead(host_num);
-//		int storeRevcount    = reviewService.storeRevcount(host_num);   //삭제시 리뷰갯수 업데이트
+		System.out.println("업데이트후 리뷰 갯수 --> " + storeRevcount.getRev_count());
 		
 		return storeRevcount.getRev_count();
 	}
@@ -66,8 +66,9 @@ public class StoreRevController {
 	public float storeRevPointAvg(int host_num) {
 		
 		System.out.println("StoreRevController storeRevPointAvg Start...");
+		
 		HostStore storeRevPointAvg  = storeService.storeRead(host_num);
-//		float storeRevPointAvg = reviewService.storeRevPointAvg(host_num);//삭제시 평점    업데이트
+		System.out.println("업데이트후 평점 --> " + storeRevPointAvg.getHost_avg());
 		
 		return storeRevPointAvg.getHost_avg();
 	}
@@ -77,17 +78,11 @@ public class StoreRevController {
 	@ResponseBody //식당리뷰 작성
 	@PostMapping(value = "storeRevInsert" )
 	public StoreReview storeRevInsert(StoreReview review, HttpServletRequest request, 
-							  MultipartHttpServletRequest  filelist,
-							  @RequestParam HashMap<Object, Object> param
-							 ) throws Exception {
+							  		  MultipartHttpServletRequest  filelist,
+										  @RequestParam HashMap<Object, Object> param) throws Exception {
 		
 		System.out.println("StoreRevController storeRevInsert Start...");
 		
-		System.out.println(review.getHost_num());
-		System.out.println(review.getMem_num());
-		System.out.println(review.getRev_num());
-		System.out.println(review.getRev_content());
-		System.out.println(review.getRev_point());
 //		리뷰저장
 		int storeRevInsert = reviewService.storeUserRevInsert(review);
 		
@@ -128,18 +123,19 @@ public class StoreRevController {
 		
 		StoreReview reviewSelect = reviewService.reviewSelect(storeRevInsert);
 		
-		//System.out.println(" reviewSelect --> " + reviewSelect.getRev_content());
-		
-		
 		return reviewSelect;
 	}
 
-		private String uploadFile(String originalName, byte[] fileData , String uploadPath) 
-			  throws Exception {
-		 // universally unique identifier 
-	     UUID uid = UUID.randomUUID();
-	   // requestPath = requestPath + "/resources/image";
+	private String uploadFile(String originalName, byte[] fileData , String uploadPath) throws Exception {
+		
+		System.out.println("StoreRevController uploadFile Start...");
+		
+		// universally unique identifier 
+	    UUID uid = UUID.randomUUID();
+	  
+	    // requestPath = requestPath + "/resources/image";
 	    System.out.println("uploadPath->"+uploadPath);
+	
 	    // Directory 생성 
 		File fileDirectory = new File(uploadPath);
 		if (!fileDirectory.exists()) {
@@ -151,11 +147,13 @@ public class StoreRevController {
 		String savedName = originalName;
 	    logger.info("savedName: " + savedName);
 	    File target = new File(uploadPath, savedName);
+	
 	    //File target = new File(requestPath, savedName);
 	    FileCopyUtils.copy(fileData, target);   // org.springframework.util.FileCopyUtils
+	  
 	    // Service ---> DAO 연결 
 	    return savedName;
-	  }	
+   }	
 
 
 		
@@ -190,7 +188,6 @@ public class StoreRevController {
 		
 //			답변 삭제
 		int hostRevDelete = reviewService.hostRevDelete(review);
-		
 		
 		return hostRevDelete;
 	}

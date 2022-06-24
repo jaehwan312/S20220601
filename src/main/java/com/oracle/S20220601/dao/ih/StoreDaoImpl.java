@@ -97,10 +97,10 @@ public class StoreDaoImpl implements StoreDao {
 	}
 
 	@Override  //내 식당 등록정보
-	public List<Host> myStoreList(int mem_num) {
+	public List<HostStore> myStoreList(int mem_num) {
 		System.out.println("StoreDaoImpl myStoreList Start....");
 		
-		List<Host> myStoreList = null;
+		List<HostStore> myStoreList = null;
 		try {
 			myStoreList = session.selectList("myStoreList", mem_num);
 		} catch (Exception e) {
@@ -109,21 +109,19 @@ public class StoreDaoImpl implements StoreDao {
 		return myStoreList;
 	}
 
-	@Override  //내 찜한식당
-	public List<Host> myStorePickList(int mem_num) {
-		System.out.println("StoreDaoImpl myStorePickList Start....");
+	@Override //식당정보 삭제 요청
+	public int storeDeleteRequest(HostStore hostStore) {
+		System.out.println("StoreDaoImpl storeDeleteRequest Start....");
 		
-		List<Host> myStorePickList =null;
-		
+		int storeDeleteRequest = 0;
 		try {
-			myStorePickList = session.selectList("myStorePickList", mem_num);
+			storeDeleteRequest = session.update("storeDelete", hostStore);
 		} catch (Exception e) {
-			System.out.println("StoreDaoImpl myStorePickList ErrorMessage --> " + e.getMessage());
+			System.out.println("StoreDaoImpl storeDeleteRequest ErrorMessage --> " + e.getMessage());
 		}
-		return myStorePickList;
+		return storeDeleteRequest;
 	}
-	
-	
+
 	
 	/*
 	private void prn(HostStore hostStore) {

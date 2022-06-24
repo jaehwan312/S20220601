@@ -87,6 +87,7 @@
 							<p>
 								<strong>체크아웃</strong>${checkout } ${room1.checkout }
 							</p>
+	
 						</section>
 						<section class="total_price">
 							<p>
@@ -100,7 +101,7 @@
 
 						</section>
 						<button type="button" class="btn btn-primary m-5"
-							data-bs-toggle="modal" onclick="resCheck()" data-target="#staticBackdrop">결제하기</button>
+							data-bs-toggle="modal" onclick="resCheck()">결제하기</button>
 					</div>
 				</div>
 			</div>
