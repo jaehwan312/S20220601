@@ -180,7 +180,7 @@
 								${room.dayfee }원<p/>
 								${room.room_info }<p/>
 								
-								<form action="resContent" method="post">
+								<form id="frm${j.index }" action="resContent" onsubmit="return false">
 									<input type="hidden" name="host_num" value="${room.host_num }">
 									<input type="hidden" name="room_num" value="${room.room_num }">
 									<input type="hidden" name="res_start" id="res_start">

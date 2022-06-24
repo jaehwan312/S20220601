@@ -70,18 +70,20 @@
 					<section>
 						<div>
 							<p>
-								<strong>체크인 </strong>${res.sday} ${res.checkin}
+								<label class="label"><strong>체크인 </strong></label>${res.sday} ${res.checkin}
+								<input type="hidden" id="res_start" value="${res.sday}">
+								<input type="hidden" id="checkin" value="${res.checkin}">
 							</p>
 							<p>
-								<strong>체크아웃 </strong>${res.eday} ${res.checkout}
+								<label class="label"><strong>체크아웃 </strong></label>${res.eday} ${res.checkout}
 							</p>
 						</div>
 						<div>
 							<p>
-								<strong>예약번호 </strong>${res.res_num}
+								<label class="label"><strong>예약번호 </strong></label>${res.res_num}
 							</p>
 							<p>
-								<strong>예약자 이름 </strong>${res.name}
+								<label class="label"><strong>예약자 이름 </strong></label>${res.name}
 							</p>
 							<p>
 								<span>휴대폰 번호 ${res.phone }은(는)<br>안심번호로 숙소에 전송되며, 퇴실
@@ -93,7 +95,7 @@
 						<div class="total" style="border-bottom: none;">
 							<p>결제정보</p>
 							<p>
-								<strong>총 결제금액 </strong> <b> ${res.price}원</b>
+								<label class="label"><strong>총 결제금액 </strong></label> <b> ${res.price}원</b>
 							</p>
 						</div>
 					</section>
@@ -102,7 +104,7 @@
 						<!---->
 
 						<c:if test="${res.res_status eq '1' }">
-							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">예약취소하기</button>
+							<button type="button" class="btn btn-primary" data-bs-toggle="modal"  onclick="dateChk()">예약취소하기</button>
 						</c:if>
 						<!-- Modal -->
 						<div class="modal fade" id="staticBackdrop"
@@ -119,24 +121,29 @@
 										<p>
 											<strong>총 결제금액 </strong> <b> ${res.price}원</b>
 										</p>
+										
 										<div class="cacle-reason">
-											<h3>결제수단 선택</h3>
-											<select id="payment-select" class="select_type_1">
-												<option data-minprice="0" selected="selected" value="kakaopay"
-													data-v-f785cca6="">카카오페이</option>
-												<option data-minprice="0" value="CARD">신용/체크카드</option>
-												<option data-minprice="0" value="AT_QUICK">간편계좌이체</option>
-												<option data-minprice="0" value="NAVER">네이버페이</option>
-												<option data-minprice="0" value="CELLPHONE">휴대폰결제</option>
+											<h3>취소사유</h3>
+											<select name ="cancle", id="cancle-select" class="select_type_2">
+												<option selected="selected" value="그냥1" >그냥1</option>
+												<option  value="그냥2">그냥2</option>
+												<option  value="그냥3">그냥3</option>
+												<option value="그냥4">그냥4</option>
+												<option  value="그냥5">그냥5</option>
 											</select>
 											<!---->
 											<!---->
 										</div>
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary"
-											data-bs-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Understood</button>
+<!-- 										<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">Close</button> -->
+										
+									<form action="statusChange2" name="cancleForm">
+										<input type="hidden" name="canc_reason" value="">
+										<input type="hidden" name="res_num" value="${res.res_num}">
+										<button type="submit" class="btn btn-primary" onclick="reasonChk()" >취소하기</button>
+									</form>
 									</div>
 								</div>
 							</div>
@@ -144,11 +151,32 @@
 					<!-- /Modal -->
 						<c:if test="${res.res_status eq '2' }">
 							<button type="button" onclick="location.href=">리뷰작성하기</button>
-							<button type="button" onclick="location.href=">삭제</button>
+							<button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">삭제</button>
 						</c:if>
 						<c:if test="${res.res_status eq '3' }">
-							<button type="button" onclick="location.href=">삭제</button>
+							<button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">삭제</button>
 						</c:if>
+					<!--Delete Modal2 -->
+
+						
+						<!-- Modal -->
+						<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered modal-dialog modal-sm">
+						    <div class="modal-content">
+						      <div class="modal-body">
+								 <span style="text-align: center">예약내역을 삭제하시겠습니까?</span>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+						        <form action="resDelete">
+						        	<input type="hidden" name="res_num" value="${res.res_num}">
+						        	<button type="submit" class="btn btn-primary">삭제</button>
+						        </form>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+				<!--/Delete modal2 -->
 					</section>
 				</div>
 				<!-- /본문 -->
@@ -157,6 +185,42 @@
 		<!-- 여기 위로오 ============================================================ -->
 	</div>
 	<%@ include file="../footer.jsp"%>
+	<script type="text/javascript">
+	
+	
+	
+	
+	
+	//체크인시간 지나면 예약취소 불가능
+	function dateChk(){	
+		const  res_start = document.getElementById("res_start").value;	//2022.02.02 수
+		const  checkin = document.getElementById("checkin").value;		//14:00
+		const  res_start2= res_start.substr(0,10);	//2022.02.02
+		const  result = res_start2+' '+checkin	//2022.02.02 14:00
+		const modalToggle = document.getElementById('staticBackdrop'); 
+
+
+		const date1 = new Date(result);	//체크인시간
+		const date2 = new Date(); //현재시간
+
+//			체크인시간 // 현재시간
+		if(date1.getTime() < date2.getTime()){
+			alert("예약취소 시간이 지났습니다.");
+			$('#staticBackdrop').modal('hide')
+		} else {
+			$('#staticBackdrop').modal('show')
+			
+		
+		}};
+		
+		function reasonChk() {
+			var f = document.cancleForm
+			select_reason = $("#cancle-select").val()
+			$('#canc_reason').val(select_reason);
+			f.submit();
+		}
+
+	</script>
 </body>
 </html>
 <!-- 여기밑에만 복사 -->

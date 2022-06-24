@@ -46,4 +46,19 @@ public class PayServiceImpl implements PayService {
 		int delete_pay = pd.deleteFailPay(pay_num);
 		return delete_pay;
 	}
+
+	@Override
+	public int deleteByResnum(Pay p_pay) {
+		System.out.println("PayServiceImpl deleteFailPay Start...");
+		int delete_pay = pd.deleteByResnum(p_pay);
+		return delete_pay;
+	}
+
+	@Override
+	public int updateStatus(Pay p_pay) {
+		System.out.println("PayServiceImpl updateStatus Start...");
+		int upd_pay_status = pd.updateStatus(p_pay);
+		return upd_pay_status;
+
+	}
 }

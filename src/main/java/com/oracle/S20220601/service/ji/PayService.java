@@ -14,5 +14,9 @@ public interface PayService {
 
 	int deleteFailPay(int pay_num);
 
+	int deleteByResnum(Pay p_pay);
+
+	int updateStatus(Pay p_pay);
+
 
 }
