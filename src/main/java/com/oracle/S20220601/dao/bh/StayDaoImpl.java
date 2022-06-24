@@ -253,8 +253,8 @@ public class StayDaoImpl implements StayDao {
 		System.out.println("StayDaoImpl revInsert start...");
 		int revInsert = 0;
 		try {
-			revInsert =session.insert("revInsert", review);
-			revInsert=1;
+			revInsert += session.insert("revInsert", review);
+			revInsert += session.update("countUpdate", review);
 		} catch (Exception e) {
 			System.out.println("StayDaoImpl revInsert Exception->"+e.getMessage());
 		}

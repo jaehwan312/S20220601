@@ -41,6 +41,7 @@
 		<typeAlias alias="HostStorejj"     	type="com.oracle.S20220601.model.jj.HostStorejj"/>
 		<typeAlias alias="HostStayjj"     	type="com.oracle.S20220601.model.jj.HostStayjj"/>
 		<typeAlias alias="Jjpaging"     	type="com.oracle.S20220601.model.jj.Jjpaging"/>
+		<typeAlias alias="Pick"     	    type="com.oracle.S20220601.model.Pick"/>
 		
 		<!-- jh -->
 		<typeAlias alias="Chat"     		type="com.oracle.S20220601.model.Chat"/>

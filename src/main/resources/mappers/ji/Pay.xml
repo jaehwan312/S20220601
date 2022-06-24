@@ -31,4 +31,16 @@
 		FROM PAY
 		WHERE pay_num = #{pay_num}
 	</delete>
+	<delete id="jiDelPayByResnum" parameterType="Pay">
+		DELETE 
+		FROM PAY
+		WHERE res_num = #{res_num}
+	</delete>
+	
+	<!-- 예약취소 -> PAY테이블 결제이유, 결제취소날짜 UPDATE -->
+	<update id="jiUpdStatusCanc" parameterType="Pay" >
+		UPDATE PAY 
+		SET canc_date = TO_CHAR(SYSDATE, 'YYYYMMDD') , canc_reason=#{canc_reason}
+		WHERE res_num = #{res_num}
+	</update>
   </mapper>

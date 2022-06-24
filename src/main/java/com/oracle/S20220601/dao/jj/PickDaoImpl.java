@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oracle.S20220601.model.Pick;
 import com.oracle.S20220601.model.jj.HostStayjj;
 import com.oracle.S20220601.model.jj.HostStorejj;
 
@@ -34,6 +35,20 @@ public class PickDaoImpl implements PickDao {
 			System.out.println(e.getMessage());
 		}
 		return list;
+	}
+
+	@Override
+	public int myPickDel(int host_num, int mem_num) {
+		int result = 0;
+		Pick pick = new Pick();
+		pick.setHost_num(host_num);
+		pick.setMem_num(mem_num);
+		try {
+			result = session.delete("jjMyPickDel", pick);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
 	}
 	
 	

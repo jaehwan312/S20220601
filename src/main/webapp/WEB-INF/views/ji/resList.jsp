@@ -51,11 +51,16 @@
 			<!-- 밑에는 내꺼 -->
 			<div id="content-wrapper">
  			<div class="reserve_list">
-
+				<form action="resList" id="reset"></form>
 				<section class="list_present">
 					<h4>예약 확정</h4>
 					<ul class="list_wrap">
-						<c:forEach var="listRes" items="${listRes}">
+						<c:forEach var="listRes" items="${listRes}" varStatus="j">
+							<div class="valueCheck">
+								<input type="hidden" name="res_num" value="${listRes.res_num }" id="res_num${j.index }">
+								<input type="hidden" name="res_end" value="${listRes.res_end}" id="res_end${j.index }">
+								<input type="hidden" name="checkout" value="${listRes.checkout}" id="checkout${j.index }">
+							</div>
 							<li>
 								<div class="row">
 									<div class="col-6">
@@ -170,5 +175,45 @@
 		<!-- 여기 위로오 ============================================================ -->
 	</div>
 	<%@ include file="../footer.jsp"%>
+	
+	<script>
+    $( document ).ready(function() {
+		const values = document.getElementsByClassName('valueCheck');
+		alert(values.length);
+		var change = 0;
+		for (var i=0; i<values.length; i++){
+			var res_number = $('#res_num'+i).val();
+			var res_end = $('#res_end'+i).val();
+			var checkout = $('#checkout'+i).val();
+			var res_end2 = res_end.substr(0,8);
+			var res_end3 = res_end2.replace(/(\d{4})(\d{2})(\d{2})/g, '$1-$2-$3');
+			var result = res_end3+' '+checkout;
+			
+			var date1 = new Date(result);	//체크아웃
+			var date2 = new Date(); //현재시간
+		
+			
+			if(date1.getTime() < date2.getTime()){
+				$.ajax({
+					url:'statusChange',
+					data:{res_num:res_number},
+					type:'get',
+					dataType: 'json',
+					success:function(data){
+						change++;
+					}
+				});
+				
+				
+			} };
+			if(change>0){
+				alert(change+"건 변경 완료");
+				location.reload(true);
+			}
+		
+    });
+    
+
+    </script>
 </body>
 </html>

@@ -10,5 +10,7 @@ public interface PickDao {
 	List<HostStorejj> ajaxMyStoreList(int mem_num);
 
 	List<HostStayjj> ajaxMyStayList(int mem_num);
+
+	int myPickDel(int host_num, int mem_num);
 	
 }
