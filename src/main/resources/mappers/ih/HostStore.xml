@@ -15,13 +15,13 @@
 			 SELECT COUNT(*) FROM pick WHERE host_num = #{host_num} AND mem_num = #{mem_num}
 		</select>
 		<!-- 내식당 정보  -->
-		<select id="myStoreList" parameterType="int" resultType="Host" >
-			 SELECT * FROM host WHERE mem_num = #{mem_num} AND host_code = 1
+		<select id="myStoreList" parameterType="int" resultType="HostStore" >
+			 SELECT * FROM host WHERE mem_num = #{mem_num} AND host_code = 1 AND host_app = 2
 		</select>
-		<!-- 내가 찜한 식당  -->
-		<select id="myStorePickList"  parameterType="int" resultType="Host">
-			 SELECT a.host_num,h.host_name,h.host_addr,h.rev_count,h.host_avg,h.like_count FROM (SELECT * FROM PICK WHERE mem_num = #{mem_mun} )a , host h WHERE a.host_num = h.host_num AND host_code = 1
-		</select>
+		<delete id="storeDelete" parameterType="int">
+			DELETE FROM host WHERE host_num = #{host_num} AND mem_num = #{mem_num}
+		</delete>
+		
   		<!-- 식당정보 등록 -->
   		<insert id="storeInsert" parameterType="HostStore" statementType="CALLABLE">
   			{
@@ -45,6 +45,7 @@
   			}
   		</insert>
   		
+  		<!-- 식당정보 업데이트 -->
   		<update id="storeUpdate" parameterType="HostStore" statementType="CALLABLE" >
   			{
   				call HOST_STORE_UPDATE(

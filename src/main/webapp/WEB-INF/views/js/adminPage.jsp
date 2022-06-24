@@ -70,7 +70,7 @@
                 </div>
                 
                 <div class="col-lg-3 col-md-6 wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
-                    <a href="">
+                    <a href="storeConfirm">
 	                    <div class="fact-item bg-light rounded text-center h-100 p-5">
 	                        <i class="fa fa-store fa-4x text-primary mb-4" aria-hidden="true"></i>
 	                        <p class="mb-2">식당등록 관리</p>

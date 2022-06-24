@@ -1,5 +1,5 @@
-function stayApprove(e){
-	if(confirm("해당 숙소에 대한 승인을 진행하시겠습니까?")){
+function storeApprove(e){
+	if(confirm("해당 식당에 대한 승인을 진행하시겠습니까?")){
 		$.ajax({
 			url: "approveStore",
 			type: 'post',
@@ -8,15 +8,15 @@ function stayApprove(e){
 			success:function(data){
 				if(parseInt(data)>0){
 					alert("승인 완료");
-					$('#stayConfirm').submit();
+					$('#storeConfirm').submit();
 				}
 			}
 		});
 	}
 }
 
-function stayReject(e){
-	if(confirm("해당 숙소에 대한 승인을 거절하시겠습니까?")){
+function storeReject(e){
+	if(confirm("해당 식당에 대한 승인을 거절하시겠습니까?")){
 		$.ajax({
 			url: "rejectStore",
 			type: 'post',
@@ -25,7 +25,7 @@ function stayReject(e){
 			success:function(data){
 				if(parseInt(data)>0){
 					alert("거절 완료");
-					$('#stayConfirm').submit();
+					$('#storeConfirm').submit();
 				}
 			}
 		});
