@@ -132,7 +132,7 @@ h1.heading {
 	margin-bottom: 30px;
     display: block;
     text-align: center;
-    font-size: 27px;
+    font-size: 30px;
     font-weight: bold;
 }
 
@@ -148,5 +148,7 @@ h1.heading {
 }
 
 .emptyImages2 {
-	width: 230px;
+	width: 420px;
+	border-radius: 23px;
+	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
