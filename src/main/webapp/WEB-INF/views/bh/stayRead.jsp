@@ -262,12 +262,11 @@
 					총 리뷰 : ${hostreview.rev_count }
 				</div>
 				<!-- start -->
-				<div style="padding: 80px; border: 1px solid black;">
 	            <c:forEach items="${maps }" var="map" varStatus="l">
-	            <div style="border: 1px solid black; margin-top: 20px;">
-	            	<div>${map.content.rev_point}</div>
+	            <div style="margin-top: 20px;">
+	            	<div>평점 : ${map.content.rev_point}</div>
 	               <div style="text-align: left; padding-left: 70px; padding-top:30px;">
-	                      ${map.content.room_name}
+	                  	객실 :${map.content.room_name}  ${map.content.rev_date}
 	                </div>
 	                <div style="width: 40%; text-align: left; padding-left: 60px; padding-bottom: 30px; padding-top: 30px;">
 	                  ${map.content.rev_content}</div>
@@ -297,7 +296,7 @@
 	                    </button>
 	                  </div>
 	               </div>
-	               ${map.content.rev_date}
+	              
 	               <form style="display:inline-block;" action="reviewUpdateForm">
 	               		<input type="hidden" name="host_num" value="${host_num }">
 				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
@@ -316,7 +315,7 @@
 	               		<input type="hidden" name="host_num" value="${host_num }">
 				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
 				   		<c:if test="${host_mem_num==mem_num}">
-				   		<textarea rows="10" cols="10" name="rev_content"></textarea>
+				   		<textarea rows="10" cols="10" name="rev_content" style="border: 1px solid;"></textarea>
 				   		<button type="button" class="btn btn-outline-danger" onclick="revRefCheck()">답글달기</button>
 				   		</c:if>
 	               </form>
@@ -328,7 +327,6 @@
 	            </div>
 	            </c:if>
 	            </c:forEach> 
-	         </div>
 				<!--end  -->
 			</c:if>
 			</div>
