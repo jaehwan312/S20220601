@@ -2,6 +2,7 @@ package com.oracle.S20220601.service.ji;
 
 import java.util.List;
 
+import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
 import com.oracle.S20220601.model.ji.ResInfo;
@@ -41,6 +42,8 @@ public interface ResService {
 	Res statusChange(int res_num);
 
 	int updStatusCanc(int res_num);
+
+	List<Code> CancCodeList();
 
 
 

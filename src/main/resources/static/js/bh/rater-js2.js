@@ -18,7 +18,7 @@ function starrating(){
 		$('#revpoint').val(0); 
 	}
 	
-	alert($('#revpoint').val());
+	
 	
 	$('#reviewForm').submit();
 }

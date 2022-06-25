@@ -17,27 +17,27 @@
 		<!-- 여기 밑으로 ============================================================ -->
 		<br> <br>
 		
-		<div class="row">
-			<div class="col-6">
+		<div class="row justify-content-md-center">
+			<div class="col-md-auto">
 
 				<div>
-					<h3>예약자 정보</h3>
+					<b>예약자 정보</b>
 					<p>예약자 이름</p>
 					<input type="text" id="res_name" name="name" placeholder="체크인시 필요한 정보입니다."
 						maxlength="30" value="${prof.name }" required
-						oninput="checkName()"> <span class="name_ok"
+						oninput="checkName()" class="form-control" type="text" aria-label="default input example"> <span class="name_ok"
 						style="display: none">예약자 이름을 확인해주세요.</span>
 
 					<p>휴대폰 번호</p>
 					<input type="tel" name="phone" placeholder="체크인시 필요한 정보입니다." value="${prof.phone }" 
-					id="phone"oninput="checkPhone()" pattern="[0-9]{11}" maxlength="11"> 
+					id="phone"oninput="checkPhone()" pattern="[0-9]{11}" maxlength="11" class="form-control" type="text" aria-label="default input example"> 
 						<span class="phone_ok" style="display: none">휴대폰 번호를 확인해주세요.</span>
 	
 				</div>
 				<br> <br>
 				<div>
-					<h3>결제수단 선택</h3>
-					<select id="payment-select" class="select_type_1">
+					<b>결제수단 선택</b>
+					<select id="payment-select" class="form-select" aria-label="Default select example">
 						<option data-minprice="0" selected="selected" value="kakaopay"
 							data-v-f785cca6="">카카오페이</option>
 						<option data-minprice="0" value="CARD">신용/체크카드</option>
@@ -57,19 +57,20 @@
 					</div>
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="chk"> 
-						<label class="form-check-label" for="flexCheckDefault"> 숙소이용규칙 및 취소/환불규정 동의 (필수) </label>
+						<label class="form-check-label" for="flexCheckDefault"> 숙소이용규칙 및 취소/환불규정 동의 <span>(필수)</span> </label>
 					</div>
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="chk"> 
-						<label class="form-check-label" for="flexCheckChecked">개인정보 수집 및 이용 동의 (필수) </label>
+						<label class="form-check-label" for="flexCheckChecked">개인정보 수집 및 이용 동의 <span>(필수)</span></label>
 					</div>
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="chk"> 
-						<label class="form-check-label" for="flexCheckChecked"> 개인정보 제 3자 제공 동의 (필수) </label>
+						<label class="form-check-label" for="flexCheckChecked"> 개인정보 제 3자 제공 동의 <span>(필수)</span> </label>
 					</div>
 				</div>
 			</div>
-			<div class="col-6">
+	
+			<div class="col-md-auto">
 				<div class="room-info">
 
 					<div>
@@ -91,7 +92,7 @@
 						</section>
 						<section class="total_price">
 							<p>
-								<strong><b>진짜 총 결제 금액</b>(VAT포함)</strong><span class="in_price">${total_fee }</span>
+								<strong><b>총 결제 금액</b>(VAT포함)</strong><span class="in_price">${total_fee }</span>
 							</p>
 
 							<p>
@@ -100,8 +101,10 @@
 							</p>
 
 						</section>
-						<button type="button" class="btn btn-primary m-5"
+						<div class="d-grid gap-2 col-6 mx-auto">
+						<button type="button" class="btn btn-primary"
 							data-bs-toggle="modal" onclick="resCheck()">결제하기</button>
+						</div>
 					</div>
 				</div>
 			</div>

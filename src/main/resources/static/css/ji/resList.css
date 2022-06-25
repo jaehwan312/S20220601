@@ -1,42 +1,33 @@
 @charset "UTF-8";
+
 body div {
-  font-size: medium;
+	font-size: medium;
 }
 
-.wrapper {
-	width: 350px;
-	border: 1px solid black;
-	text-align: center;
-	display: block;
-	margin: 30px;
-}
-
-
-.list_wrap { 
-	list-style-type: none;
-	display: flex;
-	align-items: center;
-	padding-left: 0;
-	width: 100%;
-	flex-wrap: wrap;
-}
-
-.reserve_list li a{
-	line-height: normal;
-}
-.reserve_list li a strong {
-    display: block;
-    font-size: 18px;
-}
 .container {
 	margin-top: 10%;
 }
+
 .status {
-	 font-size: 13px;
+	font-size: 13px;
 }
-section h4{
-		margin-bottom : 1rem;
-	  padding-inline-start: 32px;
-	
+
+section h4 {
+	font-family: 'SCoreDream', cursive;
+	margin-bottom: 1rem;
 }
-  
+
+section {
+	margin-bottom: 10%;
+}
+
+.card-img-top {
+	width: 100%;
+	height: 11rem;
+	object-fit: cover;
+}
+.card-body{	text-align: center;
+}
+.card-body span{
+	display: block;
+}

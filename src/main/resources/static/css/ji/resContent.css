@@ -26,5 +26,16 @@ input[type="checkbox"] {
 .total_price li{
 	list-style-type: none;
 }
-
+.form-check label span{
+	color: red;
+}
+.col-md-auto {
+	margin-right: 5%;
+	margin-left: 5%;
+}
+.d-flex{
+	
+}
+input, pregress {
+  accent-color: red;
 }
