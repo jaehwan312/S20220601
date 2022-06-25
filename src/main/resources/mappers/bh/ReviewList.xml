@@ -66,6 +66,10 @@
 	<insert id="refInsert" parameterType="Review">
 		INSERT INTO review VALUES(#{host_num},seq_rev_num.nextval,#{mem_num},#{rev_content},to_char(sysdate,'yyyymmdd'),0,#{rev_num},1)
 	</insert>
+	<!-- 리뷰 host_avg 갱신 -->
+	<update id="avgUpdate" parameterType="Review">
+		update host set host_avg= round((select avg(rev_point) from review where host_num=#{host_num}),1) where host_num =#{host_num}
+	</update>
 </mapper>
   
   

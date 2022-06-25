@@ -12,11 +12,11 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-		<div class="row row-cols-1 row-cols-md-3 g-4">
+		<div style="width: 100%;" class="row row-cols-1 row-cols-md-3 g-4">
 		<c:forEach items="${hostList}" var="list">
 		  <div class="col">
 		    <div class="card" >
-		      <a href="stayRead?host_num=${list.host_num}"><img style="width: 300px; height: 200px;" src="images/bh/${list.host_photo}" class="card-img-top" alt="..."></a>
+		      <a href="stayRead?host_num=${list.host_num}"><img style="width: 100%; height: 250px;" src="images/bh/${list.host_photo}" class="card-img-top" alt="..."></a>
 		      <div class="card-body">
 		        <h5 class="card-title">${list.host_name}</h5>
 		        <p class="card-text">${list.host_addr}</p>

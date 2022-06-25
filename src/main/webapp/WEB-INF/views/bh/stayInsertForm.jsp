@@ -57,6 +57,13 @@
     -ms-filter: alpha(opacity=0);
     cursor:pointer;
 }
+.input-group-text{
+	margin-left: auto;
+	width: 100px;
+}
+#ips{
+	margin-right: auto;
+	width: 500px;
    </style>
 <title>제주 감수광</title>
 </head>
@@ -68,19 +75,14 @@
     	
     	<form action="stayInsert" method="post" style="text-align: center;" enctype="multipart/form-data">
 			<div>
-				<label>
-					숙소명 :
-				</label>
-				<label>
-					<input type="text" name="host_name" required="required" placeholder="제주 NEW 호텔">
-				</label><p/><p/>
-				<label>
-					업체주소 :
-				</label>
-				<label>
-					<input type="text" name="host_addr" required="required" placeholder="도로명주소">
-				</label><p/>
-
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">숙소명</span>
+			  <input id="ips" type="text" name="host_name" required="required" placeholder="제주 NEW 호텔" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">업체주소</span>
+			  <input id="ips" type="text" name="host_addr" required="required" placeholder="도로명주소" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
 			<div>
 				<div>
 					<div id="preview" ></div>
@@ -91,56 +93,41 @@
 		                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
 		                       	<img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px;"/>
 								<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
-									onchange="previewFiles(${i.index })" accept="images/bh/*">
+									onchange="previewFiles(${i.index })" accept="images/bh/*" required="required">
 		                    </label><p/>
 		                </c:forEach>
       				</div>
 				</div>
 			</div>
-			
-			
-				<label>
-					숙소종류 :
-				</label>
-				<label>
-					<select name="stay_type">
-	    				<c:forEach var="staycode" items="${codeList }">
-	    					<option value="${staycode.mcd}">${staycode.name }</option>
-	    				</c:forEach>
-	    			</select>
-				</label><p/>
-				<label>
-					업체소개 :
-				</label>
-				<label>
-					<input type="text" name="host_info" required="required" placeholder="업체에대한 간략한소개 및 사장님 한마디">
-				</label><p/>
-				<label>
-					편의시설 :
-				</label>
-				<label>
-					<input type="text" name="convenient" required="required" placeholder="ex)헬스장,바베큐장">
-				</label><p/>
-				<label>
-					오시는길 :
-				</label>
-				<label>
-					<input type="text" name="way" required="required" placeholder="ex)공항에서 차로 10분 거리,버스 30번 이용후 xx정류장하차">
-				</label><p/>
-				<label>
-					체크인 가능시간 :
-				</label>
-				<label>
-					 <input  type="time" class="form-control" name="checkin" id="stay_checkin" autocomplete="off" >
-				</label><p/>
-				<label>
-					체크아웃 완료시간 :
-				</label>
-				<label>
-					<input type="time"  class="form-control" name="checkout" id="stay_checkout" autocomplete="off">
-				</label><p/>
-			
-			
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">숙소종류</span>
+		  		<select id="ips" name="stay_type" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    				<c:forEach var="staycode" items="${codeList }">
+    					<option value="${staycode.mcd}">${staycode.name }</option>
+    				</c:forEach>
+    			</select>
+			 </div>			
+				
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">업체소개</span>
+			  <input id="ips" type="text" name="host_info" required="required" placeholder="업체에대한 간략한소개 및 사장님 한마디" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">편의시설</span>
+			  <input id="ips" type="text" name="convenient" required="required" placeholder="ex)헬스장,바베큐장" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">오시는길</span>
+			  <input id="ips" type="text" name="way" required="required" placeholder="ex)공항에서 차로 10분 거리,버스 30번 이용후 xx정류장하차" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">체크인 가능시간</span>
+			  <input id="ips" type="time" class="form-control" name="checkin" id="stay_checkin" autocomplete="off" required="required" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">체크아웃 완료시간</span>
+			  <input id="ips" type="time"  class="form-control" name="checkout" id="stay_checkout" autocomplete="off" required="required" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
 			</div>
 			<input type="submit" value="등록요청">
     	</form>

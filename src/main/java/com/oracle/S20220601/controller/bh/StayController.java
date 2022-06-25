@@ -126,7 +126,7 @@ public class StayController {	//숙소 Controller
 		
 		return "bh/roomInsertForm";
 	}
-	
+	//객실 인서트 페이지
 	@PostMapping(value = "roomInsertForm")
 	public String roomInsertForm(int host_num,Model model) {
 		Room room = new Room();
@@ -343,7 +343,7 @@ public class StayController {	//숙소 Controller
 		
 		return "bh/stayUpdateForm";
 	}
-	
+	//파일 업로드
 	private String uploadFile(String originalName, byte[] fileData , String uploadPath) 
 			  throws Exception {
 		 // universally unique identifier 
@@ -419,7 +419,7 @@ public class StayController {	//숙소 Controller
 		
 		return "main";
 	}
-	
+	//객실페이지
 	@GetMapping(value = "roomUpdateForm")
 	public String roomUpdateForm(Room room, Model model) {
 		System.out.println("StayController stayUpdateForm Start");
@@ -489,7 +489,7 @@ public class StayController {	//숙소 Controller
 		
 		return "main";
 	}
-	
+	//숙소 삭제요청
 	@RequestMapping(value = "stayDelete")
 	public String stayDelete(HostStay hostStay,Model model) {
 		System.out.println("StayController stayDeleteForm Start..");
@@ -501,7 +501,7 @@ public class StayController {	//숙소 Controller
 		}
 		return "main";
 	}
-	
+	//객실삭제
 	@RequestMapping(value = "roomDelete")
 	public String roomDelete(Room room,Model model) {
 		System.out.println("StayController roomDelete Start..");
@@ -525,7 +525,7 @@ public class StayController {	//숙소 Controller
 		
 		return "main";
 	}
-	//
+	//나의 숙소내역
 	@RequestMapping(value = "mystayList")
 	public String hostStayList(HttpServletRequest request, Model model) {
 		System.out.println("StayController hostStayList Start..");
@@ -534,7 +534,7 @@ public class StayController {	//숙소 Controller
 		model.addAttribute("hostList", hostList);
 		return "bh/mystayList";
 	}
-	
+	//리뷰 답글
 	@RequestMapping(value = "reviewRef")
 	public String reviewRef(HttpServletRequest request,Review review,Model model, RedirectAttributes re) {
 		System.out.println("StayController stayUpdateForm Start");

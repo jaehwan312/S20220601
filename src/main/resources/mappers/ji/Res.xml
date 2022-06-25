@@ -17,7 +17,7 @@
 		FROM profile p 
 		join res res on p.mem_num = res.mem_num
 		join host h on res.host_num = h.host_num
-		join room r on res.room_num = r.room_num
+		join room r on res.room_num = r.room_num  and res.host_num = r.host_num
 		join hostphoto hp on h.host_num = hp.host_num
         join stay s on h.host_num=s.host_num
 		AND hp.host_photo_num = ( SELECT MIN(host_photo_num)
@@ -40,7 +40,7 @@
 		FROM profile p 
 		join res res on p.mem_num = res.mem_num
 		join host h on res.host_num = h.host_num
-		join room r on res.room_num = r.room_num
+		join room r on res.room_num = r.room_num and res.host_num = r.host_num
 		join hostphoto hp on h.host_num = hp.host_num
 		AND hp.host_photo_num = ( SELECT MIN(host_photo_num)
 								FROM hostphoto
@@ -61,7 +61,7 @@
 		FROM profile p 
 			join res res on p.mem_num = res.mem_num
 			join host h on res.host_num = h.host_num
-			join room r on res.room_num = r.room_num
+			join room r on res.room_num = r.room_num and res.host_num = r.host_num
 			join hostphoto hp on h.host_num = hp.host_num
 		AND hp.host_photo_num = ( SELECT MIN(host_photo_num)
 									FROM hostphoto
@@ -85,7 +85,7 @@
 			join res res on p.mem_num = res.mem_num
 			join host h on res.host_num = h.host_num
 			join stay s on s.host_num = h.host_num 
-			join room r on res.room_num = r.room_num
+			join room r on res.room_num = r.room_num and res.host_num = r.host_num
 			join pay pay on res.res_num = pay.res_num
 	
 		AND res.res_num = #{res_num}
@@ -97,7 +97,7 @@
 		FROM host h
 		INNER JOIN stay s ON h.host_num = s.host_num
 		INNER JOIN room r ON s.host_num = r.host_num
-		WHERE r.room_num = #{room_num}
+		WHERE r.room_num = #{room_num} and h.host_num=#{host_num}
 
 	</select>
 	

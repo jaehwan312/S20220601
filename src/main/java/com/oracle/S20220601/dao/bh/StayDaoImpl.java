@@ -115,10 +115,12 @@ public class StayDaoImpl implements StayDao {
 				rp = session.selectList("bhrevPhotoList", rv);
 				rv.setRevPhoto(rp);
 				map.put("content", rv);
+				
 				if(reply!=null) {
 					map.put("reply",reply);
 				}
 				maps.add(map);
+				System.out.println("@@@@맵쓰 싸이즈"+maps.size());
 			}
 			
 			
@@ -269,6 +271,7 @@ public class StayDaoImpl implements StayDao {
 		try {
 			revInsert += session.insert("revInsert", review);
 			revInsert += session.update("countUpdate", review);
+			revInsert += session.update("avgUpdate", review);
 		} catch (Exception e) {
 			System.out.println("StayDaoImpl revInsert Exception->"+e.getMessage());
 		}
