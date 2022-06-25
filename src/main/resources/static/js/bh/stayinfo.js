@@ -20,17 +20,13 @@ function roomremoveCheck() {
  }
 }
 	
-	
 function roomInsertCheck() {
  if (confirm("객실을 추가 하시겠습니까??") == true){    
      $('#roomInsertForm').submit();
  }else{   
      return false;
  }
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/jaehwan312/S20220601.git
 }
 	
 function revDeleteCheck() {
@@ -64,9 +60,5 @@ function chkDate(e) {
             document.getElementById('frm'+e).submit();
          }
 
-<<<<<<< HEAD
       };
 
-=======
-      };
->>>>>>> branch 'master' of https://github.com/jaehwan312/S20220601.git
