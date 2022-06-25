@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.Profile;
+import com.oracle.S20220601.model.Search;
 
 public interface ProfileDao {
 
@@ -28,6 +30,13 @@ public interface ProfileDao {
 	Profile         updateUser(Profile profile);
 	Profile         updateAdmin(Profile profile);
 	List<Profile>   userSleepList(Profile profile);
+	int             total1();
+	String          userCnt(Profile profile);
+	String          sleepUserCnt(Profile profile);
+	String          searchCnt(Search search);
+	String          storeCnt(Host host);
+	String          stayCnt(Host host);
+	int             phoneCheck(String phone);
 
 
 

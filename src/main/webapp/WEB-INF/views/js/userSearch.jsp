@@ -22,7 +22,7 @@
 			<div class="area_inputs wow fadeIn">
 				<div class="sub_title font-weight-bold text-black" style="z-index: 2;">
 					<h3>아이디/비밀번호 찾기</h3>
-					<p>인증된 이메일만 정보 찾기가 가능합니다 :)</p>
+					<p>회원가입시 등록한 이메일로 찾기가 가능합니다</p>
 					<hr>
 				</div>
 				<div style="margin-bottom: 10px;" class="custom-control custom-radio custom-control-inline">
@@ -46,7 +46,7 @@
 							<input type="text" class="form-control" id="phone" name="phone" placeholder="ex) 01011111111">
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" style="margin-top: 10px;">
 						<button id="searchBtn" type="button" onclick="idSearch_click()" class="btn btn-primary btn-block">확인</button>
 						<a class="btn btn-danger btn-block"	href="${pageContext.request.contextPath}">취소</a>
 					</div>
@@ -64,7 +64,7 @@
 							<input type="email" class="form-control" id="email"	name="email" placeholder="ex) E-mail@gmail.com">
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" style="margin-top: 10px;">
 						<button id="searchBtn2" type="button" class="btn btn-primary btn-block" onclick="pwSearch_click()">확인</button>
 						<a class="btn btn-danger btn-block"	href="${pageContext.request.contextPath}">취소</a>
 					</div>
@@ -75,7 +75,7 @@
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>
-	<script type="text/javascript" src="js/js/userSearch/js"></script>
+	<script  src="js/js/userSearch.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

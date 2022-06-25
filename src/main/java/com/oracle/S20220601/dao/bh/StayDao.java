@@ -25,7 +25,7 @@ public interface StayDao {
 	List<RoomPhotoList> roomPhoto(RoomPhotoList roomPhotoList);
 	Stay 				stayinfo(int host_num);
 	HostStay 			stayReadreview(int host_num);
-	List<Review1> 		reviewList(int host_num);
+	List<Map<String, Review1>> 		reviewList(int host_num);
 	Host 				hostreview(int host_num);
 	List<Code> 			codeList(int bcd_code);
 	int 				stayInsert(HostStay hostStay);
@@ -47,5 +47,7 @@ public interface StayDao {
 	int 				reviewUpdate(Review1 review);
 	int 				revPhotoUpdate(List<RevPhoto> revPhotoInsertList, Map<Integer, MultipartFile> filename, Review1 review);
 	int 				reviewDelete(Review1 review);
+	List<HostStay> 		hostList(int mem_num);
+	int 				refInsert(Review review);
 	
 }

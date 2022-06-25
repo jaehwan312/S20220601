@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.S20220601.dao.js.ProfileDao;
+import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.Profile;
+import com.oracle.S20220601.model.Search;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
@@ -189,8 +191,61 @@ public class ProfileServiceImpl implements ProfileService {
 	public List<Profile> userSleepList(Profile profile) {
 		System.out.println("ProfileServiceImpl Start..." );
 		List<Profile> userSleepList = pd.userSleepList(profile);
-		System.out.println("ProfileServiceImpl profileList.size()->" +userSleepList.size());
+		System.out.println("ProfileServiceImpl userSleepList.size()->" +userSleepList.size());
 		return userSleepList;
+	}
+
+
+	@Override
+	public int total1() {
+		System.out.println("ProfileServiceImpl Start total1..." );
+		int totCnt = pd.total1();
+		System.out.println("ProfileServiceImpl total1 totCnt->"+totCnt );
+		return totCnt;
+	}
+
+
+	@Override
+	public String userCnt(Profile profile) {
+		String result = pd.userCnt(profile);
+		return result;
+	}
+
+
+	@Override
+	public String sleepUserCnt(Profile profile) {
+		String result = pd.sleepUserCnt(profile);
+		return result;
+	}
+
+
+	@Override
+	public String searchCnt(Search search) {
+		String result = pd.searchCnt(search);
+		return result;
+	}
+
+
+	@Override
+	public String storeCnt(Host host) {
+		String result = pd.storeCnt(host);
+		return result;
+	}
+
+
+	@Override
+	public String stayCnt(Host host) {
+		String result = pd.stayCnt(host);
+		return result;
+	}
+
+	
+	// 핸드폰 중복 확인
+	@Override
+	public int phnoeCheck(String phone) {
+		System.out.println("----------- phoneCheck Start -----------");
+		int cnt = pd.phoneCheck(phone);
+		return cnt;
 	}
 
 

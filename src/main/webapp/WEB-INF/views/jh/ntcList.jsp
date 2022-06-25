@@ -28,7 +28,7 @@
 	    	</thead>
 	    	<tbody>
 	    		<c:forEach var="ntcList" items="${ntcList}">
-	    		<tr class="row" onclick="location.href='ntcContent?n_num=${ntcList.n_num}&num=${num}'" style="cursor: pointer;">
+	    		<tr class="row" onclick="location.href='ntcContent?n_num=${ntcList.n_num}&num=${num}&currentPage=${currentPage}'" style="cursor: pointer;">
 	    			<td class="col-1">${num}</td>
 	    			<td class="col-8">${ntcList.n_title}</td>
 	    			<td class="col-2">${ntcList.n_date}</td>
@@ -40,13 +40,13 @@
 	    </table>
 	    <div class="pg_div">
 	    	<c:if test="${pg.startPage > pg.pageBlock }">
-				<a href="list?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
+				<a href="ntcList?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
 			</c:if>
 			<c:forEach var="i" begin="${pg.startPage }" end="${pg.endPage }">
-				<a href="list?currentPage=${i}">[${i}]</a>
+				<a href="ntcList?currentPage=${i}">[${i}]</a>
 			</c:forEach>
 			<c:if test="${pg.endPage < pg.totalPage }">
-				<a href="list?currentPage=${pg.startPage+pg.pageBlock}">[다음]</a>
+				<a href="ntcList?currentPage=${pg.startPage+pg.pageBlock}">[다음]</a>
 			</c:if>
 	    </div>
 	   	<div class="write_btn_div">

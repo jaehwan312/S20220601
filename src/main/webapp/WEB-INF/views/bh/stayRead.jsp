@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,24 +62,26 @@
 	                <div class="col-lg-6 col-md-6">
 	                    <div class="product__details__text">
 	                        <h3 id="stayname">${stay.host_name}</h3>
+	                        <div>
 	                        <form action="stayUpdateForm">
 		                        <input type="hidden" name="host_num" value="${host_num }">
 			                        <c:if test="${host_mem_num==mem_num}">
 			                        	<button class="btn btn-outline-danger" type="submit" >숙소 수정</button>
 			                        </c:if>
 		                    </form>
-	                        <form action="stayDelete" id="stayDeleteForm">
+	                        <form style="display:inline-block;" action="stayDelete" id="stayDeleteForm">
 		                        <input type="hidden" name="host_num" value="${host_num }">
 			                        <c:if test="${host_mem_num==mem_num}">
 			                        	<button class="btn btn-outline-danger" type="button" onclick="stayremoveCheck()">삭제요청</button>
 			                        </c:if>
 		                    </form>
-	                        <form action="roomInsertForm" id="roomInsertForm" method="post">
+	                        <form style="display:inline-block;" action="roomInsertForm" id="roomInsertForm" method="post">
 									<input type="hidden" name="host_num" value="${host_num }">
 										<c:if test="${host_mem_num==mem_num }">
 											<button class="btn btn-outline-danger" type="submit" onclick="roomInsertCheck()">객실추가</button>
 										</c:if>
 							</form>
+							</div>
 	                        <div class="product__details__rating">
 	                            ${stay.host_avg} ${stay.rev_count}
 	                        </div>
@@ -252,7 +255,9 @@
 		<div id="onRoom2">
 			<!-- review -->
 				 <div style="text-align: center; margin-top: 100px;">
-	
+				 <img alt="" src="">
+				 <c:if test="${hostreview.rev_count == 0}"><img alt="리뷰" src="images/bh/한라봉01.png"></c:if>
+				<c:if test="${hostreview.rev_count != 0}">
 				<h1>리뷰</h1>
 				<div>
 					<h2>${hostreview.host_avg}</h2>
@@ -261,18 +266,18 @@
 				</div>
 				<!-- start -->
 				<div style="padding: 80px; border: 1px solid black;">
-	            <c:forEach items="${reviewList }" var="getList" varStatus="l">
+	            <c:forEach items="${maps }" var="map" varStatus="l">
 	            <div style="border: 1px solid black; margin-top: 20px;">
-	            	<div>${getList.rev_point}</div>
+	            	<div>${map.content.rev_point}</div>
 	               <div style="text-align: left; padding-left: 70px; padding-top:30px;">
-	                      ${getList.room_name}
+	                      ${map.content.room_name}
 	                </div>
 	                <div style="width: 40%; text-align: left; padding-left: 60px; padding-bottom: 30px; padding-top: 30px;">
-	                  ${getList.rev_content}</div>
+	                  ${map.content.rev_content}</div>
 	               <div style="width: 100%; height: 200px; text-align: left; padding-left: 60px; margin-bottom: 30px; ">
 	                  <div id="carouselExampleControls3${l.index }" class="carousel slide" data-bs-ride="carousel" style="width: 400px;">
 	                    <div class="carousel-inner">
-	                    <c:forEach items="${getList.revPhoto }" var="getPhoto" varStatus="r">
+	                    <c:forEach items="${map.content.revPhoto }" var="getPhoto" varStatus="r">
 	                       <c:if test="${r.index==0 }">
 	                          <div class="carousel-item active">
 	                           <img src="images/bh/${getPhoto.rev_photo}" class="d-block w-100" alt="리뷰사진" style="height: 250px;">
@@ -295,26 +300,40 @@
 	                    </button>
 	                  </div>
 	               </div>
-	               ${getList.rev_date}
+	               ${map.content.rev_date}
 	               <form action="reviewUpdateForm">
 	               		<input type="hidden" name="host_num" value="${host_num }">
-				   		<input type="hidden" name="rev_num" value="${getList.rev_num }">
-				   		<c:if test="${getList.mem_num==mem_num }">
+				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
+				   		<c:if test="${map.content.mem_num==mem_num }">
 	               		<button>수정</button>
 	               		</c:if>
 	               </form> 
 	               <form action="reviewDelete" id="reviewDeleteForm">
 	               		<input type="hidden" name="host_num" value="${host_num }">
-				   		<input type="hidden" name="rev_num" value="${getList.rev_num }">
-				   		<c:if test="${getList.mem_num==mem_num }">
+				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
+				   		<c:if test="${map.content.mem_num==mem_num }">
 	               		<button type="button" onclick="revDeleteCheck()">삭제</button>
 	               		</c:if>
 	               </form> 
+	               <form action="reviewRef" id="reviewRef">
+	               		<input type="hidden" name="host_num" value="${host_num }">
+				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
+				   		<c:if test="${host_mem_num==mem_num}">
+				   		<textarea rows="10" cols="10" name="rev_content"></textarea>
+				   		<button type="button" onclick="revRefCheck()">답글달기</button>
+				   		</c:if>
+	               </form>
 	            </div>
-	            
+	            <c:if test="${map.reply!=null }">
+	            	<div>
+	            	관리자 댓글 : ${map.reply.rev_content }<p>
+	            	댓글날짜 : ${map.reply.rev_date }
+	            </div>
+	            </c:if>
 	            </c:forEach> 
 	         </div>
 				<!--end  -->
+			</c:if>
 			</div>
 		</div>
     <!-- 여기 위로오 ============================================================ -->   

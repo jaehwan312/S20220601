@@ -31,14 +31,19 @@
     	</div>
    		<div class="input-group mb-3 content">
 			<div class="input-group-text title">글내용</div>
-			<div class="form-control" aria-label="With textarea">${ntc.n_photo}${ntc.n_content}</div>
+			<div class="form-control" aria-label="With textarea">
+				<c:if test="${ntc.n_photo!=null }">
+					<img src="images/jh/${ntc.n_photo}" width="50%">
+				</c:if>
+				<p>${ntc.n_content}</p>
+			</div>
 		</div>
 	    
-		<div class="content_btn_div">
-	    	<button type="button" class="btn btn-outline-primary" onclick="location.href='ntcList'">목록</button>
+	    <div class="content_btn_div"">
+	    	<button type="button" class="btn btn-outline-primary" onclick="location.href='ntcList?currentPage=${currentPage}'">목록</button>
 	    	<div>
 	    		<c:if test="${grade=='1'}">
-	    			<button type="button" class="btn btn-outline-primary" onclick="location.href='ntcUpdateForm?n_num=${ntc.n_num}&num=${num}'">수정</button>
+	    			<button type="button" class="btn btn-outline-primary" onclick="location.href='ntcUpdateForm?n_num=${ntc.n_num}&num=${num}&currentPage=${currentPage}'">수정</button>
 	    			<button type="button" class="btn btn-outline-primary" onclick="chk()">삭제</button>
 	    		</c:if>
 	    	</div>
@@ -52,7 +57,7 @@
 		function chk(){
 			let check = confirm("정말로 삭제하시겠습니까?");
 			if(check==true){
-				location.href="ntcDelete?n_num=${ntc.n_num }";
+				location.href="ntcDelete?n_num=${ntc.n_num }&currentPage=${currentPage}";
 			}
 		}
 	</script>

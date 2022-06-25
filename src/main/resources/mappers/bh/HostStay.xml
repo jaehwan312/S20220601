@@ -100,6 +100,10 @@
   		update host set host_app=3 where host_num=#{host_num}
   	</delete>  	
   	
+  	<!-- 회원 숙박 등록 내역 -->
+  	<select id="hostList" parameterType="int" resultType="HostStay">
+  	select h.*,p.* from host h, hostphoto p where h.host_num=p.host_num and h.mem_num=#{mem_num} and h.host_code = 2
+  	</select>
   	
   	
   </mapper>

@@ -1,5 +1,9 @@
 package com.oracle.S20220601.model.ih;
 
+import java.util.List;
+
+import com.oracle.S20220601.model.HostPhoto;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,6 +40,7 @@ public class HostStore {
 	private String parking;		// 주차가능
 	private String food_type;	// 음식코드
 	
+	List<HostPhoto> photoList;
 	
 	//버퍼 저장
 	

@@ -66,9 +66,9 @@ public class StayServiceImpl implements StayService {
 	}
 
 	@Override
-	public List<Review1> reviewList(int host_num) {
+	public List<Map<String, Review1>> reviewList(int host_num) {
 		System.out.println("StayServiceImpl reviewList start...");
-		List<Review1> reviewList =sd.reviewList(host_num);
+		List<Map<String, Review1>> reviewList =sd.reviewList(host_num);
 		return reviewList;
 	}
 
@@ -217,6 +217,20 @@ public class StayServiceImpl implements StayService {
 		System.out.println("StayServiceImpl reviewDelete start...");
 		int reviewDelete = sd.reviewDelete(review);
 		return reviewDelete;
+	}
+
+	@Override
+	public List<HostStay> hostList(int mem_num) {
+		System.out.println("StayServiceImpl hostList start...");
+		List<HostStay> hostList = sd.hostList(mem_num);
+		return hostList;
+	}
+
+	@Override
+	public int refInsert(Review review) {
+		System.out.println("StayServiceImpl refInsert start...");
+		int refInsert = sd.refInsert(review);
+		return refInsert;
 	}
 
 

@@ -40,7 +40,7 @@
 	    	<input type="hidden" value="${store.host_code}">
 	    	<input type="hidden" value="${store.mem_num}"  id="Mem_mem">
 	    	<input type="hidden" value="${maxReviewDate}"  id="maxReviewDate">
-	    	<c:if test="${mem_num != 0}">
+	    	<c:if test="${mem_num != 0 || mem_num == store.mem_num}">
 		    	<c:if test="${index == 0}">
 		    		<label style="margin-bottom: 20px;">
 					<i class="fa fa-heart fa-md heartLike" id="storeLike${index }" onclick="storeLikeAction(${index},${store.host_num},'${store.host_name}')" aria-hidden="true" style="color: gray;"></i>

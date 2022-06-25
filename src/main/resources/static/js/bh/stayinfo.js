@@ -37,10 +37,17 @@ function revDeleteCheck() {
  }
 }
 
+function revRefCheck() {
+ if (confirm("리뷰에 답글을 쓰시겠습니까??") == true){    
+     $('#reviewRef').submit();
+ }else{   
+     return false;
+ }
+}
+
 
 //권재인
-
-      function chkDate(e) {
+function chkDate(e) {
          var result = true;
          var startdate = $('#frm'+e).children('input:eq(2)').val();
          var enddate = $('#frm'+e).children('input:eq(3)').val();
