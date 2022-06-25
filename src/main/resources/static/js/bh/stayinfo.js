@@ -49,8 +49,8 @@ function revRefCheck() {
 //권재인
 function chkDate(e) {
          var result = true;
-         var startdate = $('#frm'+e).children('input:eq(2)').val();
-         var enddate = $('#frm'+e).children('input:eq(3)').val();
+         var startdate = $('#input-start').val();
+         var enddate = $('#input-end').val();
          
 
          if (startdate==""||startdate==null||enddate==""||enddate==null) {

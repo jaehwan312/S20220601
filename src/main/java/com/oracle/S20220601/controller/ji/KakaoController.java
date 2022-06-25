@@ -171,7 +171,7 @@ public class KakaoController {
 		Pay p_pay = new Pay();
 		p_pay.setPay_num(pay_num);
 		Pay p_pay2 = ps.payByPaynum(p_pay);
-		int price = p_pay.getPrice();	//총 결제금액
+		int price = p_pay2.getPrice();	//총 결제금액
 		System.out.println("kakaoPayCancel PRICE -> "+price);
 		String start = r_res.getRes_start().substring(0,4)+"-"+r_res.getRes_start().substring(4,6)+"-"+r_res.getRes_start().substring(6,8);
     	String end = r_res.getRes_end().substring(0,4)+"-"+r_res.getRes_end().substring(4,6)+"-"+r_res.getRes_end().substring(6,8);
@@ -191,7 +191,8 @@ public class KakaoController {
     	System.out.println("getRes_start()-->" +r_res.getRes_start());
     	System.out.println();
     	//로그인이라도 되어 있어야 하는데.....;;;
-    	return "redirect:/resContent?room_num="+r_res.getRoom_num()+"&res_start="+start+"&res_end="+end;
+    	return "redirect:/resContent?room_num="+r_res.getRoom_num()+"&host_num="+r_res.getHost_num() +"&res_start="+start+"&res_end="+end;
+    	
 	}
 	//결제실패
 	@GetMapping("/kakaoPaySuccessFail")
@@ -222,7 +223,7 @@ public class KakaoController {
 		//결제테이블 삭제
 		int delete_pay = ps.deleteFailPay(pay_num);
 		if(delete_pay>0)		System.out.println("kakaoPayCancel 결제 삭제 성공");
-		else 					System.out.println("kakaoPayCancel 결제 삭제 실패");
+		else 					System.out.println("kakaoPayCancel 결제 삭제 실패 ");
 		//예약테이블 삭제
     	int delete_res = rs.deleteFailRes(res_num);
     	if(delete_res>0)		System.out.println("kakaoPayCancel 예약 삭제 성공");
@@ -232,7 +233,7 @@ public class KakaoController {
     	System.out.println("getRes_start()-->" +r_res.getRes_start());
     	System.out.println();
     	//로그인이라도 되어 있어야 하는데.....;;;
-    	return "redirect:/resContent?room_num="+r_res.getRoom_num()+"&res_start="+start+"&res_end="+end;
+    	return "redirect:/resContent?room_num="+r_res.getRoom_num()+"&host_num="+r_res.getHost_num() +"&res_start="+start+"&res_end="+end;
 
 	}
 

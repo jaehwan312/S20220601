@@ -63,7 +63,7 @@
 	                    <div class="product__details__text">
 	                        <h3 id="stayname">${stay.host_name}</h3>
 	                        <div>
-	                        <form action="stayUpdateForm">
+	                        <form style="display:inline-block;" action="stayUpdateForm">
 		                        <input type="hidden" name="host_num" value="${host_num }">
 			                        <c:if test="${host_mem_num==mem_num}">
 			                        	<button class="btn btn-outline-danger" type="submit" >숙소 수정</button>
@@ -186,8 +186,8 @@
 								<form id="frm${j.index }" action="resContent" onsubmit="return false">
 									<input type="hidden" name="host_num" value="${room.host_num }">
 									<input type="hidden" name="room_num" value="${room.room_num }">
-									<input type="hidden" name="res_start" id="res_start">
-									<input type="hidden" name="res_end" id="res_end">
+									<input type="hidden" name="res_start" class="res_start">
+									<input type="hidden" name="res_end" class="res_end">
 									<input type="hidden" name="sale_price" value=${room.dayfee }>
 									<button type="submit" class="btn btn-outline-primary" id="goReserve" onclick="chkDate(${j.index })">예약</button>
 								</form>
@@ -206,7 +206,7 @@
 									</c:if>
 								</form>
 							</div>
-							<span id="resPossible${j.index }" >여기다넣자</span>
+							<span id="resPossible${j.index }" ></span>
 							
 						</div>
 						</c:forEach>
@@ -255,7 +255,6 @@
 		<div id="onRoom2">
 			<!-- review -->
 				 <div style="text-align: center; margin-top: 100px;">
-				 <img alt="" src="">
 				 <c:if test="${hostreview.rev_count == 0}"><img alt="리뷰" src="images/bh/한라봉01.png"></c:if>
 				<c:if test="${hostreview.rev_count != 0}">
 				<h1>리뷰</h1>

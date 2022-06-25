@@ -19,8 +19,8 @@
             var startdate1 = start.format('YYYY-MM-DD');
             var enddate1 = end.format('YYYY-MM-DD');
             
-            $('#res_start').val(startdate1);
-            $('#res_end').val(enddate1);
+            $('.res_start').val(startdate1);
+            $('.res_end').val(enddate1);
             var hostnum = $('#hostNumId').val();
             $.ajax({
             	url: 'respossible',
@@ -31,8 +31,9 @@
             		$.each(data, function(index, item){
             			
             			if(item.yesno=='예약가능'){
-            				$('#resPossible'+index).css('color','blue');
+            				$('#resPossible'+index).css('display','none');
             			}else if(item.yesno=='예약불가'){
+            				$('#resPossible'+index).css('display','block');
             				$('#resPossible'+index).text(item.yesno);
             				$('#resPossible'+index).css('color','red');
             			}
