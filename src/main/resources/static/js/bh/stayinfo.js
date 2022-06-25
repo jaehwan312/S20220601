@@ -20,32 +20,14 @@ function roomremoveCheck() {
  }
 }
 	
+	
 function roomInsertCheck() {
  if (confirm("객실을 추가 하시겠습니까??") == true){    
      $('#roomInsertForm').submit();
  }else{   
      return false;
  }
-<<<<<<< HEAD
 }
-
-function chkDate(e) {
-         var result = true;
-         var startdate = $('#frm'+e).children('input:eq(2)').val();
-         var enddate = $('#frm'+e).children('input:eq(3)').val();
-         
-
-         if (startdate==""||startdate==null||enddate==""||enddate==null) {
-            alert("날짜를 선택해주세요");
-            result = false;
-         }else {
-            document.getElementById('frm'+e).submit();
-         }
-
-      }
-=======
-}	
-
 	
 function revDeleteCheck() {
  if (confirm("리뷰를 정말 삭제하시겠습니까??") == true){    
@@ -72,4 +54,3 @@ function revDeleteCheck() {
          }
 
       };
->>>>>>> branch 'master' of https://github.com/jaehwan312/S20220601.git
