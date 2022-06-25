@@ -17,7 +17,11 @@
 		FROM profile p 
 		join res res on p.mem_num = res.mem_num
 		join host h on res.host_num = h.host_num
+<<<<<<< HEAD
 		join room r on res.room_num = r.room_num and res.host_num = r.host_num
+=======
+		join room r on res.room_num = r.room_num  and res.host_num = r.host_num
+>>>>>>> branch 'master' of https://github.com/jaehwan312/S20220601.git
 		join hostphoto hp on h.host_num = hp.host_num
         join stay s on h.host_num=s.host_num
 		AND hp.host_photo_num = ( SELECT MIN(host_photo_num)
@@ -97,7 +101,11 @@
 		FROM host h
 		INNER JOIN stay s ON h.host_num = s.host_num
 		INNER JOIN room r ON s.host_num = r.host_num
+<<<<<<< HEAD
 		WHERE r.room_num = #{room_num} and h.host_num= #{host_num}
+=======
+		WHERE r.room_num = #{room_num} and h.host_num=#{host_num}
+>>>>>>> branch 'master' of https://github.com/jaehwan312/S20220601.git
 
 	</select>
 	

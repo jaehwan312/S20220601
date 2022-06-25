@@ -48,14 +48,15 @@ function revRefCheck() {
 
 //권재인
 function chkDate(e) {
-         var result = true;
+     
          var startdate = $('#input-start').val();
          var enddate = $('#input-end').val();
          
-
+		
          if (startdate==""||startdate==null||enddate==""||enddate==null) {
             alert("날짜를 선택해주세요");
-            result = false;
+         }else if($('#resPossible'+e).text()=='예약불가'){
+         	alert("예약이 불가능합니다");
          }else {
             document.getElementById('frm'+e).submit();
          }

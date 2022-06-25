@@ -36,6 +36,9 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 													   .addPathPatterns("/myPickList")
 													   .addPathPatterns("/myStoreList")
 													   .addPathPatterns("/mystayList")
+													   .addPathPatterns("/stayUpdateForm")
+													   .addPathPatterns("/reviewUpdateForm")
+													   .addPathPatterns("/roomUpdateForm")
 		;
 		
 	}

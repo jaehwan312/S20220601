@@ -257,11 +257,9 @@
 				 <div style="text-align: center; margin-top: 100px;">
 				 <c:if test="${hostreview.rev_count == 0}"><img alt="리뷰" src="images/bh/한라봉01.png"></c:if>
 				<c:if test="${hostreview.rev_count != 0}">
-				<h1>리뷰</h1>
 				<div>
-					<h2>${hostreview.host_avg}</h2>
-					<p />
-					리뷰 : ${hostreview.rev_count }
+					<h1>평점 : ${hostreview.host_avg}</h1><p/>
+					총 리뷰 : ${hostreview.rev_count }
 				</div>
 				<!-- start -->
 				<div style="padding: 80px; border: 1px solid black;">
@@ -300,26 +298,26 @@
 	                  </div>
 	               </div>
 	               ${map.content.rev_date}
-	               <form action="reviewUpdateForm">
+	               <form style="display:inline-block;" action="reviewUpdateForm">
 	               		<input type="hidden" name="host_num" value="${host_num }">
 				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
 				   		<c:if test="${map.content.mem_num==mem_num }">
-	               		<button>수정</button>
+	               		<button class="btn btn-outline-danger">수정</button>
 	               		</c:if>
 	               </form> 
-	               <form action="reviewDelete" id="reviewDeleteForm">
+	               <form style="display:inline-block;" action="reviewDelete" id="reviewDeleteForm">
 	               		<input type="hidden" name="host_num" value="${host_num }">
 				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
 				   		<c:if test="${map.content.mem_num==mem_num }">
-	               		<button type="button" onclick="revDeleteCheck()">삭제</button>
+	               		<button type="button" class="btn btn-outline-danger" onclick="revDeleteCheck()">삭제</button>
 	               		</c:if>
 	               </form> 
-	               <form action="reviewRef" id="reviewRef">
+	               <form  action="reviewRef" id="reviewRef">
 	               		<input type="hidden" name="host_num" value="${host_num }">
 				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
 				   		<c:if test="${host_mem_num==mem_num}">
 				   		<textarea rows="10" cols="10" name="rev_content"></textarea>
-				   		<button type="button" onclick="revRefCheck()">답글달기</button>
+				   		<button type="button" class="btn btn-outline-danger" onclick="revRefCheck()">답글달기</button>
 				   		</c:if>
 	               </form>
 	            </div>

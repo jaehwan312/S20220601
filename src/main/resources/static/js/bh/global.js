@@ -11,8 +11,8 @@
             applyButtonClasses: false,
             autoUpdateInput: false
         },function (start, end) {
-            $('#input-start').val(start.format('MM/DD/YYYY'));
-            $('#input-end').val(end.format('MM/DD/YYYY'));
+            $('#input-start').val(start.format('YYYY/MM/DD'));
+            $('#input-end').val(end.format('YYYY/MM/DD'));
             var startdate = start.format('YYYYMMDD');
             var enddate = end.format('YYYYMMDD');
             
