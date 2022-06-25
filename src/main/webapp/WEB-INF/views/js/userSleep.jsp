@@ -23,7 +23,7 @@
 	<%@ include file="../header.jsp"%>
 	<div class="container">
 		<!-- 여기 밑으로 ============================================================ -->
-		<div class="col-lg-3 col-md-5 mx-auto" style="margin-top: 15%">
+		<div class="col-lg-3 col-md-5 mx-auto" style="margin-top: 10%">
 				<div class="userSleepTitle">
          		   <h1>회원탈퇴</h1>
    		        </div>	

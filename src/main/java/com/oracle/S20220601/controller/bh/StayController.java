@@ -19,8 +19,10 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Host;
@@ -45,15 +47,15 @@ public class StayController {	//숙소 Controller
 	private StayService ss;
 	//숙소 정보
 	@RequestMapping(value = "stayRead")
-	public String stayRead(RoomPhotoList roomPhotoList,Model model) {//업체 정보 사진 룸정보 사진
+	public String stayRead(@RequestParam("host_num") int host_num, RoomPhotoList roomPhotoList,Model model) {//업체 정보 사진 룸정보 사진
 		logger.info("StayController stayRead Start");
 		HostStay       		stayRead  			= ss.stayRead(roomPhotoList.getHost_num());
 		List<HostPhoto> 	stayPhoto 			= ss.stayPhoto(roomPhotoList.getHost_num());
 		List<RoomPhotoList>	roomPhoto			= ss.roomPhoto(roomPhotoList);
 		Stay       			stayinfo  			= ss.stayinfo(roomPhotoList.getHost_num());
-		List<Review1> 		reviewList 			= ss.reviewList(roomPhotoList.getHost_num());
+		List<Map<String, Review1>> 		maps 	= ss.reviewList(roomPhotoList.getHost_num());
 		Host 				hostreview			=ss.hostreview(roomPhotoList.getHost_num());
-		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("maps", maps);
 		model.addAttribute("hostreview", hostreview);
 		model.addAttribute("stayinfo", stayinfo);
 		model.addAttribute("stay", stayRead);
@@ -513,6 +515,7 @@ public class StayController {	//숙소 Controller
 		return "main";
 	}
 	
+	//리뷰삭제
 	@RequestMapping(value = "reviewDelete")
 	public String reviewDelete(HttpServletRequest request, Review1 review) {
 		System.out.println("StayController reviewDelete Start..");
@@ -522,5 +525,24 @@ public class StayController {	//숙소 Controller
 		
 		return "main";
 	}
+	//
+	@RequestMapping(value = "mystayList")
+	public String hostStayList(HttpServletRequest request, Model model) {
+		System.out.println("StayController hostStayList Start..");
+		int mem_num = (int)request.getSession().getAttribute("mem_num");
+		List<HostStay> hostList = ss.hostList(mem_num);
+		model.addAttribute("hostList", hostList);
+		return "bh/mystayList";
+	}
 	
+	@RequestMapping(value = "reviewRef")
+	public String reviewRef(HttpServletRequest request,Review review,Model model, RedirectAttributes re) {
+		System.out.println("StayController stayUpdateForm Start");
+		int mem_num = (int)request.getSession().getAttribute("mem_num");
+		review.setMem_num(mem_num);
+		int refInsert = ss.refInsert(review);
+		model.addAttribute("refInsert", refInsert);
+		re.addAttribute("host_num", review.getHost_num());
+		return "redirect:stayRead";
+	}
 }

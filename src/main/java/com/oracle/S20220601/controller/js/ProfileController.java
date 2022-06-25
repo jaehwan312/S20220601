@@ -29,7 +29,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.Profile;
+import com.oracle.S20220601.model.Search;
 import com.oracle.S20220601.service.js.Paging;
 import com.oracle.S20220601.service.js.ProfileService;
 
@@ -100,10 +102,27 @@ public class ProfileController {
 	public int idCheck(@RequestParam("id") String id) {
 		System.out.println("----------- idCheck Start -----------");
 		System.out.println("전달받은 id = "+ id);
-		int cnt = ps.idCheck(id);
+		if (id == "" || id == " ") {
+			int cnt= 1;
+			return cnt;
+		} else {
+			int cnt = ps.idCheck(id);
+			return cnt;
+		}
+		
+		
+	}
+	// 핸드폰 중복 체크
+	@PostMapping(value = "phoneCheck")
+	@ResponseBody
+	public int phoneCheck(@RequestParam("phone") String phone) {
+		System.out.println("----------- phoneCheck Start -----------");
+		System.out.println("전달받은 phone = "+ phone);
+		int cnt = ps.phnoeCheck(phone);
 		return cnt;
 		
 	}
+	
 	
 	//회원가입 페이지
 	@RequestMapping(value = "signUpPage")	
@@ -288,12 +307,12 @@ public class ProfileController {
 		int mem_num = (int)session.getAttribute("mem_num");
 		Profile profile = ps.selectProfile(mem_num);
 //		System.out.println("확인용------> " + profile.getId());
-		/*
-		 * System.out.println(profile.getJoin_date().length());
-		 * if(profile.getJoin_date().length()>10) {
-		 * System.out.println(profile.getJoin_date().substring(0,11));
-		 * profile.setJoin_date(profile.getJoin_date().substring(0,11)); }
-		 */
+		
+		  System.out.println(profile.getJoin_date().length());
+		  if(profile.getJoin_date().length()>10) {
+		  System.out.println(profile.getJoin_date().substring(0,11));
+		  profile.setJoin_date(profile.getJoin_date().substring(0,11)); }
+		 
 		model.addAttribute("profile", profile);
 		
 		return "js/myPage";
@@ -382,8 +401,19 @@ public class ProfileController {
 		}
 	
 	@RequestMapping(value = "adminPage")
-	public String adminPage() {
+	public String adminPage(Profile profile, Search search, Host host, Model model) {
 		System.out.println("------------ Controller adminPage -------------");
+		String resultUser      = ps.userCnt(profile);
+		String resultSleepUser = ps.sleepUserCnt(profile);
+		String resultSearch    = ps.searchCnt(search);
+		String reusltStore     = ps.storeCnt(host);
+		String reusltStay      = ps.stayCnt(host);
+		
+		model.addAttribute("resultUser", resultUser);
+		model.addAttribute("resultSleepUser", resultSleepUser);
+		model.addAttribute("resultSearch", resultSearch);
+		model.addAttribute("reusltStore", reusltStore);
+		model.addAttribute("reusltStay", reusltStay);
 		
 		return "js/adminPage"; 
 		
@@ -500,17 +530,17 @@ public class ProfileController {
 	public String userSleepList(Profile profile, String currentPage, Model model) {
 		logger.info("ProfileController Start userList");
 
-		int total = ps.total();   
+		int total1 = ps.total1();   
 	
-		System.out.println("userListController total=>" + total);
-		Paging pg = new Paging(total, currentPage); 
+		System.out.println("userListController total=>" + total1);
+		Paging pg = new Paging(total1, currentPage); 
 		profile.setStart(pg.getStart());   // 시작시 1
 		profile.setEnd(pg.getEnd());       // 시작시 10 
 		List<Profile> userSleepList = ps.userSleepList(profile); 
 		System.out.println("userListController userList listProfile()=>" + userSleepList.size());
 		model.addAttribute("profileList",userSleepList);
 		model.addAttribute("pg",pg);
-		model.addAttribute("total", total);
+		model.addAttribute("total", total1);
 		return "js/userSleepList";
 	}
 	

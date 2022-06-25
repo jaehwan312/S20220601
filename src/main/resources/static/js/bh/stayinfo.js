@@ -26,6 +26,24 @@ function roomInsertCheck() {
  }else{   
      return false;
  }
+<<<<<<< HEAD
+}
+
+function chkDate(e) {
+         var result = true;
+         var startdate = $('#frm'+e).children('input:eq(2)').val();
+         var enddate = $('#frm'+e).children('input:eq(3)').val();
+         
+
+         if (startdate==""||startdate==null||enddate==""||enddate==null) {
+            alert("날짜를 선택해주세요");
+            result = false;
+         }else {
+            document.getElementById('frm'+e).submit();
+         }
+
+      }
+=======
 }	
 
 	
@@ -37,10 +55,17 @@ function revDeleteCheck() {
  }
 }
 
+function revRefCheck() {
+ if (confirm("리뷰에 답글을 쓰시겠습니까??") == true){    
+     $('#reviewRef').submit();
+ }else{   
+     return false;
+ }
+}
+
 
 //권재인
-
-      function chkDate(e) {
+function chkDate(e) {
          var result = true;
          var startdate = $('#frm'+e).children('input:eq(2)').val();
          var enddate = $('#frm'+e).children('input:eq(3)').val();
@@ -54,3 +79,4 @@ function revDeleteCheck() {
          }
 
       };
+>>>>>>> branch 'master' of https://github.com/jaehwan312/S20220601.git

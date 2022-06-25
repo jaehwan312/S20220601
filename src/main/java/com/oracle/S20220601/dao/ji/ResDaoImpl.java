@@ -194,13 +194,51 @@ public class ResDaoImpl implements ResDao {
 		int delete_res = 0;
 		System.out.println("ResDaoImpl deleteFailRes Start....");
 		try {
-			delete_res = session.update("jiDeleteFailRes",res_num);
+			delete_res = session.delete("jiDeleteFailRes",res_num);
 			
 		} catch (Exception e) {
 			System.out.println("ResDaoImpl deleteFailRes Exception -> "+e.getMessage());
 		}
 		
 		return delete_res;
+	}
+
+	@Override
+	public int deleteByResnum(Res res) {
+		int delete_res = 0;
+		System.out.println("ResDaoImpl deleteByRenum Start....");
+		try {
+			delete_res = session.delete("jiDeleteByResnum", res);
+			
+		} catch (Exception e) {
+			System.out.println("ResDaoImpl deleteByRenum Exception -> "+e.getMessage());
+		}
+		
+		return delete_res;
+	}
+
+	@Override
+	public Res statusChange(int res_num) {
+		Res res = null;
+		try {
+			if(session.update("jiStatusChange", res_num)>0) {
+				res = session.selectOne("jiGetRes", res_num);
+			}
+		} catch (Exception e) {
+			System.out.println("ResDaoImpl statusChange Exception -> "+e.getMessage());
+		}
+		return res;
+	}
+
+	@Override
+	public int updStatusCanc(int res_num) {
+		int upd_res_canc = 0;
+		try {
+			upd_res_canc = session.update("jiUdpStatusCanc", res_num);
+		} catch (Exception e) {
+			System.out.println("ResDaoImpl updStatusCanc Exception -> "+e.getMessage());
+		}
+		return upd_res_canc;
 	}
 
 

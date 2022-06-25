@@ -74,13 +74,40 @@ public class PayDaoImpl implements PayDao {
 		int delete_pay = 0;
 		System.out.println("PayDaoImpl deleteFailPay Start....");
 		try {
-			delete_pay = session.update("jiDeleteFailPay",pay_num);
+			delete_pay = session.delete("jiDeleteFailPay",pay_num);
 			
 		} catch (Exception e) {
 			System.out.println("PayDaoImpl deleteFailPay Exception -> "+e.getMessage());
 		}
 		
 		return delete_pay;
+	}
+
+	@Override
+	public int deleteByResnum(Pay p_pay) {
+		int delete_pay = 0;
+		System.out.println("PayDaoImpl deleteByResnum Start....");
+		try {
+			delete_pay = session.delete("jiDelPayByResnum",p_pay);
+			
+		} catch (Exception e) {
+			System.out.println("PayDaoImpl deleteByResnum Exception -> "+e.getMessage());
+		}
+		
+		return delete_pay;
+	}
+	@Override
+	public int updateStatus(Pay p_pay) {
+		int upd_pay_status = 0;
+		System.out.println("PayDaoImpl updateStatus Start....");
+		try {
+			upd_pay_status = session.update("jiUpdStatusCanc",p_pay);
+			
+		} catch (Exception e) {
+			System.out.println("PayDaoImpl updateStatus Exception -> "+e.getMessage());
+		}
+		
+		return upd_pay_status;
 	}
 
 

@@ -12,13 +12,14 @@
 		SELECT p.name,h.host_name, 
 		min_photo_num2(hp.host_num) host_photo, r.room_name, res.*,(TO_DATE(res.res_end) - TO_DATE(res.res_start))  nday,
 		substr(TO_CHAR(TO_DATE(res.res_start),'YYYY.MM.DD') || ' ' ||TO_CHAR(TO_DATE(res.res_start),'DY'),6) sday,
-        substr(TO_CHAR(TO_DATE(res.res_end),'YYYY.MM.DD') || ' ' ||TO_CHAR(TO_DATE(res.res_end),'DY'),6) eday
-	
+        substr(TO_CHAR(TO_DATE(res.res_end),'YYYY.MM.DD') || ' ' ||TO_CHAR(TO_DATE(res.res_end),'DY'),6) eday,
+	    s.checkout
 		FROM profile p 
 		join res res on p.mem_num = res.mem_num
 		join host h on res.host_num = h.host_num
 		join room r on res.room_num = r.room_num
 		join hostphoto hp on h.host_num = hp.host_num
+        join stay s on h.host_num=s.host_num
 		AND hp.host_photo_num = ( SELECT MIN(host_photo_num)
 								FROM hostphoto
 								WHERE host_num = hp.host_num
@@ -141,4 +142,43 @@
 		FROM RES
 		WHERE res_num = #{res_num}
 	</delete>
+	<delete id="jiDeleteByResnum" parameterType="Res">
+		DELETE 
+		FROM RES
+		WHERE res_num = #{res_num}
+	</delete>
+	
+	<update id="jiStatusChange" parameterType="int" >
+		UPDATE
+		RES SET res_status = 2
+		WHERE res_num = #{res_num}
+	</update>
+	
+	<select id="jiGetRes" parameterType="int" resultType="Res">
+		SELECT p.name,h.host_name, 
+		min_photo_num2(hp.host_num) host_photo, r.room_name, res.*,(TO_DATE(res.res_end) - TO_DATE(res.res_start))  nday,
+		substr(TO_CHAR(TO_DATE(res.res_start),'YYYY.MM.DD') || ' ' ||TO_CHAR(TO_DATE(res.res_start),'DY'),6) sday,
+        substr(TO_CHAR(TO_DATE(res.res_end),'YYYY.MM.DD') || ' ' ||TO_CHAR(TO_DATE(res.res_end),'DY'),6) eday,
+	    s.checkout
+		FROM profile p 
+		join res res on p.mem_num = res.mem_num
+		join host h on res.host_num = h.host_num
+		join room r on res.room_num = r.room_num
+		join hostphoto hp on h.host_num = hp.host_num
+        join stay s on h.host_num=s.host_num
+		AND hp.host_photo_num = ( SELECT MIN(host_photo_num)
+								FROM hostphoto
+								WHERE host_num = hp.host_num
+								)
+						
+		AND res.res_status = 2
+		AND res.res_num = #{res_num}
+		order by res_num
+	</select>
+	<!-- 예약취소 상태 UPDATE -->
+	<update id="jiUdpStatusCanc" parameterType="int" >
+		UPDATE
+		RES SET res_status = 3
+		WHERE res_num = #{res_num}
+	</update>
 </mapper>

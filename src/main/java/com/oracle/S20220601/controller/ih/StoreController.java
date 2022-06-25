@@ -215,11 +215,11 @@ public class StoreController {
 			System.out.println("업로드용 폴더 생성 : " + uploadPath);
 		}
 	
-//	    String savedName = uid.toString() + "_" + originalName;
+	    //String savedName = uid.toString() + "_" + originalName;
 		String savedName = originalName;
 	    logger.info("savedName: " + savedName);
 	    File target = new File(uploadPath, savedName);
-	//	    File target = new File(requestPath, savedName);
+	    //File target = new File(requestPath, savedName);
 	    FileCopyUtils.copy(fileData, target);   // org.springframework.util.FileCopyUtils
 	    // Service ---> DAO 연결 
 	    return savedName;
@@ -227,7 +227,7 @@ public class StoreController {
 
 	  
 //====================================식당정보 업데이트==================================================	  
-	@GetMapping(value = "storeUpdateForm")
+	@GetMapping(value = "storeUpdateForm")//식당정보 업데이트 페이지 이동
 	public String storeUpdateForm(int host_num, Model model) {
 		
 		System.out.println("StoreController storeUpdateForm Start...");
@@ -248,7 +248,7 @@ public class StoreController {
 		return "ih/storeUpdateForm";
 	}
 	
-	@PostMapping(value = "storeUpdate")
+	@PostMapping(value = "storeUpdate")//식당정보 업데이트
 	public String storeUpdate(HostStore     hostStore,       Menu menu ,   Model model,
 							  MultipartFile host_photo0,     MultipartFile host_photo1,       
 							  MultipartFile host_photo2,     MultipartFile host_photo3,      
@@ -345,7 +345,7 @@ public class StoreController {
 		return "ih/main";
 	}
 	
-	//내 식당 등록정보
+	//내가 등록한 식당 List
 	@GetMapping(value = "myStoreList")
 	public String myStoreList(Model model, HttpServletRequest request, HttpSession session) {
 		
@@ -359,43 +359,52 @@ public class StoreController {
 			mem_num = (int) session.getAttribute("mem_num"); //로그이 성공시 회원번호 값
 		}
 		
-		List<Host> myStoreList = storeService.myStoreList(mem_num);
+		List<HostStore> myStoreList = storeService.myStoreList(mem_num);
 		
+		System.out.println(myStoreList.size());
 		if (myStoreList.size() != 0) {
+			for (int i = 0; i < myStoreList.size(); i++) {
+				if (storePhotoService.storePhoto(myStoreList.get(i).getHost_num()) != null) {
+					myStoreList.get(i).setPhotoList(storePhotoService.storePhoto(myStoreList.get(i).getHost_num()));
+				}
+				
+				for (int j = 0; j < myStoreList.get(i).getPhotoList().size(); j++) {
+					System.out.println(myStoreList.get(i).getHost_num() + "의 사진 --> " + myStoreList.get(i).getPhotoList().get(j).getHost_photo());
+				}
+				
+			}
+			
 			model.addAttribute("myStoreList" ,myStoreList);
+			model.addAttribute("size", myStoreList.size());
+			model.addAttribute("mem_num", mem_num);
 		}else {
-			model.addAttribute("myStoreList" ,0);
+			model.addAttribute("size" ,0);
 		}
 		
 		
 		return "ih/myStoreList";
 	}
 	
-	@GetMapping(value = "myStorePickList")
-	public String myStorePickList(Model model, HttpServletRequest request, HttpSession session) {
+	
+	//식당정보 삭제 요청
+	@GetMapping(value = "storeDeleteRequest")
+	public String storeDeleteRequest(HostStore hostStore, Model model) {
 		
-		System.out.println("StoreController myStorePickList Start..");
+		System.out.println("StoreController storeDeleteRequest Start..");
 		
-		session     = request.getSession();
-		int mem_num = 0;
-		if (session.getAttribute("mem_num") == null) {
-			mem_num = 0;
+		
+		int storeDeleteRequest = storeService.storeDeleteRequest(hostStore); 
+		
+		if (storeDeleteRequest > 0) {
+			model.addAttribute("msg", "삭제 요청 성공");
+			System.out.println("삭제 요청 성공");
 		}else {
-			mem_num = (int) session.getAttribute("mem_num"); //로그이 성공시 회원번호 값
+			model.addAttribute("msg", "삭제 요청 실패");
+			System.out.println("삭제 요청 실패");
 		}
 		
-		List<Host> myStorePickList = storeService.myStorePickList(mem_num);
-		
-		for (int i = 0; i < myStorePickList.size(); i++) {
-			System.out.println("host_name --> " + myStorePickList.get(i).getHost_name());
-		}
-		
-		if (myStorePickList.size() != 0) {
-			model.addAttribute("myStorePickList" ,myStorePickList);
-			model.addAttribute("size" ,myStorePickList.size());
-		}else {
-			model.addAttribute("size" ,0);
-		}
-		return "ih/myStorePickList";
+		return "redirect:myStoreList";
 	}
+
+	
 }

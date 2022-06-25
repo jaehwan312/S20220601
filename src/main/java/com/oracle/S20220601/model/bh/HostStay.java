@@ -38,5 +38,7 @@ public class HostStay {
 	private String res_start;	// 예약시작일(체크인)
 	private String res_end;		// 예약종료일(체크아웃)
 	private String res_status;	// 진행상태
-
+	//hostPhoto
+	private int    host_photo_num;	// 사진 번호
+	private String host_photo;		// 사진
 }

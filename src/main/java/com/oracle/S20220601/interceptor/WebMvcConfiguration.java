@@ -20,6 +20,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 													   .addPathPatterns("/userList")
 													   .addPathPatterns("/userListKeyword")
 													   .addPathPatterns("/userSleepList")
+													   .addPathPatterns("/storeConfirm")
+													   .addPathPatterns("/stayConfirm")
 		;
 		registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/myPage")
 													   .addPathPatterns("/updateProfile")
@@ -31,6 +33,9 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 													   .addPathPatterns("/resList")
 													   .addPathPatterns("/resDetail")
 													   .addPathPatterns("/kakaoPay")
+													   .addPathPatterns("/myPickList")
+													   .addPathPatterns("/myStoreList")
+													   .addPathPatterns("/mystayList")
 		;
 		
 	}

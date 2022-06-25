@@ -54,21 +54,23 @@ public class StoreServiceImp implements StoreService{
 	}
 
 	@Override//내 식당 등록정보
-	public List<Host> myStoreList(int mem_num) {
+	public List<HostStore> myStoreList(int mem_num) {
 		System.out.println("StoreServiceImp myStoreList Start....");
 		
-		List<Host> myStoreList = storeDao.myStoreList(mem_num);
+		List<HostStore> myStoreList = storeDao.myStoreList(mem_num);
 		
 		return myStoreList;
 	}
 
-	@Override
-	public List<Host> myStorePickList(int mem_num) {
-		System.out.println("StoreServiceImp myStorePickList Start....");
+	@Override//식당 정보 삭제 요청
+	public int storeDeleteRequest(HostStore hostStore) {
+		System.out.println("StoreServiceImp storeDeleteRequest Start....");
 		
-		List<Host> myStorePickList = storeDao.myStorePickList(mem_num);
+		int storeDeleteRequest = storeDao.storeDeleteRequest(hostStore);
 		
-		return myStorePickList;
+		return storeDeleteRequest;
 	}
+
+
 
 }
