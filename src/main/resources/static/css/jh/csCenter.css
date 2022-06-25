@@ -25,11 +25,11 @@
 }
 
 .title {
-	width: 80px;
+	width: 93px;
 }
 
 .content {
-	height: 50vh;
+	min-height: 50vh;
 }
 
 .content_btn_div {

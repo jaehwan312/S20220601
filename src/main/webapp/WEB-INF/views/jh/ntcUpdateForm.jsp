@@ -19,6 +19,7 @@
     <div class="contents">
 	    <form action="ntcUpdate" method="post" enctype="multipart/form-data">
 	    	<input type="hidden" name="n_num" value="${ntc.n_num}">
+	    	<input type="hidden" name="currentPage" value="${currentPage}">
 	    	<div class="input-group mb-3">
 				<div class="input-group-text title" id="inputGroup-sizing-default">No.</div>
 				<span class="form-control">${num}</span>
@@ -37,9 +38,13 @@
 				<div class="input-group-text title">글내용</div>
 				<textarea name="n_content" class="form-control" aria-label="With textarea">${ntc.n_content}</textarea>
 			</div>
+<!-- 			<div class="input-group mb-3">
+				<input type="file" name="n_photo" class="form-control" id="inputGroupFile02" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+				<button class="input-group-text title" type="reset" id="inputGroupFileAddon04">reset</button>
+			</div> -->
 		    
 			<div class="content_btn_div">
-		    	<button type="button" class="btn btn-outline-primary" onclick="location.href='ntcList'">목록</button>
+		    	<button type="button" class="btn btn-outline-primary" onclick="location.href='ntcList?currentPage=${currentPage}'">목록</button>
 		    	<div>
 		    		<c:if test="${grade=='1'}">
 		    			<button type="submit" class="btn btn-outline-primary">확인</button>
