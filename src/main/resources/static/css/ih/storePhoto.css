@@ -1,7 +1,97 @@
 @charset "UTF-8";
-div img{
+.slide {
+	margin: 50px auto;
+}
+
+#img_box {
+	margin: auto;
+	width: 80%;
+	height: 50vh;
+}
+
+#slide_btn {
+	background-color: #4e4e4e;
+	border-radius: 5px;
+	height: 50px;
+	width: 50px;
+	margin: auto;
+}
+
+.store_name_box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-family: 'Gugi', cursive;
+	margin-bottom: 50px;
+}
+
+.pick {
+	font-size: 20px;
+}
+
+.store_data_box {
+	margin-bottom: 50px;
+}
+
+#map {
+	box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+}
+
+.prf_photo {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: 20px auto;
+	text-align: center;
+	vertical-align: center;
+}
+
+.prf_photo img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.prf_name {
+	text-align: center;
+}
+
+.prf_star {
+	margin: 20px auto;
+	text-align: center;
+}
+
+#photo_point {
+	display: flex;
+	align-items: center;
+	margin: 25px;
+}
+
+#preview img {
+	
+}
+
+.labelInfo {
+	display: inline;
+}
+
+.square_box {
+	display: flex;
 	width: 100px;
 	height: 100px;
+}
+
+.square_box img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	margin: auto;
+}
+
+.review_box textarea {
+	margin: auto;
 }
 
 .host_photo{
