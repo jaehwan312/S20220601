@@ -13,12 +13,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/ih/storeReview.css">
 <link rel="stylesheet" href="css/ih/style.css"><!--평점 css -->
 <link rel="stylesheet" href="css/ih/storePhoto.css">
-<link rel="stylesheet" href="css/ih/storeMapApi.css">
 <script type="text/javascript" src="js/ih/storePhoto.js"></script>
 <script type="text/javascript" src="js/ih/storeReview.js"></script>
 <script type="text/javascript" src="js/ih/flatpickr.js"></script>
@@ -35,27 +31,11 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-	    <div  style="margin-top: 100px;">
+	    <div>
 	    	<input type="hidden" value="${store.host_num}" id="HostNum">
 	    	<input type="hidden" value="${store.host_code}">
 	    	<input type="hidden" value="${store.mem_num}"  id="Mem_mem">
 	    	<input type="hidden" value="${maxReviewDate}"  id="maxReviewDate">
-	    	<c:if test="${mem_num != 0 || mem_num == store.mem_num}">
-		    	<c:if test="${index == 0}">
-		    		<label style="margin-bottom: 20px;">
-					<i class="fa fa-heart fa-md heartLike" id="storeLike${index }" onclick="storeLikeAction(${index},${store.host_num},'${store.host_name}')" aria-hidden="true" style="color: gray;"></i>
-					<span class="information" id="storeLikes${index}">${store.like_count}</span>
-		    		</label>	
-		    	</c:if>
-		    	<c:if test="${index == 1 }">
-		    		<label style="margin-bottom: 20px;">
-					<i class="fa fa-heart fa-md heartLike" id="storeLike${index }" onclick="storeLikeAction(${index},${store.host_num},'${store.host_name}')" aria-hidden="true" style="color: red;"></i>
-					<span class="information" id="storeLikes${index}">${store.like_count}</span>
-		    		</label>	
-		    	</c:if>
-			</c:if>
-	
-	    	
 	    	
 	<!-- 사진 슬라이드  스타트-->  
 			<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
@@ -69,7 +49,7 @@
 				      </c:if>
 			    	</c:forEach>
 			  </div>
-			  <div class="carousel-inner">
+			  <div class="carousel-inner" id="img_box">
 			     <c:forEach items="${storePhoto }" var="photo" varStatus="i">
 				      <c:if test="${i.index == 0 }">
 				      	<div class="carousel-item active">
@@ -83,143 +63,166 @@
 				      </c:if>
 			     </c:forEach>
 			  </div>
-			  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+			  <button class="carousel-control-prev" id="slide_btn" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
 			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			    <span class="visually-hidden">Previous</span>
 			  </button>
-			  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+			  <button class="carousel-control-next" id="slide_btn" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
 			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 			    <span class="visually-hidden">Next</span>
 			  </button>
 			</div>
 			 
 	<!-- 사진 슬라이드  끝-->   	
-	    	<div>
-	    		<label style="font-size: 40px;">
-	    			<input type="hidden" value="${store.host_name }" id="host_name">
-	    			<b>${store.host_name}</b>
-	    		</label>
-	    		<label style="font-size: 25px; color: orange;">
-	    			<b id="StoreAvg">${store.host_avg}</b>
-	    		</label><p/>
-				<br/><hr/><br/>
-					<!--지도 start  -->
-					<div>
-						<div id="map" style="width:300px;height:300px; float: right;" ></div>
-					</div>
-					<!-- 지도 END  -->
-					<div>
-			    		<label style="float: left;  margin-right: 25px; width: 100px;">
-			    			<b>주소</b>
-			    		</label>
-			    		<label>
-			    			<input type="hidden" value="${store.host_addr }" id="host_addr">
+	    	<div class="store_name_box">
+	    		<div>
+		    		<label style="font-size: 40px;">
+		    			<input type="hidden" value="${store.host_name }" id="host_name">
+		    			<b>${store.host_name}</b>
+		    		</label>
+		    		<label style="font-size: 25px; color: orange;">
+		    			<b id="StoreAvg">${store.host_avg}</b>
+		    		</label>
+	    		</div>
+
+	    		<c:if test="${mem_num != 0 || mem_num == store.mem_num}">
+			    	<c:if test="${index == 0}">
+			    		<label class="pick">
+						<i class="fa fa-heart fa-md heartLike" id="storeLike${index }" onclick="storeLikeAction(${index},${store.host_num},'${store.host_name}')" aria-hidden="true" style="color: gray;"></i>
+						<span class="information" id="storeLikes${index}">${store.like_count}</span>
+			    		</label>	
+			    	</c:if>
+			    	<c:if test="${index == 1 }">
+			    		<label class="pick">
+						<i class="fa fa-heart fa-md heartLike" id="storeLike${index }" onclick="storeLikeAction(${index},${store.host_num},'${store.host_name}')" aria-hidden="true" style="color: red;"></i>
+						<span class="information" id="storeLikes${index}">${store.like_count}</span>
+			    		</label>	
+			    	</c:if>
+				</c:if>
+	    	</div>
+	    	<div class="row store_data_box">
+		    	<div class="col-9">
+					<div class="row">
+						<div class="col-3">
+							<b>주소</b>
+							<br>
+							<b>주차가능여부</b>
+						</div>
+						<div class="col-9">
+							<input type="hidden" value="${store.host_addr }" id="host_addr">
 			    			<b>${store.host_addr}</b>
-			    		</label><p/>
-			    		<label style="float: left;  margin-right: 25px; width: 100px;">
-			    			<b>주차가능여부</b>
-			    		</label>
-				    	<label>
-				    		<b>${store.parking}</b>
-				    	</label><p/>
+			    			<br>
+			    			<b>${store.parking}</b>
+						</div>
 				    </div>
+			    	<hr/>
+			    	<div class="row">
+			    		<div class="col-3">
+							<b>영업시간</b>
+							<br>
+							<b>브레이크타임</b>
+						</div>
+						<div class="col-9">
+			    			<b>${store.open_time}</b>
+			    			<br>
+			    			<b>${store.break_time}</b>
+						</div>
+			    	</div>
+			 		<hr/>
+			    	<div class="row">
+			    		<div class="col-3">
+							<b>음식종류</b>
+							<br>
+							<b>메뉴</b>
+						</div>
+						<div class="col-9">
+			    			<b>${foodcode.name}</b>
+			    			<br>
+			    			<c:forEach items="${menuList }" var="menu">
+					    		<b>${menu.menu_name}</b>
+					    		<b>${menu.menu_price}</b>
+					    	</c:forEach>
+						</div>
+			    	</div>
+			    	<hr/>
+			    	<div class="row">
+			    		<div class="col-3">
+							<b>업체소개</b>
+						</div>
+						<div class="col-9">
+			    			<b>
+			    				${fn:replace(fn:replace(store.host_info, nbsp, '&nbsp;'), enter , '<br/>')}
+			<%--     			${fn:replace(fn:replace(fn:replace(fn:replace(store.host_info, nbsp, '&nbsp;'), enter , '<br/>'), left,'&lt;'), right, '&gt	;')}--%>    			
+							</b>
+						</div>
+			    	</div>
+			    	<hr/>
+		    	</div>
+			    <!--지도 start  -->
+				<div class="col-3" id="map" style="width:300px;height:300px; float: right;"></div>
+				<!-- 지도 END  -->
 	    	</div>
-	    	<hr/>
-	    	<div>
-	    		<label style="float: left;  margin-right: 25px; width: 100px;">
-	    			<b>영업시간</b>
-	    		</label>
-	    		<label>
-	    			<b>${store.open_time}</b>
-	    		</label><p/>
-	    		<label style="float: left;  margin-right: 25px; width: 100px;">
-	    			<b>브레이크타임</b>
-	    		</label>
-		    	<label>
-		    		<b>${store.break_time}</b>
-		    	</label><p/>
-	    	</div>
-	 		<hr/>
-	    	<div>
-	    		<label style="float: left;  margin-right: 25px; width: 100px;">
-	    			<b>음식종류</b>
-	    		</label>
-	    		<b>${foodcode.name}</b><p/>
-	    		<label style="float: left;  margin-right: 25px; width: 100px;">
-	    			<b>메뉴</b>
-	    		</label>
-		    	<label>
-			    	<c:forEach items="${menuList }" var="menu">
-			    		<b style="float: left;  margin-right: 50px; width: 100px;">${menu.menu_name}</b>
-			    		<b style="float: left;  margin-right: 50px; margin-left: 50px; width: 100px;">${menu.menu_price}</b>
-			    		<br/>
-			    	</c:forEach>
-		    	</label>
-	    	</div>
-	    	<hr/>
-	    	<div>
-	    		<label style="float: left;  margin-right: 25px; width: 100px;">
-	    			<b>업체소개</b>
-	    		</label>
-	    		<label>
-	    			<b>
-	    				${fn:replace(fn:replace(store.host_info, nbsp, '&nbsp;'), enter , '<br/>')}
-	<%--     			${fn:replace(fn:replace(fn:replace(fn:replace(store.host_info, nbsp, '&nbsp;'), enter , '<br/>'), left,'&lt;'), right, '&gt	;')}--%>    			</b>
-	    		</label>
-	    	</div>
-	    	<hr/>
 	    	<!-- 리뷰 시작  -->
-	    	<div id="user_rev_insert">
+	    	<div class="row" id="user_rev_insert">
 	    		<!-- 리뷰 등록 시작 -->
 	    		<c:if test="${mem_num != 0}">
 	    			<c:if test="${mem_num != store.mem_num }">
-				   		<label>
-								<img alt="${userphoto }" src="images/ih/${userphoto }"
-									 style="float: right; border-radius: 50%;" width="100px;" height="100px;"><br/>
+				   		<div class="col-2">
+				   			<div class="prf_photo">
+				   				<img alt="${userphoto }" src="images/ih/${userphoto }">
 							    <input hidden="" value="${userphoto }" id="userphoto">
-							    <input hidden="" value="${name }"      id="name">
-								<b>작성자:${name }</b>
-				   		</label>
-					   		<label>
-					   			<textarea rows="4px;" cols="135px;" style="float: right;" id="rev_content" name="rev_content" required="required"></textarea>
-					   		</label>
-					   	<div id="photo_point">	
-							<div>
-								<div class="" id="preview"></div>
-							</div>
-							<section class="section"  >
-		                              <div class="card-body" >
-		                                  <div id="step" class="star-rating" style="width: 160px; height: 32px; background-size: 32px;" title="1/5" ></div>
-			                    	  </div>
+				   			</div>
+				   			<div class="prf_name">
+				   				<input hidden="" value="${name }" id="name">
+								<b>${name}</b>
+				   			</div>
+				   			<section class="section prf_star">
+								<div class="card-body" >
+									<div id="step" class="star-rating" style="width: 160px; height: 32px; background-size: 32px;" title="1/5" ></div>
+								</div>
 		               		</section>	
+				   		</div>
+				   		<div class="col-10">
 							<!-- 사진  시작-->
 							<div>
 								<div class="insertPhoto">
-									<c:forEach begin="0" end="4" varStatus="i">
-					                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
-					                       	 👉 CLICK HERE!👈 
-											<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
-												onchange="previewFiles(${i.index })" accept="images/ih/*">
-					                    </label>
-					                </c:forEach>
-			      				</div>
-							</div>
+								   	<div id="photo_point">	
+										<div>
+											<div class="" id="preview"></div>
+										</div>
+										<c:forEach begin="0" end="4" varStatus="i">
+						                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
+												<div class="square_box">
+													<img alt="plus" src="images/ih/plus.png">
+													<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" onchange="previewFiles(${i.index })" accept="images/ih/*">
+												</div>
+						                    </label>
+						                </c:forEach>
+				      				</div>
+								</div>
 							<!-- 사진 끝 -->
-							<button type="submit" onclick="storeReviewInsert(${mem_num})" style="float: right;" class="btn btn-primary">리뷰등록</button>
-							<!-- 리뷰등록 끝 -->
-						</div>
+				   			<label class="review_box">
+					   			<textarea rows="4px;" cols="135px;" style="float: right;" id="rev_content" name="rev_content" required="required"></textarea>
+					   		</label>
+								<button type="submit" onclick="storeReviewInsert(${mem_num})" style="float: right;" class="btn btn-primary">리뷰등록</button>
+								<!-- 리뷰등록 끝 -->
+							</div>
+				   		</div>
 					</c:if>
 				</c:if>
 				</div>
-				<div>현재 리뷰<b  id="StoreRevCount">${store.rev_count }</b>개</div>
+				<div>
+					<b id="StoreRevCount">현재 리뷰 ${store.rev_count }개</b>
+				</div>
+				<hr/>
 				<div id="review" class="review">
 					<c:forEach items="${revList }" var="user_rev" varStatus="u">
 					<c:if test="${user_rev.re_step == 0 }">
-					<div class="reviewList" style="display: none;">
+					<div class="reviewList" style="display: none; margin-top: 10px;">
 						<h6 hidden="" id="count">${count = 0}</h6>
 							
 								<div id="storeRevList${user_rev.rev_num}">
-									<hr/>
+									
 									<br/>
 									<div id="host_user_rev">
 										<div style="float: left;">
@@ -314,6 +317,5 @@
 	<script src="js/ih/rater-js2.js"></script>
 	<script type="text/javascript" src="js/ih/pagePlus.js"></script>
 	<script type="text/javascript" src="js/ih/storeMapApi.js"></script> 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

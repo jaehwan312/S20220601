@@ -186,8 +186,8 @@
 								<form id="frm${j.index }" action="resContent" onsubmit="return false">
 									<input type="hidden" name="host_num" value="${room.host_num }">
 									<input type="hidden" name="room_num" value="${room.room_num }">
-									<input type="hidden" name="res_start" id="res_start">
-									<input type="hidden" name="res_end" id="res_end">
+									<input type="hidden" name="res_start" class="res_start">
+									<input type="hidden" name="res_end" class="res_end">
 									<input type="hidden" name="sale_price" value=${room.dayfee }>
 									<button type="submit" class="btn btn-outline-primary" id="goReserve" onclick="chkDate(${j.index })">예약</button>
 								</form>

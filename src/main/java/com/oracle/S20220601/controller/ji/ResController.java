@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Pay;
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
@@ -131,6 +132,8 @@ public class ResController {
 		System.out.println("resDetail Start...");
 		System.out.println("res_num -> " + res_num); // 예약 번호
 		Res res1 = rs.resDetail(res_num);
+		List<Code>	 cancCodeList	= rs.CancCodeList();
+		model.addAttribute("cancCodeList", cancCodeList);
 		model.addAttribute("res", res1);
 		model.addAttribute("grade", grade);
 

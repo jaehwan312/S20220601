@@ -6,9 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
-<script type="text/javascript">
-	alert(msg);
-</script>
 <title>제주 감수광</title>
 </head>
 <body>

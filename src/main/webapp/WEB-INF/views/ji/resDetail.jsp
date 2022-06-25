@@ -124,12 +124,10 @@
 										
 										<div class="cacle-reason">
 											<h3>취소사유</h3>
-											<select name ="cancle", id="cancle-select" class="select_type_2">
-												<option selected="selected" value="그냥1" >그냥1</option>
-												<option  value="그냥2">그냥2</option>
-												<option  value="그냥3">그냥3</option>
-												<option value="그냥4">그냥4</option>
-												<option  value="그냥5">그냥5</option>
+											<select name ="cancle" id="cancle-select" class="form-select" aria-label="Default select example">
+												<c:forEach var="cancleCode" items="${cancCodeList }">
+													<option value="${cancleCode.mcd}">${cancleCode.name }</option>
+												</c:forEach>
 											</select>
 											<!---->
 											<!---->
@@ -138,9 +136,9 @@
 									<div class="modal-footer">
 <!-- 										<button type="button" class="btn btn-secondary"
 											data-bs-dismiss="modal">Close</button> -->
-										
-									<form action="statusChange2" name="cancleForm">
-										<input type="hidden" name="canc_reason" value="">
+								<!-- 예약취소하기 버튼		 -->
+									<form  id="resCancle" action="statusChange2" name="cancleForm" onsubmit="return false">
+										<input type="hidden" name="canc_reason" id="canc_reason" value="">
 										<input type="hidden" name="res_num" value="${res.res_num}">
 										<button type="submit" class="btn btn-primary" onclick="reasonChk()" >취소하기</button>
 									</form>
@@ -218,10 +216,22 @@
 		}};
 		
 		function reasonChk() {
-			var f = document.cancleForm
-			select_reason = $("#cancle-select").val()
-			$('#canc_reason').val(select_reason);
-			f.submit();
+
+	            var target = document.getElementById("cancle-select");
+	            var selectVal = target.options[target.selectedIndex].value;
+	            alert(selectVal);
+	            $('#canc_reason').val(selectVal);
+	            if (selectVal==""||selectVal==null) {
+	                alert("취소사유를 선택해주세요");
+	                
+	             }else {
+	                document.getElementById('resCancle').submit();
+	             }
+	            
+	            
+	            
+	                   
+	            
 		}
 
 	</script>

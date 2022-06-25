@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.S20220601.dao.ji.ResDao;
+import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
 import com.oracle.S20220601.model.ji.ResInfo;
@@ -131,6 +132,14 @@ public class ResServiceImpl implements ResService {
 		int upd_res_canc = rd.updStatusCanc(res_num);
 		return upd_res_canc;
 	
+	}
+
+	@Override
+	public List<Code> CancCodeList() {
+		
+		System.out.println("ResServiceImpl CancCodeList Start...");
+		List<Code> cancCodeList = rd.CancCodeList(); 
+		return cancCodeList;
 	}
 	
 

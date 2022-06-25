@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oracle.S20220601.model.Code;
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Res;
 import com.oracle.S20220601.model.ji.ResInfo;
@@ -239,6 +240,21 @@ public class ResDaoImpl implements ResDao {
 			System.out.println("ResDaoImpl updStatusCanc Exception -> "+e.getMessage());
 		}
 		return upd_res_canc;
+	}
+
+	@Override
+	public List<Code> CancCodeList() {
+		List<Code> cancCodeList = null;
+		System.out.println("ResDaoImpl CancCodeList Start......");
+		try {
+
+			cancCodeList = session.selectList("jiCancCodeList");
+			System.out.println("ResDaoImpl CancCodeList listBeforeRes.size() -> " + cancCodeList.size());
+
+		} catch (Exception e) {
+			System.out.println("ResDaoImpl CancCodeList Exception - > " + e.getMessage());
+		}
+		return cancCodeList;
 	}
 
 
