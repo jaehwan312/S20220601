@@ -37,6 +37,10 @@
 	box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 
+.rev_section {
+	margin-bottom: 50px;
+}
+
 .prf_photo {
 	width: 150px;
 	height: 150px;
@@ -65,33 +69,55 @@
 #photo_point {
 	display: flex;
 	align-items: center;
-	margin: 25px;
+	margin: 25px 0;
 }
 
-#preview img {
-	
-}
-
-.labelInfo {
-	display: inline;
+#preview img{
+	margin: 0 25px;
+	box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 
 .square_box {
-	display: flex;
 	width: 100px;
 	height: 100px;
+	border: 1px solid #bababa;
+	border-radius: 50%;
+	padding: 25px;
 }
 
 .square_box img {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
-	display: block;
 	margin: auto;
 }
 
+.review_box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .review_box textarea {
-	margin: auto;
+	width: 90%;
+	height: 20vh;
+}
+
+.review_btn {
+	margin-left: auto;
+}
+
+.rev_prf {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	overflow: hidden;
+	text-align: center;
+}
+
+.rev_prf img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .host_photo{

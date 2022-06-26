@@ -19,12 +19,6 @@
 <script type="text/javascript" src="js/ih/storeReview.js"></script>
 <script type="text/javascript" src="js/ih/flatpickr.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b9390203495c8fcf026665d50778bc99&libraries=services,clusterer,drawing"></script>
-<style type="text/css">
-	hr {
-		margin-bottom: 10px;
-		margin-top: 10px;
-}
-</style>
 <title>제주 감수광</title>
 </head>
 <body>
@@ -163,13 +157,13 @@
 				<!-- 지도 END  -->
 	    	</div>
 	    	<!-- 리뷰 시작  -->
-	    	<div class="row" id="user_rev_insert">
+	    	<div class="row rev_section" id="user_rev_insert">
 	    		<!-- 리뷰 등록 시작 -->
 	    		<c:if test="${mem_num != 0}">
 	    			<c:if test="${mem_num != store.mem_num }">
 				   		<div class="col-2">
 				   			<div class="prf_photo">
-				   				<img alt="${userphoto }" src="images/ih/${userphoto }">
+				   				<img alt="${userphoto }" src="images/profile/${userphoto }">
 							    <input hidden="" value="${userphoto }" id="userphoto">
 				   			</div>
 				   			<div class="prf_name">
@@ -184,7 +178,6 @@
 				   		</div>
 				   		<div class="col-10">
 							<!-- 사진  시작-->
-							<div>
 								<div class="insertPhoto">
 								   	<div id="photo_point">	
 										<div>
@@ -201,12 +194,11 @@
 				      				</div>
 								</div>
 							<!-- 사진 끝 -->
-				   			<label class="review_box">
-					   			<textarea rows="4px;" cols="135px;" style="float: right;" id="rev_content" name="rev_content" required="required"></textarea>
-					   		</label>
-								<button type="submit" onclick="storeReviewInsert(${mem_num})" style="float: right;" class="btn btn-primary">리뷰등록</button>
-								<!-- 리뷰등록 끝 -->
-							</div>
+				   			<div class="review_box">
+					   			<textarea class="form-control" aria-label="With textarea" id="rev_content" name="rev_content" required="required"></textarea>
+					   			<button type="submit" class="btn btn-outline-primary review_btn" onclick="storeReviewInsert(${mem_num})">리뷰등록</button>
+					   		</div>
+							<!-- 리뷰등록 끝 -->
 				   		</div>
 					</c:if>
 				</c:if>
@@ -218,17 +210,16 @@
 				<div id="review" class="review">
 					<c:forEach items="${revList }" var="user_rev" varStatus="u">
 					<c:if test="${user_rev.re_step == 0 }">
-					<div class="reviewList" style="display: none; margin-top: 10px;">
+					<div class="reviewList" style="display: none;">
 						<h6 hidden="" id="count">${count = 0}</h6>
 							
 								<div id="storeRevList${user_rev.rev_num}">
 									
-									<br/>
 									<div id="host_user_rev">
-										<div style="float: left;">
-											<img alt="${user_rev.photo }" src="images/ih/${user_rev.photo }"
+										<div class="rev_prf">
+											<img alt="${user_rev.photo }" src="images/profile/${user_rev.photo }"
 												 style="float: right; border-radius: 50%;" width="100px;" height="100px;" ><br/>
-											<b>작성자: ${user_rev.name }</b>
+											<b>${user_rev.name }</b>
 										</div>
 										<div>
 											<div id="host_user_rev${user_rev.rev_num}">
@@ -254,9 +245,9 @@
 												   id="userRevNum${user_rev.rev_num }"></input>
 											<c:if test="${mem_num == user_rev.mem_num }">
 												<button onclick="userRevUpdate(${user_rev.rev_num})" 
-														style="float: right; " class="btn btn-primary" id="userRevUpdate${user_rev.rev_num}" >리뷰수정</button>
+														style="float: right; " class="btn btn-outline-primary review_btn" id="userRevUpdate${user_rev.rev_num}" >리뷰수정</button>
 												<button onclick="userRevDelete(${user_rev.rev_num})" 
-														style="float: right;" class="btn btn-primary" id="userRevDelete${user_rev.rev_num}">리뷰삭제</button>
+														style="float: right;" class="btn btn-outline-primary review_btn" id="userRevDelete${user_rev.rev_num}">리뷰삭제</button>
 											</c:if>
 										</div>
 										<br/>
@@ -306,7 +297,7 @@
 					</c:forEach>
 					<br>
 					<div style="text-align: center;">
-						<button id="load" class="btn btn-primary" style="width: 300px;">더보기</button>
+						<button id="load" class="btn btn-outline-primary review_btn" style="width: 300px;">더보기</button>
 					</div>
 	   		</div><!-- 리뷰 끝  -->
 	   	</div>
