@@ -11,7 +11,7 @@ function previewFiles(e){
 			
 			reader.addEventListener("load", function () {
 				var image = new Image();
-				image.width = 200;
+				image.width = 100;
 		        image.height = 100;
 		        image.title = file.name;
 		        image.src = this.result;
