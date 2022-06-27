@@ -204,10 +204,11 @@
 				</c:if>
 				</div>
 				<div>
-					<b id="StoreRevCount">현재 리뷰 ${store.rev_count }개</b>
+					<b>현재 리뷰 <b id="StoreRevCount">${store.rev_count }</b>개</b>
 				</div>
-				<hr/>
+				
 				<div id="review" class="review">
+					<hr/>
 					<c:forEach items="${revList }" var="user_rev" varStatus="u">
 					<c:if test="${user_rev.re_step == 0 }">
 					<div class="reviewList" style="display: none;">

@@ -343,7 +343,7 @@ public class StoreController {
 		}
 		
 		
-		return "ih/main";
+		return "main";
 	}
 	
 	//내가 등록한 식당 List
