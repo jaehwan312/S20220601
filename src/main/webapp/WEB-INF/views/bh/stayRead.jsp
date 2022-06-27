@@ -263,6 +263,14 @@
 				</div>
 				<!-- start -->
 	            <c:forEach items="${maps }" var="map" varStatus="l">
+	            <div>
+	            <c:if test="${map.content.photo == null }">
+	             <img style="border-radius: 70%; width: 150px; height: 150px" alt="${map.content.photo }" src="images/profile/기본.png">
+	            </c:if>
+	            <c:if test="${map.content.photo != null }">
+	            <img style="border-radius: 70%; width: 150px; height: 150px" alt="${map.content.photo }" src="images/profile/${map.content.photo }">
+	            </c:if>
+	            </div>
 	            <div style="margin-top: 20px;">
 	            	<div>평점 : ${map.content.rev_point}</div>
 	               <div style="text-align: left; padding-left: 70px; padding-top:30px;">
@@ -322,6 +330,12 @@
 	            </div>
 	            <c:if test="${map.reply!=null }">
 	            	<div>
+	            	 <c:if test="${map.reply.photo == null }">
+	             		<img style="border-radius: 70%; width: 150px; height: 150px" alt="${map.content.photo }" src="images/profile/기본.png">
+	           		 </c:if>
+	           		 <c:if test="${map.reply.photo != null }">
+	            	<img style="border-radius: 70%; width: 150px; height: 150px;" src="images/profile/${map.reply.photo}">
+	            	</c:if>
 	            	관리자 댓글 : ${map.reply.rev_content }<p>
 	            	댓글날짜 : ${map.reply.rev_date }
 	            </div>

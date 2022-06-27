@@ -98,37 +98,72 @@ public class StayDaoImpl implements StayDao {
 		}
 		return stayReadreview;
 	}
-
+	
 	@Override
-	public List<Map<String, Review1>> reviewList(int host_num) {
-		System.out.println("StayDaoImpl reviewList start...");
-		
-		List<Map<String, Review1>> maps = new ArrayList<Map<String,Review1>>();
-		List<Review1> reviewList = null;
-		
-		try {
-			reviewList = session.selectList("bhreviewList", host_num);
-			List<RevPhoto> rp =null;
-			for(Review1 rv : reviewList) {
-				Map<String, Review1> map = new HashMap<String, Review1>();
-				Review1 reply = session.selectOne("bhReplyList", rv.getRef());
-				rp = session.selectList("bhrevPhotoList", rv);
-				rv.setRevPhoto(rp);
-				map.put("content", rv);
-				
-				if(reply!=null) {
-					map.put("reply",reply);
-				}
-				maps.add(map);
-				System.out.println("@@@@맵쓰 싸이즈"+maps.size());
-			}
-			
-			
-		} catch (Exception e) {
-			System.out.println("StayDaoImpl reviewList Exception->"+e.getMessage());
-		}
-		return maps;
-	}
+	   public List<Map<String, Review1>> reviewList(int host_num) {
+	      System.out.println("StayDaoImpl reviewList start...");
+	      
+	      List<Map<String, Review1>> maps = new ArrayList<Map<String,Review1>>();
+	      List<Review1> reviewList = null;
+	      
+	      try {
+	         reviewList = session.selectList("bhreviewList", host_num);
+	         List<RevPhoto> rp =null;
+	         for(Review1 rv : reviewList) {
+	            Map<String, Review1> map = new HashMap<String, Review1>();
+	            Review1 reply = session.selectOne("bhReplyList", rv.getRef());
+	            rp = session.selectList("bhrevPhotoList", rv);
+	            rv.setRevPhoto(rp);
+	            map.put("content", rv);
+	            
+	            if(reply!=null) {
+	               map.put("reply",reply);
+	            }
+	            maps.add(map);
+	            System.out.println("@@@@맵쓰 싸이즈"+maps.size());
+	         }
+	         
+	         
+	      } catch (Exception e) {
+	         System.out.println("StayDaoImpl reviewList Exception->"+e.getMessage());
+	      }
+	      return maps;
+	   }
+
+//	@Override
+//	public List<Map<String, Review1>> reviewList(int host_num) {
+//		System.out.println("StayDaoImpl reviewList start...");
+//		
+//		List<Map<String, Review1>> maps = new ArrayList<Map<String,Review1>>();
+//		List<Review1> reviewList = null;
+//		
+//		try {
+//			reviewList = session.selectList("bhreviewList", host_num);
+//			List<RevPhoto> rp =null;
+//			for(Review1 rv : reviewList) {
+//				System.out.println("@@@ref --> "+rv.getRef());
+//				System.out.println("@@@refhost --> "+rv.getHost_num());
+//				System.out.println("@@@mem_num --> "+rv.getMem_num());
+//				Map<String, Review1> map = new HashMap<String, Review1>();
+//				Review1 reply = session.selectOne("bhReplyList", rv);
+//				rp = session.selectList("bhrevPhotoList", rv);
+//				rv.setRevPhoto(rp);
+//				map.put("content", rv);
+//				if(reply!=null) {
+//					map.put("reply",reply);
+//				}
+//				System.out.println("맴넘"+rv.getMem_num());
+//				System.out.println("@@@@맵 싸이즈"+map.size());
+//				maps.add(map);
+//				System.out.println("@@@@맵쓰 싸이즈"+maps.size());
+//			}
+//			
+//			
+//		} catch (Exception e) {
+//			System.out.println("StayDaoImpl reviewList Exception->"+e.getMessage());
+//		}
+//		return maps;
+//	}
 
 	@Override
 	public Host hostreview(int host_num) {

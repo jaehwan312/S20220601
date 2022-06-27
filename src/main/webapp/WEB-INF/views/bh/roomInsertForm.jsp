@@ -112,7 +112,8 @@
 					</div>
 			</div>
 			<div style="margin-bottom: 30px;">
-			<input type="submit" value="등록요청"><br>
+			<input type="submit" value="등록"><br>
+			<button type="button" onclick="location.href='main'">저장</button>
 			</div>
     	</form>
 	    	<table class="table">
@@ -141,7 +142,6 @@
 	    	</table>
     	</div>
     	
-     <!-- 여기 위로오 ============================================================ -->   
    <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>

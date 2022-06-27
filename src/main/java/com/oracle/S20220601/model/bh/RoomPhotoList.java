@@ -21,6 +21,6 @@ public class RoomPhotoList {
 	private int 		weekfee;		// 주말요금
 	
 	private List<RoomPhoto>	roomPhotos;
-	
+	private int mem_num;				//회원번호
 
 }
