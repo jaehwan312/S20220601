@@ -104,7 +104,7 @@
 						<!---->
 
 						<c:if test="${res.res_status eq '1' }">
-							<button type="button" class="btn btn-primary" data-bs-toggle="modal"  onclick="dateChk()">예약취소하기</button>
+							<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"  onclick="dateChk()">예약취소하기</button>
 						</c:if>
 						<!-- Modal -->
 						<div class="modal fade" id="staticBackdrop"
@@ -140,7 +140,7 @@
 									<form  id="resCancle" action="statusChange2" name="cancleForm" onsubmit="return false">
 										<input type="hidden" name="canc_reason" id="canc_reason" value="">
 										<input type="hidden" name="res_num" value="${res.res_num}">
-										<button type="submit" class="btn btn-primary" onclick="reasonChk()" >취소하기</button>
+										<button type="submit" class="btn btn-outline-primary" onclick="reasonChk()" >취소하기</button>
 									</form>
 									</div>
 								</div>
@@ -148,15 +148,15 @@
 						</div>
 					<!-- /Modal -->
 						<c:if test="${res.res_status eq '2' }">
-						<form action="reviewInsertForm">
+						<form action="reviewInsertForm" class="reviewFrm">
 						<input type="hidden" name="host_num" value="${res.host_num }">
 						<input type="hidden" name="room_num" value="${res.mem_num }">
-							<button type="submit" onclick="location.href=">리뷰작성하기</button>
+							<button type="submit"  class="btn btn-outline-primary review">리뷰작성하기</button>
 						</form>
-							<button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">삭제</button>
+							<button type="button"  class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">삭제</button>
 						</c:if>
 						<c:if test="${res.res_status eq '3' }">
-							<button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">삭제</button>
+							<button type="button"  class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">삭제</button>
 						</c:if>
 					<!--Delete Modal2 -->
 
