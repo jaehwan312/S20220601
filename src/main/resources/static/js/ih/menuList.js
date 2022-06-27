@@ -2,11 +2,14 @@
 function menuPlus(e){
 	
 	console.log(e);
-	var plus = "<p><label class='labelmenuInfo' id='labelmenuInfo"+ (e+1) +"' for='menuinputInfo"+(e+1)+"'> " +
+	
+	var plus = "<div class='labelmenuInfo' id='labelmenuInfo"+ (e+1) +"' for='menuinputInfo"+(e+1)+"'> " +
 		      "메뉴명 : <input type='text' name='menu_list["+(e+1)+"].menu_name' id='menuinputInfo"+(e+1)+"'> " +
 			  "가격 : <input type='number' name='menu_list["+(e+1)+"].menu_price' id='menuinputInfo"+(e+1)+"'> " +
 			  "<input type='button' onclick='menuPlus("+(e+1)+")' id='menuInfoInsert"+(e+1)+"' value='+' class='btn btn-primary'> " +
-			  "<input type='button' onclick='menuDel("+(e+1)+")' id='menuInfoDel"+(e+1)+"' value='-' class='btn btn-primary'></label>";
+			  "<input type='button' onclick='menuDel("+(e+1)+")' id='menuInfoDel"+(e+1)+"' value='-' class='btn btn-primary'></div	>";
+	
+	
 	console.log(plus);
 	console.log('#menuInfoInsert' + e);
 	$('#labelmenuInfo' + e).append(plus);
