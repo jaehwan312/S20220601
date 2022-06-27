@@ -29,6 +29,10 @@ public class StoreConfirmController {
 		Jjpaging pg = new Jjpaging(total, currentPage);
 		List<HostStore> list = service.storeList(pg);
 		
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println("food_type --> " + list.get(i).getFood_type());
+		}
+		
 		model.addAttribute("storeList",list);
 		model.addAttribute("pg", pg);
 		model.addAttribute("total", total);

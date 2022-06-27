@@ -68,6 +68,7 @@
 			</div>
 			 
 	<!-- 사진 슬라이드  끝-->   	
+	<!-- 식당정보 시작 -->
 	    	<div class="store_name_box">
 	    		<div>
 		    		<label style="font-size: 40px;">
@@ -152,6 +153,7 @@
 			    	</div>
 			    	<hr/>
 		    	</div>
+		    	<!-- 식당정보 끝 -->
 			    <!--지도 start  -->
 				<div class="col-3" id="map" style="width:300px;height:300px; float: right;"></div>
 				<!-- 지도 END  -->
@@ -204,10 +206,11 @@
 				</c:if>
 				</div>
 				<div>
-					<b id="StoreRevCount">현재 리뷰 ${store.rev_count }개</b>
+					<b>현재 리뷰 <b id="StoreRevCount">${store.rev_count }</b>개</b>
 				</div>
-				<hr/>
+				
 				<div id="review" class="review">
+					<hr/>
 					<c:forEach items="${revList }" var="user_rev" varStatus="u">
 					<c:if test="${user_rev.re_step == 0 }">
 					<div class="reviewList" style="display: none;">
@@ -218,9 +221,9 @@
 									<div id="host_user_rev">
 										<div class="rev_prf">
 											<img alt="${user_rev.photo }" src="images/profile/${user_rev.photo }"
-												 style="float: right; border-radius: 50%;" width="100px;" height="100px;" ><br/>
-											<b>${user_rev.name }</b>
+												 style="float: right; border-radius: 50%;" width="100px;" height="100px;" >
 										</div>
+										<b>${user_rev.name }</b>
 										<div>
 											<div id="host_user_rev${user_rev.rev_num}">
 												<label><b id="user_rev.rev_content${user_rev.rev_num}"> 

@@ -27,7 +27,7 @@
             <th>번호</th>
             <th style="width: 20%;">업체명</th>
             <th style="width: 30%;">주소</th>
-            <th style="width: 15%;">숙소 분류</th>
+            <th style="width: 15%;">식당 분류</th>
             <th>승인관리</th>
         </tr>
         </thead>

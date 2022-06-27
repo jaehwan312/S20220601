@@ -95,11 +95,11 @@ public class StoreController {
 			Profile     profile        = profileService.selectProfile(mem_num); //회원정보 불러오기
 			String		maxReviewDate  = reviewService.maxReviewDate(host_num,mem_num);
 			
-			//for (int i = 0; i < revList.size(); i++) {
-				//revList.get(i).setPhoto(profileService.selectProfile(revList.get(i).getMem_num()).getPhoto());
-				//System.out.println("사진사진사진"+revList.get(i).getPhoto());
-				//revList.get(i).setName(profileService.selectProfile(revList.get(i).getMem_num()).getName());
-			//}
+			for (int i = 0; i < revList.size(); i++) {
+				revList.get(i).setPhoto(profileService.selectProfile(revList.get(i).getMem_num()).getPhoto());
+				System.out.println("사진사진사진"+revList.get(i).getPhoto());
+				revList.get(i).setName(profileService.selectProfile(revList.get(i).getMem_num()).getName());
+			}
 			
 		}
 		
@@ -343,7 +343,7 @@ public class StoreController {
 		}
 		
 		
-		return "ih/main";
+		return "main";
 	}
 	
 	//내가 등록한 식당 List

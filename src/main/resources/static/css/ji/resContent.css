@@ -1,41 +1,105 @@
 @charset "UTF-8";
 
-.cbx_agree div {line-height: 2rem;}
-#chkAll  {font-weight: bold; }	
-input[type="checkbox"] {
-  width: 20px; 
-  height: 20px; 
-  margin-right: 10px
- 
+.cbx_agree div {
+	line-height: 2rem;
 }
-.form-check-label {
 
+#chkAll {
+	font-weight: bold;
 }
-.room-info{
-  float: right;
-  background-color: lightyellow;}
-  
-.info p strong, .total_price strong{
-    display: block !important;
-    position: relative;
-    margin-bottom: 6px;
-    font-size: 18px !important;
-    line-height: 1;
-    
+
+input[type="checkbox"] {
+	width: 20px;
+	height: 20px;
+	margin-right: 10px
 }
-.total_price li{
-	list-style-type: none;
-}
-.form-check label span{
-	color: red;
-}
-.col-md-auto {
-	margin-right: 5%;
-	margin-left: 5%;
-}
-.d-flex{
+
+.form-check-label {
 	
 }
+
+.room-info {
+	    width: 65%;
+	float: right;
+	padding: 10px;
+	background-color: #F6F6F6;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+
+
+.info p strong, .total_price strong {
+	display: block !important;
+	position: relative;
+	margin-bottom: 6px;
+	font-size: 18px !important;
+	line-height: 1;
+}
+
+.total_price li {
+	list-style-type: none;
+}
+
+.form-check label span {
+	color: red;
+}
+
+
+
+div #col1{
+	margin-left:7%;
+	display: inline-block;
+	width: 40%;
+}
+div #col2{
+	display: inline-block;
+	width: 40%;
+}
+
 input, pregress {
-  accent-color: red;
+	accent-color: red;
+}
+.payBtn{
+	width: auto;
+}
+
+
+
+.content-center {
+    margin-top: 5%;
+}
+.smTitle{
+	display: block;
+	margin-bottom: 2%;
+}
+div .mdTitle{
+	margin-bottom: 5%;
+	display: block;
+	font-weight: bold;
+	font-size:large;
+}
+hr{
+	margin: 5%;
+}
+.nameDiv,.phoneDiv{
+	margin-bottom: 5%;
+}
+.profInfo,.payfInfo,.cbx_agree{
+	margin: 10%;
+}
+.room1Info{
+	font-size: 17px;
+	
+}
+.total{
+	font-weight: bold;
+	font-size: large;
+		
+}
+.in_price{
+	font-weight: bold;
+	font-size: large;
+	color: navy;
+	margin-top: 2%;
+	display: block;
 }

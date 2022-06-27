@@ -33,7 +33,7 @@
 		  		SELECT * FROM review WHERE rev_num = #{rev_num} AND re_step = 0
 		  	</select>
 	   		
-	   		<!-- 식당 리뷰  -->
+	   		<!-- 가장 최근에쓴 리뷰 시간 -->
 		  	<select id="maxReviewDate" parameterType="Review" resultType="String">
 		  		SELECT  max(rev_date) FROM review WHERE host_num = #{host_num} AND mem_num = #{mem_num}
 		  	</select>
@@ -49,7 +49,7 @@
 		  	
 		  	<!-- 리뷰 사진 등록  -->
 		  	<insert id="storeRevPhotoInsert" parameterType="StoreReview">
-		  		INSERT INTO revphoto VALUES(#{host_num},SEQ_REV_NUM.CURRVAL,SEQ_HOST_PHOTO_NUM.nextval,#{rev_photo})
+		  		INSERT INTO revphoto VALUES(#{host_num},SEQ_REV_NUM.CURRVAL,SEQ_REV_PHOTO_NUM.nextval,#{rev_photo})
 		  	</insert>
 		  	
 		  	<!-- 리뷰 답변 등록  -->
