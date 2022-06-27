@@ -33,7 +33,7 @@
 		  		SELECT * FROM review WHERE rev_num = #{rev_num} AND re_step = 0
 		  	</select>
 	   		
-	   		<!-- 식당 리뷰  -->
+	   		<!-- 가장 최근에쓴 리뷰 시간 -->
 		  	<select id="maxReviewDate" parameterType="Review" resultType="String">
 		  		SELECT  max(rev_date) FROM review WHERE host_num = #{host_num} AND mem_num = #{mem_num}
 		  	</select>

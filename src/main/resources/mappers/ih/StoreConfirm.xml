@@ -13,7 +13,7 @@
 	 	<select id="storeConfirmList" parameterType="Jjpaging" resultType="HostStore">
 			select * from
 			(select rownum rn, host.* from
-			(select h.*, (select c.name from code c where c.bcd=200 and c.mcd = s.food_type) type_name from host h, store s where host_app=1 and h.host_num=s.host_num and host_code = 1) host)
+			(select h.*, (select c.name from code c where c.bcd=200 and c.mcd = s.food_type) food_type from host h, store s where host_app=1 and h.host_num=s.host_num and host_code = 1) host)
 			where rn between #{start} and #{end}
 	 	</select>
 	 	
