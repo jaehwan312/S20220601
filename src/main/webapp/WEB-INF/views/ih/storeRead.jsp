@@ -68,6 +68,7 @@
 			</div>
 			 
 	<!-- 사진 슬라이드  끝-->   	
+	<!-- 식당정보 시작 -->
 	    	<div class="store_name_box">
 	    		<div>
 		    		<label style="font-size: 40px;">
@@ -152,6 +153,7 @@
 			    	</div>
 			    	<hr/>
 		    	</div>
+		    	<!-- 식당정보 끝 -->
 			    <!--지도 start  -->
 				<div class="col-3" id="map" style="width:300px;height:300px; float: right;"></div>
 				<!-- 지도 END  -->
@@ -219,9 +221,9 @@
 									<div id="host_user_rev">
 										<div class="rev_prf">
 											<img alt="${user_rev.photo }" src="images/profile/${user_rev.photo }"
-												 style="float: right; border-radius: 50%;" width="100px;" height="100px;" ><br/>
-											<b>${user_rev.name }</b>
+												 style="float: right; border-radius: 50%;" width="100px;" height="100px;" >
 										</div>
+										<b>${user_rev.name }</b>
 										<div>
 											<div id="host_user_rev${user_rev.rev_num}">
 												<label><b id="user_rev.rev_content${user_rev.rev_num}"> 

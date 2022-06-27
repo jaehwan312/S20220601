@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.S20220601.dao.jh.ChatRoom;
 import com.oracle.S20220601.dao.jh.ChatRoomRepository;
+import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.jh.Chat;
 import com.oracle.S20220601.model.jh.ChatRoomForm;
@@ -35,9 +36,15 @@ public class ChatController {
     // 관리자 페이지 리스트 목록
     @GetMapping("/chatList")
     public String rooms(Chat chat, Model model){
-    	List<Chat> listChat = cs.listChat(chat);
-        model.addAttribute("rooms", chatRoomRepository.findAllRoom());
-        model.addAttribute("listChat", listChat);
+    	List<ChatRoom> rooms = chatRoomRepository.findAllRoom();
+    	for(ChatRoom rm : rooms) {
+    		Chat chatting = cs.getChatting(rm.getMem_num());
+    		rm.setMsg(chatting.getMsg());
+    		rm.setMsg_time(chatting.getMsg_time());
+    		Profile profile = cs.getChatUserName(rm.getMem_num());
+    		rm.setName(profile.getName());
+    	}
+        model.addAttribute("rooms", rooms);
         return "jh/rooms";
     }
     

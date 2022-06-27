@@ -97,8 +97,7 @@
 		FROM host h
 		INNER JOIN stay s ON h.host_num = s.host_num
 		INNER JOIN room r ON s.host_num = r.host_num
-		WHERE r.room_num = #{room_num} and h.host_num=#{host_num}
-
+		WHERE r.room_num = #{room_num} and h.host_num= #{host_num}
 	</select>
 	
 	<select id="jiProfile" parameterType="int" resultType="Profile">

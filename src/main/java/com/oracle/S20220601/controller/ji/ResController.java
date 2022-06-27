@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.oracle.S20220601.model.Code;
@@ -100,27 +99,6 @@ public class ResController {
 		System.out.println("resContent Start...");
 		return "ji/resContent";
 	}
-	
-	//테스트용 
-	@RequestMapping("resContent2")
-	public String resContent2() {
-		String ret = "";
-		try {
-			ret = diffOfDate2("2022-06-08");// 테스트
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-		System.out.println("ret2 -> " + ret);
-		System.out.println("resContent2 Start...");
-		return "ji/resContent2";
-	}
-	@RequestMapping("payments")
-	public String payments() {
-		
-		
-		return "ji/payment";
-	}
 
 	// 예약 상세
 	@RequestMapping("resDetail")
@@ -140,12 +118,7 @@ public class ResController {
 		return "ji/resDetail";
 	}
 	
-	//예약상세에서 다시예약 버튼 
-	@RequestMapping("reReserve")
-	public String reReserve() {
-		System.out.println("reReserve Start...");
-		return "ji/reReserve";
-	}
+
 
 	//예약내역 리스트
 	@RequestMapping("/resList")
