@@ -97,6 +97,7 @@ public class StoreController {
 			
 			for (int i = 0; i < revList.size(); i++) {
 				revList.get(i).setPhoto(profileService.selectProfile(revList.get(i).getMem_num()).getPhoto());
+				System.out.println("사진사진사진"+revList.get(i).getPhoto());
 				revList.get(i).setName(profileService.selectProfile(revList.get(i).getMem_num()).getName());
 			}
 			
@@ -342,7 +343,7 @@ public class StoreController {
 		}
 		
 		
-		return "ih/main";
+		return "main";
 	}
 	
 	//내가 등록한 식당 List

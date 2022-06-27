@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.jh.Chat;
 
 
@@ -49,14 +50,25 @@ public class ChatDaoImpl implements ChatDao {
 	}
 
 	@Override
-	public List<Chat> listChat(Chat chat) {
-		List<Chat> listChat = null;
+	public Chat getChatting(String mem_num) {
+		Chat chatting = null;
 		try {
-			listChat = session.selectList("jhChatListSelect", chat);
+			chatting = session.selectOne("jhSelectChatting", Integer.parseInt(mem_num));
 		} catch (Exception e) {
-			System.out.println("ChatDaoImpl listChat Exception->"+e.getMessage());
+			System.out.println("ChatDaoImpl getChatting Exception->"+e.getMessage());
 		}
-		return listChat;
+		return chatting;
+	}
+
+	@Override
+	public Profile getChatUserName(String mem_num) {
+		Profile chatUserName = null;
+		try {
+			chatUserName = session.selectOne("jhSelUserName", Integer.parseInt(mem_num));
+		} catch (Exception e) {
+			System.out.println("ChatDaoImpl getChatUserName Exception->"+e.getMessage());
+		}
+		return chatUserName;
 	}
 
 

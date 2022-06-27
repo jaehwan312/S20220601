@@ -402,11 +402,19 @@ function hostRevUpdateInsert(e){
 		dataType : 'text',
 		success: function(data){
 			$('#rev_content_update' +e).remove();
-			$('#host_host_rev' + e).append("<b id='step_rev.rev_content"+e+"' style='float:right;'>[답변]"+data+"</b>");
+			//$('#host_host_rev' + e).append("<b id='step_rev.rev_content"+e+"' style='float:right;'>[답변]"+data+"</b>"
+			$('#host_host_rev' + e).append("<b id='step_rev.rev_content"+e+"'  style='float:right;'>"
+											+data
+											+"</b><div style='float: right;'><b>[답변] : </div></b>");
+		
 			$('#hostRevUpdate' + e).show();
 			$('#hostRevDelete' + e).show();
 			$('#hostRevUpdateInsert' + e).remove();
 		}
+			
+			
+			
+			
 			
 	});
 	

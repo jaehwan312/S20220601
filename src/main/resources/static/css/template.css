@@ -99,9 +99,11 @@ a {
 	max-height: 198px;
 	background-color: white;
 	overflow-x: hidden;
+	overflow-y: scroll;
 	display: none;
 	border-radius: 7px;
 }
+	
 
 .search_result::-webkit-scrollbar {
    width: 10px;

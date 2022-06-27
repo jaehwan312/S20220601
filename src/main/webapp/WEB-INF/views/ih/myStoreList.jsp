@@ -6,9 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
-<script type="text/javascript">
-	alert(msg);
-</script>
 <title>제주 감수광</title>
 </head>
 <body>
@@ -16,7 +13,7 @@
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
     <div class="col-8 mx-auto">
-	<h2 class=myStoreList>내가 등록한 식당</h2>
+	<!-- <h2 class=myStoreList>내가 등록한 식당</h2> -->
     	 </div>
     	 <section class="wrapper">
 		    <div class="container-fostrap">

@@ -19,110 +19,100 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-    <div>
-			<input type="hidden" name="host_num" value="${host_num }" id="hostNumId">
-			<input type="hidden" name="mem_num" value="${mem_num }" id="memNumId">
-			<input type="hidden" name="room_num" value="${room_num }" id="roomNumId">
-			<!-- test st -->
-			<section class="product-details spad">
-	        <div class="container">
-	            <div class="row">
-	                <div class="col-lg-6 col-md-6">
-	                    <div class="product__details__pic">
-	                    <!-- 사진 -->
-			                <div style="width: 500px; height:300px; overflow-x: hidden; float: left; margin: 0px; padding: 0px;">
-			                  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-			                    <div class="carousel-inner">
-			                    <c:forEach items="${stayPhoto }" var="getPhoto" varStatus="i">
-			                       <c:if test="${i.index==0 }">
-			                          <div class="carousel-item active">
-			                           <img src="images/bh/${getPhoto.host_photo}" class="d-block w-100" alt="숙소사진" style="height: 250px;">
-			                         </div>
-			                       </c:if>
-			                       <c:if test="${i.index!=0 }">
-			                          <div class="carousel-item">
-			                           <img src="images/bh/${getPhoto.host_photo}" class="d-block w-100" alt="숙소사진" style="height: 250px;">
-			                         </div>
-			                       </c:if>
-			                  </c:forEach>
-			                    </div>
-			                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls${i.index }" data-bs-slide="prev">
-			                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			                      <span class="visually-hidden">Previous</span>
-			                    </button>
-			                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls${i.index }" data-bs-slide="next">
-			                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-			                      <span class="visually-hidden">Next</span>
-			                    </button>
-			                  </div>
-			                  </div>
-	                       <!-- 사진 -->
-	                    </div>
-	                </div>
-	                <div class="col-lg-6 col-md-6">
-	                    <div class="product__details__text">
-	                        <h3 id="stayname">${stay.host_name}</h3>
-	                        <div>
-	                        <form style="display:inline-block;" action="stayUpdateForm">
-		                        <input type="hidden" name="host_num" value="${host_num }">
-			                        <c:if test="${host_mem_num==mem_num}">
-			                        	<button class="btn btn-outline-danger" type="submit" >숙소 수정</button>
-			                        </c:if>
-		                    </form>
-	                        <form style="display:inline-block;" action="stayDelete" id="stayDeleteForm">
-		                        <input type="hidden" name="host_num" value="${host_num }">
-			                        <c:if test="${host_mem_num==mem_num}">
-			                        	<button class="btn btn-outline-danger" type="button" onclick="stayremoveCheck()">삭제요청</button>
-			                        </c:if>
-		                    </form>
-	                        <form style="display:inline-block;" action="roomInsertForm" id="roomInsertForm" method="post">
-									<input type="hidden" name="host_num" value="${host_num }">
-										<c:if test="${host_mem_num==mem_num }">
-											<button class="btn btn-outline-danger" type="submit" onclick="roomInsertCheck()">객실추가</button>
-										</c:if>
-							</form>
-							</div>
-	                        <div class="product__details__rating">
-	                            ${stay.host_avg} ${stay.rev_count}
-	                        </div>
-	                        <div id="stayaddr">${stay.host_addr}</div>
-	                        <div class="product__details__price">${stay.host_info}</div>
-	                       
-	                    </div>
-	                </div>
-	                <div class="col-lg-12">
-	                    <div class="product__details__tab">
-	                        <ul class="nav nav-tabs" role="tablist">
-	                            <li class="nav-item" >
-	                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-	                                    aria-selected="true" onclick="menushow(0)">객실안내/예약</a>
-	                            </li>
-	                            <li class="nav-item" >
-	                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-	                                    aria-selected="false" onclick="menushow(1)">숙소 정보</a>
-	                            </li>
-	                            <li class="nav-item">
-	                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-	                                    aria-selected="false" onclick="menushow(2)">리뷰 </a>
-	                            </li>
-	                        </ul>
-	                        <div class="tab-content">
-	                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
-	                                
-	                            </div>
-	                            <div class="tab-pane" id="tabs-2" role="tabpanel">
-	                               
-	                            </div>
-	                            <div class="tab-pane" id="tabs-3" role="tabpanel">
-	                              
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
+<input type="hidden" name="host_num" value="${host_num }" id="hostNumId">
+<input type="hidden" name="mem_num" value="${mem_num }" id="memNumId">
+<input type="hidden" name="room_num" value="${room_num }" id="roomNumId">
+<!-- test st -->
+<div class="row mb-4 mt-5">
+    <div class="col-8">
+    <!-- 사진 -->
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        	<div id="carousel_inner" class="carousel-inner">
+          		<c:forEach items="${stayPhoto }" var="getPhoto" varStatus="i">
+		            <c:if test="${i.index==0 }">
+		               <div id="host_img_box" class="carousel-item active">
+		                <img src="images/bh/${getPhoto.host_photo}" class="d-block w-100" alt="숙소사진">
+		              </div>
+		            </c:if>
+		            <c:if test="${i.index!=0 }">
+		               <div id="host_img_box" class="carousel-item">
+		                <img src="images/bh/${getPhoto.host_photo}" class="d-block w-100" alt="숙소사진">
+		              </div>
+		            </c:if>
+        		</c:forEach>
+        	</div>
+          <button class="carousel-control-prev" id="slide_btn" type="button" data-bs-target="#carouselExampleControls${i.index }" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" id="slide_btn" type="button" data-bs-target="#carouselExampleControls${i.index }" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+    <!-- 사진 -->
+    </div>
+    
+    <div class="col-4 host_data">
+        <div class="product__details__text">
+        	<div class="stay_name">
+        		<h3 id="stayname">${stay.host_name}</h3>
+        		<b class="product__details__rating">${stay.host_avg}</b>
+        	</div>
+            <div id="stayaddr">${stay.host_addr}</div>
+			<hr>
+            <div class="product__details__price">${stay.host_info}</div>
+           
+        </div>
+		<div class="host_btn">
+            <form style="display:inline-block;" action="stayUpdateForm">
+            	<input type="hidden" name="host_num" value="${host_num }">
+            	<c:if test="${host_mem_num==mem_num}">
+            		<button class="btn btn-outline-danger" type="submit" >숙소 수정</button>
+            	</c:if>
+        	</form>
+			<form style="display:inline-block;" action="stayDelete" id="stayDeleteForm">
+				<input type="hidden" name="host_num" value="${host_num }">
+				<c:if test="${host_mem_num==mem_num}">
+					<button class="btn btn-outline-danger" type="button" onclick="stayremoveCheck()">삭제요청</button>
+				</c:if>
+			</form>
+    		<form style="display:inline-block;" action="roomInsertForm" id="roomInsertForm" method="post">
+				<input type="hidden" name="host_num" value="${host_num }">
+				<c:if test="${host_mem_num==mem_num }">
+					<button class="btn btn-outline-danger" type="submit" onclick="roomInsertCheck()">객실추가</button>
+				</c:if>
+			</form>
+		</div>
+    </div>
+	<div class="product__details__tab col-12" id="tab_list">
+	    <ul class="nav nav-tabs" role="tablist">
+	        <li class="nav-item" >
+	            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+	                aria-selected="true" onclick="menushow(0)">객실안내/예약</a>
+	        </li>
+	        <li class="nav-item" >
+	            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+	                aria-selected="false" onclick="menushow(1)">숙소 정보</a>
+	        </li>
+	        <li class="nav-item">
+	            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+	                aria-selected="false" onclick="menushow(2)">리뷰 </a>
+	        </li>
+	    </ul>
+	    <div class="tab-content">
+	        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+	            
 	        </div>
-	    </section>
+	        <div class="tab-pane" id="tabs-2" role="tabpanel">
+	           
+	        </div>
+	        <div class="tab-pane" id="tabs-3" role="tabpanel">
+	          
+	        </div>
 	    </div>
+	</div>
+</div>
 	    
 		<div id="onRoom0">
 			<div class="container">
@@ -148,10 +138,11 @@
 		
 				<!-- jj -->
 					<div class="host-item">
-						<div class="row">
+						<div>
 						<c:forEach items="${roomPhoto }" var="room" varStatus="j">
-							<div class="col-5">
-								<div id="carouselExampleControls${j.index }" class="carousel slide" data-bs-ride="carousel" style="width: 400px; float: left; margin: 0px; padding: 0px;">
+							<div class="row mb-5 mt-5 res_contents">
+							<div class="col-7" id="res_photo_box">
+								<div id="carouselExampleControls${j.index }" class="carousel slide" data-bs-ride="carousel">
 				                    <div class="carousel-inner">
 							<c:forEach items="${room.roomPhotos }" var="getroom" varStatus="i">
 								<div class="img-wrapper">
@@ -166,48 +157,54 @@
 			                         </div>
 			                       </c:if>
 								</div>
-			             	 	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls${j.index }" data-bs-slide="prev">
+			             	 	<button class="carousel-control-prev" id="slide_btn" type="button" data-bs-target="#carouselExampleControls${j.index }" data-bs-slide="prev">
 			                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			                      <span class="visually-hidden">Previous</span>
 			                    </button>
-			                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls${j.index }" data-bs-slide="next">
+			                    <button class="carousel-control-next" id="slide_btn" type="button" data-bs-target="#carouselExampleControls${j.index }" data-bs-slide="next">
 			                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
 			                      <span class="visually-hidden">Next</span>
 			                    </button>
 			             	</c:forEach>
 			                    </div></div>
 							</div>
-						<div class="col-7">
-							<div style="float: right; width: 30%; height: 200px;">
-								${room.room_name }<p/>
-								${room.dayfee }원<p/>
-								${room.room_info }<p/>
-								
-								<form id="frm${j.index }" action="resContent" onsubmit="return false">
-									<input type="hidden" name="host_num" value="${room.host_num }">
-									<input type="hidden" name="room_num" value="${room.room_num }">
-									<input type="hidden" name="res_start" class="res_start">
-									<input type="hidden" name="res_end" class="res_end">
-									<input type="hidden" name="sale_price" value=${room.dayfee }>
-									<button type="submit" class="btn btn-outline-primary" id="goReserve" onclick="chkDate(${j.index })">예약</button>
-								</form>
-								<form action="roomUpdateForm">
-									<input type="hidden" name="host_num" value="${room.host_num }">
-									<input type="hidden" name="room_num" value="${room.room_num }">
-									<c:if test="${host_mem_num==mem_num }">
-										<button class="btn btn-outline-danger" type="submit">객실수정</button>
-									</c:if>
-								</form>
-								<form action="roomDelete" id="roomDeleteForm">
-									<input type="hidden" name="host_num" value="${room.host_num }">
-									<input type="hidden" name="room_num" value="${room.room_num }">
-									<c:if test="${host_mem_num==mem_num }">
-										<button class="btn btn-outline-danger" type="submit" onclick="roomremoveCheck()">객실삭제</button>
-									</c:if>
-								</form>
+						<div class="col-1"></div>
+						<div class="col-4">
+							<div class="row res_states">
+								<div class="col-6 res_state">
+									<b>${room.room_name }</b>
+									<b>${room.dayfee } 원</b>
+									<b>${room.room_info }</b>
+								</div>
+								<div class="col-6 res_state_btn">
+									<form id="frm${j.index }" action="resContent" onsubmit="return false">
+										<input type="hidden" name="host_num" value="${room.host_num }">
+										<input type="hidden" name="room_num" value="${room.room_num }">
+										<input type="hidden" name="res_start" class="res_start">
+										<input type="hidden" name="res_end" class="res_end">
+										<input type="hidden" name="sale_price" value=${room.dayfee }>
+										<button type="submit" class="btn btn-outline-primary" id="goReserve" onclick="chkDate(${j.index })">예약</button>
+									</form>
+									<div>
+										<form action="roomUpdateForm">
+											<input type="hidden" name="host_num" value="${room.host_num }">
+											<input type="hidden" name="room_num" value="${room.room_num }">
+											<c:if test="${host_mem_num==mem_num }">
+												<button class="btn btn-outline-danger" type="submit">객실수정</button>
+											</c:if>
+										</form>
+										<form action="roomDelete" id="roomDeleteForm">
+											<input type="hidden" name="host_num" value="${room.host_num }">
+											<input type="hidden" name="room_num" value="${room.room_num }">
+											<c:if test="${host_mem_num==mem_num }">
+												<button class="btn btn-outline-danger" type="submit" onclick="roomremoveCheck()">객실삭제</button>
+											</c:if>
+										</form>
+									</div>
+								</div>
 							</div>
 							<span id="resPossible${j.index }" ></span>
-							
+						</div>
 						</div>
 						</c:forEach>
 						</div>
@@ -216,7 +213,7 @@
 			</div>
 			
 			
-		<div id="onRoom1" style="margin-bottom: 100px;">
+		<div class="on_room1" id="onRoom1">
 		 	
 				
 			<!--  -->
@@ -262,12 +259,11 @@
 					총 리뷰 : ${hostreview.rev_count }
 				</div>
 				<!-- start -->
-				<div style="padding: 80px; border: 1px solid black;">
 	            <c:forEach items="${maps }" var="map" varStatus="l">
-	            <div style="border: 1px solid black; margin-top: 20px;">
-	            	<div>${map.content.rev_point}</div>
+	            <div style="margin-top: 20px;">
+	            	<div>평점 : ${map.content.rev_point}</div>
 	               <div style="text-align: left; padding-left: 70px; padding-top:30px;">
-	                      ${map.content.room_name}
+	                  	객실 :${map.content.room_name}  ${map.content.rev_date}
 	                </div>
 	                <div style="width: 40%; text-align: left; padding-left: 60px; padding-bottom: 30px; padding-top: 30px;">
 	                  ${map.content.rev_content}</div>
@@ -297,7 +293,7 @@
 	                    </button>
 	                  </div>
 	               </div>
-	               ${map.content.rev_date}
+	              
 	               <form style="display:inline-block;" action="reviewUpdateForm">
 	               		<input type="hidden" name="host_num" value="${host_num }">
 				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
@@ -316,7 +312,7 @@
 	               		<input type="hidden" name="host_num" value="${host_num }">
 				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
 				   		<c:if test="${host_mem_num==mem_num}">
-				   		<textarea rows="10" cols="10" name="rev_content"></textarea>
+				   		<textarea rows="10" cols="10" name="rev_content" style="border: 1px solid;"></textarea>
 				   		<button type="button" class="btn btn-outline-danger" onclick="revRefCheck()">답글달기</button>
 				   		</c:if>
 	               </form>
@@ -328,7 +324,6 @@
 	            </div>
 	            </c:if>
 	            </c:forEach> 
-	         </div>
 				<!--end  -->
 			</c:if>
 			</div>

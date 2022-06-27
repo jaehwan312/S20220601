@@ -198,6 +198,9 @@
       background-color: #08c;
       border: 1px solid #08c;
       color: #fff; }
+.show-calendar {
+	left: calc(50vw - 285px);
+}
 
 /*  Larger Screen Styling */
 @media (min-width: 564px) {

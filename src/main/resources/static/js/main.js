@@ -72,6 +72,7 @@ function keyword_rel(e){
 
 //검색바 클릭할 경우(헤더)
 $(".navbar_search").click(function(e){
+	$(".main_container").css("overflow","hidden");
 	$(".search_result").css("display","block");
 	$(".header_background").css("display", "block");
 	$.ajax({
@@ -85,6 +86,7 @@ $(".navbar_search").click(function(e){
 
 //그림자배경 클릭할 경우(헤더)
 $(".header_background").click(function(e){
+	$(".main_container").css("overflow","auto");
 	$(".search_result").css("display","none");
 	$(".header_background").css("display", "none");
 });

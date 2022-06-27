@@ -5,11 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-	crossorigin="anonymous">
 <link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="css/ih/confirm.css">
@@ -32,7 +27,7 @@
             <th>번호</th>
             <th style="width: 20%;">업체명</th>
             <th style="width: 30%;">주소</th>
-            <th style="width: 15%;">숙소 분류</th>
+            <th style="width: 15%;">식당 분류</th>
             <th>승인관리</th>
         </tr>
         </thead>
@@ -101,10 +96,6 @@
 	<!-- 여기 위로오 ============================================================ -->
 	</div>
 	<%@ include file="../footer.jsp"%>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/ih/storeConfirm.js"></script>
 </body>
 </html>
