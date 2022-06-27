@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oracle.S20220601.model.Notice;
 import com.oracle.S20220601.service.jh.NtcService;
@@ -25,6 +26,9 @@ public class NtcController {
 	public String ntcList(Notice ntc, String currentPage, Model model) {
 		int total = ns.getTotalCnt();
 		Paging pg = new Paging(total, currentPage);
+		if (currentPage == null) {
+			currentPage = "1";
+		}
 		ntc.setStart(pg.getStart());
 		ntc.setEnd(pg.getEnd());
 		List<Notice> ntcList = ns.listNtc(ntc);
@@ -41,6 +45,7 @@ public class NtcController {
 		Notice ntc = ns.ntcContent(n_num);
 		model.addAttribute("ntc", ntc);
 		model.addAttribute("num", num);
+		
 		model.addAttribute("currentPage", currentPage);
 		return "jh/ntcContent";
 	}
@@ -56,21 +61,20 @@ public class NtcController {
 	}
 	
 	@PostMapping(value = "ntcUpdate")
-	public String ntcUpdate(Notice ntc, int num, String currentPage, Model model) {
+	public String ntcUpdate(Notice ntc, int num, String currentPage, RedirectAttributes re) {
 		int result = ns.ntcUpdate(ntc);
-		model.addAttribute("n_num", ntc.getN_num());
-		model.addAttribute("num", num);
-		model.addAttribute("currentPage", currentPage);
+		re.addAttribute("n_num", ntc.getN_num());
+		re.addAttribute("num", num);
+		re.addAttribute("currentPage", currentPage);
 		System.out.println("끝끝끝끝끝끝끝끝끝끝끝끝");
 		return "redirect:ntcContent";
-		// 여기 경로 잘못됨(수정 후, 수정된 컨텐트로 가고 싶음) 수정 실패?
 	}
 	
 	@GetMapping(value = "ntcDelete")
-	public String ntcDelete(int n_num, String currentPage, Model model) {
+	public String ntcDelete(int n_num, String currentPage, RedirectAttributes re) {
 		int result = ns.ntcDelete(n_num);
+		re.addAttribute("currentPage", currentPage);
 		return "redirect:ntcList";
-		// 삭제 후, 해당페이지로 가고 싶음
 	}
 	
 	@GetMapping(value = "ntcWriteForm")

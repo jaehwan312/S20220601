@@ -11,9 +11,11 @@
 		delete from chat where mem_num=#{mem_num}
 	</delete>
 	
-	<select id="jhChatListSelect" parameterType="Chat" resultType="Chat">
-	<![CDATA[
-		select * from chat 
-	]]>
+	<select id="jhSelectChatting" parameterType="int" resultType="Chat">
+		select msg_num, msg, msg_time from chat where mem_num=#{mem_num} and msg_num=(select max(msg_num) from chat where mem_num=#{mem_num})
 	</select>
+	
+	<select id="jhSelUserName" parameterType="int" resultType="Profile">
+		select * from profile where mem_num=#{mem_num}
+	</select>	
 </mapper>

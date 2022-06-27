@@ -26,9 +26,9 @@
 		        <tbody>
 		        <c:forEach var="room" items="${rooms }">
 		        <tr>
-		        	<td>${room.mem_num }</td>
-		            <td></td>
-		            <td></td>
+		        	<td>${room.name }</td>
+		            <td>${room.msg}</td>
+		            <td>${room.msg_time}</td>
 		            <td>
 		            	<form action="chatEnter">
 		            		<input type="hidden" name="id" value="${room.roomId}">
