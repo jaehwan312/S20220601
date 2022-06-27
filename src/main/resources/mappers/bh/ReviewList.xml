@@ -5,13 +5,14 @@
 <mapper namespace="com.oracle.S20220601.ReviewListMapper">
 	
 	<select id="bhreviewList" parameterType="int" resultType="Review1">
-		select sub.*, room.room_name from room room, (
-		select r.*, res.room_num from review r, res res  where r.host_num=res.host_num and r.mem_num=res.mem_num and r.host_num=#{host_num})
-		sub where room.host_num=sub.host_num and room.room_num = sub.room_num	
+		   select sub.*, room.room_name, p.photo from room room, profile p, (
+      select r.*, res.room_num from review r, res res  where r.host_num=res.host_num and r.mem_num=res.mem_num and r.host_num=#{host_num} and res.res_status=2)
+      sub where room.host_num=sub.host_num and room.room_num = sub.room_num and sub.mem_num = p.mem_num
 	</select>
 	
 	<select id="bhReplyList" parameterType="int" resultType="Review1">
-		select * from review where ref = #{ref} and re_step = 1
+		select r.*, p.photo from review r,profile p 
+		where r.mem_num=p.mem_num and r.ref = #{ref} and r.re_step = 1
 	</select>
 	
 	<select id="bhrevPhotoList" parameterType="Review1" resultType="RevPhoto">

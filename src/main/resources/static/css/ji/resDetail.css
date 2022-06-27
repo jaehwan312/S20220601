@@ -8,4 +8,6 @@ body div {
 
     padding: 10%;
   }
-  
+.reviewFrm{
+	display: inline;
+}
