@@ -16,6 +16,10 @@ import java.util.*;
 public class ChatRoom {
     private String roomId;
     private String mem_num;
+    private String name;
+    private String msg;
+    private String msg_time;
+    
     private Set<WebSocketSession> sessions = new HashSet<>();
 
     public static ChatRoom create(String mem_num){

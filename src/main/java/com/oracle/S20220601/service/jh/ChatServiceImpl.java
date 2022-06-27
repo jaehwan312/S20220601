@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.S20220601.dao.jh.ChatDao;
+import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.jh.Chat;
 
 @Service
@@ -34,10 +35,15 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Override
-	public List<Chat> listChat(Chat chat) {
-		List<Chat> listChat = null;
-		listChat = cd.listChat(chat);
-		return listChat;
+	public Chat getChatting(String mem_num) {
+		Chat chatting = cd.getChatting(mem_num);
+		return chatting;
+	}
+
+	@Override
+	public Profile getChatUserName(String mem_num) {
+		Profile chatUserName = cd.getChatUserName(mem_num);
+		return chatUserName;
 	}
 
 }

@@ -15,28 +15,27 @@
 	<%@ include file="../header.jsp"%>
 	<div class="container">
 		<!-- 여기 밑으로 ============================================================ -->
-		<br> <br>
-		
-		<div class="row justify-content-md-center">
-			<div class="col-md-auto">
+		<div class="content-center" id="resContent">
+			<div class="col-left" id ="col1" >
 
-				<div>
-					<b>예약자 정보</b>
-					<p>예약자 이름</p>
+				<div class="profInfo">
+				<div class="nameDiv">
+					<span class="mdTitle">예약자 정보</span>
+					<span class="smTitle">예약자 이름</span>
 					<input type="text" id="res_name" name="name" placeholder="체크인시 필요한 정보입니다."
 						maxlength="30" value="${prof.name }" required
 						oninput="checkName()" class="form-control" type="text" aria-label="default input example"> <span class="name_ok"
-						style="display: none">예약자 이름을 확인해주세요.</span>
-
-					<p>휴대폰 번호</p>
+						style="display: none">예약자 이름을 확인해주세요.</span></div>
+	<div class="phoneDiv">
+					<span class="smTitle">휴대폰 번호</span>
 					<input type="tel" name="phone" placeholder="체크인시 필요한 정보입니다." value="${prof.phone }" 
 					id="phone"oninput="checkPhone()" pattern="[0-9]{11}" maxlength="11" class="form-control" type="text" aria-label="default input example"> 
 						<span class="phone_ok" style="display: none">휴대폰 번호를 확인해주세요.</span>
-	
+	</div>
 				</div>
-				<br> <br>
-				<div>
-					<b>결제수단 선택</b>
+					<hr>
+				<div class="payfInfo">
+					<span class="mdTitle">결제수단 선택</span>
 					<select id="payment-select" class="form-select" aria-label="Default select example">
 						<option data-minprice="0" selected="selected" value="kakaopay"
 							data-v-f785cca6="">카카오페이</option>
@@ -48,7 +47,7 @@
 					<!---->
 					<!---->
 				</div>
-				<br> <br>
+				
 				<div class="cbx_agree">
 
 					<div class="form-check">
@@ -69,30 +68,31 @@
 					</div>
 				</div>
 			</div>
-	
-			<div class="col-md-auto">
+			
+			<div class="col-right" id = "col2">
 				<div class="room-info">
 
-					<div>
+					
 
 						<section class="info">
 							<p class="name">
-								<strong>숙소이름</strong>${room1.host_name }(host_num : ${room1.host_num }/room_num : ${room1.room_num })
+								<span class="mdTitle">숙소이름</span><span class="room1Info">${room1.host_name }</span>
 							</p>
 							<p>
-								<strong>객실타입/기간</strong>${room1.room_name } / ${nday }박
+								<span class="mdTitle">객실타입/기간</span></strong><span class="room1Info">${room1.room_name }</span> /<span> ${nday }박</span>
 							</p>
 							<p>
-								<strong>체크인</strong>${checkin } ${room1.checkin }
+								<span class="mdTitle">체크인</span> <span class="room1Info">${checkin } ${room1.checkin }</span>
 							</p>
 							<p>
-								<strong>체크아웃</strong>${checkout } ${room1.checkout }
+								<span class="mdTitle">체크아웃</span><span class="room1Info"> ${checkout } ${room1.checkout }</span>
 							</p>
 	
 						</section>
+						<hr>
 						<section class="total_price">
 							<p>
-								<strong><b>총 결제 금액</b>(VAT포함)</strong><span class="in_price">${total_fee }</span>
+								<span class="total">총 결제 금액</span><span>(VAT포함)</span><br><span class="in_price">${total_fee }원</span>
 							</p>
 
 							<p>
@@ -101,11 +101,11 @@
 							</p>
 
 						</section>
-						<div class="d-grid gap-2 col-6 mx-auto">
-						<button type="button" class="btn btn-primary"
+						<div class="d-grid gap-2">
+						<button type="button" class="btn btn-primary payBtn"
 							data-bs-toggle="modal" onclick="resCheck()">결제하기</button>
 						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>

@@ -221,9 +221,9 @@
 									<div id="host_user_rev">
 										<div class="rev_prf">
 											<img alt="${user_rev.photo }" src="images/profile/${user_rev.photo }"
-												 style="float: right; border-radius: 50%;" width="100px;" height="100px;" ><br/>
-											<b>${user_rev.name }</b>
+												 style="float: right; border-radius: 50%;" width="100px;" height="100px;" >
 										</div>
+										<b>${user_rev.name }</b>
 										<div>
 											<div id="host_user_rev${user_rev.rev_num}">
 												<label><b id="user_rev.rev_content${user_rev.rev_num}"> 
