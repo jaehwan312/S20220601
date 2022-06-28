@@ -37,13 +37,13 @@
 	      <input type="password" class="form-control" id="pw" name="pw">
 	      <label for="floatingPassword">비밀번호</label>
 	    </div>
-	    <button class="w-100 btn btn-lg btn-primary mb-3" id="btnLogin" type="submit">로그인</button>
 	    <c:if test="${message == 'error'}">
-	    	<div style="color:red;"> 아이디 또는 비밀번호가 일치하지 않습니다.</div>
+	    	<div style="color:red; text-align: center;"> 아이디 또는 비밀번호가 일치하지 않습니다.</div>
 	    </c:if>
 	    <c:if test="${message == 'logout'}">
-	    	<div style="color:red;"> 로그아웃되었습니다.</div>
+	    	<div style="color:red; text-align: center;"> 로그아웃되었습니다.</div>
 	    </c:if>
+	    <button class="w-100 btn btn-lg btn-primary mb-3" id="btnLogin" type="submit">로그인</button>
 	    <button class="w-100 btn btn-lg btn-primary mb-3" type="button" onclick="location.href='signUpPage'">회원 가입
 	    </button>
 	    <div style="margin-bottom: 10px; text-align: center;">

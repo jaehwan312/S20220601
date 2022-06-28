@@ -102,16 +102,13 @@ public class ProfileController {
 	public int idCheck(@RequestParam("id") String id) {
 		System.out.println("----------- idCheck Start -----------");
 		System.out.println("전달받은 id = "+ id);
-		if (id == "" || id == " ") {
-			int cnt= 1;
-			return cnt;
-		} else {
-			int cnt = ps.idCheck(id);
-			return cnt;
-		}
-		
+	
+		int cnt = ps.idCheck(id);
+		return cnt;
 		
 	}
+		
+		
 	// 핸드폰 중복 체크
 	@PostMapping(value = "phoneCheck")
 	@ResponseBody

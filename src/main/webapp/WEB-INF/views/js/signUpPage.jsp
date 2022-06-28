@@ -54,7 +54,7 @@
 					<div class="col-12"> 
 						<label for="passwd" class="form-label">비밀번호</label> 
 						<input type="password" name="pw" class="form-control" id="pw"
-							   placeholder="6~10자의 영문 대소문자와 숫자로만 입력" maxlength="12" onkeyup="pwCheck(this)" onkeydown="pwCheck(this)">
+							   placeholder="6~10자의 영문 대소문자와 숫자로만 입력" maxlength="10">
 					</div>
 					<div class="col-12">
 						<label for="pwCheck" class="form-label">비밀번호 확인</label>
