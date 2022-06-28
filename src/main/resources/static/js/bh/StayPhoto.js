@@ -11,8 +11,6 @@ function previewFiles(e){
 			
 			reader.addEventListener("load", function () {
 				var image = new Image();
-				image.width = 50;
-		        image.height = 50;
 		        image.title = file.name;
 		        image.src = this.result;
 		        preview.appendChild( image );
@@ -29,5 +27,5 @@ function previewFiles(e){
 	
 	
 	$('#labelInfo' + e).hide();
-	$('#labelInfo' + (e+1)).show();
+	$('#labelInfo' + (e+1)).css('display','inline-block');
 }
