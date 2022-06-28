@@ -270,34 +270,42 @@
 	            </c:if>
 	            </div> -->
 	            <div>
-	            	<div>평점 :${map.content.rev_point}</div>
-	            	<div>객실 :${map.content.room_name}  ${map.content.rev_date}</div>
-	            	<div>
-	                  <div id="carouselExampleControls3${l.index }" class="carousel slide" data-bs-ride="carousel" style="width: 400px;">
-	                    <div class="carousel-inner">
-	                    <c:forEach items="${map.content.revPhoto }" var="getPhoto" varStatus="r">
-	                       <c:if test="${r.index==0 }">
-	                          <div class="carousel-item active">
-	                           <img src="images/bh/${getPhoto.rev_photo}" class="d-block w-100" alt="리뷰사진" style="height: 250px;">
-	                         </div>
-	                       </c:if>
-	                       <c:if test="${r.index!=0 }">
-	                          <div class="carousel-item">
-	                           <img src="images/bh/${getPhoto.rev_photo}" class="d-block w-100" alt="리뷰사진" style="height: 250px;">
-	                         </div>
-	                       </c:if>
-	                  </c:forEach>
-	                    </div>
-	                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls3${l.index }" data-bs-slide="prev">
-	                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-	                      <span class="visually-hidden">Previous</span>
-	                    </button>
-	                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls3${l.index }" data-bs-slide="next">
-	                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-	                      <span class="visually-hidden">Next</span>
-	                    </button>
-	                  </div>
-	               </div>
+	            	<div class="rev_infos">
+	            		<div>
+	            			<div class="total_gradeLevel"><b>평점 :</b>&nbsp<strong>${map.content.rev_point}</strong></div>
+	            			<div><b>객실 : ${map.content.room_name}</b></div>
+	            		</div>
+		            	
+						<div>
+							<div id="carouselExampleControls3${l.index }" class="carousel slide" data-bs-ride="carousel" style="width: 400px;">
+								<div class="carousel-inner">
+									<c:forEach items="${map.content.revPhoto }" var="getPhoto" varStatus="r">
+										<c:if test="${r.index==0 }">
+											<div class="carousel-item active">
+												<img src="images/bh/${getPhoto.rev_photo}" class="d-block w-100" alt="리뷰사진" style="height: 250px;">
+											</div>
+										</c:if>
+										<c:if test="${r.index!=0 }">
+											<div class="carousel-item">
+												<img src="images/bh/${getPhoto.rev_photo}" class="d-block w-100" alt="리뷰사진" style="height: 250px;">
+											</div>
+										</c:if>
+									</c:forEach>
+								</div>
+								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls3${l.index }" data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</button>
+								<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls3${l.index }" data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</button>
+							</div>
+						</div>
+		            	
+	            		<div>등록일자 : ${map.content.rev_date}</div>
+	            	</div>
+	            	
 	                <div class="review">${map.content.rev_content}</div>
 	              
 	               <form style="display:inline-block;" action="reviewUpdateForm">

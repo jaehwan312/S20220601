@@ -3577,3 +3577,24 @@ ol {
 	margin: 25px 0;
 	padding: 15px;
 }
+
+.rev_infos {
+	display: flex;
+	justify-content: space-between;
+}
+
+.rev_info {
+	margin: 0 10%;
+}
+
+#rev_photoBox {
+	width: 400px;
+	height: 250px;
+	overflow: hidden;
+}
+
+#rev_photoBox img {
+	widows: 100%;
+	height: 100%;
+	object-fit: cover;
+}
