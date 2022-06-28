@@ -24,7 +24,7 @@
 
 .chat_window {
 	width: 370px;
-	height: 680px;
+	height: 80vh;
 	border-radius: 15px;
 	position: fixed;
 	bottom: 75px;
@@ -37,7 +37,7 @@
 
 .chat_container {
 	width: 370px;
-	height: 680px;
+	height: 80vh;
 	border-radius: 15px;
 	overflow: hidden;
 	margin: 50px auto;
@@ -70,7 +70,7 @@
 #chatroom {
 	overflow: auto;
 	width: 370px;
-	height: 539px;
+	height: calc(80vh - 141.98px);
 	background-color : white;
 	padding: 15px;
 }
