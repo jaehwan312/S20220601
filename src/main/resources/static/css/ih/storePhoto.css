@@ -98,14 +98,12 @@
 }
 
 .review_box textarea {
-	width: 90%;
-	height: 20vh;
+	width: 80%;
+	height: 150px;
 }
 
 .review_btn {
 	margin: 50px auto;
-	width: 300px;
-	
 }
 
 .rev_prf {
@@ -114,6 +112,7 @@
 	border-radius: 50%;
 	overflow: hidden;
 	text-align: center;
+	margin-bottom: 25px;
 }
 
 .rev_prf img {
@@ -125,7 +124,7 @@
 .rev_userPrf {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: center;
 	align-items: center;
 }
 
@@ -134,10 +133,11 @@
 }
 
 .rev_photoBox {
-	width: 150px;
-	height: 150px;
+	width: 125px;
+	height: 125px;
 	overflow: hidden;
-	
+	margin: 15px;
+	box-shadow: rgb(3 102 214 / 30%) 0px 0px 0px 3px;
 }
 
 .rev_photoBox img {
@@ -148,10 +148,45 @@
 
 .rev_textBox {
 	width: 100%;
-	height: 150px;
+	min-height: 150px;
 	margin: 25px 0;
 	padding: 15px;
 	box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.host_reply {
+	width: 80%;
+	min-height: 175px;
+	margin: 25px 0;
+	padding: 15px;
+	box-shadow: rgb(136 165 191 / 48%) 6px 2px 16px 0px, rgb(255 255 255 / 80%) -6px -2px 16px 0px;
+	margin-left: auto;
+	background: #e9eff3;
+}
+
+.host_rpl {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 80%;
+	margin-left: auto;
+}
+
+.host_rpl textarea {
+	width: 80%;
+	min-height: 150px;
+	border: none;
+	box-shadow: rgb(136 165 191 / 48%) 6px 2px 16px 0px, rgb(255 255 255 / 80%) -6px -2px 16px 0px;
+	padding: 15px;
+	background: #e9eff3;
+}
+
+.host_rpl textarea:focus {
+	outline: none;
+}
+
+.more {
+	width: 250px;
 }
 
 .host_photo{

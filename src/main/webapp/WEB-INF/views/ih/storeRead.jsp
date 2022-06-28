@@ -260,19 +260,21 @@
 													<c:forEach items="${revList }" var="step_rev" varStatus="h">
 														<c:if test="${user_rev.rev_num == step_rev.ref && step_rev.re_step == 1}">
 																<h6 hidden="" id="count">${count = 1}</h6>
-																<br/>
-																	<div style="margin-top: 50px;">
+																	<div>
 																		<div id="host_host_rev${step_rev.rev_num}">
-																			<label style="float: right;"><b id="step_rev.rev_content${step_rev.rev_num}">
+																			<div class="host_reply">
+																			<b>HOST</b>
+																			<br>
+																			<br>
+																			<b id="step_rev.rev_content${step_rev.rev_num}">
 																			<%-- ${step_rev.rev_content } --%>
 																			${fn:replace(fn:replace(fn:replace(fn:replace(step_rev.rev_content,'<','&lt;' ),'>', '&gt;' ),nbsp, '&nbsp;'),enter , '<br/>' )}
-																			</b></label>
-																			<label style="float: right;"><b>[답변] : </b></label>
+																			</b>
+																			</div>
 																		</div>
-																		<br/>
 																		<c:if test="${mem_num == store.mem_num }">
-																			<button onclick="hostRevUpdate(${step_rev.rev_num})" style="float: right;" class="btn btn-primary" id="hostRevUpdate${step_rev.rev_num}">답변수정</button>
-																			<button onclick="hostRevDelete(${step_rev.rev_num})" style="float: right;" class="btn btn-primary" id="hostRevDelete${step_rev.rev_num}">답변삭제</button>
+																			<button onclick="hostRevUpdate(${step_rev.rev_num})" style="float: right;" class="btn btn-outline-primary" id="hostRevUpdate${step_rev.rev_num}">답변수정</button>
+																			<button onclick="hostRevDelete(${step_rev.rev_num})" style="float: right;" class="btn btn-outline-primary" id="hostRevDelete${step_rev.rev_num}">답변삭제</button>
 																			<input type="hidden" value="${step_rev.rev_num }" id="step_rev.rev_num${step_rev.rev_num }">
 																			<input type="hidden" value="${user_rev.rev_num }" id="user_rev.rev_num${step_rev.rev_num }">
 																		</c:if>
@@ -283,10 +285,10 @@
 											<c:if test="${mem_num == store.mem_num }">
 												<div  id="host_rev_insert${user_rev.rev_num}">
 													<c:if test="${count == 0 }">
-														<label>
-															<textarea rows="4px;" cols="155px;" style="float: right;" id="host_rev_content${user_rev.rev_num}" name="host_rev_content"></textarea>
-														</label>
-														<button onclick="hostRevInsert(${user_rev.rev_num})" style="float: right;" class="btn btn-primary">답변등록</button>
+														<div class="host_rpl">
+															<textarea id="host_rev_content${user_rev.rev_num}" name="host_rev_content"></textarea>
+															<button onclick="hostRevInsert(${user_rev.rev_num})" style="float: right;" class="btn btn-outline-primary">답변등록</button>
+														</div>
 													</c:if>
 												</div>
 											</c:if>
@@ -299,7 +301,7 @@
 					</c:forEach>
 					<br>
 					<div style="text-align: center;">
-						<button id="load" class="btn btn-outline-primary review_btn">더보기</button>
+						<button id="load" class="btn btn-primary mb-5 more">더보기</button>
 					</div>
 	   		</div><!-- 리뷰 끝  -->
 	   	</div>
