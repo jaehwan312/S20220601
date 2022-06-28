@@ -12,6 +12,7 @@
 				        $('.phone_ok').css("display","inline-block"); 
 				        $('.phone_already').css("display", "none");
 				    } else { // cnt가 1일 경우 -> 이미 존재하는 핸드폰
+				    	alert("중복된 핸드폰번호 입니다.")
 				        $('.phone_already').css("display","inline-block");
 				        $('.phone_ok').css("display", "none");
 				    }
@@ -61,7 +62,6 @@
 		//ajax 아이디 체크
 		function checkId(){
 		    var id = $('#id').val(); //id값이 "id"인 입력란의 값을 저장
-		  
 		    $.ajax({
 		        url:'idCheck', //Controller에서 인식할 주소
 		        type:'post', //POST 방식으로 전달
@@ -149,26 +149,7 @@
 		 
 		}
 		
-		// 회원가입 비밀번호 소문자,숫자만 입력 가능하도록
-		function pwCheck(obj){
-			var regExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi; 
-			var regExp1 = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-			
-				if( regExp.test(obj.value) ){
-					alert("특수문자 및 띄워쓰기는 입력하실수 없습니다.");
-					obj.value = obj.value.substring( 0 , obj.value.length - 1 ); // 입력한 특수문자 한자리 지움
-					}
-				else if( regExp1.test(obj.value) ){
-					alert("한글은 입력하실수 없습니다.");
-					obj.value = obj.value.substring( 0 , obj.value.length - 1 ); // 입력한 한글,띄어쓰기 한자리 지움
-					}
-			    else if( obj.value.length > 10){
-			    	alert("비밀번호는 10자리 이하로 맞춰 입력해주세요");
-			    	obj.value = obj.value.substring( 0 , obj.value.length - 1 );
-			    	}
-		 
-		 }
-		
+				
 		// 이미지 미리보기
 		function readURL(input) {
 			
@@ -231,15 +212,13 @@
 					alert("아이디를 입력해주세요.");
 					return false;
 				}
-				
-				
 				if($('#pw').val() == ""){
 					alert("비밀번호를 입력해주세요.");
 					return false;
 				} else if($('#pw').val().match(regExp1) != null){
 					
 				} else {
-					alert("비밀번호는 6자리 이상이여야 합니다.");
+					alert("비밀번호는 6~10자의 영문 대소문자와 숫자로만 입력해주세요.");
 					return false;
 				}
 				
@@ -292,6 +271,7 @@
 				}
 				
 				
-				
 				alert("회원가입에 성공했습니다!");	
 		};
+		
+	
