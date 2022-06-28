@@ -3583,18 +3583,30 @@ ol {
 	justify-content: space-between;
 }
 
-.rev_info {
-	margin: 0 10%;
+.host_revBtn {
+	margin-bottom: 25px;
 }
 
-#rev_photoBox {
-	width: 400px;
-	height: 250px;
-	overflow: hidden;
+.host_rev {
+	padding: 25px;
+	box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+	margin-bottom: 25px;
 }
 
-#rev_photoBox img {
-	widows: 100%;
-	height: 100%;
-	object-fit: cover;
+.host_rev_after {
+	margin: 25px 0;
+}
+
+.host_reply div {
+	box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+	min-height: 150px;
+	padding: 15px;
+}
+
+.host_reply p {
+	float: right;
+}
+
+.host_reply h2 {
+	margin-bottom: 15px;	
 }

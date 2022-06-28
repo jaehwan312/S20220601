@@ -305,10 +305,27 @@
 		            	
 	            		<div>등록일자 : ${map.content.rev_date}</div>
 	            	</div>
+	            	<div class="review">${map.content.rev_content}</div>
 	            	
-	                <div class="review">${map.content.rev_content}</div>
-	              
-	               <form style="display:inline-block;" action="reviewUpdateForm">
+   		            <c:if test="${map.reply!=null }">
+		            	<div class="row host_rev_after">
+	            			<div class="col-2">
+								<c:if test="${map.reply.photo == null }">
+									<img style="border-radius: 70%; width: 150px; height: 150px" alt="${map.content.photo }" src="images/profile/기본.png">
+								</c:if>
+								<c:if test="${map.reply.photo != null }">
+									<img style="border-radius: 70%; width: 150px; height: 150px;" src="images/profile/${map.reply.photo}">
+								</c:if>
+							</div>
+							<div class="col-10 host_reply">
+								<p>등록일자 : ${map.reply.rev_date }</p>
+								<h2><b>FROM HOST</b></h2>
+								<div>${map.reply.rev_content }</div>
+							</div>
+		            	</div>
+		            </c:if>
+	                
+               		<form style="display:inline-block;" action="reviewUpdateForm">
 	               		<input type="hidden" name="host_num" value="${host_num }">
 				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
 				   		<c:if test="${map.content.mem_num==mem_num }">
@@ -322,27 +339,17 @@
 	               		<button type="button" class="btn btn-outline-danger" onclick="revDeleteCheck()">삭제</button>
 	               		</c:if>
 	               </form> 
-	               <form  action="reviewRef" id="reviewRef">
-	               		<input type="hidden" name="host_num" value="${host_num }">
-				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
-				   		<c:if test="${host_mem_num==mem_num}">
-				   		<textarea rows="10" cols="10" name="rev_content" style="border: 1px solid;"></textarea>
-				   		<button type="button" class="btn btn-outline-danger" onclick="revRefCheck()">답글달기</button>
-				   		</c:if>
-	               </form>
+					<form  action="reviewRef" id="reviewRef">
+						<input type="hidden" name="host_num" value="${host_num }">
+						<input type="hidden" name="rev_num" value="${map.content.rev_num }">
+						<c:if test="${host_mem_num==mem_num}">
+							<b>To Guest<b>
+							<textarea class="host_rev" rows="10" cols="10" name="rev_content"></textarea>
+							<button type="button" class="btn btn-outline-primary host_revBtn" onclick="revRefCheck()">답글달기</button>
+						</c:if>
+					</form>
 	            </div>
-	            <c:if test="${map.reply!=null }">
-	            	<div>
-	            	 <c:if test="${map.reply.photo == null }">
-	             		<img style="border-radius: 70%; width: 150px; height: 150px" alt="${map.content.photo }" src="images/profile/기본.png">
-	           		 </c:if>
-	           		 <c:if test="${map.reply.photo != null }">
-	            	<img style="border-radius: 70%; width: 150px; height: 150px;" src="images/profile/${map.reply.photo}">
-	            	</c:if>
-	            	관리자 댓글 : ${map.reply.rev_content }<p>
-	            	댓글날짜 : ${map.reply.rev_date }
-	            </div>
-	            </c:if>
+
 	            </c:forEach> 
 				<!--end  -->
 			</c:if>
