@@ -348,6 +348,7 @@
     <script src="js/bh/select2/select2.min.js"></script>
     <script src="js/bh/datepicker/moment.min.js"></script>
     <script src="js/bh/datepicker/daterangepicker.js"></script>
+    <script src="js/bh/bootstrap.min.js"></script>
     <!-- Main JS-->
     <script src="js/bh/global.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e16bda872939904d33c13e42c58e211b&libraries=services"></script>
