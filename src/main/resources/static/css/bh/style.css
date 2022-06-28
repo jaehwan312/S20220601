@@ -3544,7 +3544,36 @@ ol {
 	align-items: center;
 }
 
-.on_room1 {
+.on_room1, .on_room2 {
 	width: 80%;
 	margin: 50px auto;
+}
+
+.totalData {
+	text-align: center;
+	margin: 50px 0;
+}
+
+.total_gradeLevel {
+	margin-bottom: 25px;
+}
+
+.total_gradeLevel strong{
+	color: #ffa726;
+}
+
+.total_revNumber {
+	font-size: 20px;
+}
+
+.total_revNumber b {
+	color: #ffa726;
+}
+
+.review {
+	width: 100%;
+	min-height: 200px;
+	box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+	margin: 25px 0;
+	padding: 15px;
 }
