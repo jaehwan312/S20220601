@@ -208,9 +208,8 @@
 				<div>
 					<b>현재 리뷰 <b id="StoreRevCount">${store.rev_count }</b>개</b>
 				</div>
-				
+				<hr>
 				<div id="review" class="review">
-					<hr/>
 					<c:forEach items="${revList }" var="user_rev" varStatus="u">
 					<c:if test="${user_rev.re_step == 0 }">
 					<div class="reviewList" style="display: none;">
@@ -218,29 +217,29 @@
 							
 								<div id="storeRevList${user_rev.rev_num}">
 									
-									<div id="host_user_rev">
-										<div class="rev_prf">
-											<img alt="${user_rev.photo }" src="images/profile/${user_rev.photo }"
-												 style="float: right; border-radius: 50%;" width="100px;" height="100px;" >
-										</div>
-										<b>${user_rev.name }</b>
-										<div>
-											<div id="host_user_rev${user_rev.rev_num}">
-												<label><b id="user_rev.rev_content${user_rev.rev_num}"> 
-												${fn:replace(fn:replace(fn:replace(fn:replace(user_rev.rev_content,'<','&lt;' ),'>', '&gt;' ),nbsp, '&nbsp;'),enter , '<br/>' )}
-												<%-- ${user_rev.rev_content } --%></b></label><br/>
+									<div class="row" id="host_user_rev">
+										<div class="col-2 rev_userPrf">
+											<div class="rev_prf">
+												<img alt="${user_rev.photo }" src="images/profile/${user_rev.photo }"
+													 style="float: right; border-radius: 50%;" width="100px;" height="100px;" >
 											</div>
-											<div>
+											<b>${user_rev.name }</b>
+										</div>
+										<div class="col-10">
+											<div class="rev_photoBox_div">
 												<c:forEach items="${revPhotos }" var="photo" varStatus="i">
 													<c:if test="${user_rev.rev_num == photo.rev_num }">
-													<label><img alt="" src="images/ih/${photo.rev_photo }" 
-															 style="float: left; margin-top: 80px;" width="100px;" height="100px;"></label>
-															<input type="image" value="images/ih/${photo.rev_photo }" hidden="" id="storeRevPhoto${i.index}">
+														<div class="rev_photoBox">
+															<img alt="" src="images/ih/${photo.rev_photo }">
+														</div>
+														<input type="image" value="images/ih/${photo.rev_photo }" hidden="" id="storeRevPhoto${i.index}">
 													</c:if>
 												</c:forEach>
 											</div>
+											<div id="host_user_rev${user_rev.rev_num}" class="rev_textBox">
+												<b id="user_rev.rev_content${user_rev.rev_num}">${fn:replace(fn:replace(fn:replace(fn:replace(user_rev.rev_content,'<','&lt;' ),'>', '&gt;' ),nbsp, '&nbsp;'),enter , '<br/>' )}<%-- ${user_rev.rev_content } --%></b>
+											</div>
 										</div>
-										<br/>
 										<div>
 											<input type="hidden"  value="${user_rev.mem_num }" 
 												   id="userRevMemNum${user_rev.rev_num }"></input>
@@ -300,7 +299,7 @@
 					</c:forEach>
 					<br>
 					<div style="text-align: center;">
-						<button id="load" class="btn btn-outline-primary review_btn" style="width: 300px;">더보기</button>
+						<button id="load" class="btn btn-outline-primary review_btn">더보기</button>
 					</div>
 	   		</div><!-- 리뷰 끝  -->
 	   	</div>

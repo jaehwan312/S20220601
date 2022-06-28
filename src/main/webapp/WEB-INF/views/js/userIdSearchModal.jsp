@@ -11,9 +11,5 @@
 		<div style="text-align: center; margin-top: 70px; margin-bottom: 60px;">
 				<h2 id="id_value"></h2>
 		</div>		
-		<!-- <div style="text-align: center;">	
-			<button type="button" id="pwSearch_btn" class="btn peach-gradient btn-rounded waves-effect" onclick="search_check(2)" >
-			<i class="fa fa-envelope"></i>비밀번호 찾기</button>
-		</div> -->
 		</div>
 	</div>
