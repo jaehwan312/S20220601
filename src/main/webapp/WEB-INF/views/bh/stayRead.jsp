@@ -27,7 +27,7 @@
     <div class="col-8">
     <!-- 사진 -->
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        	<div id="carousel_inner" class="carousel-inner">
+        	<div id="carousel_inner" class="carousel-inner centers">
           		<c:forEach items="${stayPhoto }" var="getPhoto" varStatus="i">
 		            <c:if test="${i.index==0 }">
 		               <div id="host_img_box" class="carousel-item active">
@@ -143,7 +143,7 @@
 							<div class="row mb-5 mt-5 res_contents">
 							<div class="col-7" id="res_photo_box">
 								<div id="carouselExampleControls${j.index }" class="carousel slide" data-bs-ride="carousel">
-				                    <div class="carousel-inner">
+				                    <div class="carousel-inner centers">
 							<c:forEach items="${room.roomPhotos }" var="getroom" varStatus="i">
 								<div class="img-wrapper">
 			                       <c:if test="${i.index==0 }">
