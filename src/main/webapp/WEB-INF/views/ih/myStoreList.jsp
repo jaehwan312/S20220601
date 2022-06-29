@@ -34,7 +34,7 @@
 		                    <div class="col-xs-12 col-sm-4">
 		                        <div class="card">
 		                            <a class="img-card" href="storeRead?host_num=${list.host_num }">
-		                            	<img alt="업체사진" src="images/ih/${list.photoList[0].host_photo}" style="height:200px; width: 100%;">
+		                            	<img alt="업체사진" src="images/store/${list.photoList[0].host_photo}" style="height:200px; width: 100%;">
 		                            </a>
 		                          <button type="button" class="btn-close btn-close-white close_button" aria-label="Close"
 		                           onclick="deletePick('${list.host_name}',${list.host_num })"></button>

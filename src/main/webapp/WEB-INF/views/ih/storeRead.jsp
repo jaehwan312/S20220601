@@ -47,12 +47,12 @@
 			     <c:forEach items="${storePhoto }" var="photo" varStatus="i">
 				      <c:if test="${i.index == 0 }">
 				      	<div class="carousel-item active">
-							<img alt="업체사진" src="images/ih/${photo.host_photo}" class="d-block w-100" style="height:500px;">
+							<img alt="업체사진" src="images/store/${photo.host_photo}" class="d-block w-100" style="height:500px;">
 			    		</div>	
 				      </c:if>
 				      <c:if test="${i.index != 0 }">
 				      	<div class="carousel-item">
-							<img alt="업체사진" src="images/ih/${photo.host_photo}" class="d-block w-100" style="height:500px;">
+							<img alt="업체사진" src="images/store/${photo.host_photo}" class="d-block w-100" style="height:500px;">
 			    		</div>	
 				      </c:if>
 			     </c:forEach>
@@ -188,7 +188,7 @@
 										<c:forEach begin="0" end="4" varStatus="i">
 						                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
 												<div class="square_box">
-													<img alt="plus" src="images/ih/plus.png">
+													<img alt="plus" src="images/store/plus.png">
 													<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" onchange="previewFiles(${i.index })" accept="images/ih/*">
 												</div>
 						                    </label>
@@ -230,9 +230,9 @@
 												<c:forEach items="${revPhotos }" var="photo" varStatus="i">
 													<c:if test="${user_rev.rev_num == photo.rev_num }">
 														<div class="rev_photoBox">
-															<img alt="" src="images/ih/${photo.rev_photo }">
+															<img alt="" src="images/store/${photo.rev_photo }">
 														</div>
-														<input type="image" value="images/ih/${photo.rev_photo }" hidden="" id="storeRevPhoto${i.index}">
+														<input type="image" value="images/store/${photo.rev_photo }" hidden="" id="storeRevPhoto${i.index}">
 													</c:if>
 												</c:forEach>
 											</div>

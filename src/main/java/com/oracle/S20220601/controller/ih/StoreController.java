@@ -164,7 +164,7 @@ public class StoreController {
 		Map<Integer, MultipartFile> fileName     = new HashMap<Integer, MultipartFile>();
 		List<HostPhoto>			    storePhotoInsertList = new ArrayList<HostPhoto>();
 		HostPhoto                   hostPhoto            = new HostPhoto();
-		String uploadPath = request.getSession().getServletContext().getRealPath("/images/ih/");
+		String uploadPath = request.getSession().getServletContext().getRealPath("/images/store/");
 	    
 	    //사진 이름 put
 		fileName.put(0, host_photo0);
@@ -305,7 +305,7 @@ public class StoreController {
 		Map<Integer, MultipartFile> fileName     = new HashMap<Integer, MultipartFile>();
 		List<HostPhoto>			    storePhotoInsertList = new ArrayList<HostPhoto>();
 		HostPhoto                   hostPhoto            = new HostPhoto();
-		String uploadPath = request.getSession().getServletContext().getRealPath("/images/ih/");
+		String uploadPath = request.getSession().getServletContext().getRealPath("/images/store/");
 	    
 		
 		//사진 이름 put
