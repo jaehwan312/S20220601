@@ -53,7 +53,7 @@
             <li><a href="stayList">숙박</a></li>
             <li><a href="storeList">맛집</a></li>
             <li class="dropdown">
-                <a href="" class="dropdown_button">고객센터</a>
+                <a href="ntcList" class="dropdown_button">고객센터</a>
                 <div class="dropdown_content" id="csc">
                     <a href="ntcList">공지사항</a>
                     <a href="tosContent">이용약관</a>

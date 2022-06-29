@@ -118,12 +118,17 @@ a {
 .dropdown_content {
     display: none;
     position: absolute;
-    min-width: 150px;
+    min-width: 100px;
     z-index: 1;
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
 }
 
 .dropdown_content a {
     display: block;
+    margin-top: 5px;
+    padding: 10px;
 }
 
 .dropdown_content a:nth-child(1) {
@@ -132,6 +137,10 @@ a {
 
 .dropdown:hover .dropdown_content {
     display: block;
+}
+
+.dropdown_content a:hover {
+	box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 
 .hamburger {
