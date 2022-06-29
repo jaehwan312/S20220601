@@ -23,10 +23,9 @@ function hostRevDelete(e){
 						+ "<c:if test='${mem_num == store.mem_num }'>"
 						+		"<div  id='host_rev_insert"+rev_num+"'>"
 						+			"<c:if test='${count == 0 }'>"
-						+				"<label>"
+						+				"<div class='host_rpl'>"
 						+					"<textarea rows='4px;' cols='155px;' style='float: right;' id='host_rev_content"+user_rev_num+"' name='host_rev_content'></textarea>"
-						+				"</label>"
-						+				"<button onclick='hostRevInsert("+user_rev_num+")' style='float: right;' class='btn btn-primary'>답변등록</button>"
+						+				"<button onclick='hostRevInsert("+user_rev_num+")' style='float: right;' class='btn btn-outline-primary'>답변등록</button></div>"
 						+ "</c:if></div></c:if>></div>"
 	
 	//삭제를 위해 넘겨줄 정보
@@ -86,16 +85,15 @@ function hostRevInsert(e){
 					
 					//리뷰에 작성된 답글 
 					var host_rev_select = "<div id='host_rev_select"+rev_num+"'>" 
-						+ "<h6 hidden='' id='count'>${count = 1}</h6>"
-						+ "<br/>"
-						+ "	<div style='margin-top: 50px;'>"
-						+ " <div id='host_host_rev"+step_rev+"'><label style='float: right;'><b id='step_rev.rev_content"+ step_rev +"'>"+ rev_content +"</b></label>"
-						+ "		<label style='float: right;'><b>[답변] : </b></label></div><br/>"
-						+ "		<button onclick='hostRevUpdate("+step_rev+")' style='float: right;' class='btn btn-primary' id='hostRevUpdate"+step_rev+"'>답변수정</button>"
-						+ "		<button onclick='hostRevDelete("+step_rev+")' style='float: right;' class='btn btn-primary' id='hostRevDelete"+step_rev+"'>답변삭제</button>"
+						+ "<h6 hidden='' id='count'>${count = 1}</h6><div>"
+						+ " <div id='host_host_rev"+step_rev+"'>"
+						+ " <div class='host_reply'><b>HOST</b><br/><br/>"
+						+ " <b id='step_rev.rev_content"+ step_rev +"'>"+ rev_content +"</b></div></div>"
+						+ "		<button onclick='hostRevUpdate("+step_rev+")' style='float: right;' class='btn btn-outline-primary' id='hostRevUpdate"+step_rev+"'>답변수정</button>"
+						+ "		<button onclick='hostRevDelete("+step_rev+")' style='float: right;' class='btn btn-outline-primary' id='hostRevDelete"+step_rev+"'>답변삭제</button>"
 						+ "     <input type='hidden' value='"+step_rev+"' id='step_rev.rev_num"+step_rev+"'>"	
 						+ "  	<input type='hidden' value='"+rev_num+"' id='user_rev.rev_num"+step_rev+"'>"
-						+ "	</div></div>";
+						+ "</div>";
 				
 					
 					//답글을 view 딴에 보여줌 
@@ -160,8 +158,7 @@ function storeReviewInsert(e){
 			//사진 정보			
 			var photo = "";
 			for(var i = 0; i < filename.length; i++){
-				photo += "<label><img src='images/ih/"+filename[i]+"'"
-							+	" style='float: left; margin-top: 80px;' width='100px;' height='100px;'></label>";
+				photo += "<div class='rev_photoBox'><img src='images/store/"+filename[i]+"'></div>";
 			}
 			
 			
@@ -177,18 +174,19 @@ function storeReviewInsert(e){
 					rev_num = data.rev_num;
 					
 					var insertRev="<div class='reviewList' style=''><h6 hidden='' id='count'>0</h6>"
-					+	"<div id='storeRevList"+rev_num+"'><hr><br><div id='host_user_rev'>"
-					+	"<div style='float: left;'>"
-					+	"<img alt='"+userphoto+"' src='images/ih/"+userphoto+"' style='float: right; border-radius: 50%;' width='100px;' height='100px;'><br>"
-					+	"<b>작성자: "+name+"</b></div><div><div id='host_user_rev"+rev_num+"'>"
-					+	"<label><b id='user_rev.rev_content"+rev_num+"'>"+rev_content+"</b></label>"
-					+	"<br></div><div>"+photo+"</div></div><br><div>"
-					+	"<input type='hidden' value='2' id='userRevMemNum"+rev_num+"'>"
+					+	"<div id='storeRevList"+rev_num+"'><div class='row' id='host_user_rev'>"
+					+	"<div class='col-2 rev_userPrf'>"
+					+	"<div class='rev_prf'><img alt='"+userphoto+"' src='images/store/"+userphoto+"' style='float: right; border-radius: 50%;' width='100px;' height='100px;'></div>"
+					+	"<b>"+name+"</b></div>"
+					+	"<div class='col-10'><div class='rev_photoBox_div'>"+photo+"</div>"
+					+	"<div id='host_user_rev"+rev_num+"' class='rev_textBox'><b id='user_rev.rev_content"+rev_num+"'>"+rev_content+"</b></div></div>"
+					+	"<div>"
+					+	"<input type='hidden' value='"+mem_num+"' id='userRevMemNum"+rev_num+"'>"
 					+	"<input type='hidden' value='"+rev_num+"' id='userRevNum"+rev_num+"'>"
-					+	"<button onclick='userRevUpdate("+rev_num+")' style='float: right;' class='btn btn-primary' id='userRevUpdate"+rev_num+"'>리뷰수정</button>"
-					+	"<button onclick='userRevDelete("+rev_num+")' style='float: right;' class='btn btn-primary' id='userRevDelete"+rev_num+"'>리뷰삭제</button>"
-					+	"</div><br></div><div id='host_rev"+rev_num+"'><div id='host_rev_select"+rev_num+"'>"
-					+	"</div></div><br></div></div>"
+					+	"<button onclick='userRevUpdate("+rev_num+")' style='float: right;' class='btn btn-outline-primary review_btn' id='userRevUpdate"+rev_num+"'>리뷰수정</button>"
+					+	"<button onclick='userRevDelete("+rev_num+")' style='float: right;' class='btn btn-outline-primary review_btn' id='userRevDelete"+rev_num+"'>리뷰삭제</button>"
+					//+	"</div><br></div><div id='host_rev"+rev_num+"'><div id='host_rev_select"+rev_num+"'>"
+					//+	"</div></div><br></div></div>"
 					
 					
 					$('#review').prepend(insertRev);
@@ -333,11 +331,9 @@ function userRevUpdate(e){
 	$('#userRevUpdate' + e).hide();
 	$('#userRevDelete' + e).hide();
 	$('#host_user_rev' + e).empty();
-	$('#host_user_rev' + e).append("<label>"
-							   +"	<textarea rows='4px;' cols='135px;' style='float: right;' id='rev_content_update"+e+"' name='rev_content'>"+rev_content+"</textarea>"
-							   +"</label>"
-							   +"<button onclick='userRevUpdateInsert("+e+")'"
-							   +					"style='float: right;' class='btn btn-primary' id='userRevUpdateInsert"+e+"'>수정완료</button>");
+	$('#host_user_rev' + e).append("	<textarea class='form-control' aria-label='With textarea' style='height:120px;' id='rev_content_update"+e+"' name='rev_content'>"+rev_content+"</textarea>"
+							   +"	<div><button onclick='userRevUpdateInsert("+e+")'"
+							   +					"style='float: right;' class='btn btn-outline-primary review_btn' id='userRevUpdateInsert"+e+"'>수정완료</button></div>");
 
 }
 
@@ -378,11 +374,10 @@ function hostRevUpdate(e){
 	$('#hostRevUpdate' + e).hide();
 	$('#hostRevDelete' + e).hide();
 	$('#host_host_rev' + e).empty();
-	$('#host_host_rev' + e).append("<label>"
-							   +"	<textarea rows='4px;' cols='135px;' style='float: right;' id='rev_content_update"+e+"' name='rev_content'>"+rev_content+"</textarea>"
-							   +"</label>"
+	$('#host_host_rev' + e).append("<div class='host_rpl'>"
+							   +"	<textarea id='rev_content_update"+e+"' name='rev_content'>"+rev_content+"</textarea>"
 							   +"<button onclick='hostRevUpdateInsert("+e+")'"
-							   +					"style='float: right;' class='btn btn-primary' id='hostRevUpdateInsert"+e+"'>수정완료</button>");
+							   +					"style='float: right;' class='btn btn-outline-primary' id='hostRevUpdateInsert"+e+"'>수정완료</button></div>");
 }
 
 function hostRevUpdateInsert(e){
@@ -402,10 +397,9 @@ function hostRevUpdateInsert(e){
 		dataType : 'text',
 		success: function(data){
 			$('#rev_content_update' +e).remove();
-			//$('#host_host_rev' + e).append("<b id='step_rev.rev_content"+e+"' style='float:right;'>[답변]"+data+"</b>"
-			$('#host_host_rev' + e).append("<b id='step_rev.rev_content"+e+"'  style='float:right;'>"
+			$('#host_host_rev' + e).append("<div class='host_reply'><b>HOST</b><br/><br/><b id='step_rev.rev_content"+e+"'>"
 											+data
-											+"</b><div style='float: right;'><b>[답변] : </div></b>");
+											+"</b></div>");
 		
 			$('#hostRevUpdate' + e).show();
 			$('#hostRevDelete' + e).show();

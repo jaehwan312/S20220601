@@ -93,7 +93,7 @@ public class StoreRevController {
 		Iterator<String>           iter				  = filelist.getFileNames(); 
 		MultipartFile    	       revFileName		  = null; 
 		String 				 	   fieldName          = "";
-		String 			  	 	   uploadPath  		  = request.getSession().getServletContext().getRealPath("/images/ih/");
+		String 			  	 	   uploadPath  		  = request.getSession().getServletContext().getRealPath("/images/store/");
 	    int i = 0;
 	    while (iter.hasNext()) { 
 	        fieldName   = (String) iter.next(); //파일이름
