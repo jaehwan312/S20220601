@@ -389,7 +389,7 @@ public class StayDaoImpl implements StayDao {
 				++i;
 			}
 		} catch (Exception e) {
-			System.out.println("StorePhotoDaoImpl stayPhotoUpdate ErrorMessage --> " + e.getMessage());
+			System.out.println("StayDaoImpl stayPhotoUpdate ErrorMessage --> " + e.getMessage());
 		}
 		return stayPhotoUpdate;
 	}
@@ -402,7 +402,7 @@ public class StayDaoImpl implements StayDao {
 			roomUpdate =session.update("roomUpdate", room);
 			roomUpdate =1;
 		} catch (Exception e) {
-			System.out.println("StorePhotoDaoImpl roomUpdate ErrorMessage --> " + e.getMessage());
+			System.out.println("StayDaoImpl roomUpdate ErrorMessage --> " + e.getMessage());
 		}
 		return roomUpdate;
 	}
@@ -475,7 +475,7 @@ public class StayDaoImpl implements StayDao {
 			reviewUpdate =session.update("reviewUpdate", review);
 			
 		} catch (Exception e) {
-			System.out.println("StorePhotoDaoImpl roomUpdate ErrorMessage --> " + e.getMessage());
+			System.out.println("StayDaoImpl roomUpdate ErrorMessage --> " + e.getMessage());
 		}
 		return reviewUpdate;
 	}
@@ -510,7 +510,7 @@ public class StayDaoImpl implements StayDao {
 			reviewDelete =session.delete("reviewDelete", review);
 			
 		} catch (Exception e) {
-			System.out.println("StorePhotoDaoImpl reviewDelete ErrorMessage --> " + e.getMessage());
+			System.out.println("StayDaoImpl reviewDelete ErrorMessage --> " + e.getMessage());
 		}
 		return reviewDelete;
 	}
@@ -520,10 +520,10 @@ public class StayDaoImpl implements StayDao {
 		System.out.println("StayDaoImpl hostList start...");
 		List<HostStay> hostList = null;
 		try {
-			hostList= session.selectList("hostList->", mem_num);
+			hostList= session.selectList("hostList", mem_num);
 			System.out.println("hostList"+hostList.size());
 		} catch (Exception e) {
-			System.out.println("StorePhotoDaoImpl hostList ErrorMessage --> " + e.getMessage());
+			System.out.println("StayDaoImpl hostList ErrorMessage --> " + e.getMessage());
 		}
 		return hostList;
 	}
@@ -535,7 +535,7 @@ public class StayDaoImpl implements StayDao {
 		try {
 			refInsert = session.selectOne("refInsert", review);
 		} catch (Exception e) {
-			System.out.println("StorePhotoDaoImpl refInsert ErrorMessage --> " + e.getMessage());
+			System.out.println("StayDaoImpl refInsert ErrorMessage --> " + e.getMessage());
 		}
 		return refInsert;
 	}

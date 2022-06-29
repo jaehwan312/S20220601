@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
+ <link rel="stylesheet" href="css/bh/stayInsertForm.css">
  <style type="text/css">
    div img{
    width: 100px;
@@ -71,7 +73,7 @@
     <!-- 여기 밑으로 ============================================================ -->
     	<div style="text-align: center; margin-top: 100px;">
     	<div class="col-8 mx-auto">
-			<h2 class="storeInsertTitle">나의 식당 수정</h2>
+			<h2 class="storeInsertTitle">나의 객실 추가</h2>
 		</div>
     	<form action="roomInsert" method="post" style="text-align: center;" enctype="multipart/form-data">
 		<div class="col-4 mx-auto">
@@ -79,8 +81,8 @@
     		<input type="hidden" value="${host_num }" name="host_num">
 			
 			<div class="col-12">
-			  <label class="form-label" >객실명</label>
-			  <input id="ips" type="text" name="room_name" required placeholder="객실 이름" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			  <label for="room_name" class="form-label" >객실명</label>
+			  <input id="host_name" class="form=control" type="text" name="room_name" required placeholder="객실 이름" >
 			</div>
 			<div class="input-group mb-3">
 			  <span class="input-group-text" id="inputGroup-sizing-default">인원</span>

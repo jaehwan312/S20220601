@@ -21,7 +21,7 @@
 		<c:if test="${size==0}"><h1>등록된 업체가 없습니다.</h1></c:if>
 		</div>
 		<div style="width: 100%;" class="row row-cols-1 row-cols-md-3 g-4">
-		<c:if test="${size!=0 }">
+		<c:if test="${size>0 }">
 			<c:forEach items="${hostList}" var="list">
 			  <div class="col">
 			    <div class="card" >

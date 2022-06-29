@@ -67,7 +67,7 @@
 		              <textarea rows="3" name="way" id="way" class="form-control" style="resize: none;" placeholder="ex)공항에서 차로 10분 거리,버스 30번 이용후 xx정류장하차" required="required"></textarea>
 		            </div>
 		            <div class="col-12" style="margin-top: 20px;">
-						<div id="preview">
+						<div id="preview"></div>
 							<c:forEach begin="0" end="4" varStatus="i">
 			                   <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
 			                      	<img alt="plus" src="images/ih/plus.png" class="file_input_img_btn">
@@ -76,8 +76,7 @@
 									onchange="previewFiles(${i.index })" accept="images/bh/*" required="required">
 			                   </label>
 			               </c:forEach>
-						</div>
-					</div>
+			           </div>
 			        <input class="btn btn-primary btn-lg" id="submitbtn" type="submit" value="등록요청">
 		        </div>
 		    </div>
