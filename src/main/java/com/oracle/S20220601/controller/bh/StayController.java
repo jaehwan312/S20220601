@@ -535,7 +535,7 @@ public class StayController {	//숙소 Controller
 		return "main";
 	}
 	//나의 숙소내역
-	@RequestMapping(value = "mystayList")
+	@RequestMapping(value = "myStayList")
 	public String hostStayList(HttpServletRequest request, Model model) {
 		System.out.println("StayController hostStayList Start..");
 		int mem_num = (int)request.getSession().getAttribute("mem_num");

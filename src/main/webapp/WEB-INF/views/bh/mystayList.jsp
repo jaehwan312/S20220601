@@ -12,6 +12,13 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
+		<div id="page-wrapper">
+			<%@ include file="../sideBar.jsp"%>
+
+			<!-- 본문 -->
+			<div id="content-wrapper">
+		
+		
 		<div style="width: 100%;" class="row row-cols-1 row-cols-md-3 g-4">
 		<c:forEach items="${hostList}" var="list">
 		  <div class="col">
@@ -24,6 +31,8 @@
 		    </div>
 		  </div>
 		</c:forEach>
+		</div>
+		</div>
 		</div>
     <!-- 여기 위로오 ============================================================ -->   
     </div>
