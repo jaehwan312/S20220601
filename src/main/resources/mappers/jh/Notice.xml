@@ -11,7 +11,7 @@
 		SELECT * 
 		FROM (
 				SELECT rownum rn, a.*
-				FROM (SELECT * FROM NOTICE ORDER BY N_NUM) a
+				FROM (SELECT * FROM NOTICE ORDER BY N_NUM DESC) a
 			)
 		WHERE rn between #{start} AND #{end}
 	</select>

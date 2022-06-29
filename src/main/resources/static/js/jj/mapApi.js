@@ -45,7 +45,7 @@ function ajaxList(){
 					//맛집 검색결과 리스트
 					store = 
 					"<div class='host-item'><div class='row'><div class='col-5'><div class='img-wrapper' onclick='storecontent("+item.host_num+")' style='cursor: pointer;'>"
-	                 +"<img src='images/jj/"+item.host_photo+"' class='img-responsive'></div></div>"
+	                 +"<img src='images/store/"+item.host_photo+"' class='img-responsive'></div></div>"
 	                 +"<div class='col-7'><h3 class='host_name' id='storename"+index+"' onclick='storecontent("+item.host_num+")' style='cursor: pointer;'>"+item.host_name+"</h3>"
 	                 +"<div class='limitbox'>"
 	                 +"<div class='star-inner'>"
@@ -114,7 +114,7 @@ function ajaxList(){
 					//숙소 검색결과 리스트
 					stay = 
 					"<div class='host-item'><div class='row'><div class='col-5'><div class='img-wrapper' onclick='staycontent("+item.host_num+")' style='cursor: pointer;'>"
-	                 +"<img src='images/jj/"+item.host_photo+"' class='img-responsive'></div></div>"
+	                 +"<img src='images/store/"+item.host_photo+"' class='img-responsive'></div></div>"
 	                 +"<div class='col-7'><h3 class='host_name' id='stayname"+index+"' onclick='staycontent("+item.host_num+")' style='cursor: pointer;'>"+item.host_name+"</h3>"
 	                 +"<div class='limitbox'>"
 	                 +"<div class='star-inner'>"
@@ -202,7 +202,7 @@ function ajaxList(){
 					//숙소 검색결과 리스트
 					stay = 
 					"<div class='host-item'><div class='row'><div class='col-5'><div class='img-wrapper' onclick='staycontent("+item.host_num+")' style='cursor: pointer;'>"
-	                 +"<img src='images/jj/"+item.host_photo+"' class='img-responsive'></div></div>"
+	                 +"<img src='images/store/"+item.host_photo+"' class='img-responsive'></div></div>"
 	                 +"<div class='col-7'><h3 class='host_name' id='stayname"+index+"' onclick='staycontent("+item.host_num+")' style='cursor: pointer;'>"+item.host_name+"</h3>"
 	                 +"<div class='limitbox'>"
 	                 +"<div class='star-inner'>"
@@ -280,7 +280,7 @@ function ajaxList(){
 					//맛집 검색결과 리스트
 					store = 
 					"<div class='host-item'><div class='row'><div class='col-5'><div class='img-wrapper' onclick='storecontent("+item.host_num+")' style='cursor: pointer;'>"
-	                 +"<img src='images/jj/"+item.host_photo+"' class='img-responsive'></div></div>"
+	                 +"<img src='images/store/"+item.host_photo+"' class='img-responsive'></div></div>"
 	                 +"<div class='col-7'><h3 class='host_name' id='storename"+index+"' onclick='storecontent("+item.host_num+")' style='cursor: pointer;'>"+item.host_name+"</h3>"
 	                 +"<div class='limitbox'>"
 	                 +"<div class='star-inner'>"

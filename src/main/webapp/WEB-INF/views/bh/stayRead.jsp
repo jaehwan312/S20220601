@@ -148,12 +148,12 @@
 								<div class="img-wrapper">
 			                       <c:if test="${i.index==0 }">
 			                          <div class="carousel-item active">
-			                           <img src="images/bh/${getroom.room_photo}" class="d-block w-100" alt="숙소사진" style="height: 250px;">
+			                           <img src="images/room/${getroom.room_photo}" class="d-block w-100" alt="숙소사진" style="height: 250px;">
 			                         </div>
 			                       </c:if>
 			                       <c:if test="${i.index!=0 }">
 			                          <div class="carousel-item">
-			                           <img src="images/bh/${getroom.room_photo}" class="d-block w-100" alt="숙소사진" style="height: 250px;">
+			                           <img src="images/room/${getroom.room_photo}" class="d-block w-100" alt="숙소사진" style="height: 250px;">
 			                         </div>
 			                       </c:if>
 								</div>
@@ -261,17 +261,18 @@
 				</div>
 				<!-- start -->
 	            <c:forEach items="${maps }" var="map" varStatus="l">
-	            <!-- <div>
-	            <c:if test="${map.content.photo == null }">
-	             <img style="border-radius: 70%; width: 150px; height: 150px" alt="${map.content.photo }" src="images/profile/기본.png">
-	            </c:if>
-	            <c:if test="${map.content.photo != null }">
-	            <img style="border-radius: 70%; width: 150px; height: 150px" alt="${map.content.photo }" src="images/profile/${map.content.photo }">
-	            </c:if>
-	            </div> -->
+
 	            <div>
 	            	<div class="rev_infos">
 	            		<div>
+							<div class="">
+								<c:if test="${map.content.photo == null }">
+									<img style="border-radius: 70%; width: 150px; height: 150px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" alt="${map.content.photo }" src="images/profile/기본.png">
+								</c:if>
+								<c:if test="${map.content.photo != null }">
+									<img style="border-radius: 70%; width: 150px; height: 150px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" alt="${map.content.photo }" src="images/profile/${map.content.photo }">
+								</c:if>
+							</div>
 	            			<div class="total_gradeLevel"><b>평점 :</b>&nbsp<strong>${map.content.rev_point}</strong></div>
 	            			<div><b>객실 : ${map.content.room_name}</b></div>
 	            		</div>

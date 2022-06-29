@@ -26,7 +26,7 @@ function hostRevDelete(e){
 						+				"<div class='host_rpl'>"
 						+					"<textarea rows='4px;' cols='155px;' style='float: right;' id='host_rev_content"+user_rev_num+"' name='host_rev_content'></textarea>"
 						+				"<button onclick='hostRevInsert("+user_rev_num+")' style='float: right;' class='btn btn-outline-primary'>답변등록</button></div>"
-						+ "</c:if></div></c:if>></div>"
+						+ "</c:if></div></c:if></div>"
 	
 	//삭제를 위해 넘겨줄 정보
 	var del = {"rev_num" : rev_num, "host_num": host_num,"mem_num":mem_num,"rev_content":rev_content};
