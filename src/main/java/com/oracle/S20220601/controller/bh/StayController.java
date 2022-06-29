@@ -544,6 +544,7 @@ public class StayController {	//숙소 Controller
 		if (hostList == null) {
 			model.addAttribute("size",0);
 		}else {
+			System.out.println("size->"+hostList.size());
 			model.addAttribute("size",hostList.size());
 			model.addAttribute("hostList", hostList);
 		}
