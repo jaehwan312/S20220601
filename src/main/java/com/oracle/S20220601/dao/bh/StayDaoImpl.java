@@ -520,7 +520,8 @@ public class StayDaoImpl implements StayDao {
 		System.out.println("StayDaoImpl hostList start...");
 		List<HostStay> hostList = null;
 		try {
-			hostList= session.selectList("hostList", mem_num);
+			hostList= session.selectList("hostList->", mem_num);
+			System.out.println("hostList"+hostList.size());
 		} catch (Exception e) {
 			System.out.println("StorePhotoDaoImpl hostList ErrorMessage --> " + e.getMessage());
 		}
