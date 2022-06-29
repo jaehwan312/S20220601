@@ -12,6 +12,12 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
+    <div id="page-wrapper">
+			<%@ include file="../sideBar.jsp"%>
+
+			<!-- 본문 -->
+			<div id="content-wrapper">
+    
     <div class="col-8 mx-auto">
 	<!-- <h2 class=myStoreList>내가 등록한 식당</h2> -->
     	 </div>
@@ -76,6 +82,8 @@
     
 
 	    	${list.host_name }<br>
+	    </div>
+	    </div>
 	
     <!-- 여기 위로오 ============================================================ -->   
     </div>

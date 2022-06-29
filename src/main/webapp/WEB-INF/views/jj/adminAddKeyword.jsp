@@ -19,7 +19,12 @@
 	<%@ include file="../header.jsp"%>
 	<div class="container">
 		<!-- 여기 밑으로 ============================================================ -->
-	<div class="col-8 mx-auto">
+	<div id="page-wrapper">
+			<%@ include file="../sideBar.jsp"%>
+			<!-- 본문 -->
+			<div id="content-wrapper">
+	
+	<div class="col-12 mx-auto">
 	<h2 class="adminTitle">추천검색어 관리</h2>
 	
 	<form action="keywordInsert">
@@ -93,6 +98,8 @@
         </tr> -->
         </tbody>
     </table>
+    </div>
+    </div>
     </div>
 
 	<!-- 여기 위로오 ============================================================ -->

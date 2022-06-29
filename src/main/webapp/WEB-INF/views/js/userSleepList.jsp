@@ -24,6 +24,12 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
+    <div id="page-wrapper">
+			<%@ include file="../sideBar.jsp"%>
+			<!-- 본문 -->
+			<div id="content-wrapper">
+    	
+    	
     	 <div class="loginTitle">
             <h1>휴면회원 조회</h1>
          </div>
@@ -48,6 +54,8 @@
 					<a href="userSleepList?currentPage=${pg.startPage+pg.pageBlock}">[다음]</a>
 				</c:if>
 			</div>
+	</div>
+	</div>
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>

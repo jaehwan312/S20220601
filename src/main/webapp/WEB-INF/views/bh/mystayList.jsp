@@ -12,6 +12,11 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
+		<div id="page-wrapper">
+			<%@ include file="../sideBar.jsp"%>
+
+			<!-- 본문 -->
+			<div id="content-wrapper">
 		<div>
 		<c:if test="${size==0}"><h1>등록된 업체가 없습니다.</h1></c:if>
 		</div>
@@ -29,6 +34,8 @@
 			  </div>
 			</c:forEach>
 		</c:if>
+		</div>
+		</div>
 		</div>
     <!-- 여기 위로오 ============================================================ -->   
     </div>

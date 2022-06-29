@@ -1,13 +1,93 @@
 @charset "UTF-8";
+
 body div {
-  font-size: medium;
+	font-size: medium;
 }
 
 
-  #content-wrapper {
-
-    padding: 10%;
-  }
-.reviewFrm{
+.reviewFrm {
 	display: inline;
+}
+
+.reserve_detail {
+	width: 60%;
+	box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08)
+		0px 0px 0px 1px;
+	height: 30rem;
+	padding: 4%;
+	padding-top: 3%
+}
+
+div label {
+	display: block;
+}
+
+.status {
+	background-color: #002c71;
+	color: white;
+	width: auto;
+	font-size: smaller;
+	-webkit-user-modify: read-write-plaintext-only;
+}
+
+strong {
+	font-weight: bolder;
+	word-spacing: 3px;
+	display: block;
+	padding-top: 2%;
+	font-size: large;
+}
+
+
+.2status {
+	padding: 5%;
+}
+
+.sidebar-nav>.sidebar-brand {
+	font-size: large;
+}
+
+.detail-span1 {
+	margin-bottom: 10px;
+}
+
+.mdtitle {
+	width: 100px;
+	display: inline-block;
+	color: rgba(0, 0, 0, 0.56);
+}
+
+.label {
+	margin-bottom: 1%;
+}
+
+.phone {
+	font-size: smaller;
+}
+
+div hr {
+	color: rgba(0, 0, 0, 0.56);
+	width: 80%;
+}
+
+.total-price {
+	font-weight: bold;
+	font-size: large;
+	color: navy;
+}
+
+.total {
+	margin-bottom: 10%;
+}
+
+.reason {
+	font-size: large;
+}
+
+.m-total {
+	margin-bottom: 3%;
+}
+
+.form-select {
+	margin-top: 2%;
 }

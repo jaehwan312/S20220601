@@ -14,6 +14,11 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
+    <div id="page-wrapper">
+			<%@ include file="../sideBar.jsp"%>
+			<!-- 본문 -->
+			<div id="content-wrapper">
+    	
     	 <div class="col-8 mx-auto">
 			<h2 class="myPickList">나의 찜 목록</h2>
     	 </div>
@@ -92,7 +97,8 @@
 	           </div>
 	        </div>
         </c:if>
-    
+    </div>
+    </div>
     <!-- 여기 위로오 ============================================================ -->   
     </div>
 	<%@ include file="../footer.jsp" %>

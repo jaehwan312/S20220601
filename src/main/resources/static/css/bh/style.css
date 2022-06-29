@@ -3512,8 +3512,13 @@ ol {
 
 .carousel-inner {
 	display: flex;
+}
+
+.centers {
 	justify-content: center;
 }
+
+
 
 #img-wrapper {
 	width: 80%;
