@@ -70,12 +70,16 @@
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
     	<div style="text-align: center; margin-top: 100px;">
+    	<div class="col-8 mx-auto">
+			<h2 class="storeInsertTitle">나의 식당 수정</h2>
+		</div>
     	<form action="roomInsert" method="post" style="text-align: center;" enctype="multipart/form-data">
+		<div class="col-4 mx-auto">
+			<div class="row g-3">
     		<input type="hidden" value="${host_num }" name="host_num">
-			<div style="text-align: center;">
 			
-			<div class="input-group mb-3">
-			  <span class="input-group-text" id="inputGroup-sizing-default">객실명</span>
+			<div class="col-12">
+			  <label class="form-label" >객실명</label>
 			  <input id="ips" type="text" name="room_name" required placeholder="객실 이름" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 			<div class="input-group mb-3">
@@ -114,6 +118,7 @@
 			<div style="margin-bottom: 30px;">
 			<input type="submit" value="등록"><br>
 			<button type="button" onclick="location.href='main'">저장</button>
+			</div>
 			</div>
     	</form>
 	    	<table class="table">

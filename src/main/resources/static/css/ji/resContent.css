@@ -67,6 +67,8 @@ input, pregress {
 
 .content-center {
     margin-top: 5%;
+    margin-bottom: 5%;
+   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
 .smTitle{
 	display: block;
@@ -84,7 +86,7 @@ hr{
 .nameDiv,.phoneDiv{
 	margin-bottom: 5%;
 }
-.profInfo,.payfInfo,.cbx_agree{
+.profInfo,.payfInfo,.cbx_agree, .hr{
 	margin: 10%;
 }
 .room1Info{

@@ -11,6 +11,7 @@
     margin-left: -250px;
     overflow-x: hidden;
     overflow-y: auto;
+    margin-top: 200px;
   }
   
   #page-content-wrapper {
@@ -19,6 +20,11 @@
     width: 100%;
     padding: 20px;
   }
+  
+  #content-wrapper {
+    padding: 10%;
+  }
+  
   /* 사이드바 스타일 */
   
   .sidebar-nav {

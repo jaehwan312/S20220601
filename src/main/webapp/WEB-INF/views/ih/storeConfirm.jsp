@@ -14,7 +14,13 @@
 	<%@ include file="../header.jsp"%>
 	<div class="container">
 		<!-- 여기 밑으로 ============================================================ -->
-	<div class="col-8 mx-auto">
+	<div id="page-wrapper">
+			<%@ include file="../sideBar.jsp"%>
+			<!-- 본문 -->
+			<div id="content-wrapper">
+	
+	
+	<div class="col-12 mx-auto">
 	<form action="storeConfirm" id="storeConfirm">
 	</form>
 	<h2 class="adminTitle">식당 등록 관리</h2>
@@ -91,6 +97,8 @@
 	  </ul>
 	</nav>
     
+    </div>
+    </div>
     </div>
 
 	<!-- 여기 위로오 ============================================================ -->

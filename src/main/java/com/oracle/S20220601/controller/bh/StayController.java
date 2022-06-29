@@ -535,12 +535,19 @@ public class StayController {	//숙소 Controller
 		return "main";
 	}
 	//나의 숙소내역
-	@RequestMapping(value = "mystayList")
+	@RequestMapping(value = "myStayList")
 	public String hostStayList(HttpServletRequest request, Model model) {
 		System.out.println("StayController hostStayList Start..");
 		int mem_num = (int)request.getSession().getAttribute("mem_num");
 		List<HostStay> hostList = ss.hostList(mem_num);
-		model.addAttribute("hostList", hostList);
+		
+		if (hostList == null) {
+			model.addAttribute("size",0);
+		}else {
+			model.addAttribute("size",hostList.size());
+			model.addAttribute("hostList", hostList);
+		}
+		
 		return "bh/mystayList";
 	}
 	//리뷰 답글
