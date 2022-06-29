@@ -32,8 +32,9 @@
 					id="phone"oninput="checkPhone()" pattern="[0-9]{11}" maxlength="11" class="form-control" type="text" aria-label="default input example"> 
 						<span class="phone_ok" style="display: none">휴대폰 번호를 확인해주세요.</span>
 	</div>
-				</div>
+				</div><div class="hr">
 					<hr>
+					</div>
 				<div class="payfInfo">
 					<span class="mdTitle">결제수단 선택</span>
 					<select id="payment-select" class="form-select" aria-label="Default select example">
@@ -125,13 +126,13 @@
 						<p>${room1.host_name }</p>
 						<p>${room1.room_name }/${nday }박</p>
 						<p>
-							<span>체크인</span>${checkin } ${room1.checkin }
+							<span>체크인 </span><span>${checkin } ${room1.checkin }</span>
 						</p>
 						<p>
-							<span>체크아웃</span>${checkout } ${room1.checkout }
+							<span>체크아웃 </span><span>${checkout } ${room1.checkout }</span>
 						</p>
 						<p>
-							<span>----------------------------------------</span>
+							<hr>
 						</p>
 						<p>
 							미성년자는 보호자 동반 시 투숙이 가능합니다.<br> <span>취소 및 환불 규정</span>에 따라
