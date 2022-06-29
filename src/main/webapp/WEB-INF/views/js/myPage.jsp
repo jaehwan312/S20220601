@@ -21,7 +21,7 @@
 					<div id="profileInfo" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade show active">
 						<table class="table table-hover table-sm table-properties">
 							<div class="box" style="background: #BDBDBD;">
-								<img class="profile" src="${pageContext.request.contextPath}/images/js/${profile.photo}" style="width: 200px; height: 200px;">
+								<img class="profile" src="${pageContext.request.contextPath}/images/profile/${profile.photo}" style="width: 200px; height: 200px;">
 						    </div>
 							<tbody>
 								<tr>

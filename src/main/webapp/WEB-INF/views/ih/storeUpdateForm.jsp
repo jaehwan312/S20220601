@@ -225,7 +225,7 @@
 					<div style="display: inline;" >
 						<div id="preview1" style="display: inline;"><!-- read photo  -->
 						<c:forEach items="${storePhoto }" var="storePhoto" varStatus="i">
-								<img src="images/ih/${storePhoto.host_photo }" width="100px" height="100px" >
+								<img src="images/store/${storePhoto.host_photo }" width="100px" height="100px" >
 							 <c:if test="${i.last }">
 							 	<input type="hidden" value="${i.index + 1 }" id="photoEndIndex">
 							 </c:if>

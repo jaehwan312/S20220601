@@ -189,7 +189,6 @@
 
 	            var target = document.getElementById("cancle-select");
 	            var selectVal = target.options[target.selectedIndex].value;
-	            alert(selectVal);
 	            $('#canc_reason').val(selectVal);
 	            if (selectVal==""||selectVal==null) {
 	                alert("취소사유를 선택해주세요");

@@ -10,7 +10,7 @@
 	  	</select>
 	  	<!-- 식당사진등록 -->
 	  	<insert id="storePhotoInsert" parameterType="HostPhoto">
-	  		INSERT INTO hostphoto VALUES(#{host_num},SEQ_HOST_PHOTO_NUM.nextval,#{host_photo})
+	  		INSERT INTO hostphoto VALUES(#{host_num},SEQ_PHOTO_NUM.nextval,#{host_photo})
 	  	</insert>
 	  	<select id="selectHostMem_num" resultType="int">
 	  		SELECT SEQ_HOST_NUM.CURRVAL FROM dual
