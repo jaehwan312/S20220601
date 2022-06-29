@@ -54,7 +54,7 @@
 					<div class="col-12"> 
 						<label for="passwd" class="form-label">비밀번호</label> 
 						<input type="password" name="pw" class="form-control" id="pw"
-							   placeholder="6~10자의 영문 대소문자와 숫자로만 입력" maxlength="12" onkeyup="pwCheck(this)" onkeydown="pwCheck(this)">
+							   placeholder="6~10자의 영문 대소문자와 숫자로만 입력" maxlength="10">
 					</div>
 					<div class="col-12">
 						<label for="pwCheck" class="form-label">비밀번호 확인</label>
@@ -97,7 +97,7 @@
 					
 					<div class="col-12"  style="margin-bottom: 10px; text-align: center;">
 						<br>
-						   <input type="checkbox" name="agree" id="agree" value="Y"><a href="signUpCheckPage" target="_blank" style="text-decoration: underline;  color: #4b70fd;">개인정보 수집 이용 및 약관</a> 동의합니다.
+						   <input type="checkbox" name="agree" id="agree" value="Y"><a href="tosContent" target="_blank" style="text-decoration: underline;  color: #4b70fd;">개인정보 수집 이용 및 약관</a> 동의합니다.
 						<br>
 					</div>
 					<button type="submit" class="btn btn-primary btn-lg" style="margin-top: 50px;">회원가입</button>					

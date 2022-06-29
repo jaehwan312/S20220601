@@ -26,5 +26,6 @@ public class Review1 {
 	private int room_num;
 	private String room_name;   // 객실 이름 --> ROOM 테이블
 	private List<MultipartFile> revPhotolist;
+	private String photo;		//프로필사진
 	
 }

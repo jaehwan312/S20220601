@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,8 +48,16 @@ public class StayController {	//숙소 Controller
 	private StayService ss;
 	//숙소 정보
 	@RequestMapping(value = "stayRead")
-	public String stayRead(@RequestParam("host_num") int host_num, RoomPhotoList roomPhotoList,Model model) {//업체 정보 사진 룸정보 사진
+	public String stayRead(@RequestParam("host_num") int host_num, RoomPhotoList roomPhotoList,HttpSession session,Model model,HttpServletRequest request) {//업체 정보 사진 룸정보 사진
 		logger.info("StayController stayRead Start");
+		session = request.getSession();
+		int mem_num =0;
+		if(session.getAttribute("mem_num")==null) {
+			mem_num=0;
+		}else {
+			mem_num = (int)request.getSession().getAttribute("mem_num");
+			roomPhotoList.setMem_num(mem_num);
+		}
 		HostStay       		stayRead  			= ss.stayRead(roomPhotoList.getHost_num());
 		List<HostPhoto> 	stayPhoto 			= ss.stayPhoto(roomPhotoList.getHost_num());
 		List<RoomPhotoList>	roomPhoto			= ss.roomPhoto(roomPhotoList);
@@ -545,4 +554,6 @@ public class StayController {	//숙소 Controller
 		re.addAttribute("host_num", review.getHost_num());
 		return "redirect:stayRead";
 	}
+	
+	
 }

@@ -1,0 +1,98 @@
+.stayInsertTitle {
+	font-family: 'Gugi', cursive;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* position: fixed; */
+    /* z-index: 80; */
+    background-color: white;
+    /* width: 100vw;
+    top: 0px; */
+    font-size: 40px;
+    margin-bottom: 100px;
+    margin-top: 150px;
+}
+
+#labelInfo0{
+	display: inline-block;	
+	width: 20%;
+	margin-right: -7px;
+}
+
+#labelInfo1{
+	display: none;	
+	width: 20%;
+	margin-right: -7px;
+}
+#labelInfo2{
+	display: none;
+	width: 20%;	
+	margin-right: -7px;
+}
+#labelInfo3{
+	display: none;
+	width: 20%;	
+	margin-right: -7px;
+}
+#labelInfo4{
+	display: none;
+	width: 20%;	
+	margin-right: -7px;
+}
+
+.file_input_div {
+    position:relative;
+    width:80px;
+    height:36px;
+    overflow:hidden;
+}
+
+.img_btn {
+    padding:0 0 0 5px;
+}
+
+.host_photo {
+    font-size:29px;
+    position:absolute;
+    right:0px;
+    top:0px;
+    opacity:0;
+    filter: alpha(opacity=0);
+    -ms-filter: alpha(opacity=0);
+    cursor:pointer;
+}
+.input-group-text{
+	margin-left: auto;
+	width: 100px;
+}
+#ips{
+	margin-right: auto;
+	width: 500px;}
+
+	
+#preview > img {
+	display: inline-block;	
+	max-width: 20%;
+	height: auto;
+}
+
+.insertPhoto {
+	display: inline-block;
+}
+
+.file_input_img_btn {
+	display: inline-block;	
+	max-width: 90%;
+	height: auto;
+	border: 2px gray solid;
+	padding: 10px;
+	border-radius: 100%;
+	cursor: pointer;
+}
+
+#submitbtn {
+	margin: auto;
+	margin-top: 70px;
+	margin-bottom: 100px;
+	width: 30%;
+}

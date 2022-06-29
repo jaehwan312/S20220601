@@ -249,52 +249,83 @@
 		</div>
 		</div>
 	
-		<div id="onRoom2">
+		<div class="on_room2" id="onRoom2">
 			<!-- review -->
-				 <div style="text-align: center; margin-top: 100px;">
+				 <div>
 				 <c:if test="${hostreview.rev_count == 0}"><img alt="리뷰" src="images/bh/한라봉01.png"></c:if>
 				<c:if test="${hostreview.rev_count != 0}">
-				<div>
-					<h1>평점 : ${hostreview.host_avg}</h1><p/>
-					총 리뷰 : ${hostreview.rev_count }
+				<div class="totalData">
+					<h1 class="total_gradeLevel"><b>평점 :</b>&nbsp<strong>${hostreview.host_avg}</strong></h1>
+					<h2 class="total_revNumber"><strong>총 리뷰 :</strong>&nbsp<b>${hostreview.rev_count }</b></h2>
+					<hr>
 				</div>
 				<!-- start -->
 	            <c:forEach items="${maps }" var="map" varStatus="l">
-	            <div style="margin-top: 20px;">
-	            	<div>평점 : ${map.content.rev_point}</div>
-	               <div style="text-align: left; padding-left: 70px; padding-top:30px;">
-	                  	객실 :${map.content.room_name}  ${map.content.rev_date}
-	                </div>
-	                <div style="width: 40%; text-align: left; padding-left: 60px; padding-bottom: 30px; padding-top: 30px;">
-	                  ${map.content.rev_content}</div>
-	               <div style="width: 100%; height: 200px; text-align: left; padding-left: 60px; margin-bottom: 30px; ">
-	                  <div id="carouselExampleControls3${l.index }" class="carousel slide" data-bs-ride="carousel" style="width: 400px;">
-	                    <div class="carousel-inner">
-	                    <c:forEach items="${map.content.revPhoto }" var="getPhoto" varStatus="r">
-	                       <c:if test="${r.index==0 }">
-	                          <div class="carousel-item active">
-	                           <img src="images/bh/${getPhoto.rev_photo}" class="d-block w-100" alt="리뷰사진" style="height: 250px;">
-	                         </div>
-	                       </c:if>
-	                       <c:if test="${r.index!=0 }">
-	                          <div class="carousel-item">
-	                           <img src="images/bh/${getPhoto.rev_photo}" class="d-block w-100" alt="리뷰사진" style="height: 250px;">
-	                         </div>
-	                       </c:if>
-	                  </c:forEach>
-	                    </div>
-	                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls3${l.index }" data-bs-slide="prev">
-	                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-	                      <span class="visually-hidden">Previous</span>
-	                    </button>
-	                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls3${l.index }" data-bs-slide="next">
-	                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-	                      <span class="visually-hidden">Next</span>
-	                    </button>
-	                  </div>
-	               </div>
-	              
-	               <form style="display:inline-block;" action="reviewUpdateForm">
+	            <!-- <div>
+	            <c:if test="${map.content.photo == null }">
+	             <img style="border-radius: 70%; width: 150px; height: 150px" alt="${map.content.photo }" src="images/profile/기본.png">
+	            </c:if>
+	            <c:if test="${map.content.photo != null }">
+	            <img style="border-radius: 70%; width: 150px; height: 150px" alt="${map.content.photo }" src="images/profile/${map.content.photo }">
+	            </c:if>
+	            </div> -->
+	            <div>
+	            	<div class="rev_infos">
+	            		<div>
+	            			<div class="total_gradeLevel"><b>평점 :</b>&nbsp<strong>${map.content.rev_point}</strong></div>
+	            			<div><b>객실 : ${map.content.room_name}</b></div>
+	            		</div>
+		            	
+						<div>
+							<div id="carouselExampleControls3${l.index }" class="carousel slide" data-bs-ride="carousel" style="width: 400px;">
+								<div class="carousel-inner">
+									<c:forEach items="${map.content.revPhoto }" var="getPhoto" varStatus="r">
+										<c:if test="${r.index==0 }">
+											<div class="carousel-item active">
+												<img src="images/bh/${getPhoto.rev_photo}" class="d-block w-100" alt="리뷰사진" style="height: 250px;">
+											</div>
+										</c:if>
+										<c:if test="${r.index!=0 }">
+											<div class="carousel-item">
+												<img src="images/bh/${getPhoto.rev_photo}" class="d-block w-100" alt="리뷰사진" style="height: 250px;">
+											</div>
+										</c:if>
+									</c:forEach>
+								</div>
+								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls3${l.index }" data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</button>
+								<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls3${l.index }" data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</button>
+							</div>
+						</div>
+		            	
+	            		<div>등록일자 : ${map.content.rev_date}</div>
+	            	</div>
+	            	<div class="review">${map.content.rev_content}</div>
+	            	
+   		            <c:if test="${map.reply!=null }">
+		            	<div class="row host_rev_after">
+	            			<div class="col-2">
+								<c:if test="${map.reply.photo == null }">
+									<img style="border-radius: 70%; width: 150px; height: 150px" alt="${map.content.photo }" src="images/profile/기본.png">
+								</c:if>
+								<c:if test="${map.reply.photo != null }">
+									<img style="border-radius: 70%; width: 150px; height: 150px;" src="images/profile/${map.reply.photo}">
+								</c:if>
+							</div>
+							<div class="col-10 host_reply">
+								<p>등록일자 : ${map.reply.rev_date }</p>
+								<h2><b>FROM HOST</b></h2>
+								<div>${map.reply.rev_content }</div>
+							</div>
+		            	</div>
+		            </c:if>
+	                
+               		<form style="display:inline-block;" action="reviewUpdateForm">
 	               		<input type="hidden" name="host_num" value="${host_num }">
 				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
 				   		<c:if test="${map.content.mem_num==mem_num }">
@@ -308,21 +339,17 @@
 	               		<button type="button" class="btn btn-outline-danger" onclick="revDeleteCheck()">삭제</button>
 	               		</c:if>
 	               </form> 
-	               <form  action="reviewRef" id="reviewRef">
-	               		<input type="hidden" name="host_num" value="${host_num }">
-				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
-				   		<c:if test="${host_mem_num==mem_num}">
-				   		<textarea rows="10" cols="10" name="rev_content" style="border: 1px solid;"></textarea>
-				   		<button type="button" class="btn btn-outline-danger" onclick="revRefCheck()">답글달기</button>
-				   		</c:if>
-	               </form>
+					<form  action="reviewRef" id="reviewRef">
+						<input type="hidden" name="host_num" value="${host_num }">
+						<input type="hidden" name="rev_num" value="${map.content.rev_num }">
+						<c:if test="${host_mem_num==mem_num}">
+							<b>To Guest<b>
+							<textarea class="host_rev" rows="10" cols="10" name="rev_content"></textarea>
+							<button type="button" class="btn btn-outline-primary host_revBtn" onclick="revRefCheck()">답글달기</button>
+						</c:if>
+					</form>
 	            </div>
-	            <c:if test="${map.reply!=null }">
-	            	<div>
-	            	관리자 댓글 : ${map.reply.rev_content }<p>
-	            	댓글날짜 : ${map.reply.rev_date }
-	            </div>
-	            </c:if>
+
 	            </c:forEach> 
 				<!--end  -->
 			</c:if>
@@ -336,6 +363,7 @@
     <script src="js/bh/select2/select2.min.js"></script>
     <script src="js/bh/datepicker/moment.min.js"></script>
     <script src="js/bh/datepicker/daterangepicker.js"></script>
+    <script src="js/bh/bootstrap.min.js"></script>
     <!-- Main JS-->
     <script src="js/bh/global.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e16bda872939904d33c13e42c58e211b&libraries=services"></script>
