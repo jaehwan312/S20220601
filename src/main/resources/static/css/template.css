@@ -24,6 +24,7 @@ a {
     background-color: white;
     /* width: 100vw;
     top: 0px; */
+    height: 45px;
 }
 
 .navbar_logo a {
@@ -148,17 +149,29 @@ a {
 .dropdown_content {
     display: none;
     position: absolute;
-    min-width: 150px;
+    left: -8px;
+    /* top: 35px; */
+    min-width: 100px;
     z-index: 1;
-    border: 1px solid red; 
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
+
+.dropdown_content a:hover {
+	box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+	border-radius: 5px;
 }
 
 .dropdown_content a {
     display: block;
+    margin-top: 5px;
+    padding: 10px;
 }
 
 .dropdown_content a:nth-child(1) {
-    margin-top: 9px;
+    margin-top: 0;
 }
 
 .dropdown:hover .dropdown_content {
@@ -251,4 +264,12 @@ footer h1, h2 {
 
 footer li {
     list-style: none;
+}
+
+.csCenters {
+	color: white;
+}
+
+.csCenters:hover {
+	color: #ff9e1b;
 }

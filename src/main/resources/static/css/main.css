@@ -59,6 +59,7 @@ a {
     background-color: white;
     width: 100vw;
     top: 0px;
+    height: 45px;
 }
 
 .navbar_logo a {
@@ -118,11 +119,19 @@ a {
 .dropdown_content {
     display: none;
     position: absolute;
+    left: -8px;
+    /* top: 35px; */
     min-width: 100px;
     z-index: 1;
     background-color: white;
     text-align: center;
     border-radius: 10px;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
+
+.dropdown_content a:hover {
+	box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+	border-radius: 5px;
 }
 
 .dropdown_content a {
@@ -132,16 +141,13 @@ a {
 }
 
 .dropdown_content a:nth-child(1) {
-    margin-top: 9px;
+    margin-top: 0;
 }
 
 .dropdown:hover .dropdown_content {
     display: block;
 }
 
-.dropdown_content a:hover {
-	box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
-}
 
 .hamburger {
     display: none;
@@ -323,6 +329,13 @@ footer h1, h2 {
 footer li {
     list-style: none;
 }
+
+.csCenters {
+	color: white;
+}
+
+.csCenters:hover {
+	color: #ff9e1b;
 
 /* ----- jj start---- */
 

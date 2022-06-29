@@ -17,8 +17,9 @@
 	<div id="page-wrapper">
 			<%@ include file="../sideBar.jsp"%>
 			<!-- 본문 -->
-			<div id="content-wrapper">
-	
+		<div id="content-wrapper">
+			<h2 class="csc_chat">1:1 채팅 문의 내역</h2>
+    		<hr class="horizontal_rule">
 		    <table class="table table-striped table-hover">
 		        <thead>
 		        <tr class="table-primary">

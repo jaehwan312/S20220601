@@ -8,7 +8,7 @@
   position: fixed;
   bottom: 75px;
   right: 75px;
-  z-index: 200;
+  z-index: 50;
 }
 
 #chatIng {
@@ -31,7 +31,7 @@
     right: 75px;
     overflow: hidden;
     display: none;
-    z-index: 200;
+    z-index: 50;
     box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 
@@ -103,4 +103,14 @@
 
 #sendBtn i {
 	color: #34aaff;
+}
+
+.csc_chat {
+	font-family: 'Gugi', cursive;
+	font-size: 25px;
+	margin-top: 50px;
+}
+
+.horizontal_rule {
+	margin-bottom: 50px;
 }

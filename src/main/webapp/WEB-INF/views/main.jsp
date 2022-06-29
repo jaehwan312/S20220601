@@ -212,11 +212,11 @@
 			    <h2>주소 : 서울 마포구 신촌로 176 중앙빌딩 5층 (우)04104</h2>
 			</div>
 		    <div>
-		    	<h2>고객센터</h2> 
+		    	<h2><b>고객센터</b></h2> 
 			    <ul>
-			        <li><a href="ntcList">공지사항</a></li>
-			        <li><a href="tosContent">이용약관</a></li>
-			        <li><a href="faqContent">자주 묻는 질문(FAQ)</a></li>
+			        <li><a class="csCenters" href="ntcList"><b>공지사항</b></a></li>
+			        <li><a class="csCenters" href="tosContent"><b>이용약관</b></a></li>
+			        <li><a class="csCenters" href="faqContent"><b>자주 묻는 질문(FAQ)</b></a></li>
 			    </ul>
 			</div>
 		</footer>

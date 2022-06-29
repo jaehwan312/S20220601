@@ -26,8 +26,15 @@
 		    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
 		      <div class="accordion-body">
 		      		<br>
-		        	본 약관은 <strong>제주감수광</strong>이 운영하는 웹 사이트의 제반 서비스의 이용조건 및 절차에 관한 사항 및 기타 필요한 사항을 규정함을 목적으로 한다.
-		        	<br><br>
+		      		안녕하세요. 제주감수광 관리팀입니다.<br>
+		      		<br>
+		      		해당 질문에 대한 답변으로는,<br>
+		      		<br>
+		      		예약과 결제 서비스를 제공해 드리고 있는 숙박 서비스에 반해<br>
+		      		<strong>맛집 서비스는 해당 기능을 제공하고 있지 않습니다.</strong><br>
+		      		<br>
+		      		감사합니다.<br>
+		        	<br>
 		      </div>
 		    </div>
 		  </div>
@@ -40,26 +47,36 @@
 		    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
 		      <div class="accordion-body">
 		      		<br>
-					본 약관에서 사용하는 용어는 다음과 같이 정의한다.<br>
-					①&nbsp<strong>회원</strong> : 기본 회원 정보를 입력하였고, 회사와 서비스 이용계약을 체결하여 아이디를 부여받은 개인<br>
-					②&nbsp<strong>아이디</strong>(ID) : 회원식별과 회원의 서비스 이용을 위해 회원이 선정하고 회사가 승인하는 문자와 숫자의 조합<br>
-					③&nbsp<strong>비밀번호</strong>(Password) : 회원이 통신상의 자신의 비밀을 보호하기 위해 선정한 문자와 숫자의 조합<br>
-					④&nbsp<strong>해지</strong> : 회사 또는 회원에 의한 이용계약의 종료<br>
+		      		안녕하세요. 제주감수광 관리팀입니다.<br>
+		      		<br>
+		      		해당 질문에 대한 답변으로는,<br>
+		      		<br>
+		      		네. 숙박 서비스는 검색 서비스와 더불어<br>
+		      		<strong>예약과 결제 서비스를 모두 제공해 드리고 있습니다.</strong><br>
 					<br>
+					감사합니다.<br>
+		        	<br>
 		      </div>
 		    </div>
 		  </div>
 		  <div class="accordion-item">
 		    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
 		      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-		        	제 3 조&nbsp&nbsp<strong>약관의 공시 및 효력과 변경</strong>
+		        	<strong>회원 탈퇴가 가능한가요?</strong>
 		      </button>
 		    </h2>
 		    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
 		      <div class="accordion-body">
 		      		<br>
-					①본 약관은 회원가입 화면에 게시하여 공시하며 회사는 사정변경 및 영업상 중요한 사유가 있을 경우 약관을 변경할 수 있으며 변경된 약관은 공지사항을 통해 공시한다<br>
-					②본 약관 및 차후 회사사정에 따라 변경된 약관은 이용자에게 공시함으로써 효력을 발생한다.<br>
+		      		안녕하세요. 제주감수광 관리팀입니다.<br>
+		      		<br>
+		      		해당 질문에 대한 답변으로는,<br>
+		      		<br>
+		      		네.&nbsp<strong>가능합니다.</strong><br>
+		      		해당 서비스는 로그인 후, 우측 상단에 있는<br>
+		      		<strong>마이페이지에서 이용 가능합니다.</strong><br>
+		      		<br>
+					감사합니다.<br>
 					<br>
 		      </div>
 		    </div>
@@ -67,29 +84,42 @@
 		  <div class="accordion-item">
 		    <h2 class="accordion-header" id="panelsStayOpen-headingFour">
 		      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
-		        	제 4 조&nbsp&nbsp<strong>약관 외 준칙</strong>
+		        	<strong>맛집과 숙박이 동시에 검색 가능한가요?</strong>
 		      </button>
 		    </h2>
 		    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
 		      <div class="accordion-body">
 		      		<br>
-					본 약관에 명시되지 않은 사항이 전기통신기본법, 전기통신사업법, 정보통신촉진법, <strong>‘전자상거래등에서의 소비자 보호에 관한 법률’, ‘약관의 규제에관한법률’, ‘전자거래기본법’, ‘전자서명법’, ‘정보통신망 이용촉진등에 관한 법률’, ‘소비자보호법’</strong> 등 기타 관계 법령에 규정되어 있을 경우에는 그 규정을 따르도록 한다.
-		      		<br><br>
+		      		안녕하세요. 제주감수광 관리팀입니다.<br>
+		      		<br>
+		      		해당 질문에 대한 답변으로는,<br>
+		      		<br>
+		      		네.&nbsp<strong>가능합니다.</strong><br>
+		      		저희 서비스는 제주도 내의 맛집과 숙박업소를 검색 키워드 한 번으로<br>
+		      		<strong>동시에 검색 조회가 가능합니다.</strong><br>
+		      		<br>
+					감사합니다.<br>
+		      		<br>
 		      </div>
 		    </div>
 		  </div>
 		  <div class="accordion-item">
 		    <h2 class="accordion-header" id="panelsStayOpen-headingFive">
 		      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
-		        	제 5 조&nbsp&nbsp<strong>이용신청</strong>
+		        	<strong>제주도 내의 맛집과 숙소만 검색할  수 있나요?</strong>
 		      </button>
 		    </h2>
 		    <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
 		      <div class="accordion-body">
 		      		<br>
-					①이용신청자가 회원가입 안내에서 본 약관과 개인정보보호정책에 동의하고 등록절차(회사의 소정 양식의 가입 신청서 작성)를 거쳐 '확인' 버튼을 누르면 이용신청을 할 수 있다.<br>
-					②이용신청자는 반드시 실명과 실제 정보를 사용해야 하며 1개의 생년월일에 대하여 1건의 이용신청을 할 수 있다.<br>
-					③실명이나 실제 정보를 입력하지 않은 이용자는 법적인 보호를 받을 수 없으며, 서비스 이용에 제한을 받을 수 있다.<br>
+		      		안녕하세요. 제주감수광 관리팀입니다.<br>
+		      		<br>
+		      		해당 질문에 대한 답변으로는,<br>
+		      		<br>
+		      		네. 저희 서비스는 제주 지역 내에서 특화된 서비스로<br>
+		      		<strong>제주 지역 내의 맛집과 숙박시설에 대한 서비스를 제공하고 있습니다.</strong><br>
+		      		<br>
+					감사합니다.<br>
 		      		<br>
 		      </div>
 		    </div>
