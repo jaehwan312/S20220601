@@ -5,7 +5,7 @@ function previewFiles(e){
 	console.log(files);
     
 	function readAndPreview(file) {
-		if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+		if ( /\.(jpe?g|png|gif|webp|svg)$/i.test(file.name) ) {
 			
 			var reader = new FileReader();
 			

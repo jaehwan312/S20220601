@@ -10,7 +10,7 @@
   	</select>
   	<!-- 메뉴 등록 -->
   	<insert id="menuInsert" parameterType="Object">
-  		INSERT INTO menu VALUES(1,SEQ_MENU_NUM.nextval,#{menu_name},#{menu_price})
+  		INSERT INTO menu VALUES(#{host_num},SEQ_MENU_NUM.nextval,#{menu_name},#{menu_price})
   	</insert>
   	<!-- 메뉴 등록 -->
   	<update id="menuUpdate" parameterType="Menu" statementType="CALLABLE">

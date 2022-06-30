@@ -12,3 +12,6 @@
     margin-bottom: 100px;
     margin-top: 150px;
 }
+#menubox, #host_info_input, #photo_preview{
+	margin-top: 16px;
+}

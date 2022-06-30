@@ -72,52 +72,25 @@
 		    				</c:forEach>
 		    			</select>		
 			            </div>
-			            
-			            
-				         <!-- 메뉴 등록 -->
-				         
-				     <%--     <c:forEach items="${menuList }" var="menuList" varStatus="i">
-		    				<div>
-			   					<label class="labelmenuInfo" id="labelmenuInfo${i.index}" for="menuinputInfo${i.index}">
-			   								<input type="hidden" name="menu_list[${i.index}].menu_num" id="menuinputInfo${i.index}" value="${menuList.menu_num}">
-			   								<input type="hidden" name="menu_list[${i.index}].host_num" id="menuinputInfo${i.index}" value="${menuList.host_num}">
-				    				메뉴명 : <input type="text" name="menu_list[${i.index}].menu_name" id="menuinputInfo${i.index}" value="${menuList.menu_name}" required="required">
-							    	가격    : <input type="number" name="menu_list[${i.index}].menu_price" id="menuinputInfo${i.index}" value="${menuList.menu_price}" required="required">
-					    			  <input type="button" onclick="menuPlus(${i.index})" id="menuInfoInsert${i.index}" value="+" class="btn btn-primary">
-				    				  <c:if test="${i.index != 0 }">
-				    				 	 <input type="button" onclick="menuDel(${i.index})" id="menuInfoDel${i.index}" value="-" class="btn btn-primary">
-					    			  </c:if>	
-					    		</label><p/>
-					    		<c:if test="${i.last }">
-									<input type="hidden" id="menuEndIndex" value="${i.index }"></input>
-								</c:if>
-							</div>
-			    		</c:forEach> --%>
-				         
-				         
-				         
-				         
-				         
-				         <div id="menubox">
+			         </div>
+			            <!-- 메뉴 등록  -->
+				         <div id="menubox"  class="row g-3">
 				         <c:if test="${fn:length(menuList) ==0 }">
-				         	 <div class="divmenuInfo" id="divmenuInfo0" style="display: flex;">
 					            <div class="col-md-4" id="menu0">
 					              <label for="menuinputInfo0" class="form-label">메뉴이름</label>
 					              <input type="text" class="form-control" name="menu_list[0].menu_name" id="menuinputInfo0" required="required">
 					            </div>
 					            <div class="col-md-4" id="price0">
-					              <label for="menuinputInfo0" class="form-label">가격</label>
-					              <input type="number" class="form-control" name="menu_list[0].menu_price" id="menuinputInfo0" required="required">
+					              <label for="priceinputInfo0" class="form-label">가격</label>
+					              <input type="number" class="form-control" name="menu_list[0].menu_price" id="priceinputInfo0" required="required">
 					            </div>
-					            <div class="col-md-4">
-					              <label for="button1" class="form-label">&nbsp;</label>
+					            <div class="col-md-4 button0">
+					              <label for="menuInfoInsert0" class="form-label">&nbsp;</label>
 								  <input class="form-control btn btn-primary" type="button" id="menuInfoInsert0" value="추가" onclick="menuPlus(0)">
 					            </div>
-				            </div>
 				         </c:if>
 				         <c:if test="${fn:length(menuList) !=0 }">
 					         <c:forEach items="${menuList }" var="menuList" varStatus="i">
-					         	 <div class="divmenuInfo" id="divmenuInfo${i.index }" style="display: flex;">
 					         	 	<!-- 첫번째 메뉴  -->
 					         	 	 <c:if test="${i.first }">
 									     <input type="hidden" name="menu_list[${i.index}].menu_num" id="menuinputInfo${i.index}" value="${menuList.menu_num}">
@@ -129,10 +102,10 @@
 											     <input type="text" class="form-control" name="menu_list[${i.index }].menu_name" id="menuinputInfo${i.index }" value="${menuList.menu_name}" required="required">
 										     </div>
 										     <div class="col-md-4" id="price${i.index }">
-											     <label for="menuinputInfo${i.index }" class="form-label">가격</label>
-											     <input type="number" class="form-control" name="menu_list[${i.index }].menu_price" id="menuinputInfo${i.index }" value="${menuList.menu_price}" required="required">
+											     <label for="priceinputInfo${i.index }" class="form-label">가격</label>
+											     <input type="number" class="form-control" name="menu_list[${i.index }].menu_price" id="priceinputInfo${i.index }" value="${menuList.menu_price}" required="required">
 										     </div>
-									     	 <div class="col-md-4">
+									     	 <div class="col-md-4 button${i.index}">
 									    	 	<label for="menuInfoInsert${i.index }" class="form-label">&nbsp;</label>
 										 		 <input class="form-control btn btn-primary" type="button" id="menuInfoInsert${i.index }" value="추가" onclick="menuPlus(${i.index })">
 									     	</div>
@@ -144,10 +117,10 @@
 											     <input type="text" class="form-control" name="menu_list[${i.index }].menu_name" id="menuinputInfo${i.index }" value="${menuList.menu_name}" required="required">
 										     </div>
 										     <div class="col-md-6" id="price${i.index }">
-											     <label for="menuinputInfo${i.index }" class="form-label">가격</label>
-											     <input type="number" class="form-control" name="menu_list[${i.index }].menu_price" id="menuinputInfo${i.index }" value="${menuList.menu_price}" required="required">
+											     <label for="priceinputInfo${i.index }" class="form-label">가격</label>
+											     <input type="number" class="form-control" name="menu_list[${i.index }].menu_price" id="priceinputInfo${i.index }" value="${menuList.menu_price}" required="required">
 										     </div>
-										     <div class="col-md-4">
+										     <div class="col-md-4 button${i.index}">
 									    	 	<label for="menuInfoInsert${i.index }" class="form-label">&nbsp;</label>
 										 		 <input class="form-control btn btn-primary" type="button" id="menuInfoInsert${i.index }" value="추가" onclick="menuPlus(${i.index })">
 									     	</div>
@@ -162,14 +135,14 @@
 										     <input type="text" class="form-control" name="menu_list[${i.index }].menu_name" id="menuinputInfo${i.index }" value="${menuList.menu_name}" required="required">
 									     </div>
 									     <div class="col-md-6" id="price${i.index }">
-										     <label for="menuinputInfo${i.index }" class="form-label">가격</label>
-										     <input type="number" class="form-control" name="menu_list[${i.index }].menu_price" id="menuinputInfo${i.index }" value="${menuList.menu_price}" required="required">
+										     <label for="priceinputInfo${i.index }" class="form-label">가격</label>
+										     <input type="number" class="form-control" name="menu_list[${i.index }].menu_price" id="priceinputInfo${i.index }" value="${menuList.menu_price}" required="required">
 									     </div>
-									     <div class="col-md-2">
+									     <div class="col-md-2 button${i.index}">
 									    	 <label for='menuInfoInsert${i.index }' class='form-label'>&nbsp;</label>
 										 	 <input class="form-control btn btn-primary" type="button" id="menuInfoInsert${i.index }" value="추가" onclick="menuPlus(${i.index })">
 								  		</div>
-								      	<div class="col-md-2">
+								      	<div class="col-md-2 button${i.index}">
 								      		 <label for='menuInfoDel${i.index }' class='form-label'>&nbsp;</label>
 					    				 	 <input type="button" onclick="menuDel(${i.index})" id="menuInfoDel${i.index}" value="삭제" class="form-control btn btn-primary">
 						    			</div>
@@ -183,29 +156,18 @@
 										     <input type="text" class="form-control" name="menu_list[${i.index }].menu_name" id="menuinputInfo${i.index }" value="${menuList.menu_name}" required="required">
 									     </div>
 									     <div class="col-md-4" id="price${i.index }">
-										     <label for="menuinputInfo${i.index }" class="form-label">가격</label>
-										     <input type="number" class="form-control" name="menu_list[${i.index }].menu_price" id="menuinputInfo${i.index }" value="${menuList.menu_price}" required="required">
+										     <label for="priceinputInfo${i.index }" class="form-label">가격</label>
+										     <input type="number" class="form-control" name="menu_list[${i.index }].menu_price" id="priceinputInfo${i.index }" value="${menuList.menu_price}" required="required">
 									     </div>
-									        	 <div class="col-md-2">
+									    <div class="col-md-2 button${i.index}">
 									    	 <label for='menuInfoInsert${i.index }' class='form-label'>&nbsp;</label>
 										 	 <input class="form-control btn btn-primary" type="button" id="menuInfoInsert${i.index }" value="추가" onclick="menuPlus(${i.index })">
 								  	   </div>
-								      	<div class="col-md-2">
+								      	<div class="col-md-2 button${i.index}">
 								      		 <label for='menuInfoDel${i.index }' class='form-label'>&nbsp;</label>
 					    				 	 <input type="button" onclick="menuDel(${i.index})" id="menuInfoDel${i.index}" value="삭제" class="form-control btn btn-primary">
 						    			</div>
 									  </c:if>
-								    <%--   <c:if test="${i.index != 0 }">
-								      	 <div class="col-md-2">
-									    	 <label for='menuInfoInsert${i.index }' class='form-label'>&nbsp;</label>
-										 	 <input class="form-control btn btn-primary" type="button" id="menuInfoInsert${i.index }" value="추가" onclick="menuPlus(${i.index })">
-								  	   </div>
-								      	<div class="col-md-2">
-								      		 <label for='menuInfoDel${i.index }' class='form-label'>&nbsp;</label>
-					    				 	 <input type="button" onclick="menuDel(${i.index})" id="menuInfoDel${i.index}" value="삭제" class="form-control btn btn-primary">
-						    			</div>
-						    		  </c:if> --%>
-					         	 </div>
 				          	       <c:if test="${i.last }">
 								 	  <input type="hidden" id="menuEndIndex" value="${i.index }"></input>
 								   </c:if>
@@ -213,43 +175,42 @@
 				           </c:if>
 			             </div>
 			             <!-- 메뉴 등록 끝  -->
-			            <div class="col-12">
-			              <label for="address" class="form-label">업체소개</label>
-			              <textarea rows="5" class="form-control" style="resize: none;" name="host_info">${store.host_info }</textarea>
+			             <div class="row g-3" id="host_info_input">
+				            <div class="col-12" >
+				              <label for="address" class="form-label">업체소개</label>
+				              <textarea rows="5" class="form-control" style="resize: none;" name="host_info">${store.host_info }</textarea>
+				            </div>
 			            </div>
 					</div>
 				</div>
-				
 				<!-- 사진수정 -->
-				<div style="text-align: center; margin: 10px;">
-					<div style="display: inline;" >
-						<div id="preview1" style="display: inline;"><!-- read photo  -->
+				<div style="text-align: center;"id="photo_preview">
+					<div id="preview"><!-- read photo  -->
 						<c:forEach items="${storePhoto }" var="storePhoto" varStatus="i">
 								<img src="images/store/${storePhoto.host_photo }" width="100px" height="100px" >
 							 <c:if test="${i.last }">
 							 	<input type="hidden" value="${i.index + 1 }" id="photoEndIndex">
 							 </c:if>
 						</c:forEach>
-						</div>
 					</div>
-					
-					<div style="text-align: center;">
-						<div class="insertPhoto" >
-							<c:forEach begin="0" end="4" varStatus="i">
-			                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
-			                       	 👉 CLICK HERE!👈 
-									<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
-										onchange="previewFiles(${i.index })" accept="images/*">
-			                    </label>
-			                </c:forEach>
-	      				</div>
-					</div>
+				</div>
+				
+				<div style="text-align: center;">
+					<div class="insertPhoto" >
+						<c:forEach begin="0" end="4" varStatus="i">
+		                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
+		                       		<img alt="plus" src="images/store/plus.png">
+								<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
+									onchange="previewFiles(${i.index })" accept="images/*">
+		                    </label>
+		                </c:forEach>
+      				</div>
 				</div>
 				<!-- 사진 등록 끝  -->
 				<div style="text-align: center; margin: 10px;">
 					<input type="submit" value="수정요청" class='btn btn-outline-primary review_btn' >
 				</div>
-			</div>
+			
 			
     	</form>	
     	

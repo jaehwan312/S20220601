@@ -133,10 +133,15 @@
 						<div class="col-9">
 			    			<b>${foodcode.name}</b>
 			    			<br>
-			    			<c:forEach items="${menuList }" var="menu">
-					    		<b>${menu.menu_name}</b>
-					    		<b>${menu.menu_price}</b>
-					    	</c:forEach>
+					    	<table>
+					    		<!-- <tr style="text-align: center;"><th>이름</th><th>가격</th></tr> -->
+				    			<c:forEach items="${menuList }" var="menu">
+					    			<tr>
+					    				<td><b>${menu.menu_name }</b></td>
+					    				<td><b>${menu.menu_price }</b></td>
+					    			</tr>
+						    	</c:forEach>
+					    	</table>
 						</div>
 			    	</div>
 			    	<hr/>

@@ -21,7 +21,6 @@
 		</div>
 	    	
     	<form action="storeInsert" method="post" enctype="multipart/form-data">
-			<div>
 				<div class="col-4 mx-auto">
 					<div class="row g-3">
 						<div class="col-12">
@@ -65,53 +64,52 @@
 		    					</c:forEach>
 		              		</select>		
 			            </div>
-				         <!-- 메뉴 등록 -->
-				         <div id="menubox">
-				            <div class="divmenuInfo" id="divmenuInfo0" style="display: flex;">
-					            <div class="col-md-4" id="menu0">
-					              <label for="menuinputInfo0" class="form-label">메뉴이름</label>
-					              <input type="text" class="form-control" name="menu_list[0].menu_name" id="menuinputInfo0" required="required">
-					            </div>
-					            <div class="col-md-4" id="price0">
-					              <label for="menuinputInfo0" class="form-label">가격</label>
-					              <input type="number" class="form-control" name="menu_list[0].menu_price" id="menuinputInfo0" required="required">
-					            </div>
-					            <div class="col-md-4">
-					              <label for="button1" class="form-label">&nbsp;</label>
-								  <input class="form-control btn btn-primary" type="button" id="menuInfoInsert0" value="추가" onclick="menuPlus(0)">
-					            </div>
+			        </div>
+			         <!-- 메뉴 등록 -->
+			         <div id="menubox" class="row g-3">
+			           <!--  <div class="divmenuInfo" id="divmenuInfo0" style="display: flex;"> -->
+				            <div class="col-md-4" id="menu0">
+				              <label for="menuinputInfo0" class="form-label">메뉴이름</label>
+				              <input type="text" class="form-control" name="menu_list[0].menu_name" id="menuinputInfo0" required="required">
 				            </div>
-			             </div>
-			             <!-- 메뉴 등록 끝  -->
-			             
-			            <div class="col-12">
-			              <label for="address" class="form-label">업체소개</label>
-			              <textarea rows="5" class="form-control" style="resize: none;" name="host_info"></textarea>
-			            </div>
-					</div>
-				</div>
-				
-				<!-- 사진등록 -->
-				<div style="text-align: center; margin: 10px;">
-					<div class="" id="preview"></div>
-				</div>
-				<div style="text-align: center; margin: 10px;">
-					<div class="insertPhoto" >
-						<c:forEach begin="0" end="4" varStatus="i">
-		                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
-		                       	 👉 CLICK HERE!👈 
-								<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
-									onchange="previewFiles(${i.index })" accept="images/store/*">
-		                    </label>
-		                </c:forEach>
-      				</div>
-				</div>
-				<!-- 사진 등록 끝  -->
-				<div style="text-align: center; margin: 10px;">
-					<input type="submit" value="등록요청" class='btn btn-outline-primary review_btn' style="width=100%;">
+				            <div class="col-md-4" id="price0">
+				              <label for="priceinputInfo0" class="form-label">가격</label>
+				              <input type="number" class="form-control" name="menu_list[0].menu_price" id="priceinputInfo0" required="required">
+				            </div>
+				            <div class="col-md-4 button0">
+				              <label for="menuInfoInsert0" class="form-label">&nbsp;</label>
+							  <input class="form-control btn btn-primary" type="button" id="menuInfoInsert0" value="추가" onclick="menuPlus(0)">
+				            </div>
+				        </div>
+			             <!-- </div> -->
+			        <div class="row g-3" id="host_info_input">
+		             <!-- 메뉴 등록 끝  -->
+		             <div class="col-12">
+		              		<label for="address" class="form-label">업체소개</label>
+		            		<textarea rows="5" class="form-control" style="resize: none;" name="host_info"></textarea>
+	           		 </div>
 				</div>
 			</div>
-			
+			<!-- 사진등록 -->
+					<div style="text-align: center;" id="photo_preview">
+						<div class="" id="preview"></div>
+					</div>
+					<div style="text-align: center; margin: 10px;">
+						<div class="insertPhoto" >
+							<c:forEach begin="0" end="4" varStatus="i">
+			                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" >
+			                       	<img alt="plus" src="images/store/plus.png">
+									<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
+										onchange="previewFiles(${i.index })" accept="images/store/*">
+			                    </label>
+			                </c:forEach>
+	      				</div>
+					</div>
+				<!-- 사진 등록 끝  -->
+				
+				<div style="text-align: center; margin: 10px;">
+						<input type="submit" value="등록요청" class='btn btn-outline-primary review_btn' style="width=100%;">
+				</div>
     	</form>
     <!-- 여기 위로오 ============================================================ -->   
     </div>

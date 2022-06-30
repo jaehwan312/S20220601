@@ -14,27 +14,16 @@ $(document).ready(function () {
 	console.log(menuEndIndex);
 	
 	for(var i = 0; i < menuEndIndex; i++){
-			$('#menuInfoInsert'+ i).hide();
-			$('#menuInfoDel'+ i).hide();
+			$('.button'+ i).hide();
 	}
 });
 
 $(document).ready(function () {
 
-	var preview1 = document.querySelector("#preview1");
+	var preview1 = document.querySelector("#preview");
 	
 	var photoEndIndex = document.getElementById('photoEndIndex').value;
-	//var image =[];
 	
-	//for(var i = 0; i < photoEndIndex; i++){
-	//	image[i] =  document.querySelector('input[type=image]#select' + i).src;
-	//}
-	
-	
-	//console.log(photoEndIndex);
-	//for(var i = 0; i < photoEndIndex; i++){
-	//	console.log(image[i]);
-	//}
 	for(var i = 0; i < photoEndIndex; i++){
 		$('#labelInfo' + i).hide();
 		$('#labelInfo' + (i+1)).show();

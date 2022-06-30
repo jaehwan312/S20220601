@@ -1,11 +1,11 @@
 function previewFiles(e){
 
-	var preview1 = document.querySelector("#preview1");
+	var preview = document.querySelector("#preview");
 	var files   = document.querySelector('input[type=file]#inputInfo'+e).files;
 	console.log(files);
     
 	function readAndPreview(file) {
-		if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+		if ( /\.(jpe?g|png|gif|webp|svg)$/i.test(file.name) ) {
 			
 			var reader = new FileReader();
 			
@@ -15,7 +15,7 @@ function previewFiles(e){
 		        image.height = 100;
 		        image.title = file.name;
 		        image.src = this.result;
-		        preview1.appendChild( image );
+		        preview.appendChild( image );
 			}, false);
 			
 			reader.readAsDataURL(file);
