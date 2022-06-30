@@ -135,7 +135,7 @@ public class ProfileController {
 		System.out.println("-------------signUp Start-------------	");
 		System.out.println(profilePhoto.getOriginalFilename());
 		
-		String uploadPath = request.getSession().getServletContext().getRealPath("/images/js/");
+		String uploadPath = request.getSession().getServletContext().getRealPath("/images/profile/");
 		
 		logger.info("originalName: " + profilePhoto.getOriginalFilename());
 	    logger.info("size: " + profilePhoto.getSize());
@@ -371,7 +371,7 @@ public class ProfileController {
 		profile.setMem_num(mem_num);
 		
 		if(profilePhoto.getSize() != 0) {
-		String uploadPath = request.getSession().getServletContext().getRealPath("/images/js/");
+		String uploadPath = request.getSession().getServletContext().getRealPath("/images/profile/");
 		
 		logger.info("originalName: " + profilePhoto.getOriginalFilename());
 	    logger.info("size: " + profilePhoto.getSize());

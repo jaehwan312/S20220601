@@ -17,6 +17,37 @@
 <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
 	integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
 	crossorigin="anonymous"></script>
+<script type="text/javascript">
+function join() {
+	
+	
+	if($('#pw').val() == ""){
+		alert("비밀번호를 입력해주세요.");
+		return false;
+	}
+	
+	if($('#pw').val() != $('#pwCheck').val()){
+		alert("비밀번호가 일치하지 않습니다.");
+		return false;
+	}
+	
+	$.ajax({
+		type : "POST",
+		url : "${pageContext.request.contextPath}/pwCheck?pw="+$('#pw').val(),
+		success: function(data){
+			if(data==0){
+				alert("비밀번호를 확인해주세요.");
+				return;
+			}else{
+				if(confirm("탈퇴하시겠습니까?")){
+					$("#userSleep").submit();
+				}
+				
+			}
+		}
+	})
+}
+</script>
 <title>제주 감수광</title>
 </head>
 <body>
@@ -46,7 +77,6 @@
 		<!-- 여기 위로오 ============================================================ -->
 	</div>
 	<%@ include file="../footer.jsp"%>
-	<script type="text/javascript" src="js/js/userSleep.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
