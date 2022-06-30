@@ -1,7 +1,6 @@
 package com.oracle.S20220601.controller.ih;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,10 +21,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.S20220601.model.Code;
-import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.HostPhoto;
 import com.oracle.S20220601.model.Menu;
-import com.oracle.S20220601.model.Pick;
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.RevPhoto;
 import com.oracle.S20220601.model.Review;

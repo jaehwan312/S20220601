@@ -2,7 +2,6 @@ package com.oracle.S20220601.service.ji;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.http.HttpEntity;
@@ -19,7 +18,6 @@ import com.oracle.S20220601.model.Pay;
 import com.oracle.S20220601.model.Res;
 import com.oracle.S20220601.model.ji.KakaoPayApprovalVO;
 import com.oracle.S20220601.model.ji.KakaoPayReadyVO;
-
 
 import lombok.extern.java.Log;
 

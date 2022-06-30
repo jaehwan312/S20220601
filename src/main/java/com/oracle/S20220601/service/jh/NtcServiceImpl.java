@@ -2,8 +2,6 @@ package com.oracle.S20220601.service.jh;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

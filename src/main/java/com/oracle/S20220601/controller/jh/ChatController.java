@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.oracle.S20220601.dao.jh.ChatRoom;
 import com.oracle.S20220601.dao.jh.ChatRoomRepository;
 import com.oracle.S20220601.model.Profile;
-import com.oracle.S20220601.model.Room;
 import com.oracle.S20220601.model.jh.Chat;
 import com.oracle.S20220601.model.jh.ChatRoomForm;
 import com.oracle.S20220601.service.jh.ChatService;
