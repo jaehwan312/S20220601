@@ -8,7 +8,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/bh/stayInsertForm.css">
-<script type="text/javascript" src="js/bh/StayPhoto.js"></script>
+<script type="text/javascript" src="js/bh/StayPhoto1.js"></script>
    
 <title>제주 감수광</title>
 </head>
@@ -66,14 +66,14 @@
 		              <label for="way" class="form-label">오시는길</label>
 		              <textarea rows="3" name="way" id="way" class="form-control" style="resize: none;" placeholder="ex)공항에서 차로 10분 거리,버스 30번 이용후 xx정류장하차" required="required"></textarea>
 		            </div>
-		            <div class="col-12" style="margin-top: 20px;">
-						<div id="preview"></div>
+		            <div class="col-12" style="margin-top: 20px; text-align: center;">
+						<div id="preview" style="display: flex; justify-content: center; margin-top: 10px;"></div>
 							<c:forEach begin="0" end="4" varStatus="i">
-			                   <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
-			                      	<img alt="plus" src="images/ih/plus.png" class="file_input_img_btn">
-			                      	<!-- <img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px;"/> -->
+			                   <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}" style="margin-top: 10px; margin: auto;">
+			                      	<!-- <img alt="plus" src="images/ih/plus.png" class="file_input_img_btn"> -->
+			                      	<img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px; margin-top: 10px;"/>
 								<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
-									onchange="previewFiles(${i.index })" accept="images/bh/*" required="required">
+									onchange="previewFiles(${i.index })" accept="image/jpg, image/jpeg, image/png, image/gif, image/webp" >
 			                   </label>
 			               </c:forEach>
 			           </div>

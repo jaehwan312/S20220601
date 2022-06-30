@@ -51,6 +51,7 @@ div img{
     filter: alpha(opacity=0);
     -ms-filter: alpha(opacity=0);
     cursor:pointer;
+    display: none;
 }
 
 .input-group-text{
@@ -119,7 +120,7 @@ div img{
 				                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
 				                       	<img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px; display: flex; margin: auto;"/>
 										<input type="file" class="host_photo" id="inputInfo${i.index }" name="room_photo${i.index}" 
-											onchange="previewFiles(${i.index })" accept="images/bh/*">
+											onchange="previewFiles(${i.index })" accept="image/jpg, image/jpeg, image/png, image/gif, image/webp">
 				                    </label><p/>
 				                </c:forEach>
 		      				</div>

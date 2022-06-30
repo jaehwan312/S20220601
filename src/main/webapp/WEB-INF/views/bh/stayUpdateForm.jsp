@@ -43,6 +43,7 @@
     filter: alpha(opacity=0);
     -ms-filter: alpha(opacity=0);
     cursor:pointer;
+    display: none;
 }
 
 .input-group-text{
@@ -133,18 +134,18 @@
 			<div>
 				<div id="preview"></div>
 				<div>
-					<div class="insertPhoto">
+					<div class="insertPhoto" style="display: flex; justify-content: center; margin-top: 10px;">
 						<c:forEach begin="0" end="4" varStatus="i">
 		                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
 		                       	 <img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px;"/>
 								<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
-									onchange="previewFiles(${i.index })" accept="images/bh/*">
+									onchange="previewFiles(${i.index })" accept="image/jpg, image/jpeg, image/png, image/gif, image/webp">
 		                    </label>
 		                </c:forEach>
       				</div>
 				</div>
 			</div>
-			<input class="btn btn-outline-primary mb-5 mx-auto" type="submit" value="수정">
+			<input class="btn btn-outline-primary mb-5 mx-auto" style="display: flex; justify-content: center; margin-top: 10px;" type="submit" value="수정">
 			</div>
 			</div>
     	</form>

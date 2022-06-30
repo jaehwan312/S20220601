@@ -46,6 +46,8 @@
     filter: alpha(opacity=0);
     -ms-filter: alpha(opacity=0);
     cursor:pointer;
+    display: none;
+    
 }
 
 .input-group-text{
@@ -107,19 +109,19 @@
 			</div>
 			<div>
 				<div>
-					<div id="preview" ></div>
+					<div id="preview" style="display: flex; justify-content: center;"></div>
 				</div>
-				<div>
+				<div style="display: flex; justify-content: center; margin-top: 10px;">
 					<c:forEach begin="0" end="4" varStatus="i">
-	                    <div class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
+	                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
 	                       	<img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px;"/>
 							<input type="file" class="host_photo" id="inputInfo${i.index }" name="room_photo${i.index}" 
-								onchange="previewFiles(${i.index })" accept="images/bh/*">
-	                    </div>
+								onchange="previewFiles(${i.index })" accept="image/jpg, image/jpeg, image/png, image/gif, image/webp">
+	                    </label>
 	                </c:forEach>
 				</div>
 			</div>
-			<div style="margin-bottom: 30px;">
+			<div style="margin-bottom: 30px; display: flex; justify-content: center; margin-top: 40px;">
 			<input class="btn btn-outline-primary" type="submit" value="등록">
 			<button class="btn btn-outline-primary" type="button" onclick="location.href='main'">저장</button>
 			</div>
