@@ -61,6 +61,15 @@ div img{
 	margin-right: auto;
 	width: 500px;
 }
+.roomUpdateTitle {
+	font-family: 'Gugi', cursive;
+	font-size: 25px;
+	margin-top: 50px;
+}
+
+.horizontal_rule {
+	margin-bottom: 50px;
+}
    </style>
 <title>제주 감수광</title>
 </head>
@@ -68,6 +77,10 @@ div img{
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
+    	<div>
+			<h1 class="roomUpdateTitle">나의 객실 수정</h1>
+		</div>
+		<hr class="horizontal_rule">
     	<div style="text-align: center; margin-top: 100px;">
     	<form action="roomUpdate" method="post" style="text-align: center;" enctype="multipart/form-data">
     		<input type="hidden" value="${room.host_num }" name="host_num">

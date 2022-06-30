@@ -15,8 +15,8 @@
 }
 
 #labelInfo0{
-   display: block;   
-   text-align: center;
+   display: block;
+   height: 50px;
 }
 #labelInfo1{
    display: none;   
@@ -31,14 +31,7 @@
    display: none;   
 }
 .labelInfo {
-    float:left;
     height:28px;
-}
-.file_input_div {
-    position:relative;
-    width:80px;
-    height:36px;
-    overflow:hidden;
 }
 
 .img_btn {
@@ -47,7 +40,6 @@
 
 .host_photo {
     font-size:29px;
-    position:absolute;
     left:0px;
     top:300px;
     opacity:0;
@@ -82,12 +74,12 @@
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
     	<div>
-			<h1 class="roomInsertTitle">나의 객실 추가</h2>
+			<h1 class="roomInsertTitle">나의 객실 추가</h1>
 		</div>
 		<hr class="horizontal_rule">
     	<div class="row">
     	<div class="col-8 mx-auto">
-    	<form action="roomInsert" method="post" style="text-align: center;" enctype="multipart/form-data">
+    	<form action="roomInsert" method="post" enctype="multipart/form-data">
 			<div>
     		<input type="hidden" value="${host_num }" name="host_num">
 			
@@ -111,22 +103,21 @@
 			  <span class="input-group-text" id="inputGroup-sizing-default">주말요금</span>
 			  <input id="ips" type="number"      name="weekfee"    required placeholder="ex)150000" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>	
-					<div>
-						<div>
-							<div id="preview" ></div>
-						</div>
-						<div>
-							<div style="display: inline-block; margin-top: 15px; height: 50px; align-content: center;" class="insertPhoto">
-								<c:forEach begin="0" end="4" varStatus="i">
-				                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
-				                       	<img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px;"/>
-										<input type="file" class="host_photo" id="inputInfo${i.index }" name="room_photo${i.index}" 
-											onchange="previewFiles(${i.index })" accept="images/bh/*">
-				                    </label><p/>
-				                </c:forEach>
-		      				</div>
-						</div>
-					</div>
+
+			</div>
+			<div>
+				<div>
+					<div id="preview" ></div>
+				</div>
+				<div>
+					<c:forEach begin="0" end="4" varStatus="i">
+	                    <div class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
+	                       	<img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px;"/>
+							<input type="file" class="host_photo" id="inputInfo${i.index }" name="room_photo${i.index}" 
+								onchange="previewFiles(${i.index })" accept="images/bh/*">
+	                    </div>
+	                </c:forEach>
+				</div>
 			</div>
 			<div style="margin-bottom: 30px;">
 			<input class="btn btn-outline-primary" type="submit" value="등록">

@@ -31,7 +31,46 @@
 #labelInfo4{
 	display: none;	
 }
-   
+.img_btn {
+    padding:0 0 0 5px;
+}
+
+.host_photo {
+    font-size:29px;
+    left:0px;
+    top:300px;
+    opacity:0;
+    filter: alpha(opacity=0);
+    -ms-filter: alpha(opacity=0);
+    cursor:pointer;
+}
+
+.input-group-text{
+	margin-left: auto;
+	width: 100px;
+}
+#ips{
+	margin-right: auto;
+	width: 500px;
+}
+
+.roomInsertTitle {
+	font-family: 'Gugi', cursive;
+	font-size: 25px;
+	margin-top: 50px;
+}
+
+.horizontal_rule {
+	margin-bottom: 50px;
+}
+
+.labelInfo {
+	text-align: center;
+}
+
+#preview {
+	text-align: center;
+}
    </style>
 <title>제주 감수광</title>
 </head>
@@ -39,9 +78,8 @@
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
-    	<div style="text-align: center; margin-top: 100px;">
     	
-    	<form action="stayUpdate" method="post" style="text-align: center;" enctype="multipart/form-data">
+    	<form action="stayUpdate" method="post" enctype="multipart/form-data">
     	<input type="hidden" name="host_num" value="${stay.host_num }">
 	    		<input type="hidden" name="mem_num" value="${stay.mem_num }">
 	    		<input type="hidden" name="host_app" value="${stay.host_app }">
@@ -49,83 +87,67 @@
 	    		<input type="hidden" name="like_count" value="${stay.like_count }">
 	    		<input type="hidden" name="rev_count" value="${stay.rev_count}">
 			<div>
-				<label>
-					숙소명 :
-				</label>
-				<label>
-					<input type="text" name="host_name" value="${stay.host_name }">
-				</label><p/><p/>
-				<label>
-					업체주소 :
-				</label>
-				<label>
-					<input type="text" name="host_addr"  value="${stay.host_addr }">
-				</label><p/>
-
+			<h1 class="roomInsertTitle">나의 객실 추가</h1>
+			</div>
+			<hr class="horizontal_rule">
+	    	<div class="row">
+	    	<div class="col-8 mx-auto">
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">숙소명</span>
+			  <input type="text" name="host_name" value="${stay.host_name }" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">업체주소</span>
+			  <input type="text" name="host_addr"  value="${stay.host_addr }" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			
+			
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">숙소종류</span>
+			  <select name="stay_type" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			  	<c:forEach var="staycode" items="${codeList }">
+   					<option value="${staycode.mcd}">${staycode.name }</option>
+   				</c:forEach>
+			  </select>
+			</div>
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">업체소개</span>
+			  <input type="text" name="host_info"  value="${stay.host_info }" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">편의시설</span>
+			  <input type="text" name="convenient"  value="${stay.convenient}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>	
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">오시는길</span>
+			  <input type="text" name="way"  value="${stay.way }" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>		
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">체크인 가능시간</span>
+			  <input type="time" class="form-control" name="checkin" id="stay_checkin" autocomplete="off" value="${stay.checkin}" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>		
+			<div class="input-group mb-3">
+			  <span class="input-group-text" id="inputGroup-sizing-default">체크인 가능시간</span>
+			  <input type="time"  class="form-control" name="checkout" id="stay_checkout" autocomplete="off" value="${stay.checkout}" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>	
 			<div>
-				<div>
-					<div id="preview" ></div>
-				</div>
+				<div id="preview"></div>
 				<div>
 					<div class="insertPhoto">
 						<c:forEach begin="0" end="4" varStatus="i">
 		                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
-		                       	 사진 업로드
+		                       	 <img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px;"/>
 								<input type="file" class="host_photo" id="inputInfo${i.index }" name="host_photo${i.index}" 
 									onchange="previewFiles(${i.index })" accept="images/bh/*">
-		                    </label><p/>
+		                    </label>
 		                </c:forEach>
       				</div>
 				</div>
 			</div>
-			
-			
-				<label>
-					숙소종류 :
-				</label>
-				<label>
-					<select name="stay_type">
-	    				<c:forEach var="staycode" items="${codeList }">
-	    					<option value="${staycode.mcd}">${staycode.name }</option>
-	    				</c:forEach>
-	    			</select>
-				</label><p/>
-				<label>
-					업체소개 :
-				</label>
-				<label>
-					<input type="text" name="host_info"  value="${stay.host_info }">
-				</label><p/>
-				<label>
-					편의시설 :
-				</label>
-				<label>
-					<input type="text" name="convenient"  value="${stay.convenient}">
-				</label><p/>
-				<label>
-					오시는길 :
-				</label>
-				<label>
-					<input type="text" name="way"  value="${stay.way }">
-				</label><p/>
-				<label>
-					체크인 가능시간 :
-				</label>
-				<label>
-					 <input  type="time" class="form-control" name="checkin" id="stay_checkin" autocomplete="off" value="${stay.checkin}" >
-				</label><p/>
-				<label>
-					체크아웃 완료시간 :
-				</label>
-				<label>
-					<input type="time"  class="form-control" name="checkout" id="stay_checkout" autocomplete="off" value="${stay.checkout}">
-				</label><p/>
-			
-			
+			<input class="btn btn-outline-primary mb-5 mx-auto" type="submit" value="수정">
 			</div>
-			<input type="submit" value="수정">
+			</div>
     	</form>
-    	</div>
     	
     <!-- 여기 위로오 ============================================================ -->   
     </div>
