@@ -88,7 +88,7 @@
 				                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
 				                       	<img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px;"/>
 										<input type="file" class="host_photo" id="inputInfo${i.index }" name="rev_Photo${i.index}" 
-											onchange="previewFiles(${i.index })" accept="images/bh/*">
+											onchange="previewFiles(${i.index })" accept="image/jpg, image/jpeg, image/png, image/gif, image/webp">
 				                    </label>
 				                    
 				                </c:forEach>

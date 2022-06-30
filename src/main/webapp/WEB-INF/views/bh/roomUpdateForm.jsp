@@ -51,6 +51,7 @@ div img{
     filter: alpha(opacity=0);
     -ms-filter: alpha(opacity=0);
     cursor:pointer;
+    display: none;
 }
 
 .input-group-text{
@@ -61,6 +62,15 @@ div img{
 	margin-right: auto;
 	width: 500px;
 }
+.roomUpdateTitle {
+	font-family: 'Gugi', cursive;
+	font-size: 25px;
+	margin-top: 50px;
+}
+
+.horizontal_rule {
+	margin-bottom: 50px;
+}
    </style>
 <title>제주 감수광</title>
 </head>
@@ -68,6 +78,10 @@ div img{
 	<%@ include file="../header.jsp" %>
     <div class="container">
     <!-- 여기 밑으로 ============================================================ -->
+    	<div>
+			<h1 class="roomUpdateTitle">나의 객실 수정</h1>
+		</div>
+		<hr class="horizontal_rule">
     	<div style="text-align: center; margin-top: 100px;">
     	<form action="roomUpdate" method="post" style="text-align: center;" enctype="multipart/form-data">
     		<input type="hidden" value="${room.host_num }" name="host_num">
@@ -106,7 +120,7 @@ div img{
 				                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
 				                       	<img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px; display: flex; margin: auto;"/>
 										<input type="file" class="host_photo" id="inputInfo${i.index }" name="room_photo${i.index}" 
-											onchange="previewFiles(${i.index })" accept="images/bh/*">
+											onchange="previewFiles(${i.index })" accept="image/jpg, image/jpeg, image/png, image/gif, image/webp">
 				                    </label><p/>
 				                </c:forEach>
 		      				</div>

@@ -59,6 +59,7 @@
     filter: alpha(opacity=0);
     -ms-filter: alpha(opacity=0);
     cursor:pointer;
+    display: none;
 }
 .input-group-text{
 	margin-left: auto;
@@ -79,15 +80,7 @@
 	display: inline-block;
 }
 
-.file_input_img_btn {
-	display: inline-block;	
-	max-width: 90%;
-	height: auto;
-	border: 2px gray solid;
-	padding: 10px;
-	border-radius: 100%;
-	cursor: pointer;
-}
+
 
 #submitbtn {
 	margin: auto;
