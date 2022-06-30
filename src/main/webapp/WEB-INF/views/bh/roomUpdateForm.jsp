@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet">
  <style type="text/css">
-   div img{
+div img{
    width: 100px;
    height: 100px;
 }
@@ -28,7 +28,39 @@
 #labelInfo4{
    display: none;   
 }
+.labelInfo {
+    float:left;
+    height:28px;
+}
+.file_input_div {
+    position:relative;
+    width:80px;
+    height:36px;
+    overflow:hidden;
+}
 
+.img_btn {
+    padding:0 0 0 5px;
+}
+
+.host_photo {
+    font-size:29px;
+    right:0px;
+    top:0px;
+    opacity:0;
+    filter: alpha(opacity=0);
+    -ms-filter: alpha(opacity=0);
+    cursor:pointer;
+}
+
+.input-group-text{
+	margin-left: auto;
+	width: 100px;
+}
+#ips{
+	margin-right: auto;
+	width: 500px;
+}
    </style>
 <title>제주 감수광</title>
 </head>
@@ -41,46 +73,38 @@
     		<input type="hidden" value="${room.host_num }" name="host_num">
     		<input type="hidden" value="${room.room_num }" name="room_num">
 			<div>
-				<label>
-					객실명 :
-				</label>
-				<label>
-					<input type="text" name="room_name" value="${room.room_name}">
-				</label><p/><p/>
-				<label>
-					인원 :
-				</label>
-				<label>
-					<input type="number"    name="allow"    min="1" max="20" value="${room.allow}">
-				</label><p/>
-				<label>
-					객실 소개글 :
-				</label>
-				<label>
-					<input type="text"      name="room_info"  value="${room.room_info}">
-				</label><p/>
-				<label>
-					평일요금 :
-				</label>
-				<label>
-					<input type="number"     name="dayfee"   value="${room.dayfee}">
-				</label><p/>
-				<label>
-					주말요금 :
-				</label>
-				<label>
-					<input type="number"      name="weekfee"  value="${room.weekfee}">
-				</label><p/>
-					
+			<div class="horizontal_rule">
+			<div class="row">
+				<div class="col-8 mx-auto">
+			<div class="input-group mb-3">
+		  		<span class="input-group-text" id="inputGroup-sizing-default">객실명</span>
+		 	 	<input id="ips" type="text" name="room_name" value="${room.room_name}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-3">
+	  			<span class="input-group-text" id="inputGroup-sizing-default">인원</span>
+	 	 		<input id="ips" type="number"    name="allow"    min="1" max="20" value="${room.allow}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-3">
+	  			<span class="input-group-text" id="inputGroup-sizing-default">소개글</span>
+	 	 		<input id="ips" type="text"      name="room_info"  value="${room.room_info}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>	
+			<div class="input-group mb-3">
+	  			<span class="input-group-text" id="inputGroup-sizing-default">평일요금</span>
+	 	 		<input id="ips" type="number"     name="dayfee"   value="${room.dayfee}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>		
+			<div class="input-group mb-3">
+	  			<span class="input-group-text" id="inputGroup-sizing-default">주말요금</span>
+	 	 		<input id="ips" type="number"      name="weekfee"  value="${room.weekfee}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
 					<div>
 						<div>
 							<div id="preview" ></div>
 						</div>
 						<div>
-							<div class="insertPhoto">
+							<div style="display: inline-block; margin-top: 15px; height: 50px; align-content: center;" class="insertPhoto">
 								<c:forEach begin="0" end="4" varStatus="i">
 				                    <label class="labelInfo" id="labelInfo${i.index }" for="inputInfo${i.index}">
-				                       	 사진 업로드
+				                       	<img src="images/bh/upload.svg" class="file_input_img_btn" alt="사진 " style="width: 50px; height: 50px; display: flex; margin: auto;"/>
 										<input type="file" class="host_photo" id="inputInfo${i.index }" name="room_photo${i.index}" 
 											onchange="previewFiles(${i.index })" accept="images/bh/*">
 				                    </label><p/>
@@ -88,8 +112,11 @@
 		      				</div>
 						</div>
 					</div>
+			<input type="submit" value="수정" class="btn btn-primary" style="margin-top: 20px; width: 100px;">
 			</div>
-			<input type="submit" value="수정">
+			</div>
+			</div>
+			</div>
     	</form>
     	</div>
    <!-- 여기 위로오 ============================================================ -->   

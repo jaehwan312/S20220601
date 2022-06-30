@@ -29,7 +29,7 @@
 				<form class="row g-3" action="updateInfo" method="post" onsubmit="return join()" enctype="multipart/form-data">
 				<div>
 					<div class="photoBox">
-	    				<img id="preview" class="profilePhoto" style="width: 200px; height: 200px;" src = "${pageContext.request.contextPath}/images/js/${profile.photo}"/>
+	    				<img id="preview" class="profilePhoto" style="width: 200px; height: 200px;" src = "${pageContext.request.contextPath}/images/profile/${profile.photo}"/>
 					</div>
 				</div>
 					<div>
