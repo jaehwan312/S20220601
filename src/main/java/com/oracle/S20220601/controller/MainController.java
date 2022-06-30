@@ -1,6 +1,5 @@
 package com.oracle.S20220601.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.oracle.S20220601.domain.jj.Search1;
-import com.oracle.S20220601.service.jj.MainService;
 import com.oracle.S20220601.service.jj.JpaSearchService;
+import com.oracle.S20220601.service.jj.MainService;
 
 @Controller
 public class MainController {

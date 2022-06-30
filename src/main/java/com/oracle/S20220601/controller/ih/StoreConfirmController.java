@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.S20220601.model.ih.HostStore;
-import com.oracle.S20220601.model.jj.HostStayjj;
 import com.oracle.S20220601.model.jj.Jjpaging;
 import com.oracle.S20220601.service.ih.StoreConfirmService;
-import com.oracle.S20220601.service.jj.StayConfirmService;
 
 @Controller
 public class StoreConfirmController {

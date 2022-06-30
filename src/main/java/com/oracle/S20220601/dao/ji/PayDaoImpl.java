@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.oracle.S20220601.model.Pay;
-import com.oracle.S20220601.model.Res;
 
 @Repository
 public class PayDaoImpl implements PayDao {

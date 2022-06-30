@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.oracle.S20220601.dao.ji.PayDao;
 import com.oracle.S20220601.model.Pay;
-import com.oracle.S20220601.model.Res;
 
 @Service
 public class PayServiceImpl implements PayService {

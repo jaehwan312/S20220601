@@ -2,7 +2,6 @@ package com.oracle.S20220601.controller.ji;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,7 +22,6 @@ import com.oracle.S20220601.model.ji.ResInfo;
 import com.oracle.S20220601.service.ji.KakaoPay;
 import com.oracle.S20220601.service.ji.PayService;
 import com.oracle.S20220601.service.ji.ResService;
-
 
 import lombok.Setter;
 

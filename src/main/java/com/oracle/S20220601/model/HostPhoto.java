@@ -1,7 +1,5 @@
 package com.oracle.S20220601.model;
 
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 

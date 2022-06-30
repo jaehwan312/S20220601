@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.S20220601.dao.ih.StoreConfirmDao;
-import com.oracle.S20220601.dao.jj.StayConfirmDao;
 import com.oracle.S20220601.model.ih.HostStore;
 import com.oracle.S20220601.model.jj.Jjpaging;
 @Service

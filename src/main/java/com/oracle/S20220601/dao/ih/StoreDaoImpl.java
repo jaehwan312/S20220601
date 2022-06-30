@@ -1,13 +1,11 @@
 package com.oracle.S20220601.dao.ih;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.Pick;
 import com.oracle.S20220601.model.ih.HostStore;
 

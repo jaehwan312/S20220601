@@ -2,8 +2,6 @@ package com.oracle.S20220601.dao.js;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.Profile;
 import com.oracle.S20220601.model.Search;

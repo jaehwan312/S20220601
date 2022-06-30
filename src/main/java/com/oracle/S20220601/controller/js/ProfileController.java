@@ -18,7 +18,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oracle.S20220601.model.Host;
 import com.oracle.S20220601.model.Profile;
@@ -135,7 +133,7 @@ public class ProfileController {
 		System.out.println("-------------signUp Start-------------	");
 		System.out.println(profilePhoto.getOriginalFilename());
 		
-		String uploadPath = request.getSession().getServletContext().getRealPath("/images/js/");
+		String uploadPath = request.getSession().getServletContext().getRealPath("/images/profile/");
 		
 		logger.info("originalName: " + profilePhoto.getOriginalFilename());
 	    logger.info("size: " + profilePhoto.getSize());
@@ -371,7 +369,7 @@ public class ProfileController {
 		profile.setMem_num(mem_num);
 		
 		if(profilePhoto.getSize() != 0) {
-		String uploadPath = request.getSession().getServletContext().getRealPath("/images/js/");
+		String uploadPath = request.getSession().getServletContext().getRealPath("/images/profile/");
 		
 		logger.info("originalName: " + profilePhoto.getOriginalFilename());
 	    logger.info("size: " + profilePhoto.getSize());
