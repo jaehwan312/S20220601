@@ -79,7 +79,7 @@ public class StoreRevController {
 	@PostMapping(value = "storeRevInsert" )
 	public StoreReview storeRevInsert(StoreReview review, HttpServletRequest request, 
 							  		  MultipartHttpServletRequest  filelist,
-										  @RequestParam HashMap<Object, Object> param) throws Exception {
+									  @RequestParam HashMap<Object, Object> param) throws Exception {
 		
 		System.out.println("StoreRevController storeRevInsert Start...");
 		
