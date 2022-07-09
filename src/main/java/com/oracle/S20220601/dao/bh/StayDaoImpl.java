@@ -197,7 +197,7 @@ public class StayDaoImpl implements StayDao {
 		System.out.println("StayDaoImpl stayInsert start...");
 		
 		int stayInsert =0;
-		hostStay.setMem_num(4);
+		//hostStay.setMem_num(4);
 		
 		
 //		System.out.println("hostStore.getHost_num() --> " + hostStay.getHost_num());

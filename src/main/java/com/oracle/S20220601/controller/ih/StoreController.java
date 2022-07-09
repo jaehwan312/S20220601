@@ -136,11 +136,23 @@ public class StoreController {
 	public String storeInsert(HostStore     hostStore,       Menu menu ,   Model model,
 							  MultipartFile host_photo0,     MultipartFile host_photo1,       
 							  MultipartFile host_photo2,     MultipartFile host_photo3,      
-							  MultipartFile host_photo4,     HttpServletRequest request) throws Exception {
+							  MultipartFile host_photo4,     HttpServletRequest request,
+							  HttpSession   session) throws Exception {
 		
 		System.out.println("StoreController storeInsert Start..");
 		
+		
+		session     = request.getSession();
+		int mem_num = 0;
+		if (session.getAttribute("mem_num") == null) {
+			mem_num = 0;
+		}else {
+			mem_num = (int) session.getAttribute("mem_num"); //로그인 성공시 회원번호 값
+			hostStore.setMem_num(mem_num);
+		}
+		
 		//식당정보 등록(DB저장)
+		
 		int storeInsert  = storeService.storeInsert(hostStore);
 		
 		System.out.println("storeInsert --> " + storeInsert);
@@ -280,6 +292,7 @@ public class StoreController {
 				menuDelete = menuSeivice.menuDelete(menuList.get(i).getMenu_num());
 			}else if(menu.getMenu_list().size() >= i) {
 				if (menuList.get(i).getMenu_num() != menu.getMenu_list().get(i).getIn_menu_num()) {
+					System.out.println(i + "번째 메뉴 삭제");
 					menuDelete = menuSeivice.menuDelete(menuList.get(i).getMenu_num());
 				}
 			}

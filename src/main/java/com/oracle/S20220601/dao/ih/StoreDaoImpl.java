@@ -42,7 +42,6 @@ public class StoreDaoImpl implements StoreDao {
 		int storeInsert = 0;
 		
 		try {
-			hostStore.setMem_num(1);
 			hostStore.setOpen_time(hostStore.getStart_time() 
 								   + "~" + 
 								   hostStore.getEnd_time());
