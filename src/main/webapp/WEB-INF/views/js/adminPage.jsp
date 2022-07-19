@@ -83,7 +83,7 @@
                     <a href="chatList">
 	                    <div class="fact-item bg-light rounded text-center h-100 p-5">
 	                        <i class="fa fa-comments fa-4x text-primary mb-4" aria-hidden="true"></i>
-	                        <p class="mb-2">실시간채팅 관리</p>
+	                        <p class="mb-2">1:1 채팅 문의</p>
 	                        <!-- <h1 class="display-5 mb-0" data-toggle="counter-up"><span class="counter">8</span></h1> -->
 	                    </div>
                     </a>

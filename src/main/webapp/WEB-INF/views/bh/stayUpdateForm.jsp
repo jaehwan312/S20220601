@@ -88,7 +88,7 @@
 	    		<input type="hidden" name="like_count" value="${stay.like_count }">
 	    		<input type="hidden" name="rev_count" value="${stay.rev_count}">
 			<div>
-			<h1 class="roomInsertTitle">나의 객실 추가</h1>
+			<h1 class="roomInsertTitle">나의 숙소 수정</h1>
 			</div>
 			<hr class="horizontal_rule">
 	    	<div class="row">

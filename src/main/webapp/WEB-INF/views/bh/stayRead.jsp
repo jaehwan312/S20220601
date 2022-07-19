@@ -308,7 +308,22 @@
 	            	</div>
 	            	<div class="review">${map.content.rev_content}</div>
 	            	
-   		            <c:if test="${map.reply!=null }">
+               		<form style="display:inline-block;" action="reviewUpdateForm">
+	               		<input type="hidden" name="host_num" value="${host_num }">
+				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
+				   		<c:if test="${map.content.mem_num==mem_num }">
+	               		<button class="btn btn-outline-danger">수정</button>
+	               		</c:if>
+	               </form> 
+	               <form style="display:inline-block;" action="reviewDelete" id="reviewDeleteForm">
+	               		<input type="hidden" name="host_num" value="${host_num }">
+				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
+				   		<c:if test="${map.content.mem_num==mem_num }">
+	               		<button type="button" class="btn btn-outline-danger" onclick="revDeleteCheck()">삭제</button>
+	               		</c:if>
+	               </form> 
+	               
+	               <c:if test="${map.reply!=null }">
 		            	<div class="row host_rev_after">
 	            			<div class="col-2">
 								<c:if test="${map.reply.photo == null }">
@@ -325,21 +340,7 @@
 							</div>
 		            	</div>
 		            </c:if>
-	                
-               		<form style="display:inline-block;" action="reviewUpdateForm">
-	               		<input type="hidden" name="host_num" value="${host_num }">
-				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
-				   		<c:if test="${map.content.mem_num==mem_num }">
-	               		<button class="btn btn-outline-danger">수정</button>
-	               		</c:if>
-	               </form> 
-	               <form style="display:inline-block;" action="reviewDelete" id="reviewDeleteForm">
-	               		<input type="hidden" name="host_num" value="${host_num }">
-				   		<input type="hidden" name="rev_num" value="${map.content.rev_num }">
-				   		<c:if test="${map.content.mem_num==mem_num }">
-	               		<button type="button" class="btn btn-outline-danger" onclick="revDeleteCheck()">삭제</button>
-	               		</c:if>
-	               </form> 
+	               
 					<form  action="reviewRef" id="reviewRef">
 						<input type="hidden" name="host_num" value="${host_num }">
 						<input type="hidden" name="rev_num" value="${map.content.rev_num }">

@@ -25,7 +25,7 @@
 					<li><a href="keywordList">추천검색어 관리</a></li>
 					<li><a href="stayConfirm">숙소등록 관리</a></li>
 					<li><a href="storeConfirm">식당등록 관리</a></li>
-					<li><a href="chatList">실시간채팅 관리</a></li>
+					<li><a href="chatList">1:1 채팅 문의</a></li>
 				</ul>
 			</c:when>
 			<c:when test="${grade=='2' }">
