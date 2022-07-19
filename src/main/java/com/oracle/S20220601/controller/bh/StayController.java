@@ -88,8 +88,18 @@ public class StayController {	//숙소 Controller
 	public String stayInsert(HostStay hostStay,Model model,MultipartFile host_photo0,
 										  MultipartFile host_photo1,MultipartFile host_photo2,
 										  MultipartFile host_photo3,MultipartFile host_photo4,
-										  HttpServletRequest request) throws IOException, Exception {
-		
+										  HttpServletRequest request, HttpSession session) throws IOException, Exception {
+		//mem_num 이 무조건 4로 들어가서 로그인해 mem_num을 가지고옴
+		session     = request.getSession();
+		int mem_num = 0;
+		if (session.getAttribute("mem_num") == null) {
+			mem_num = 0;
+		}else {
+			mem_num = (int) session.getAttribute("mem_num"); //로그인 성공시 회원번호 값
+			hostStay.setMem_num(mem_num);
+			
+		}
+		//
 		int stayInsert = ss.stayInsert(hostStay);
 		
 		Map<Integer, MultipartFile> filename     = new HashMap<Integer, MultipartFile>();
@@ -155,6 +165,7 @@ public class StayController {	//숙소 Controller
 						  MultipartFile room_photo1,MultipartFile room_photo2,
 						  MultipartFile room_photo3,MultipartFile room_photo4,
 						  HttpServletRequest request) throws IOException, Exception {
+		
 		
 		int roomInsert = ss.roomInsert(room);
 		Map<Integer, MultipartFile> filename     = new HashMap<Integer, MultipartFile>();
